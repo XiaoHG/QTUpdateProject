@@ -14,7 +14,6 @@ int main(int argc, char *argv[])
 
     //UpadateUI
     UpdateClientUI *update = UpdateClientUI::getInstall();
-    qDebug() << update->checkUpdate();
     if(update->checkUpdate())
         update->show();
 

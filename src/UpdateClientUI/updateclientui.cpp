@@ -44,7 +44,7 @@ void UpdateClientUI::UI()
     //outputEdit->setWindowFlags(Qt::FramelessWindowHint);
     outputEdit->setText("This is a test");
     outputEdit->setFrameShape(QFrame::NoFrame);
-    outputEdit->setGeometry(0, 0, 350, this->height());
+    outputEdit->setGeometry(20, 20, 330, this->height() - 40);
     outputEdit->setStyleSheet("background-color:rgb(75, 75, 75)");
     outputEdit->setTextColor(QColor(255, 255, 255, 255));
 
