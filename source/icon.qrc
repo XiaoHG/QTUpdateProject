@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>image/blueberry.png</file>
+        <file>image/cherry.png</file>
+        <file>image/durian.png</file>
+        <file>image/grape.png</file>
+        <file>image/kiwi fruit.png</file>
+    </qresource>
+</RCC>
