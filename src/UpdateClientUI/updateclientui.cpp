@@ -46,7 +46,7 @@ void UpdateClientUI::init()
 /*UI defined*/
 void UpdateClientUI::UI()
 {
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    //this->setWindowFlags(Qt::FramelessWindowHint);
     this->setStyleSheet("background-color:rgb(150, 150, 150)");
     //Set update client dialog fix size
     this->setFixedSize(600, 400);
@@ -61,20 +61,20 @@ void UpdateClientUI::UI()
     //outputEdit->setWindowFlags(Qt::FramelessWindowHint);
     outputEdit->setText("This is a test");
     outputEdit->setFrameShape(QFrame::NoFrame);
-    outputEdit->setGeometry(0, 0, 400, this->height());
+    outputEdit->setGeometry(0, 0, 350, this->height());
     outputEdit->setStyleSheet("background-color:rgb(75, 75, 75)");
     outputEdit->setTextColor(QColor(255, 255, 255, 255));
 
     //splitter for ok and cansel button and style
     btnOk = new QPushButton(this);
     btnOk->setText("UPDATE");
-    btnOk->setGeometry(320, this->height() - 70, 100, 50);
+    btnOk->setGeometry(370, this->height() - 80, 100, 50);
     btnOk->setWindowOpacity(0.5);
 
     btnCansel = new QPushButton(this);
     btnCansel->setText("CANSEL");
     btnCansel->setFixedSize(100, 50);
-    btnCansel->setGeometry(450, this->height() - 70, 100, 50);
+    btnCansel->setGeometry(480, this->height() - 80, 100, 50);
 
     connect(btnOk, SIGNAL(clicked(bool)), this, SLOT(slotPrintUpdateFilesName()));
     connect(btnCansel, SIGNAL(clicked(bool)), this, SLOT(close()));
