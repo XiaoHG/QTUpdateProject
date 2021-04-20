@@ -8,31 +8,14 @@
 #include <QMouseEvent>
 #include <QDebug>
 
-UpdateClientUI *UpdateClientUI::thisInstall = NULL;
-
 UpdateClientUI::UpdateClientUI(QWidget *parent)
     :QWidget(parent)
 {
     init();
 }
 
-UpdateClientUI *UpdateClientUI::getInstall()
-{
-    if(thisInstall != NULL)
-    {
-        return thisInstall;
-    }
-    else
-    {
-        thisInstall = new UpdateClientUI;
-        return thisInstall;
-    }
-}
-
 UpdateClientUI::~UpdateClientUI()
 {
-    if(thisInstall != NULL)
-        delete thisInstall;
 }
 
 /*init all*/

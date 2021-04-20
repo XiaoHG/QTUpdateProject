@@ -11,13 +11,20 @@ class UPDATECLIENTUISHARED_EXPORT UpdateClientUI : public QWidget
     Q_OBJECT
 
 public:
-    static UpdateClientUI *getInstall();
+    static UpdateClientUI *getInstall()
+    {
+        static UpdateClientUI install;
+        return &install;
+    }
     ~UpdateClientUI();
 
-private:
+protected:
     UpdateClientUI(QWidget *parent = 0);
+
+private:
     void init();
     void UI();
+    void update();
 
 public:
     bool checkUpdate();
@@ -29,7 +36,6 @@ protected:
 
 protected slots:
     void slotPrintUpdateFilesName();
-    void update();
     void close();
 
 private://drag event
@@ -38,8 +44,6 @@ private://drag event
     QPoint windowTopLeftPoint;
 
 private:
-    //single install
-    static UpdateClientUI *thisInstall;
     //check update btn
     QPushButton *btnOk;
     //cansel update
