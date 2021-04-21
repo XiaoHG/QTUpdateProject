@@ -297,6 +297,8 @@ release\moc_updateclientui.cpp: ..\UpdateClientUI\updateclientui_global.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextcursor.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextformat.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpen.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QLabel \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlabel.h \
 		..\UpdateClientUI\updateclientui.h \
 		release\moc_predefs.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
@@ -437,13 +439,13 @@ release\updateclientui.obj: ..\UpdateClientUI\updateclientui.cpp ../UpdateClient
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextcursor.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextformat.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpen.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QLabel \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlabel.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlayout.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlayoutitem.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qgridlayout.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QLabel \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlabel.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSplitter \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qsplitter.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QFileDialog \

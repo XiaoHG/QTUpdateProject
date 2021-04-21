@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QWidget>
 #include <QTextEdit>
+#include <QLabel>
 
 class UPDATECLIENTUISHARED_EXPORT UpdateClientUI : public QWidget
 {
@@ -24,7 +25,7 @@ protected:
 private:
     void init();
     void UI();
-    void update();
+    bool update();
 
 public:
     bool checkUpdate();
@@ -35,8 +36,8 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
 
 protected slots:
-    void slotPrintUpdateFilesName();
-    void close();
+    void slotClose();
+    void slotUpdate();
 
 private://drag event
     bool m_bDrag;
@@ -45,13 +46,17 @@ private://drag event
 
 private:
     //check update btn
-    QPushButton *btnOk;
+    QPushButton *btnUpdate;
     //cansel update
     QPushButton *btnCansel;
+    //if the laster varsion and show ok button
+    QPushButton *btnOk;
     //output files that need to update
     QTextEdit *outputEdit;
     //update flag
     bool isUpdate;
+    //the laster varsion
+    QLabel *vNotifyLabel;
 };
 
 #endif // UPDATECLIENTUI_H

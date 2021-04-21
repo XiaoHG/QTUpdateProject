@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_UpdateClientUI_t {
     QByteArrayData data[4];
-    char stringdata0[47];
+    char stringdata0[37];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,13 +32,12 @@ struct qt_meta_stringdata_UpdateClientUI_t {
 static const qt_meta_stringdata_UpdateClientUI_t qt_meta_stringdata_UpdateClientUI = {
     {
 QT_MOC_LITERAL(0, 0, 14), // "UpdateClientUI"
-QT_MOC_LITERAL(1, 15, 24), // "slotPrintUpdateFilesName"
-QT_MOC_LITERAL(2, 40, 0), // ""
-QT_MOC_LITERAL(3, 41, 5) // "close"
+QT_MOC_LITERAL(1, 15, 9), // "slotClose"
+QT_MOC_LITERAL(2, 25, 0), // ""
+QT_MOC_LITERAL(3, 26, 10) // "slotUpdate"
 
     },
-    "UpdateClientUI\0slotPrintUpdateFilesName\0"
-    "\0close"
+    "UpdateClientUI\0slotClose\0\0slotUpdate"
 };
 #undef QT_MOC_LITERAL
 
@@ -72,8 +71,8 @@ void UpdateClientUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         UpdateClientUI *_t = static_cast<UpdateClientUI *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->slotPrintUpdateFilesName(); break;
-        case 1: _t->close(); break;
+        case 0: _t->slotClose(); break;
+        case 1: _t->slotUpdate(); break;
         default: ;
         }
     }
