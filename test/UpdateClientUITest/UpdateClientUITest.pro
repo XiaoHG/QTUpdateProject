@@ -8,7 +8,7 @@ QT += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = UpdateClientUITestV1.0
+TARGET = UpdateClientUITestV2.0
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use

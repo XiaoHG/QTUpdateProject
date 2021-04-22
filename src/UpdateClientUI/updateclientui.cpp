@@ -1,4 +1,4 @@
-#include "updateclientui.h"
+﻿#include "updateclientui.h"
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
@@ -30,74 +30,80 @@ void UpdateClientUI::init()
 /*UI defined*/
 void UpdateClientUI::UI()
 {
-    //QWidget *centerWidget = new QWidget(this);
+    updateFiles = new QStringList;
+//    QWidget *centerWidget = new QWidget(this);
+    //this->setStyleSheet("background-color:rgb(100, 100, 100);border-radius: 10px;");
     this->setStyleSheet("background-color:rgb(100, 100, 100)");
-    //this->setStyleSheet("border-radius: 15px;");
+    this->setWindowFlags(Qt::FramelessWindowHint);
+    //this->setStyleSheet("border-radius: 10px;");
     //Set update client dialog fix size
-    this->setFixedSize(600, 400);
+    this->resize(400, 300);
+    this->setWindowTitle("Check Update");
+
+    //line edit widget to varsion notify
+    QFont vNotifyLabelFont( "Microsoft YaHei", 10, 75);
+    titleLabel = new QLabel(this);
+    titleLabel->setGeometry(0 , 0, this->width(), 40);
+    titleLabel->setFont(vNotifyLabelFont);
+    titleLabel->setText("Current Version V1.0.1");
+    titleLabel->setAlignment(Qt::AlignCenter);
+    titleLabel->setScaledContents(true);
+    titleLabel->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
 
     //add a Text edit widget for output file that need to update
+    //QFont outputEditFont( "Microsoft YaHei", 8, 75);
     outputEdit = new QTextEdit(this);
+    //outputEdit->setFont(outputEditFont);
     //outputEdit->setEnabled(false);
     outputEdit->setFocusPolicy(Qt::NoFocus);
     //outputEdit->setWindowFlags(Qt::FramelessWindowHint);
     outputEdit->setText("This is a test");
     //outputEdit->setFrameShape(QFrame::NoFrame);
-    outputEdit->setGeometry(20, 20, 330, this->height() - 40);
-    outputEdit->setStyleSheet("background-color:rgb(100, 100, 100)");
+    outputEdit->setGeometry(20, titleLabel->height() + 40, this->width() - 40,
+                            this->height() - titleLabel->height() - 100);
+    outputEdit->setStyleSheet("background-color:rgb(100, 100, 100);color:rgb(200, 200, 200)");
     //outputEdit->setStyleSheet("border-radius: 0px;");
-    outputEdit->setTextColor(QColor(255, 255, 255, 255));
+    outputEdit->setTextColor(QColor(200, 200, 200, 255));
 
-
-    //line edit widget to varsion notify
-    QFont font( "Microsoft YaHei", 20, 75);
-    vNotifyLabel = new QLabel(this);
-    vNotifyLabel->setGeometry(0, 0, this->width(), this->height());
-    vNotifyLabel->setFont(font);
-    vNotifyLabel->setText("Already the latest version\nCurrent: V1.0.1\n\n");
-    vNotifyLabel->setAlignment(Qt::AlignCenter);
-    vNotifyLabel->setScaledContents(true);
-    vNotifyLabel->setStyleSheet("color:white");
-    vNotifyLabel->setStyleSheet("background-color:rgb(75, 75, 75)");
-    vNotifyLabel->hide();
+    QFont logTitleLabelFont( "Microsoft YaHei", 8, 75);
+    QLabel *logTitleLabel = new QLabel(this);
+    logTitleLabel->setFont(logTitleLabelFont);
+    logTitleLabel->setStyleSheet("color:white");
+    logTitleLabel->setGeometry(outputEdit->x(), outputEdit->y() - 25, outputEdit->width(), 20);
+    logTitleLabel->setScaledContents(true);
+    logTitleLabel->setText("Varsion Log : ");
+    logTitleLabel->setStyleSheet("color:rgb(200, 200, 200)");
 
     //splitter for update and cansel button and style
     btnUpdate = new QPushButton(this);
     btnUpdate->setText("UPDATE");
-    btnUpdate->setGeometry(370, this->height() - 100, 100, 50);
-    btnUpdate->setWindowOpacity(0.5);
-    btnUpdate->setStyleSheet("background-color:rgb(255, 255, 255)");
+    btnUpdate->setGeometry(20, outputEdit->height() + titleLabel->height() + 50, 60, 30);
+    btnUpdate->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
 
-    btnCansel = new QPushButton(this);
-    btnCansel->setText("CANSEL");
-    btnCansel->setFixedSize(100, 50);
-    btnCansel->setGeometry(480, this->height() - 100, 100, 50);
-    btnCansel->setStyleSheet("background-color:rgb(255, 255, 255)");
+    //laster varsion info
+    newVarsionInfoLabel = new QLabel(this);
+    newVarsionInfoLabel->setGeometry(btnUpdate->x() + btnUpdate->width() + 10, btnUpdate->y(),
+                                     outputEdit->width() - btnUpdate->width() - 10,
+                                     btnUpdate->height());
+    newVarsionInfoLabel->setScaledContents(true);
+    newVarsionInfoLabel->setWordWrap(true);
+    newVarsionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
+    newVarsionInfoLabel->setText("Varsion server have new varsion V2.0.1, "
+                                 "click update button to update.");
 
-    //ok
-    btnOk = new QPushButton(this);
-    btnOk->setText("OK");
-    btnOk->setGeometry(btnUpdate->x() + 20, btnUpdate->y() - 30, btnUpdate->width() + 30, btnUpdate->height());
-    btnOk->setStyleSheet("background-color:rgb(200, 200, 200);color:white");
-    btnOk->hide();
-
-    //QSlider for update prosess
-    updateSlider = new QSlider(this);
-    updateSlider->setValue(1);
-    updateSlider->setOrientation(Qt::Horizontal);
-    updateSlider->setGeometry(100, 100, 400, 30);
-    updateSlider->setWindowFlags(Qt::WindowStaysOnTopHint);
-    updateSlider->hide();
+    QPushButton *btnClose = new QPushButton(this);
+    //btnClose->setText("X");
+    btnClose->setGeometry(this->width() - titleLabel->height(), 0, titleLabel->height(), titleLabel->height());
+    btnClose->setStyleSheet("background-color:rgb(150, 150, 150)");
+    btnClose->setIcon(QIcon(":/image/close.png"));
+    connect(btnClose, SIGNAL(clicked(bool)), this, SLOT(close()));
 
     //update prosess timer
     updateProsessTimer = new QTimer(this);
     connect(updateProsessTimer, SIGNAL(timeout()), this, SLOT(slotUpdateTimeOut()));
     updateProsessTimer->stop();
 
-    connect(btnOk, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(btnUpdate, SIGNAL(clicked(bool)), this, SLOT(slotUpdateBtnClicked()));
-    connect(btnCansel, SIGNAL(clicked(bool)), this, SLOT(slotClose()));
-
 }
 
 void UpdateClientUI::mousePressEvent(QMouseEvent *event)
@@ -141,12 +147,14 @@ bool UpdateClientUI::checkUpdate()
     if(isUpdate)
     {
         //need to update show update message, wait client clicked update button.
-        this->exec();
+        //this->exec();
         outputEdit->clear();
-        for(int i = 0; i < 10; ++i)
+        for(int i = 0; i < 20; ++i)
         {
+            updateFiles->push_back(QString::asprintf("file number %d.file", i));
             outputEdit->append(QString::asprintf("file number %d.file", i));
         }
+        this->exec();
     }
     else
     {
@@ -158,17 +166,12 @@ bool UpdateClientUI::checkUpdate()
 
         //This is the laster varsion so hide update button and cansel button,
         //and show the laster notify message and ok button.
-
-        this->setStyleSheet("border-radius: 15px;");
-        this->setWindowFlags(Qt::FramelessWindowHint);
-        btnUpdate->hide();
-        btnCansel->hide();
-        vNotifyLabel->show();
-        btnOk->show();
+        btnUpdate->setEnabled(false);
     }
     return isUpdate;
 }
 
+//just test code
 void UpdateClientUI::testUpdate(bool isU)
 {
     isUpdate = isU;
@@ -178,46 +181,27 @@ void UpdateClientUI::testUpdate(bool isU)
 void UpdateClientUI::slotUpdateBtnClicked()
 {
     //update,and start updateProsessTimer
-    outputEdit->hide();
+    outputEdit->clear();
+    updateProsessTimer->start(100);
     update();
 }
 
 bool UpdateClientUI::update()
 {
     //start update prosess timer at the begining update.
-    updateProsessTimer->start(10);
-    updateSlider->show();
+    this->setWindowTitle("Updating...");
     return true;
-}
-
-void UpdateClientUI::slotClose()
-{
-    //next show update dialog show update information if need to update.
-    if(isUpdate)
-        outputEdit->clear();
-    this->hide();
 }
 
 void UpdateClientUI::slotUpdateTimeOut()
 {
-    static int updateSliderValue = 1;
-    updateSlider->setValue(updateSliderValue++);
-    if(updateSlider->value() == updateSlider->maximum())
+    static int process = 0;
+    outputEdit->append(updateFiles->at(process++));
+    if(process == updateFiles->size() - 1)
     {
-        //add a slider
-        updateSliderValue = 1;
-        updateSlider->hide();
-        int btnFlag = QMessageBox::information(this, "update success",
-                                               "Please restart app for run the laster varsion",
-                                               QMessageBox::Ok);
-        if(btnFlag == QMessageBox::Ok)
-        {
-            //sent a message to main window for close it.
-            //client need to restart the application
-            this->close();
-            sigCloseMainWindow();
-        }
-        isUpdate = false;
+        QMessageBox::information(this, "Update Finish", "Finish", QMessageBox::Ok);
+        this->close();
+        sigCloseMainWindow();
         updateProsessTimer->stop();
     }
 }

@@ -1,4 +1,4 @@
-#ifndef UPDATECLIENTUI_H
+﻿#ifndef UPDATECLIENTUI_H
 #define UPDATECLIENTUI_H
 
 #include "updateclientui_global.h"
@@ -8,6 +8,8 @@
 #include <QLabel>
 #include <QSlider>
 #include <QTimer>
+#include <QDialog>
+#include <QList>
 #include <QDialog>
 
 class UPDATECLIENTUISHARED_EXPORT UpdateClientUI : public QDialog
@@ -40,7 +42,6 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
 
 protected slots:
-    void slotClose();
     void slotUpdateBtnClicked();
     void slotUpdateTimeOut();
 
@@ -56,20 +57,18 @@ private://drag event
 private:
     //check update btn
     QPushButton *btnUpdate;
-    //cansel update
-    QPushButton *btnCansel;
-    //if the laster varsion and show ok button
-    QPushButton *btnOk;
     //output files that need to update
     QTextEdit *outputEdit;
     //update flag
     bool isUpdate;
     //the laster varsion
-    QLabel *vNotifyLabel;
-    //update prosess
-    QSlider *updateSlider;
+    QLabel *titleLabel;
     //update prosess timer
     QTimer *updateProsessTimer;
+    //need to update
+    QStringList *updateFiles;
+    //varsion server new varsion information
+    QLabel *newVarsionInfoLabel;
 };
 
 #endif // UPDATECLIENTUI_H

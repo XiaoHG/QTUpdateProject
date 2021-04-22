@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     w.show();
 
     //UpadateUI
-    UpdateClientUI::getInstall()->testUpdate(false);
+    UpdateClientUI::getInstall()->testUpdate(true);
     UpdateClientUI::getInstall()->checkUpdate();
 
     return a.exec();

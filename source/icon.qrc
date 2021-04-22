@@ -6,4 +6,7 @@
         <file>image/grape.png</file>
         <file>image/kiwi fruit.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>image/close.png</file>
+    </qresource>
 </RCC>
