@@ -8,8 +8,9 @@
 #include <QLabel>
 #include <QSlider>
 #include <QTimer>
+#include <QDialog>
 
-class UPDATECLIENTUISHARED_EXPORT UpdateClientUI : public QWidget
+class UPDATECLIENTUISHARED_EXPORT UpdateClientUI : public QDialog
 {
     Q_OBJECT
 
@@ -31,6 +32,7 @@ private:
 
 public:
     bool checkUpdate();
+    void testUpdate(bool isU);
 
 protected:
     void mousePressEvent(QMouseEvent *event);

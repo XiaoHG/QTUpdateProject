@@ -10,7 +10,7 @@
 #include <QMessageBox>
 
 UpdateClientUI::UpdateClientUI(QWidget *parent)
-    :QWidget(parent)
+    :QDialog(parent)
 {
     init();
 }
@@ -24,20 +24,17 @@ void UpdateClientUI::init()
 {
     UI();
     //init isUpdate = false
-    isUpdate = false;
+    isUpdate = true;
 }
 
 /*UI defined*/
 void UpdateClientUI::UI()
 {
-    this->setWindowFlags(Qt::FramelessWindowHint);
-    //this->setStyleSheet("border-radius: 15px;");
+    //QWidget *centerWidget = new QWidget(this);
     this->setStyleSheet("background-color:rgb(100, 100, 100)");
+    //this->setStyleSheet("border-radius: 15px;");
     //Set update client dialog fix size
     this->setFixedSize(600, 400);
-    //title
-    this->setWindowTitle("Update Client");
-    this->setWindowIcon(QIcon(":/icon/image/grape.png"));
 
     //add a Text edit widget for output file that need to update
     outputEdit = new QTextEdit(this);
@@ -81,7 +78,7 @@ void UpdateClientUI::UI()
     btnOk = new QPushButton(this);
     btnOk->setText("OK");
     btnOk->setGeometry(btnUpdate->x() + 20, btnUpdate->y() - 30, btnUpdate->width() + 30, btnUpdate->height());
-    //btnOk->setStyleSheet("background-color:rgb(200, 200, 200);color:white");
+    btnOk->setStyleSheet("background-color:rgb(200, 200, 200);color:white");
     btnOk->hide();
 
     //QSlider for update prosess
@@ -144,7 +141,7 @@ bool UpdateClientUI::checkUpdate()
     if(isUpdate)
     {
         //need to update show update message, wait client clicked update button.
-        this->show();
+        this->exec();
         outputEdit->clear();
         for(int i = 0; i < 10; ++i)
         {
@@ -156,17 +153,25 @@ bool UpdateClientUI::checkUpdate()
         //It is first star application or not.
         static int atTheOneStart = 1;
         if(atTheOneStart == 0)
-            this->show();
+            this->exec();
         atTheOneStart = 0;
 
         //This is the laster varsion so hide update button and cansel button,
         //and show the laster notify message and ok button.
+
+        this->setStyleSheet("border-radius: 15px;");
+        this->setWindowFlags(Qt::FramelessWindowHint);
         btnUpdate->hide();
         btnCansel->hide();
         vNotifyLabel->show();
         btnOk->show();
     }
     return isUpdate;
+}
+
+void UpdateClientUI::testUpdate(bool isU)
+{
+    isUpdate = isU;
 }
 
 /*update function*/
@@ -202,8 +207,9 @@ void UpdateClientUI::slotUpdateTimeOut()
         //add a slider
         updateSliderValue = 1;
         updateSlider->hide();
-        int btnFlag = QMessageBox::information(this, "update success", "Please restart app for run the laster varsion",
-                                 QMessageBox::Ok);
+        int btnFlag = QMessageBox::information(this, "update success",
+                                               "Please restart app for run the laster varsion",
+                                               QMessageBox::Ok);
         if(btnFlag == QMessageBox::Ok)
         {
             //sent a message to main window for close it.
@@ -212,5 +218,6 @@ void UpdateClientUI::slotUpdateTimeOut()
             sigCloseMainWindow();
         }
         isUpdate = false;
+        updateProsessTimer->stop();
     }
 }

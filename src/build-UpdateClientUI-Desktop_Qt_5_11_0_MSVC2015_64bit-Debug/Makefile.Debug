@@ -305,6 +305,8 @@ debug\moc_updateclientui.cpp: ..\UpdateClientUI\updateclientui_global.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTimer \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtimer.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasictimer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QDialog \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h \
 		..\UpdateClientUI\updateclientui.h \
 		debug\moc_predefs.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
@@ -453,6 +455,8 @@ debug\updateclientui.obj: ..\UpdateClientUI\updateclientui.cpp ../UpdateClientUI
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTimer \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtimer.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasictimer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QDialog \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlayout.h \
@@ -464,7 +468,6 @@ debug\updateclientui.obj: ..\UpdateClientUI\updateclientui.cpp ../UpdateClientUI
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qfiledialog.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdir.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfileinfo.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QApplication \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qapplication.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcoreapplication.h \
