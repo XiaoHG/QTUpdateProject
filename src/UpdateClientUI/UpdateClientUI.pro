@@ -6,7 +6,12 @@
 
 QT       += widgets gui
 
-TARGET = UpdateClientUI
+CONFIG(debug, debug | release){
+    TARGET = UpdateClientUI_d
+}else{
+    TARGET = UpdateClientUI
+}
+
 TEMPLATE = lib
 
 DEFINES += UPDATECLIENTUI_LIBRARY
@@ -39,3 +44,5 @@ unix {
 
 RESOURCES += \
     ../../source/icon.qrc
+
+

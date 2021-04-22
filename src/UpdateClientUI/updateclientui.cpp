@@ -153,8 +153,14 @@ void UpdateClientUI::slotUpdate()
         if(update())
         {
             //add a slider
-            QMessageBox::information(this, "update success", "Please restart app for run the laster varsion",
-                                     QMessageBox::Ok, QMessageBox::NoButton);
+            int btnFlag = QMessageBox::information(this, "update success", "Please restart app for run the laster varsion",
+                                     QMessageBox::Ok);
+            if(btnFlag == QMessageBox::Ok)
+            {
+                //sent a message to main window for close it.
+                //client need to restart the application
+                sigCloseMainWindow();
+            }
             this->close();
             isUpdate = false;
         }

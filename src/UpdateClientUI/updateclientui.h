@@ -39,6 +39,9 @@ protected slots:
     void slotClose();
     void slotUpdate();
 
+signals:
+    void sigCloseMainWindow();
+
 private://drag event
     bool m_bDrag;
     QPoint mouseStartPoint;

@@ -461,7 +461,9 @@ release\updateclientui.obj: ..\UpdateClientUI\updateclientui.cpp ../UpdateClient
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qguiapplication.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qinputmethod.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QMouseEvent \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDebug
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDebug \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMessageBox \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmessagebox.h
 
 release\qrc_icon.obj: release\qrc_icon.cpp 
 

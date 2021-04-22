@@ -19,11 +19,13 @@ MainWindow::~MainWindow()
 void MainWindow::init()
 {
     this->setWindowState(Qt::WindowMaximized);
+    upCUI = UpdateClientUI::getInstall();
+
+    connect(upCUI, SIGNAL(sigCloseMainWindow()), this, SLOT(close()));
 }
 
 void MainWindow::on_btnUpdate_clicked()
 {
-    UpdateClientUI *update = UpdateClientUI::getInstall();
-    update->checkUpdate();
-    update->show();
+    upCUI->checkUpdate();
+    upCUI->show();
 }
