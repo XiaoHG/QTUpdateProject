@@ -6,6 +6,8 @@
 #include <QWidget>
 #include <QTextEdit>
 #include <QLabel>
+#include <QSlider>
+#include <QTimer>
 
 class UPDATECLIENTUISHARED_EXPORT UpdateClientUI : public QWidget
 {
@@ -19,7 +21,7 @@ public:
     }
     ~UpdateClientUI();
 
-protected:
+private:
     UpdateClientUI(QWidget *parent = 0);
 
 private:
@@ -37,10 +39,12 @@ protected:
 
 protected slots:
     void slotClose();
-    void slotUpdate();
+    void slotUpdateBtnClicked();
+    void slotUpdateTimeOut();
 
 signals:
     void sigCloseMainWindow();
+    void sigUpdate();
 
 private://drag event
     bool m_bDrag;
@@ -60,6 +64,10 @@ private:
     bool isUpdate;
     //the laster varsion
     QLabel *vNotifyLabel;
+    //update prosess
+    QSlider *updateSlider;
+    //update prosess timer
+    QTimer *updateProsessTimer;
 };
 
 #endif // UPDATECLIENTUI_H

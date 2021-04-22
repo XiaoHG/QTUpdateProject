@@ -299,6 +299,12 @@ release\moc_updateclientui.cpp: ..\UpdateClientUI\updateclientui_global.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpen.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QLabel \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlabel.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTimer \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtimer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasictimer.h \
 		..\UpdateClientUI\updateclientui.h \
 		release\moc_predefs.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
@@ -441,6 +447,12 @@ release\updateclientui.obj: ..\UpdateClientUI\updateclientui.cpp ../UpdateClient
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpen.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QLabel \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlabel.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTimer \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtimer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasictimer.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlayout.h \

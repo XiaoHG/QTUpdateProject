@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_UpdateClientUI_t {
-    QByteArrayData data[5];
-    char stringdata0[56];
+    QByteArrayData data[7];
+    char stringdata0[94];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,12 +34,15 @@ static const qt_meta_stringdata_UpdateClientUI_t qt_meta_stringdata_UpdateClient
 QT_MOC_LITERAL(0, 0, 14), // "UpdateClientUI"
 QT_MOC_LITERAL(1, 15, 18), // "sigCloseMainWindow"
 QT_MOC_LITERAL(2, 34, 0), // ""
-QT_MOC_LITERAL(3, 35, 9), // "slotClose"
-QT_MOC_LITERAL(4, 45, 10) // "slotUpdate"
+QT_MOC_LITERAL(3, 35, 9), // "sigUpdate"
+QT_MOC_LITERAL(4, 45, 9), // "slotClose"
+QT_MOC_LITERAL(5, 55, 20), // "slotUpdateBtnClicked"
+QT_MOC_LITERAL(6, 76, 17) // "slotUpdateTimeOut"
 
     },
     "UpdateClientUI\0sigCloseMainWindow\0\0"
-    "slotClose\0slotUpdate"
+    "sigUpdate\0slotClose\0slotUpdateBtnClicked\0"
+    "slotUpdateTimeOut"
 };
 #undef QT_MOC_LITERAL
 
@@ -49,24 +52,28 @@ static const uint qt_meta_data_UpdateClientUI[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x06 /* Public */,
+       1,    0,   39,    2, 0x06 /* Public */,
+       3,    0,   40,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   30,    2, 0x09 /* Protected */,
-       4,    0,   31,    2, 0x09 /* Protected */,
+       4,    0,   41,    2, 0x09 /* Protected */,
+       5,    0,   42,    2, 0x09 /* Protected */,
+       6,    0,   43,    2, 0x09 /* Protected */,
 
  // signals: parameters
     QMetaType::Void,
+    QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -80,8 +87,10 @@ void UpdateClientUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->sigCloseMainWindow(); break;
-        case 1: _t->slotClose(); break;
-        case 2: _t->slotUpdate(); break;
+        case 1: _t->sigUpdate(); break;
+        case 2: _t->slotClose(); break;
+        case 3: _t->slotUpdateBtnClicked(); break;
+        case 4: _t->slotUpdateTimeOut(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -90,6 +99,13 @@ void UpdateClientUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
             using _t = void (UpdateClientUI::*)();
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&UpdateClientUI::sigCloseMainWindow)) {
                 *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (UpdateClientUI::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&UpdateClientUI::sigUpdate)) {
+                *result = 1;
                 return;
             }
         }
@@ -122,13 +138,13 @@ int UpdateClientUI::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 5)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 3;
+        _id -= 5;
     }
     return _id;
 }
@@ -137,6 +153,12 @@ int UpdateClientUI::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 void UpdateClientUI::sigCloseMainWindow()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
+}
+
+// SIGNAL 1
+void UpdateClientUI::sigUpdate()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

@@ -17,8 +17,8 @@
    <widget class="QSplitter" name="splitter">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>110</y>
+      <x>120</x>
+      <y>100</y>
       <width>150</width>
       <height>23</height>
      </rect>
@@ -28,12 +28,7 @@
     </property>
     <widget class="QPushButton" name="btnUpdate">
      <property name="text">
-      <string>update</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>PushButton</string>
+      <string>checkedUpdate</string>
      </property>
     </widget>
    </widget>
@@ -61,6 +56,19 @@
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="horizontalSlider">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>40</y>
+      <width>160</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
   </widget>

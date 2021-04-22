@@ -24,7 +24,7 @@ void UpdateClientUI::init()
 {
     UI();
     //init isUpdate = false
-    isUpdate = true;
+    isUpdate = false;
 }
 
 /*UI defined*/
@@ -82,9 +82,23 @@ void UpdateClientUI::UI()
     btnOk->setStyleSheet("background-color:rgb(150, 150, 150)");
     btnOk->hide();
 
+    //QSlider for update prosess
+    updateSlider = new QSlider(this);
+    updateSlider->setValue(1);
+    updateSlider->setOrientation(Qt::Horizontal);
+    updateSlider->setGeometry(100, 100, 400, 30);
+    updateSlider->setWindowFlags(Qt::WindowStaysOnTopHint);
+    updateSlider->hide();
+
+    //update prosess timer
+    updateProsessTimer = new QTimer(this);
+    connect(updateProsessTimer, SIGNAL(timeout()), this, SLOT(slotUpdateTimeOut()));
+    updateProsessTimer->stop();
+
     connect(btnOk, SIGNAL(clicked(bool)), this, SLOT(close()));
-    connect(btnUpdate, SIGNAL(clicked(bool)), this, SLOT(slotUpdate()));
-    connect(btnCansel, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(btnUpdate, SIGNAL(clicked(bool)), this, SLOT(slotUpdateBtnClicked()));
+    connect(btnCansel, SIGNAL(clicked(bool)), this, SLOT(slotClose()));
+
 }
 
 void UpdateClientUI::mousePressEvent(QMouseEvent *event)
@@ -127,7 +141,8 @@ bool UpdateClientUI::checkUpdate()
     //isUpdate = true;
     if(isUpdate)
     {
-        //show update files
+        //is need to update show update message, wait client cliched update button.
+        this->show();
         outputEdit->clear();
         for(int i = 0; i < 10; ++i)
         {
@@ -136,45 +151,60 @@ bool UpdateClientUI::checkUpdate()
     }
     else
     {
-        vNotifyLabel->show();
+        static int atTheOneStart = 1;
+        if(atTheOneStart == 0)
+            this->show();
+        atTheOneStart = 0;
         btnUpdate->hide();
         btnCansel->hide();
+        vNotifyLabel->show();
         btnOk->show();
     }
     return isUpdate;
 }
 
 /*update function*/
-void UpdateClientUI::slotUpdate()
+void UpdateClientUI::slotUpdateBtnClicked()
 {
-    //Update function checked update and got update files outputEdit output.
-    if(checkUpdate())
-    {
-        if(update())
-        {
-            //add a slider
-            int btnFlag = QMessageBox::information(this, "update success", "Please restart app for run the laster varsion",
-                                     QMessageBox::Ok);
-            if(btnFlag == QMessageBox::Ok)
-            {
-                //sent a message to main window for close it.
-                //client need to restart the application
-                sigCloseMainWindow();
-            }
-            this->close();
-            isUpdate = false;
-        }
-    }
+    //update,and start updateProsessTimer
+    outputEdit->hide();
+    update();
 }
 
 bool UpdateClientUI::update()
 {
+    //start update prosess timer at the begining update.
+    updateProsessTimer->start(10);
+    updateSlider->show();
     return true;
 }
 
 void UpdateClientUI::slotClose()
 {
+    //next show update dialog show update information if need to update.
     if(isUpdate)
         outputEdit->clear();
     this->hide();
+}
+
+void UpdateClientUI::slotUpdateTimeOut()
+{
+    static int updateSliderValue = 1;
+    updateSlider->setValue(updateSliderValue++);
+    if(updateSlider->value() == updateSlider->maximum())
+    {
+        //add a slider
+        updateSliderValue = 1;
+        updateSlider->hide();
+        int btnFlag = QMessageBox::information(this, "update success", "Please restart app for run the laster varsion",
+                                 QMessageBox::Ok);
+        if(btnFlag == QMessageBox::Ok)
+        {
+            //sent a message to main window for close it.
+            //client need to restart the application
+            this->close();
+            sigCloseMainWindow();
+        }
+        isUpdate = false;
+    }
 }

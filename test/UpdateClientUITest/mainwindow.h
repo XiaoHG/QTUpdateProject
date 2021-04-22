@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <updateclientui.h>
 
 namespace Ui {
 class MainWindow;
@@ -24,7 +23,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    UpdateClientUI *upCUI;
 };
 
 #endif // MAINWINDOW_H
