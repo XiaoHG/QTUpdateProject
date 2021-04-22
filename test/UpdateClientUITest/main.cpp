@@ -13,6 +13,5 @@ int main(int argc, char *argv[])
     //UpadateUI
     UpdateClientUI::getInstall()->checkUpdate();
 
-
     return a.exec();
 }

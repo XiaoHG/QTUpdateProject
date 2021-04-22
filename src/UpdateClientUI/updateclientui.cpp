@@ -30,8 +30,9 @@ void UpdateClientUI::init()
 /*UI defined*/
 void UpdateClientUI::UI()
 {
-    //this->setWindowFlags(Qt::FramelessWindowHint);
-    this->setStyleSheet("background-color:rgb(75, 75, 75)");
+    this->setWindowFlags(Qt::FramelessWindowHint);
+    //this->setStyleSheet("border-radius: 15px;");
+    this->setStyleSheet("background-color:rgb(100, 100, 100)");
     //Set update client dialog fix size
     this->setFixedSize(600, 400);
     //title
@@ -44,9 +45,10 @@ void UpdateClientUI::UI()
     outputEdit->setFocusPolicy(Qt::NoFocus);
     //outputEdit->setWindowFlags(Qt::FramelessWindowHint);
     outputEdit->setText("This is a test");
-    outputEdit->setFrameShape(QFrame::NoFrame);
+    //outputEdit->setFrameShape(QFrame::NoFrame);
     outputEdit->setGeometry(20, 20, 330, this->height() - 40);
-    outputEdit->setStyleSheet("background-color:rgb(75, 75, 75)");
+    outputEdit->setStyleSheet("background-color:rgb(100, 100, 100)");
+    //outputEdit->setStyleSheet("border-radius: 0px;");
     outputEdit->setTextColor(QColor(255, 255, 255, 255));
 
 
@@ -65,21 +67,21 @@ void UpdateClientUI::UI()
     //splitter for update and cansel button and style
     btnUpdate = new QPushButton(this);
     btnUpdate->setText("UPDATE");
-    btnUpdate->setGeometry(350, this->height() - 100, 100, 50);
+    btnUpdate->setGeometry(370, this->height() - 100, 100, 50);
     btnUpdate->setWindowOpacity(0.5);
     btnUpdate->setStyleSheet("background-color:rgb(255, 255, 255)");
 
     btnCansel = new QPushButton(this);
     btnCansel->setText("CANSEL");
     btnCansel->setFixedSize(100, 50);
-    btnCansel->setGeometry(460, this->height() - 100, 100, 50);
+    btnCansel->setGeometry(480, this->height() - 100, 100, 50);
     btnCansel->setStyleSheet("background-color:rgb(255, 255, 255)");
 
     //ok
     btnOk = new QPushButton(this);
     btnOk->setText("OK");
     btnOk->setGeometry(btnUpdate->x() + 20, btnUpdate->y() - 30, btnUpdate->width() + 30, btnUpdate->height());
-    btnOk->setStyleSheet("background-color:rgb(150, 150, 150)");
+    //btnOk->setStyleSheet("background-color:rgb(200, 200, 200);color:white");
     btnOk->hide();
 
     //QSlider for update prosess
@@ -141,7 +143,7 @@ bool UpdateClientUI::checkUpdate()
     //isUpdate = true;
     if(isUpdate)
     {
-        //is need to update show update message, wait client cliched update button.
+        //need to update show update message, wait client clicked update button.
         this->show();
         outputEdit->clear();
         for(int i = 0; i < 10; ++i)
@@ -151,10 +153,14 @@ bool UpdateClientUI::checkUpdate()
     }
     else
     {
+        //It is first star application or not.
         static int atTheOneStart = 1;
         if(atTheOneStart == 0)
             this->show();
         atTheOneStart = 0;
+
+        //This is the laster varsion so hide update button and cansel button,
+        //and show the laster notify message and ok button.
         btnUpdate->hide();
         btnCansel->hide();
         vNotifyLabel->show();
