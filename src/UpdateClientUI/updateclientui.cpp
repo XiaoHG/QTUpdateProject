@@ -52,6 +52,8 @@ void UpdateClientUI::initUI()
     titleLabel->setAlignment(Qt::AlignCenter);
     titleLabel->setScaledContents(true);
     titleLabel->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
+    //updateWidgets.push_back(titleLabel);
+    notUpdateWidgets.push_back(titleLabel);
 
     //add a Text edit widget for output file that need to update
     //QFont outputEditFont( "Microsoft YaHei", 8, 75);
@@ -67,6 +69,8 @@ void UpdateClientUI::initUI()
     outputEdit->setStyleSheet("background-color:rgb(100, 100, 100);color:rgb(200, 200, 200)");
     //outputEdit->setStyleSheet("border-radius: 0px;");
     outputEdit->setTextColor(QColor(200, 200, 200, 255));
+    updateWidgets.push_back(outputEdit);
+    notUpdateWidgets.push_back(outputEdit);
 
     QFont logTitleLabelFont( "Microsoft YaHei", 8, 75);
     logTitleLabel = new QLabel(this);
@@ -76,6 +80,8 @@ void UpdateClientUI::initUI()
     logTitleLabel->setScaledContents(true);
     logTitleLabel->setText("Varsion Log : ");
     logTitleLabel->setStyleSheet("color:rgb(200, 200, 200)");
+    updateWidgets.push_back(logTitleLabel);
+    notUpdateWidgets.push_back(logTitleLabel);
 
     //splitter for update and cansel button and style
     btnUpdate = new QPushButton(this);
@@ -83,6 +89,7 @@ void UpdateClientUI::initUI()
     btnUpdate->setIcon(QIcon("://image/update.png"));
     btnUpdate->setGeometry(20, outputEdit->height() + titleLabel->height() + 50, 70, 30);
     btnUpdate->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
+    updateWidgets.push_back(btnUpdate);
 
     //laster varsion info
     newVarsionInfoLabel = new QLabel(this);
@@ -92,8 +99,7 @@ void UpdateClientUI::initUI()
     newVarsionInfoLabel->setScaledContents(true);
     newVarsionInfoLabel->setWordWrap(true);
     newVarsionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
-    //newVarsionInfoLabel->setText("Varsion server have new varsion V2.0.1, "\
-                                 "click update button to update.");
+    updateWidgets.push_back(newVarsionInfoLabel);
 
     btnClose = new QPushButton(this);
     btnClose->setGeometry(this->width() - titleLabel->height(), 0,
@@ -102,7 +108,8 @@ void UpdateClientUI::initUI()
     btnClose->setIcon(QIcon(":/image/close.png"));
     btnClose->setFlat(true);
     connect(btnClose, SIGNAL(clicked(bool)), this, SLOT(close()));
-    //btnClose->setStyleSheet("QPushButton:hover{background-color:rgb(50, 50, 50);}");
+    updateWidgets.push_back(btnClose);
+    notUpdateWidgets.push_back(btnClose);
 
     //update prosess timer
     updateProsessTimer = new QTimer(this);
@@ -131,6 +138,7 @@ void UpdateClientUI::initUI()
     lasterVarsionInfoLabel->setVisible(false);
     lasterVarsionInfoLabel->setGeometry(btnUpdate->x(), btnUpdate->y() - 5,
                                         outputEdit->width(), btnUpdate->height());
+    notUpdateWidgets.push_back(lasterVarsionInfoLabel);
 
     updatingLabelGif= new QLabel(this);
     updatingLabelGif->setScaledContents(true);
@@ -232,13 +240,13 @@ void UpdateClientUI::needToUpdateUI()
         outputEdit->append(varsionServerInfos[i]);
     }
     lasterVarsionInfoLabel->setVisible(false);
-    btnUpdate->setVisible(true);
-    btnClose->setVisible(true);
-    outputEdit->setVisible(true);
-    logTitleLabel->setVisible(true);
-    newVarsionInfoLabel->setVisible(true);
     updatingLabelGif->setVisible(false);
     updatingLabel->setVisible(false);
+
+    for(int i = 0; i < updateWidgets.size(); ++i)
+    {
+        updateWidgets.at(i)->setVisible(true);
+    }
     newVarsionInfoLabel->setText(QString::asprintf("Varsion server have new varsion %1, "
                                                    "click update button to update.").arg(varsionServerInfo));
 }
@@ -253,12 +261,12 @@ void UpdateClientUI::notUpdateUI(VarsionInfoControler *vInfoControl)
     }
     btnUpdate->setVisible(false);
     newVarsionInfoLabel->setVisible(false);
-    lasterVarsionInfoLabel->setVisible(true);
     updatingLabelGif->setVisible(false);
     updatingLabel->setVisible(false);
-    outputEdit->setVisible(true);
-    logTitleLabel->setVisible(true);
-    btnClose->setVisible(true);
+    for(int i = 0; i < notUpdateWidgets.size(); ++i)
+    {
+        notUpdateWidgets.at(i)->setVisible(true);
+    }
 }
 
 /*update function*/
@@ -280,20 +288,18 @@ void UpdateClientUI::updating()
 void UpdateClientUI::updatingUI()
 {
     outputEdit->clear();
+    updatingLabelGifMovie->start();
+    titleLabel->setText("Updating ...");
+
     btnUpdate->setVisible(false);
-    updateProcessSlider->setValue(0);
-    updateProcessSlider->setVisible(false);
     updateTitleLabel->setVisible(false);
-    updateTitleLabel->setText("Updating...");
     newVarsionInfoLabel->setVisible(false);
     logTitleLabel->setVisible(false);
     btnClose->setVisible(false);
-    //titleLabel->setVisible(false);
     outputEdit->setVisible(false);
-    titleLabel->setText("Updating ...");
-    updatingLabelGifMovie->start();
     updatingLabel->setVisible(true);
     updatingLabelGif->setVisible(true);
+
     updatingLabelGif->setGeometry((this->width() - updatingLabelGif->width()) / 2, 80,
                                   updatingLabelGif->width(), updatingLabelGif->height());
     updatingLabel->setGeometry(0, 90 + updatingLabelGif->height(),
@@ -304,20 +310,12 @@ void UpdateClientUI::updatingUI()
 void UpdateClientUI::slotUpdateTimeOut()
 {
     static int process = 0;
-    static int j = 0;
-    updatingLabel->setText(QString::asprintf("Updating ...%1\%").arg(process + 1));
-    int i = updateProcessSlider->maximum() / varsionServerInfos.size();
-    if(process % i == 0 && j < varsionServerInfos.size())
-    {
-        outputEdit->append(varsionServerInfos.at(j++));
-    }
-    updateProcessSlider->setValue(process);
-    if(process++ == updateProcessSlider->maximum())
+    updatingLabel->setText(QString::asprintf("Updating ...%1\%").arg(process));
+    if(process++ == 100)
     {
         //Update finish
         process = 0;
-        j = 0;
-        updateTitleLabel->setText("Finish, please restart!");
+        titleLabel->setText("Finish, please restart!");
         finishUpdate();
     }
 }

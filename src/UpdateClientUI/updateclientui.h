@@ -92,6 +92,12 @@ private:
     QLabel *updatingLabelGif;
     QLabel *updatingLabel;
     QMovie *updatingLabelGifMovie;
+
+    //cellect to control widget
+    QList<QWidget*> notUpdateWidgets;
+    QList<QWidget*> updateWidgets;
+    QList<QWidget*> updatingWidgets;
+    QList<QWidget*> updateFinishWidgets;
 };
 
 #endif // UPDATECLIENTUI_H
