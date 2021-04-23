@@ -240,6 +240,7 @@ Makefile: ..\UpdateClientUI\UpdateClientUI.pro D:\Qt\Qt5.11.0\5.11.0\msvc2015_64
 		..\UpdateClientUI\UpdateClientUI.pro \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Widgets.prl \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Gui.prl \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Network.prl \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Core.prl
 	$(QMAKE) -o Makefile ..\UpdateClientUI\UpdateClientUI.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
 D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\mkspecs\features\spec_pre.prf:
@@ -407,6 +408,7 @@ D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\mkspecs\features\lex.prf:
 ..\UpdateClientUI\UpdateClientUI.pro:
 D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Widgets.prl:
 D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Gui.prl:
+D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Network.prl:
 D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\UpdateClientUI\UpdateClientUI.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"

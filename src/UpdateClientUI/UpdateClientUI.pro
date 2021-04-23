@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += widgets gui
+QT       += widgets gui network
 
 CONFIG(debug, debug | release){
     TARGET = UpdateClientUI_d
@@ -33,13 +33,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         updateclientui.cpp \
     updateclientfilecontroler.cpp \
-    varsioninfocontroler.cpp
+    varsioninfocontroler.cpp \
+    serverrequest.cpp
 
 HEADERS += \
         updateclientui.h \
         updateclientui_global.h \ 
     updateclientfilecontroler.h \
-    varsioninfocontroler.h
+    varsioninfocontroler.h \
+    serverrequest.h
 
 unix {
     target.path = /usr/lib

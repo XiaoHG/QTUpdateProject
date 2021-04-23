@@ -12,6 +12,7 @@
 #include <QDialog>
 #include <QList>
 #include <QDialog>
+#include <QMovie>
 
 class UPDATECLIENTUISHARED_EXPORT UpdateClientUI : public QDialog
 {
@@ -30,7 +31,7 @@ private:
 
 private:
     void init();
-    void UI();
+    void initUI();
     void updating();
     void updatingUI();
     void finishUpdate();
@@ -40,8 +41,6 @@ private:
 
 public:
     bool checkUpdate();
-
-    void testUpdate(bool isU);
 
 protected:
     void mousePressEvent(QMouseEvent *event);
@@ -85,6 +84,14 @@ private:
     //server laster varsion info
     QString varsionServerInfo;
     QStringList varsionServerInfos;
+    //log info title
+    QLabel *logTitleLabel;
+    //close btn
+    QPushButton *btnClose;
+    //updating label
+    QLabel *updatingLabelGif;
+    QLabel *updatingLabel;
+    QMovie *updatingLabelGifMovie;
 };
 
 #endif // UPDATECLIENTUI_H
