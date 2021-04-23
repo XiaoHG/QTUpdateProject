@@ -14,7 +14,7 @@ VarsionInfoControler::~VarsionInfoControler()
 
 void VarsionInfoControler::init()
 {
-    QString varsionClientFileName = QString::asprintf("%1/debugVarsion1.0/varsionInfo.txt")
+    QString varsionClientFileName = QString::asprintf("%1/varsionInfo.txt")
                                                         .arg(QCoreApplication::applicationDirPath());
     UpdateClientFileControler varsionClientFileInfo(varsionClientFileName);
     curVarsionInfo = varsionClientFileInfo.readFile();

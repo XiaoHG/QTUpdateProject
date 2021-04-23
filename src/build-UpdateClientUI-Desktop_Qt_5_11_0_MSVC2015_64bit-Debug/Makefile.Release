@@ -208,16 +208,9 @@ release\moc_updateclientui.cpp: ..\UpdateClientUI\updateclientui_global.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmutex.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnumeric.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qversiontagging.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qicon.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsize.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
+		..\UpdateClientUI\varsioninfocontroler.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QStringList \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringlist.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlist.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qalgorithms.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiterator.h \
@@ -227,15 +220,24 @@ release\moc_updateclientui.cpp: ..\UpdateClientUI\updateclientui_global.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstring.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qchar.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbytearray.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringliteral.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringalgorithms.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringview.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringbuilder.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpair.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbytearraylist.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringlist.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qregexp.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringmatcher.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qicon.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsize.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixmap.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpaintdevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \

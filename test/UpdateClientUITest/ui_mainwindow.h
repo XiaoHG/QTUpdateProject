@@ -11,14 +11,11 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSlider>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -30,12 +27,6 @@ public:
     QWidget *centralWidget;
     QSplitter *splitter;
     QPushButton *btnUpdate;
-    QTextEdit *textEdit;
-    QLabel *label;
-    QSlider *horizontalSlider;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -49,31 +40,11 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         splitter = new QSplitter(centralWidget);
         splitter->setObjectName(QStringLiteral("splitter"));
-        splitter->setGeometry(QRect(120, 100, 150, 23));
+        splitter->setGeometry(QRect(230, 120, 261, 241));
         splitter->setOrientation(Qt::Horizontal);
         btnUpdate = new QPushButton(splitter);
         btnUpdate->setObjectName(QStringLiteral("btnUpdate"));
         splitter->addWidget(btnUpdate);
-        textEdit = new QTextEdit(centralWidget);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setGeometry(QRect(40, 170, 104, 71));
-        label = new QLabel(centralWidget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(200, 170, 151, 31));
-        label->setStyleSheet(QStringLiteral("background-color: rgb(176, 169, 255);"));
-        horizontalSlider = new QSlider(centralWidget);
-        horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
-        horizontalSlider->setGeometry(QRect(80, 40, 160, 22));
-        horizontalSlider->setOrientation(Qt::Horizontal);
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(300, 420, 75, 23));
-        pushButton_2 = new QPushButton(centralWidget);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(550, 330, 75, 23));
-        pushButton_3 = new QPushButton(centralWidget);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(330, 320, 75, 23));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -95,10 +66,6 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
         btnUpdate->setText(QApplication::translate("MainWindow", "checkedUpdate", nullptr));
-        label->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow", "PushButton", nullptr));
-        pushButton_2->setText(QApplication::translate("MainWindow", "PushButton", nullptr));
-        pushButton_3->setText(QApplication::translate("MainWindow", "update", nullptr));
     } // retranslateUi
 
 };

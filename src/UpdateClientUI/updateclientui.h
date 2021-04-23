@@ -2,6 +2,7 @@
 #define UPDATECLIENTUI_H
 
 #include "updateclientui_global.h"
+#include "varsioninfocontroler.h"
 #include <QPushButton>
 #include <QWidget>
 #include <QTextEdit>
@@ -30,8 +31,12 @@ private:
 private:
     void init();
     void UI();
-    bool updating();
+    void updating();
+    void updatingUI();
     void finishUpdate();
+    void updateFinishUI();
+    void needToUpdateUI();
+    void notUpdateUI(VarsionInfoControler *vInfoControl);
 
 public:
     bool checkUpdate();
