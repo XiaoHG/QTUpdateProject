@@ -30,10 +30,12 @@ private:
 private:
     void init();
     void UI();
-    bool update();
+    bool updating();
+    void finishUpdate();
 
 public:
     bool checkUpdate();
+
     void testUpdate(bool isU);
 
 protected:
@@ -69,6 +71,15 @@ private:
     QStringList *updateFiles;
     //varsion server new varsion information
     QLabel *newVarsionInfoLabel;
+    //update process slider
+    QSlider *updateProcessSlider;
+    //updating title
+    QLabel *updateTitleLabel;
+    //laster varsion info
+    QLabel *lasterVarsionInfoLabel;
+    //server laster varsion info
+    QString varsionServerInfo;
+    QStringList varsionServerInfos;
 };
 
 #endif // UPDATECLIENTUI_H

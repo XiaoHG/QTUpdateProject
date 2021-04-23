@@ -1,4 +1,6 @@
-﻿#include "updateclientui.h"
+﻿#include "updateclientfilecontroler.h"
+#include "varsioninfocontroler.h"
+#include "updateclientui.h"
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
@@ -8,6 +10,7 @@
 #include <QMouseEvent>
 #include <QDebug>
 #include <QMessageBox>
+#include <QTextStream>
 
 UpdateClientUI::UpdateClientUI(QWidget *parent)
     :QDialog(parent)
@@ -41,11 +44,11 @@ void UpdateClientUI::UI()
     this->setWindowTitle("Check Update");
 
     //line edit widget to varsion notify
-    QFont vNotifyLabelFont( "Microsoft YaHei", 10, 75);
+    QFont titleLabelFont( "Microsoft YaHei", 10, 75);
     titleLabel = new QLabel(this);
     titleLabel->setGeometry(0 , 0, this->width(), 40);
-    titleLabel->setFont(vNotifyLabelFont);
-    titleLabel->setText("Current Version V1.0.1");
+    titleLabel->setFont(titleLabelFont);
+//    titleLabel->setText("Current Version V1.0.1");
     titleLabel->setAlignment(Qt::AlignCenter);
     titleLabel->setScaledContents(true);
     titleLabel->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
@@ -77,7 +80,8 @@ void UpdateClientUI::UI()
     //splitter for update and cansel button and style
     btnUpdate = new QPushButton(this);
     btnUpdate->setText("UPDATE");
-    btnUpdate->setGeometry(20, outputEdit->height() + titleLabel->height() + 50, 60, 30);
+    btnUpdate->setIcon(QIcon("://image/update.png"));
+    btnUpdate->setGeometry(20, outputEdit->height() + titleLabel->height() + 50, 70, 30);
     btnUpdate->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
 
     //laster varsion info
@@ -88,12 +92,12 @@ void UpdateClientUI::UI()
     newVarsionInfoLabel->setScaledContents(true);
     newVarsionInfoLabel->setWordWrap(true);
     newVarsionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
-    newVarsionInfoLabel->setText("Varsion server have new varsion V2.0.1, "
+    //newVarsionInfoLabel->setText("Varsion server have new varsion V2.0.1, "\
                                  "click update button to update.");
 
     QPushButton *btnClose = new QPushButton(this);
-    //btnClose->setText("X");
-    btnClose->setGeometry(this->width() - titleLabel->height(), 0, titleLabel->height(), titleLabel->height());
+    btnClose->setGeometry(this->width() - titleLabel->height(), 0,
+                          titleLabel->height(), titleLabel->height());
     btnClose->setStyleSheet("background-color:rgb(150, 150, 150)");
     btnClose->setIcon(QIcon(":/image/close.png"));
     connect(btnClose, SIGNAL(clicked(bool)), this, SLOT(close()));
@@ -102,6 +106,29 @@ void UpdateClientUI::UI()
     updateProsessTimer = new QTimer(this);
     connect(updateProsessTimer, SIGNAL(timeout()), this, SLOT(slotUpdateTimeOut()));
     updateProsessTimer->stop();
+
+    updateProcessSlider = new QSlider(this);
+    updateProcessSlider->setOrientation(Qt::Horizontal);
+    updateProcessSlider->setVisible(false);
+    updateProcessSlider->setGeometry(btnUpdate->x(), btnUpdate->y() + 10,
+                                     outputEdit->width(), btnUpdate->height() / 2);
+    updateProcessSlider->setEnabled(false);
+
+    updateTitleLabel = new QLabel(this);
+    updateTitleLabel->setFont(titleLabelFont);
+    updateTitleLabel->setText("Updating ...");
+    updateTitleLabel->setAlignment(Qt::AlignVCenter);
+    updateTitleLabel->setGeometry(logTitleLabel->x(), 0, titleLabel->width(), titleLabel->height());
+    updateTitleLabel->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
+    updateTitleLabel->setVisible(false);
+
+    lasterVarsionInfoLabel = new QLabel(this);
+//    lasterVarsionInfoLabel->setFont(titleLabelFont);
+    lasterVarsionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
+    lasterVarsionInfoLabel->setText("This varsion already laster varsion, thank you for using");
+    lasterVarsionInfoLabel->setVisible(false);
+    lasterVarsionInfoLabel->setGeometry(btnUpdate->x(), btnUpdate->y() - 5,
+                                        outputEdit->width(), btnUpdate->height());
 
     connect(btnUpdate, SIGNAL(clicked(bool)), this, SLOT(slotUpdateBtnClicked()));
 }
@@ -143,31 +170,56 @@ void UpdateClientUI::mouseReleaseEvent(QMouseEvent *event)
 bool UpdateClientUI::checkUpdate()
 {
     //checked update and set isUpdate flag.
-    //isUpdate = true;
+    //read varsion file
+    QString varsionServerFileName = QString::asprintf("%1/debugVarsion2.0/varsionInfo.txt").arg(QCoreApplication::applicationDirPath());
+    UpdateClientFileControler varsionServerFileInfo(varsionServerFileName);
+    varsionServerInfos = varsionServerFileInfo.readFile();
+    varsionServerInfo = varsionServerInfos.at(0);
+
+    VarsionInfoControler vInfoControl;
+    isUpdate = vInfoControl.compareServerAndClientVarsion(varsionServerInfo);
     if(isUpdate)
     {
         //need to update show update message, wait client clicked update button.
-        //this->exec();
+        //updateProcessSlider->setVisible(false);
+        //btnUpdate->setVisible(true);
         outputEdit->clear();
-        for(int i = 0; i < 20; ++i)
+        for(int i = 0; i < varsionServerInfos.size(); ++i)
         {
-            updateFiles->push_back(QString::asprintf("file number %d.file", i));
-            outputEdit->append(QString::asprintf("file number %d.file", i));
+            outputEdit->append(varsionServerInfos[i]);
         }
-        this->exec();
+        lasterVarsionInfoLabel->setVisible(false);
+        btnUpdate->setVisible(true);
+        newVarsionInfoLabel->setVisible(true);
+        newVarsionInfoLabel->setText(QString::asprintf("Varsion server have new varsion %1, "
+                                     "click update button to update.").arg(varsionServerInfo));
     }
     else
     {
-        //It is first star application or not.
-        static int atTheOneStart = 1;
-        if(atTheOneStart == 0)
-            this->exec();
-        atTheOneStart = 0;
-
         //This is the laster varsion so hide update button and cansel button,
         //and show the laster notify message and ok button.
-        btnUpdate->setEnabled(false);
+        outputEdit->clear();
+        QStringList currentVarsionInfoList = vInfoControl.getCurrenVarsionInfo();
+        for(int i = 0; i < currentVarsionInfoList.size(); ++i)
+        {
+            outputEdit->append(currentVarsionInfoList[i]);
+        }
+        btnUpdate->setVisible(false);
+        newVarsionInfoLabel->setVisible(false);
+        lasterVarsionInfoLabel->setVisible(true);
     }
+
+    titleLabel->setText(QString::asprintf("Current varsion : %1")
+                            .arg(vInfoControl.getCurrentVarsion()));
+    updateProcessSlider->setVisible(false);
+    static int firstStartApp = 1;
+    if(firstStartApp == 1 && isUpdate == false)
+    {
+        firstStartApp = 0;
+        return isUpdate;
+    }
+    firstStartApp = 0;
+    this->exec();
     return isUpdate;
 }
 
@@ -182,26 +234,53 @@ void UpdateClientUI::slotUpdateBtnClicked()
 {
     //update,and start updateProsessTimer
     outputEdit->clear();
-    updateProsessTimer->start(100);
-    update();
+    btnUpdate->setVisible(false);
+    updateProcessSlider->setValue(0);
+    updateProcessSlider->setVisible(true);
+    updateTitleLabel->setVisible(true);
+    updateProsessTimer->start(10);
+    updating();
 }
 
-bool UpdateClientUI::update()
+bool UpdateClientUI::updating()
 {
     //start update prosess timer at the begining update.
-    this->setWindowTitle("Updating...");
+    //this->setWindowTitle("Updating...");
+    updateTitleLabel->setText("Updating...");
+    newVarsionInfoLabel->setVisible(false);
     return true;
 }
 
 void UpdateClientUI::slotUpdateTimeOut()
 {
     static int process = 0;
-    outputEdit->append(updateFiles->at(process++));
-    if(process == updateFiles->size() - 1)
+    static int j = 0;
+    int i = updateProcessSlider->maximum() / varsionServerInfos.size();
+    if(process % i == 0 && j < varsionServerInfos.size())
     {
-        QMessageBox::information(this, "Update Finish", "Finish", QMessageBox::Ok);
-        this->close();
-        sigCloseMainWindow();
-        updateProsessTimer->stop();
+        outputEdit->append(varsionServerInfos.at(j++));
+        qDebug() << "j = " << j;
+    }
+    updateProcessSlider->setValue(process);
+    if(process++ == updateProcessSlider->maximum())
+    {
+        //Update finish
+        process = 0;
+        j = 0;
+        updateTitleLabel->setText("Finish, please restart!");
+        finishUpdate();
     }
 }
+
+void UpdateClientUI::finishUpdate()
+{
+    QMessageBox::information(this, "Update Finish", "Update finish, please restart for run new varsion", QMessageBox::Ok);
+    updateProsessTimer->stop();
+    outputEdit->clear();
+    updateTitleLabel->setVisible(false);
+    //set new varsion
+    isUpdate = false;
+    this->close();
+    //sigCloseMainWindow();
+}
+

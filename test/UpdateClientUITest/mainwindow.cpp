@@ -1,4 +1,4 @@
-﻿#include "mainwindow.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include "updateclientui.h"
@@ -22,7 +22,7 @@ void MainWindow::init()
     this->resize(800, 600);
 
     //Update client provide a signal for main window to start application when update over.
-    connect(UpdateClientUI::getInstall(), SIGNAL(sigCloseMainWindow()), this, SLOT(close()));
+    //connect(UpdateClientUI::getInstall(), SIGNAL(sigCloseMainWindow()), this, SLOT(close()));
 }
 
 void MainWindow::on_btnUpdate_clicked()
