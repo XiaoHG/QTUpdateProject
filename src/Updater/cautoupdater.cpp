@@ -12,7 +12,7 @@ CAutoUpdater::CAutoUpdater(QWidget *parent)
     m_progUpdate = new QSlider();
     m_progDownload = new QSlider();
 
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    //this->setWindowFlags(Qt::FramelessWindowHint);
     this->setFixedSize(400, 200);
     QPalette pal;
     pal.setColor(QPalette::Background, QColor(255, 245, 225));
@@ -238,7 +238,7 @@ void CAutoUpdater::DownloadUpdateFiles()
     if(m_listFileDir.isEmpty() || m_listFileName.isEmpty())
     {
         qDebug() << "没有需要更新的文件！";
-        ExitApp(strCurrentDir + "/main.exe");
+        ExitApp(strCurrentDir + "../../../test/UpdateTest/UpdateTest/debug/UpdateTest.exe");
         return;
     }
 
@@ -317,7 +317,7 @@ void CAutoUpdater::DownloadUpdateFiles()
     QFile::copy(strNewXML, strOldXML);
 
     //到此更新了全部该更新的文件，执行主程序。
-    ExitApp(strCurrentDir + "/main.exe");
+    ExitApp(strCurrentDir + "main.exe");
 }
 
 /** * @brief name
@@ -327,12 +327,15 @@ void CAutoUpdater::DownloadUpdateFiles()
 **/
 void CAutoUpdater::ExitApp(QString name)
 {
+    //F:\QT\updateClient\QTUpdateProject\test\UpdateTest\UpdateTest\debug
+    name = "../../test/UpdateTest/UpdateTest/debug/UpdateTest.exe";
     if(!name.isEmpty())
     {
+        qDebug() << "主程序启动：" << name;
         /**运行主程序，并且退出当前更新程序(说明：主程序在上上一级目录中)**/
-        if(!QProcess::startDetached(name))//启动主程序，主程序在其上一级目录
+        if(!QProcess::startDetached("../../test/UpdateTest/UpdateTest/debug/UpdateTest.exe"))//启动主程序，主程序在其上一级目录
         {
-            QMessageBox::warning(this, "warning", "error", QMessageBox::Ok, QMessageBox::NoButton);
+            QMessageBox::warning(this, "warning", name, QMessageBox::Ok, QMessageBox::NoButton);
         }
     }
     this->close();

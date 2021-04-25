@@ -17,8 +17,10 @@ int main(int argc, char *argv[])
     QString downloadXMLPath = currentDir + "/download/updater.xml";
     qDebug() << "downloadXMLPath = " << downloadXMLPath;
     CXMLParser parse;
+    qDebug() << "没有需要更新的文件！";
     parse.XMLParse(downloadXMLPath);
 
+    qDebug() << "没有需要更新的文件！2";
     w.CheckUpdateFiles(downloadXMLPath, clientXMLPath);
     w.DownloadUpdateFiles();
 

@@ -1,18 +1,18 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2021-04-20T09:31:45
+# Project created by QtCreator 2021-04-24T23:37:04
 #
 #-------------------------------------------------
 
-QT += core gui
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = UpdateClientUITestV2.0
+TARGET = UpdateTest
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
-# any feature of Qt which has been marked as deprecated (the exact warnings
+# any feature of Qt which as been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
@@ -32,12 +32,3 @@ HEADERS += \
 
 FORMS += \
         mainwindow.ui
-
-INCLUDEPATH += ../../src/UpdateClientUI
-LIBS += -L../../lib -lUpdateClientUI
-
-#CONFIG(debug, debug | release){
-#    LIBS += -L../../lib -lUpdateClientUI_d
-#}else{
-#    LIBS += -L../../lib -lUpdateClientUI
-#}
