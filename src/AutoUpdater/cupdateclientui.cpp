@@ -42,7 +42,7 @@ void CUpdateClientUI::InitUI()
     this->setWindowTitle("Check Update");
 
     //line edit widget to version notify
-    QFont titleLabelFont( "Microsoft YaHei", 16, 75);
+    QFont titleLabelFont( "Microsoft YaHei", 12, 75);
     m_titleLabel = new QLabel(this);
     m_titleLabel->setGeometry(0 , 0, this->width(), 40);
     m_titleLabel->setFont(titleLabelFont);
@@ -166,19 +166,6 @@ void CUpdateClientUI::mouseReleaseEvent(QMouseEvent *event)
 /*update or not, checked update*/
 bool CUpdateClientUI::CheckUpdate()
 {
-//    //checked update and set isUpdate flag.
-//    //read version file
-//    QString versionServerFileName = QString::asprintf("%1/debugversion2.0/versionInfo.txt")
-//                                                .arg(QCoreApplication::applicationDirPath());
-//    UpdateClientFileControler versionServerFileInfo(versionServerFileName);
-//    versionServerInfos = versionServerFileInfo.readFile();
-//    versionServerInfo = versionServerInfos.at(0);
-
-//    //ServerRequest sr;
-//    //sr.getRequest();
-
-//    versionInfoControler vInfoControl;
-//    isUpdate = vInfoControl.compareServerAndClientversion(versionServerInfo);
 
     //从版本文件中读取版本号，并进行本地版本和下载XML版本对比，得出是否更新的结论
     //updater.downloadXMLFile();//拉取服务器版本XML
@@ -188,9 +175,6 @@ bool CUpdateClientUI::CheckUpdate()
 
     if(m_isUpdate)
     {
-        //need to update show update message, wait client clicked update button.
-        //updateProcessSlider->setVisible(false);
-        //btnUpdate->setVisible(true);
         //此时需要更新，弹出对话框让客户端进行选择更新与否
         m_updater.CheckUpdateFiles();
         UpdateUI();
@@ -202,17 +186,11 @@ bool CUpdateClientUI::CheckUpdate()
         NotUpdateUI();
     }
 
-//    m_titleLabel->setText(QString::asprintf("Current version : %1")
-//                            .arg(vInfoControl.getCurrentversion()));
-
-    //标题需要显示当前版本信息，即设置titleLabel
-
     //判断第一次启动标志位
     static int firstStartApp = 1;
     if(firstStartApp == 1 && m_isUpdate == false)
     {
         firstStartApp = 0;
-        this->exec();
         return m_isUpdate;
     }
     firstStartApp = 0;

@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ﻿
+=======
+﻿#include "updateclientfilecontroler.h"
+#include "versioninfocontroler.h"
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
 #include "updateclientui.h"
 #include <QHBoxLayout>
 #include <QLabel>
@@ -69,6 +74,7 @@ void CUpdateClientUI::InitUI()
     m_notUpdateWidgets.push_back(m_outputVersionInfoEdit);
 
     QFont logTitleLabelFont( "Microsoft YaHei", 8, 75);
+<<<<<<< HEAD
     m_logTitleLabel = new QLabel(this);
     m_logTitleLabel->setFont(logTitleLabelFont);
     m_logTitleLabel->setStyleSheet("color:white");
@@ -96,6 +102,35 @@ void CUpdateClientUI::InitUI()
     m_newVersionInfoLabel->setWordWrap(true);
     m_newVersionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
     m_updateWidgets.push_back(m_newVersionInfoLabel);
+=======
+    logTitleLabel = new QLabel(this);
+    logTitleLabel->setFont(logTitleLabelFont);
+    logTitleLabel->setStyleSheet("color:white");
+    logTitleLabel->setGeometry(outputEdit->x(), outputEdit->y() - 25, outputEdit->width(), 20);
+    logTitleLabel->setScaledContents(true);
+    logTitleLabel->setText("version Log : ");
+    logTitleLabel->setStyleSheet("color:rgb(200, 200, 200)");
+    updateWidgets.push_back(logTitleLabel);
+    notUpdateWidgets.push_back(logTitleLabel);
+
+    //splitter for update and cansel button and style
+    btnUpdate = new QPushButton(this);
+    btnUpdate->setText("UPDATE");
+    btnUpdate->setIcon(QIcon("://image/update.png"));
+    btnUpdate->setGeometry(20, outputEdit->height() + titleLabel->height() + 50, 70, 30);
+    btnUpdate->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
+    updateWidgets.push_back(btnUpdate);
+
+    //laster version info
+    newVersionInfoLabel = new QLabel(this);
+    newVersionInfoLabel->setGeometry(btnUpdate->x() + btnUpdate->width() + 10, btnUpdate->y(),
+                                     outputEdit->width() - btnUpdate->width() - 10,
+                                     btnUpdate->height());
+    newVersionInfoLabel->setScaledContents(true);
+    newVersionInfoLabel->setWordWrap(true);
+    newVersionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
+    updateWidgets.push_back(newVersionInfoLabel);
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
 
     btnClose = new QPushButton(this);
     btnClose->setGeometry(this->width() - m_titleLabel->height(), 0,
@@ -108,6 +143,7 @@ void CUpdateClientUI::InitUI()
     m_notUpdateWidgets.push_back(btnClose);
 
     //update prosess timer
+<<<<<<< HEAD
     m_updateProsessTimer = new QTimer(this);
     connect(m_updateProsessTimer, SIGNAL(timeout()), this, SLOT(slotUpdateTimeOut()));
     m_updateProsessTimer->stop();
@@ -126,6 +162,49 @@ void CUpdateClientUI::InitUI()
     m_updatingWidgets.push_back(m_updatingProcessLabel);
 
     connect(m_btnUpdate, SIGNAL(clicked(bool)), this, SLOT(slotUpdateBtnClicked()));
+=======
+    updateProsessTimer = new QTimer(this);
+    connect(updateProsessTimer, SIGNAL(timeout()), this, SLOT(slotUpdateTimeOut()));
+    updateProsessTimer->stop();
+
+    updateProcessSlider = new QSlider(this);
+    updateProcessSlider->setOrientation(Qt::Horizontal);
+    updateProcessSlider->setVisible(false);
+    updateProcessSlider->setGeometry(btnUpdate->x(), btnUpdate->y() + 10,
+                                     outputEdit->width(), btnUpdate->height() / 2);
+    updateProcessSlider->setEnabled(false);
+
+    updateTitleLabel = new QLabel(this);
+    updateTitleLabel->setFont(titleLabelFont);
+    updateTitleLabel->setText("Updating ...");
+    updateTitleLabel->setAlignment(Qt::AlignVCenter);
+    updateTitleLabel->setGeometry(logTitleLabel->x(), 0, titleLabel->width(), titleLabel->height());
+    updateTitleLabel->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
+    updateTitleLabel->setVisible(false);
+
+    lasterVersionInfoLabel = new QLabel(this);
+//    lasterversionInfoLabel->setFont(titleLabelFont);
+    lasterVersionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
+    lasterVersionInfoLabel->setText(QString::fromLocal8Bit("当前版本已是最新版本！"));
+    lasterVersionInfoLabel->setVisible(false);
+    lasterVersionInfoLabel->setGeometry(btnUpdate->x(), btnUpdate->y() - 5,
+                                        outputEdit->width(), btnUpdate->height());
+    notUpdateWidgets.push_back(lasterVersionInfoLabel);
+
+    updatingLabelGif= new QLabel(this);
+    updatingLabelGif->setScaledContents(true);
+    updatingLabelGifMovie = new QMovie(":/image/updating.gif");
+    updatingLabelGif->setMovie(updatingLabelGifMovie);
+    updatingLabelGifMovie->start();
+    updatingLabelGif->setVisible(false);
+
+    updatingLabel = new QLabel(this);
+    updatingLabel->setStyleSheet("color:rgb(200, 200, 200)");
+    updatingLabel->setVisible(false);
+    updatingLabel->setAlignment(Qt::AlignCenter);
+
+    connect(btnUpdate, SIGNAL(clicked(bool)), this, SLOT(slotUpdateBtnClicked()));
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
 }
 
 void CUpdateClientUI::mousePressEvent(QMouseEvent *event)
@@ -164,6 +243,7 @@ void CUpdateClientUI::mouseReleaseEvent(QMouseEvent *event)
 /*update or not, checked update*/
 bool CUpdateClientUI::CheckUpdate()
 {
+<<<<<<< HEAD
 //    //checked update and set isUpdate flag.
 //    //read version file
 //    QString versionServerFileName = QString::asprintf("%1/debugversion2.0/versionInfo.txt")
@@ -183,6 +263,22 @@ bool CUpdateClientUI::CheckUpdate()
     m_isUpdate = false;
 
     if(m_isUpdate)
+=======
+    //checked update and set isUpdate flag.
+    //read version file
+    QString versionServerFileName = QString::asprintf("%1/debugversion2.0/versionInfo.txt")
+                                                .arg(QCoreApplication::applicationDirPath());
+    UpdateClientFileControler versionServerFileInfo(versionServerFileName);
+    versionServerInfos = versionServerFileInfo.readFile();
+    versionServerInfo = versionServerInfos.at(0);
+
+    //ServerRequest sr;
+    //sr.getRequest();
+
+    VersionInfoControler vInfoControl;
+    isUpdate = vInfoControl.compareServerAndClientVersion(versionServerInfo);
+    if(isUpdate)
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
     {
         //need to update show update message, wait client clicked update button.
         //updateProcessSlider->setVisible(false);
@@ -197,12 +293,18 @@ bool CUpdateClientUI::CheckUpdate()
         NotUpdateUI();
     }
 
+<<<<<<< HEAD
 //    m_titleLabel->setText(QString::asprintf("Current version : %1")
 //                            .arg(vInfoControl.getCurrentversion()));
 
     //标题需要显示当前版本信息，即设置titleLabel
 
     //判断第一次启动标志位
+=======
+    titleLabel->setText(QString::asprintf("Current version : %1")
+                            .arg(vInfoControl.getCurrentVersion()));
+    updateProcessSlider->setVisible(false);
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
     static int firstStartApp = 1;
     if(firstStartApp == 1 && m_isUpdate == false)
     {
@@ -216,7 +318,18 @@ bool CUpdateClientUI::CheckUpdate()
 
 void CUpdateClientUI::UpdateUI()
 {
+<<<<<<< HEAD
     m_outputVersionInfoEdit->clear();
+=======
+    outputEdit->clear();
+    for(int i = 0; i < versionServerInfos.size(); ++i)
+    {
+        outputEdit->append(versionServerInfos[i]);
+    }
+    lasterVersionInfoLabel->setVisible(false);
+    updatingLabelGif->setVisible(false);
+    updatingLabel->setVisible(false);
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
 
     //m_downloadVersionInfos获取到了最新版本的版本信息，m_outputVersionInfoEdit进行显示
     //目前为设置读取XML，所以此时为空
@@ -224,6 +337,7 @@ void CUpdateClientUI::UpdateUI()
     {
         m_outputVersionInfoEdit->append(m_downloadVersionInfos[i]);
     }
+<<<<<<< HEAD
 
     m_titleLabel->setText(QString::fromLocal8Bit("检查更新！"));
 
@@ -246,6 +360,24 @@ void CUpdateClientUI::NotUpdateUI()
     //m_currentVersionInfoList保存的是从当前版本XML读取出的的版本信息
     //此时还没有读取XML信息，所以为空。
     for(int i = 0; i < m_currentVersionInfoList.size(); ++i)
+=======
+    newVersionInfoLabel->setText(QString::fromLocal8Bit("有最新版本可更新") + versionServerInfo + QString::fromLocal8Bit("点击更新按钮进行更新！"));
+}
+
+void UpdateClientUI::notUpdateUI(VersionInfoControler *vInfoControl)
+{
+    outputEdit->clear();
+    QStringList currentversionInfoList = vInfoControl->getCurrenVersionInfo();
+    for(int i = 0; i < currentversionInfoList.size(); ++i)
+    {
+        outputEdit->append(currentversionInfoList[i]);
+    }
+    btnUpdate->setVisible(false);
+    newVersionInfoLabel->setVisible(false);
+    updatingLabelGif->setVisible(false);
+    updatingLabel->setVisible(false);
+    for(int i = 0; i < notUpdateWidgets.size(); ++i)
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
     {
         m_outputVersionInfoEdit->append(m_currentVersionInfoList[i]);
     }
@@ -286,6 +418,7 @@ void CUpdateClientUI::Updating()
 
 void CUpdateClientUI::UpdatingUI()
 {
+<<<<<<< HEAD
     m_outputVersionInfoEdit->clear();
     m_updatingLabelGifMovie->start();
     m_titleLabel->setText(QString::fromLocal8Bit("正在更新 ..."));
@@ -299,6 +432,24 @@ void CUpdateClientUI::UpdatingUI()
     m_updatingLabelGif->setGeometry((this->width() - m_updatingLabelGif->width()) / 2, 80,
                                   m_updatingLabelGif->width(), m_updatingLabelGif->height());
     m_updatingProcessLabel->setGeometry(0, 90 + m_updatingLabelGif->height(),
+=======
+    outputEdit->clear();
+    updatingLabelGifMovie->start();
+    titleLabel->setText("Updating ...");
+
+    btnUpdate->setVisible(false);
+    updateTitleLabel->setVisible(false);
+    newVersionInfoLabel->setVisible(false);
+    logTitleLabel->setVisible(false);
+    btnClose->setVisible(false);
+    outputEdit->setVisible(false);
+    updatingLabel->setVisible(true);
+    updatingLabelGif->setVisible(true);
+
+    updatingLabelGif->setGeometry((this->width() - updatingLabelGif->width()) / 2, 80,
+                                  updatingLabelGif->width(), updatingLabelGif->height());
+    updatingLabel->setGeometry(0, 90 + updatingLabelGif->height(),
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
                                this->width(), 30);
 
 }
@@ -313,13 +464,19 @@ void CUpdateClientUI::slotUpdateTimeOut()
     {
         //Update finish
         process = 0;
+<<<<<<< HEAD
         m_titleLabel->setText(QString::fromLocal8Bit("更新完成，请重启！"));
         FinishUpdate();
+=======
+        titleLabel->setText(QString::fromLocal8Bit("更新完成，请重启！"));
+        finishUpdate();
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
     }
 }
 
 void CUpdateClientUI::FinishUpdate()
 {
+<<<<<<< HEAD
     //UpdateFinishUI();
     m_updateProsessTimer->stop();
     m_updatingLabelGifMovie->stop();
@@ -327,6 +484,13 @@ void CUpdateClientUI::FinishUpdate()
                              QString::fromLocal8Bit("更新完成，请重启！"));
 
     m_isUpdate = false;
+=======
+    updateFinishUI();
+    QMessageBox::information(this, "Update Finish", QString::fromLocal8Bit("更新完成，请重新启动客户端！"), QMessageBox::Ok);
+    //set new version
+    isUpdate = false;
+    //updatingLabelGifMovie->stop();
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
     this->close();
 }
 

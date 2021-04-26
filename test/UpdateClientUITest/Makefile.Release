@@ -399,6 +399,8 @@ release\main.obj: main.cpp mainwindow.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qinputmethod.h \
 		..\..\src\UpdateClientUI\updateclientui.h \
 		..\..\src\UpdateClientUI\updateclientui_global.h \
+		..\..\src\UpdateClientUI\versioninfocontroler.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QStringList \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
@@ -546,6 +548,8 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h \
 		..\..\src\UpdateClientUI\updateclientui.h \
 		..\..\src\UpdateClientUI\updateclientui_global.h \
+		..\..\src\UpdateClientUI\versioninfocontroler.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QStringList \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \

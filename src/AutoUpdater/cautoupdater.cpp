@@ -357,13 +357,11 @@ void CAutoUpdater::DownloadUpdateFiles()
 **/
 void CAutoUpdater::ExitApp(QString name)
 {
-    //F:\QT\updateClient\QTUpdateProject\test\UpdateTest\UpdateTest\debug
-    name = "../../test/UpdateTest/UpdateTest/debug/UpdateTest.exe";
     if(!name.isEmpty())
     {
         qDebug() << "主程序启动：" << name;
         /**运行主程序，并且退出当前更新程序(说明：主程序在上上一级目录中)**/
-        if(!QProcess::startDetached("../../test/UpdateTest/UpdateTest/debug/UpdateTest.exe"))//启动主程序，主程序在其上一级目录
+        if(!QProcess::startDetached(name))//启动主程序，主程序在其上一级目录
         {
             QMessageBox::warning(this, "warning", name, QMessageBox::Ok, QMessageBox::NoButton);
         }

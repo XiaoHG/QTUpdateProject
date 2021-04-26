@@ -31,11 +31,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+<<<<<<< HEAD
         updateclientui.cpp
 
 HEADERS += \
         updateclientui.h \
         updateclientui_global.h  
+=======
+        updateclientui.cpp \
+    updateclientfilecontroler.cpp \
+    serverrequest.cpp \
+    versioninfocontroler.cpp
+
+HEADERS += \
+        updateclientui.h \
+        updateclientui_global.h \ 
+    updateclientfilecontroler.h \
+    serverrequest.h \
+    versioninfocontroler.h
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
 
 unix {
     target.path = /usr/lib

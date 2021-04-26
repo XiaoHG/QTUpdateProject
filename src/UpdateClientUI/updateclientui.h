@@ -2,6 +2,10 @@
 #define UPDATECLIENTUI_H
 
 #include "updateclientui_global.h"
+<<<<<<< HEAD
+=======
+#include "versioninfocontroler.h"
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
 #include <QPushButton>
 #include <QWidget>
 #include <QTextEdit>
@@ -29,6 +33,7 @@ private:
     CUpdateClientUI(QWidget *parent = 0);
 
 private:
+<<<<<<< HEAD
     void Init();
     void InitUI();
     void Updating();
@@ -40,6 +45,16 @@ private:
     void SetVisibleUpdateUI(bool b);
     void SetVisibleUpdatingUI(bool b);
     void SetVisibleNotUpdateUI(bool b);
+=======
+    void init();
+    void initUI();
+    void updating();
+    void updatingUI();
+    void finishUpdate();
+    void updateFinishUI();
+    void needToUpdateUI();
+    void notUpdateUI(VersionInfoControler *vInfoControl);
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
 
 public:
     bool CheckUpdate();
@@ -68,20 +83,39 @@ private:
     //output files that need to update
     QTextEdit *m_outputVersionInfoEdit;
     //update flag
+<<<<<<< HEAD
     bool m_isUpdate;
     //the laster version
     QLabel *m_titleLabel;
+=======
+    bool isUpdate;
+    //the laster version
+    QLabel *titleLabel;
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
     //update prosess timer
     QTimer *m_updateProsessTimer;
     //need to update
     QStringList *updateFiles;
     //version server new version information
+<<<<<<< HEAD
     QLabel *m_newVersionInfoLabel;
     //server laster version info
     QString m_versionServerInfo;
     QStringList m_downloadVersionInfos;
     //当前版本info
     QStringList m_currentVersionInfoList;
+=======
+    QLabel *newVersionInfoLabel;
+    //update process slider
+    QSlider *updateProcessSlider;
+    //updating title
+    QLabel *updateTitleLabel;
+    //laster version info
+    QLabel *lasterVersionInfoLabel;
+    //server laster version info
+    QString versionServerInfo;
+    QStringList versionServerInfos;
+>>>>>>> 0dc6cca643f408d20ee0f1e43a94359f09ee6e70
     //log info title
     QLabel *m_logTitleLabel;
     //close btn
