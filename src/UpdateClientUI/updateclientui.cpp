@@ -1,5 +1,5 @@
 ﻿#include "updateclientfilecontroler.h"
-#include "varsioninfocontroler.h"
+#include "versioninfocontroler.h"
 #include "updateclientui.h"
 #include "serverrequest.h"
 #include <QHBoxLayout>
@@ -43,7 +43,7 @@ void UpdateClientUI::initUI()
     this->resize(400, 300);
     this->setWindowTitle("Check Update");
 
-    //line edit widget to varsion notify
+    //line edit widget to version notify
     QFont titleLabelFont( "Microsoft YaHei", 10, 75);
     titleLabel = new QLabel(this);
     titleLabel->setGeometry(0 , 0, this->width(), 40);
@@ -78,7 +78,7 @@ void UpdateClientUI::initUI()
     logTitleLabel->setStyleSheet("color:white");
     logTitleLabel->setGeometry(outputEdit->x(), outputEdit->y() - 25, outputEdit->width(), 20);
     logTitleLabel->setScaledContents(true);
-    logTitleLabel->setText("Varsion Log : ");
+    logTitleLabel->setText("version Log : ");
     logTitleLabel->setStyleSheet("color:rgb(200, 200, 200)");
     updateWidgets.push_back(logTitleLabel);
     notUpdateWidgets.push_back(logTitleLabel);
@@ -91,15 +91,15 @@ void UpdateClientUI::initUI()
     btnUpdate->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
     updateWidgets.push_back(btnUpdate);
 
-    //laster varsion info
-    newVarsionInfoLabel = new QLabel(this);
-    newVarsionInfoLabel->setGeometry(btnUpdate->x() + btnUpdate->width() + 10, btnUpdate->y(),
+    //laster version info
+    newVersionInfoLabel = new QLabel(this);
+    newVersionInfoLabel->setGeometry(btnUpdate->x() + btnUpdate->width() + 10, btnUpdate->y(),
                                      outputEdit->width() - btnUpdate->width() - 10,
                                      btnUpdate->height());
-    newVarsionInfoLabel->setScaledContents(true);
-    newVarsionInfoLabel->setWordWrap(true);
-    newVarsionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
-    updateWidgets.push_back(newVarsionInfoLabel);
+    newVersionInfoLabel->setScaledContents(true);
+    newVersionInfoLabel->setWordWrap(true);
+    newVersionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
+    updateWidgets.push_back(newVersionInfoLabel);
 
     btnClose = new QPushButton(this);
     btnClose->setGeometry(this->width() - titleLabel->height(), 0,
@@ -131,14 +131,14 @@ void UpdateClientUI::initUI()
     updateTitleLabel->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
     updateTitleLabel->setVisible(false);
 
-    lasterVarsionInfoLabel = new QLabel(this);
-//    lasterVarsionInfoLabel->setFont(titleLabelFont);
-    lasterVarsionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
-    lasterVarsionInfoLabel->setText("This varsion already laster varsion, thank you for using");
-    lasterVarsionInfoLabel->setVisible(false);
-    lasterVarsionInfoLabel->setGeometry(btnUpdate->x(), btnUpdate->y() - 5,
+    lasterVersionInfoLabel = new QLabel(this);
+//    lasterversionInfoLabel->setFont(titleLabelFont);
+    lasterVersionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
+    lasterVersionInfoLabel->setText(QString::fromLocal8Bit("当前版本已是最新版本！"));
+    lasterVersionInfoLabel->setVisible(false);
+    lasterVersionInfoLabel->setGeometry(btnUpdate->x(), btnUpdate->y() - 5,
                                         outputEdit->width(), btnUpdate->height());
-    notUpdateWidgets.push_back(lasterVarsionInfoLabel);
+    notUpdateWidgets.push_back(lasterVersionInfoLabel);
 
     updatingLabelGif= new QLabel(this);
     updatingLabelGif->setScaledContents(true);
@@ -192,18 +192,18 @@ void UpdateClientUI::mouseReleaseEvent(QMouseEvent *event)
 bool UpdateClientUI::checkUpdate()
 {
     //checked update and set isUpdate flag.
-    //read varsion file
-    QString varsionServerFileName = QString::asprintf("%1/debugVarsion2.0/varsionInfo.txt")
+    //read version file
+    QString versionServerFileName = QString::asprintf("%1/debugversion2.0/versionInfo.txt")
                                                 .arg(QCoreApplication::applicationDirPath());
-    UpdateClientFileControler varsionServerFileInfo(varsionServerFileName);
-    varsionServerInfos = varsionServerFileInfo.readFile();
-    varsionServerInfo = varsionServerInfos.at(0);
+    UpdateClientFileControler versionServerFileInfo(versionServerFileName);
+    versionServerInfos = versionServerFileInfo.readFile();
+    versionServerInfo = versionServerInfos.at(0);
 
     //ServerRequest sr;
     //sr.getRequest();
 
-    VarsionInfoControler vInfoControl;
-    isUpdate = vInfoControl.compareServerAndClientVarsion(varsionServerInfo);
+    VersionInfoControler vInfoControl;
+    isUpdate = vInfoControl.compareServerAndClientVersion(versionServerInfo);
     if(isUpdate)
     {
         //need to update show update message, wait client clicked update button.
@@ -213,13 +213,13 @@ bool UpdateClientUI::checkUpdate()
     }
     else
     {
-        //This is the laster varsion so hide update button and cansel button,
+        //This is the laster version so hide update button and cansel button,
         //and show the laster notify message and ok button.
         notUpdateUI(&vInfoControl);
     }
 
-    titleLabel->setText(QString::asprintf("Current varsion : %1")
-                            .arg(vInfoControl.getCurrentVarsion()));
+    titleLabel->setText(QString::asprintf("Current version : %1")
+                            .arg(vInfoControl.getCurrentVersion()));
     updateProcessSlider->setVisible(false);
     static int firstStartApp = 1;
     if(firstStartApp == 1 && isUpdate == false)
@@ -235,11 +235,11 @@ bool UpdateClientUI::checkUpdate()
 void UpdateClientUI::needToUpdateUI()
 {
     outputEdit->clear();
-    for(int i = 0; i < varsionServerInfos.size(); ++i)
+    for(int i = 0; i < versionServerInfos.size(); ++i)
     {
-        outputEdit->append(varsionServerInfos[i]);
+        outputEdit->append(versionServerInfos[i]);
     }
-    lasterVarsionInfoLabel->setVisible(false);
+    lasterVersionInfoLabel->setVisible(false);
     updatingLabelGif->setVisible(false);
     updatingLabel->setVisible(false);
 
@@ -247,20 +247,19 @@ void UpdateClientUI::needToUpdateUI()
     {
         updateWidgets.at(i)->setVisible(true);
     }
-    newVarsionInfoLabel->setText(QString::asprintf("Varsion server have new varsion %1, "
-                                                   "click update button to update.").arg(varsionServerInfo));
+    newVersionInfoLabel->setText(QString::fromLocal8Bit("有最新版本可更新") + versionServerInfo + QString::fromLocal8Bit("点击更新按钮进行更新！"));
 }
 
-void UpdateClientUI::notUpdateUI(VarsionInfoControler *vInfoControl)
+void UpdateClientUI::notUpdateUI(VersionInfoControler *vInfoControl)
 {
     outputEdit->clear();
-    QStringList currentVarsionInfoList = vInfoControl->getCurrenVarsionInfo();
-    for(int i = 0; i < currentVarsionInfoList.size(); ++i)
+    QStringList currentversionInfoList = vInfoControl->getCurrenVersionInfo();
+    for(int i = 0; i < currentversionInfoList.size(); ++i)
     {
-        outputEdit->append(currentVarsionInfoList[i]);
+        outputEdit->append(currentversionInfoList[i]);
     }
     btnUpdate->setVisible(false);
-    newVarsionInfoLabel->setVisible(false);
+    newVersionInfoLabel->setVisible(false);
     updatingLabelGif->setVisible(false);
     updatingLabel->setVisible(false);
     for(int i = 0; i < notUpdateWidgets.size(); ++i)
@@ -293,7 +292,7 @@ void UpdateClientUI::updatingUI()
 
     btnUpdate->setVisible(false);
     updateTitleLabel->setVisible(false);
-    newVarsionInfoLabel->setVisible(false);
+    newVersionInfoLabel->setVisible(false);
     logTitleLabel->setVisible(false);
     btnClose->setVisible(false);
     outputEdit->setVisible(false);
@@ -315,7 +314,7 @@ void UpdateClientUI::slotUpdateTimeOut()
     {
         //Update finish
         process = 0;
-        titleLabel->setText("Finish, please restart!");
+        titleLabel->setText(QString::fromLocal8Bit("更新完成，请重启！"));
         finishUpdate();
     }
 }
@@ -323,8 +322,8 @@ void UpdateClientUI::slotUpdateTimeOut()
 void UpdateClientUI::finishUpdate()
 {
     updateFinishUI();
-    QMessageBox::information(this, "Update Finish", "Update finish, please restart for run new varsion", QMessageBox::Ok);
-    //set new varsion
+    QMessageBox::information(this, "Update Finish", QString::fromLocal8Bit("更新完成，请重新启动客户端！"), QMessageBox::Ok);
+    //set new version
     isUpdate = false;
     //updatingLabelGifMovie->stop();
     this->close();

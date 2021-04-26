@@ -2,7 +2,7 @@
 #define UPDATECLIENTUI_H
 
 #include "updateclientui_global.h"
-#include "varsioninfocontroler.h"
+#include "versioninfocontroler.h"
 #include <QPushButton>
 #include <QWidget>
 #include <QTextEdit>
@@ -37,7 +37,7 @@ private:
     void finishUpdate();
     void updateFinishUI();
     void needToUpdateUI();
-    void notUpdateUI(VarsionInfoControler *vInfoControl);
+    void notUpdateUI(VersionInfoControler *vInfoControl);
 
 public:
     bool checkUpdate();
@@ -67,23 +67,23 @@ private:
     QTextEdit *outputEdit;
     //update flag
     bool isUpdate;
-    //the laster varsion
+    //the laster version
     QLabel *titleLabel;
     //update prosess timer
     QTimer *updateProsessTimer;
     //need to update
     QStringList *updateFiles;
-    //varsion server new varsion information
-    QLabel *newVarsionInfoLabel;
+    //version server new version information
+    QLabel *newVersionInfoLabel;
     //update process slider
     QSlider *updateProcessSlider;
     //updating title
     QLabel *updateTitleLabel;
-    //laster varsion info
-    QLabel *lasterVarsionInfoLabel;
-    //server laster varsion info
-    QString varsionServerInfo;
-    QStringList varsionServerInfos;
+    //laster version info
+    QLabel *lasterVersionInfoLabel;
+    //server laster version info
+    QString versionServerInfo;
+    QStringList versionServerInfos;
     //log info title
     QLabel *logTitleLabel;
     //close btn

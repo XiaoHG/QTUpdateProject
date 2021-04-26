@@ -33,15 +33,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         updateclientui.cpp \
     updateclientfilecontroler.cpp \
-    varsioninfocontroler.cpp \
-    serverrequest.cpp
+    serverrequest.cpp \
+    versioninfocontroler.cpp
 
 HEADERS += \
         updateclientui.h \
         updateclientui_global.h \ 
     updateclientfilecontroler.h \
-    varsioninfocontroler.h \
-    serverrequest.h
+    serverrequest.h \
+    versioninfocontroler.h
 
 unix {
     target.path = /usr/lib

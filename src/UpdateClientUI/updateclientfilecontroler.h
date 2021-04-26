@@ -14,8 +14,8 @@ public:
     QStringList readFile();
 
 private:
-    QString varsionFilePath;
-    QStringList varsionInfos;
+    QString versionFilePath;
+    QStringList versionInfos;
 };
 
 #endif // UPDATECLIENTFILECONTROLER_H

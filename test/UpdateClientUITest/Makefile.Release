@@ -399,6 +399,8 @@ release\main.obj: main.cpp mainwindow.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qinputmethod.h \
 		..\..\src\UpdateClientUI\updateclientui.h \
 		..\..\src\UpdateClientUI\updateclientui_global.h \
+		..\..\src\UpdateClientUI\versioninfocontroler.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QStringList \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
@@ -422,6 +424,16 @@ release\main.obj: main.cpp mainwindow.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasictimer.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QDialog \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QList \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QMovie \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qmovie.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimagereader.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimageiohandler.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qplugin.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpointer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonobject.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonvalue.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfactoryinterface.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDebug
 
 release\mainwindow.obj: mainwindow.cpp mainwindow.h \
@@ -536,6 +548,8 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h \
 		..\..\src\UpdateClientUI\updateclientui.h \
 		..\..\src\UpdateClientUI\updateclientui_global.h \
+		..\..\src\UpdateClientUI\versioninfocontroler.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QStringList \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
@@ -557,7 +571,19 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTimer \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtimer.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasictimer.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QDialog
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QDialog \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QList \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QMovie \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qmovie.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimagereader.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcoreapplication.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qeventloop.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimageiohandler.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qplugin.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpointer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonobject.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonvalue.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfactoryinterface.h
 
 release\moc_mainwindow.obj: release\moc_mainwindow.cpp 
 
