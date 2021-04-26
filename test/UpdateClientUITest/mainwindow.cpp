@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include "updateclientui.h"
@@ -27,6 +27,6 @@ void MainWindow::init()
 
 void MainWindow::on_btnUpdate_clicked()
 {
-    UpdateClientUI::getInstall()->checkUpdate();
+    CUpdateClientUI::getInstance()->CheckUpdate();
 }
 

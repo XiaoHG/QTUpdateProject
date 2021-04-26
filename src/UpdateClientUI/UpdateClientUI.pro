@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += widgets gui network
+QT       += widgets gui
 
 CONFIG(debug, debug | release){
     TARGET = UpdateClientUI_d
@@ -31,17 +31,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        updateclientui.cpp \
-    updateclientfilecontroler.cpp \
-    varsioninfocontroler.cpp \
-    serverrequest.cpp
+        updateclientui.cpp
 
 HEADERS += \
         updateclientui.h \
-        updateclientui_global.h \ 
-    updateclientfilecontroler.h \
-    varsioninfocontroler.h \
-    serverrequest.h
+        updateclientui_global.h  
 
 unix {
     target.path = /usr/lib

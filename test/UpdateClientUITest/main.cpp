@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include <QApplication>
 #include "updateclientui.h"
 #include <QDebug>
@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     w.show();
 
     //UpadateUI
-    UpdateClientUI::getInstall()->checkUpdate();
+    CUpdateClientUI::getInstance()->CheckUpdate();
 
     return a.exec();
 }

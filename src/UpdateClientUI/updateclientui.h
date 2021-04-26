@@ -2,7 +2,6 @@
 #define UPDATECLIENTUI_H
 
 #include "updateclientui_global.h"
-#include "varsioninfocontroler.h"
 #include <QPushButton>
 #include <QWidget>
 #include <QTextEdit>
@@ -14,33 +13,36 @@
 #include <QDialog>
 #include <QMovie>
 
-class UPDATECLIENTUISHARED_EXPORT UpdateClientUI : public QDialog
+class UPDATECLIENTUISHARED_EXPORT CUpdateClientUI : public QDialog
 {
     Q_OBJECT
 
 public:
-    static UpdateClientUI *getInstall()
+    static CUpdateClientUI *getInstance()
     {
-        static UpdateClientUI install;
-        return &install;
+        static CUpdateClientUI instance;
+        return &instance;
     }
-    ~UpdateClientUI();
+    ~CUpdateClientUI();
 
 private:
-    UpdateClientUI(QWidget *parent = 0);
+    CUpdateClientUI(QWidget *parent = 0);
 
 private:
-    void init();
-    void initUI();
-    void updating();
-    void updatingUI();
-    void finishUpdate();
-    void updateFinishUI();
-    void needToUpdateUI();
-    void notUpdateUI(VarsionInfoControler *vInfoControl);
+    void Init();
+    void InitUI();
+    void Updating();
+    void UpdatingUI();
+    void FinishUpdate();
+    void UpdateUI();
+    void NotUpdateUI();
+
+    void SetVisibleUpdateUI(bool b);
+    void SetVisibleUpdatingUI(bool b);
+    void SetVisibleNotUpdateUI(bool b);
 
 public:
-    bool checkUpdate();
+    bool CheckUpdate();
 
 protected:
     void mousePressEvent(QMouseEvent *event);
@@ -57,47 +59,42 @@ signals:
 
 private://drag event
     bool m_bDrag;
-    QPoint mouseStartPoint;
-    QPoint windowTopLeftPoint;
+    QPoint m_mouseStartPoint;
+    QPoint m_windowTopLeftPoint;
 
 private:
     //check update btn
-    QPushButton *btnUpdate;
+    QPushButton *m_btnUpdate;
     //output files that need to update
-    QTextEdit *outputEdit;
+    QTextEdit *m_outputVersionInfoEdit;
     //update flag
-    bool isUpdate;
-    //the laster varsion
-    QLabel *titleLabel;
+    bool m_isUpdate;
+    //the laster version
+    QLabel *m_titleLabel;
     //update prosess timer
-    QTimer *updateProsessTimer;
+    QTimer *m_updateProsessTimer;
     //need to update
     QStringList *updateFiles;
-    //varsion server new varsion information
-    QLabel *newVarsionInfoLabel;
-    //update process slider
-    QSlider *updateProcessSlider;
-    //updating title
-    QLabel *updateTitleLabel;
-    //laster varsion info
-    QLabel *lasterVarsionInfoLabel;
-    //server laster varsion info
-    QString varsionServerInfo;
-    QStringList varsionServerInfos;
+    //version server new version information
+    QLabel *m_newVersionInfoLabel;
+    //server laster version info
+    QString m_versionServerInfo;
+    QStringList m_downloadVersionInfos;
+    //当前版本info
+    QStringList m_currentVersionInfoList;
     //log info title
-    QLabel *logTitleLabel;
+    QLabel *m_logTitleLabel;
     //close btn
     QPushButton *btnClose;
     //updating label
-    QLabel *updatingLabelGif;
-    QLabel *updatingLabel;
-    QMovie *updatingLabelGifMovie;
+    QLabel *m_updatingLabelGif;
+    QLabel *m_updatingProcessLabel;
+    QMovie *m_updatingLabelGifMovie;
 
     //cellect to control widget
-    QList<QWidget*> notUpdateWidgets;
-    QList<QWidget*> updateWidgets;
-    QList<QWidget*> updatingWidgets;
-    QList<QWidget*> updateFinishWidgets;
+    QList<QWidget*> m_notUpdateWidgets;
+    QList<QWidget*> m_updateWidgets;
+    QList<QWidget*> m_updatingWidgets;
 };
 
 #endif // UPDATECLIENTUI_H
