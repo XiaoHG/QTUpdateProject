@@ -127,10 +127,10 @@ void CUpdateClientUI::InitUI()
     m_btnClose->setIcon(QIcon(":/image/close.png"));
     m_btnClose->setGeometry(this->width() - m_titleLabel->height(), 0,
                           m_titleLabel->height(), m_titleLabel->height());
-    m_btnClose->setStyleSheet("QPushButton{background-color:rgba(75, 75, 75, 100%);\
+    m_btnClose->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);\
                                 color: white; border-style: outset;}" // 按键本色
-                                "QPushButton:hover{background-color:rgb(85, 170, 255);}"  // 鼠标停放时的色彩
-                                "QPushButton:pressed{background-color:rgb(85, 20, 255); border-style: inset; }");   // 鼠标按下的色彩
+                                "QPushButton:hover{background-color:rgb(100, 100, 100);}"  // 鼠标停放时的色彩
+                                "QPushButton:pressed{background-color:rgb(150, 150, 150); border-style: inset; }");   // 鼠标按下的色彩
     m_btnClose->setFlat(true);
     connect(m_btnClose, SIGNAL(clicked(bool)), this, SLOT(close()));
     m_updateWidgets.push_back(m_btnClose);
@@ -142,23 +142,40 @@ void CUpdateClientUI::InitUI()
                                        m_outputVersionInfoEdit->width(), 20);
     //m_sliderUpdateProcess->setOrientation(Qt::Horizontal);
     //m_sliderUpdateProcess->setStyleSheet("QProgressBar{background:white;} QProgressBar::chunk{background:blue}");
-    m_UpdateProgressBar->setStyleSheet("color:rgb(200, 200, 200)");
+    m_UpdateProgressBar->setStyleSheet("QProgressBar{\
+                                       font:9pt;\
+                                       border-radius:5px;\
+                                       text-align:center;\
+                                       border:1px solid #E8EDF2;\
+                                       background-color: rgb(255, 255, 255);\
+                                       border-color: rgb(180, 180, 180);\
+                                   }\
+                                   QProgressBar:chunk{\
+                                       border-radius:5px;\
+                                       background-color:#1ABC9C;\
+                                   }");
     m_updatingWidgets.push_back(m_UpdateProgressBar);
 
     m_btnOk = new QPushButton(this);
     m_btnOk->setText(QString::fromLocal8Bit("Restart"));
-    m_btnOk->setIcon(QIcon(":/image/restart.png"));
-    m_btnOk->setGeometry(m_btnUpdate->x(), m_btnUpdate->y(),
+    //m_btnOk->setIcon(QIcon(":/image/restart.png"));
+    m_btnOk->setGeometry(m_btnUpdate->x() + 200, m_btnUpdate->y(),
                          m_btnUpdate->width(), m_btnUpdate->height());
-    m_btnOk->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
+    m_btnOk->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);\
+                        color: white;   border-radius: 5; border-style: outset;}" // 按键本色
+                        "QPushButton:hover{background-color:white; color: black;}"  // 鼠标停放时的色彩
+                        "QPushButton:pressed{background-color:rgb(85, 170, 255); border-style: inset; }");   // 鼠标按下的色彩
     m_finishWidgets.push_back(m_btnOk);
 
     m_btnCansel = new QPushButton(this);
     m_btnCansel->setText(QString::fromLocal8Bit("Cancel"));
-    m_btnCansel->setIcon(QIcon(":/image/cansel1.png"));
-    m_btnCansel->setGeometry(m_btnUpdate->x() + m_btnOk->width() + 10, m_btnUpdate->y(),
+    //m_btnCansel->setIcon(QIcon(":/image/cansel1.png"));
+    m_btnCansel->setGeometry(m_btnUpdate->x() + m_btnOk->width() + 210, m_btnUpdate->y(),
                              m_btnUpdate->width(), m_btnUpdate->height());
-    m_btnCansel->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
+    m_btnCansel->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);\
+                        color: white;   border-radius: 5; border-style: outset;}" // 按键本色
+                        "QPushButton:hover{background-color:white; color: black;}"  // 鼠标停放时的色彩
+                        "QPushButton:pressed{background-color:rgb(85, 170, 255); border-style: inset; }");   // 鼠标按下的色彩
     m_finishWidgets.push_back(m_btnCansel);
 
     //update prosess timer
