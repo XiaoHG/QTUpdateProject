@@ -369,6 +369,26 @@ void CAutoUpdater::ExitApp(QString name)
     this->close();
 }
 
+/**读取版本信息文件**/
+QStringList CAutoUpdater::GetVersionInfo(QString txt)
+{
+    QStringList strTxtList;
+    QString strLine;
+    if(txt == "")
+        txt = QDir::currentPath() + "/download/versionInfo.txt";
+    QFile file(txt);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return strTxtList;
+    QTextStream in(&file);  //用文件构造流
+    strLine = in.readLine();//读取一行放到字符串里
+    while(!strLine.isNull())//字符串有内容
+    {
+        strTxtList.append(strLine.toLocal8Bit());
+        strLine = in.readLine();//循环读取下行
+    }
+    return strTxtList;
+}
+
 QStringList CAutoUpdater::GetUpdateFileDir()
 {
     return m_listFileDir;

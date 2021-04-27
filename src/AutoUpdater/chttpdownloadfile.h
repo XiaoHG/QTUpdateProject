@@ -23,7 +23,7 @@ public slots:
     void slotReplyNewDataArrived();//响应m_netReply有新的数据到达
     void slotReplyFinished();//响应数据接收完成
     void slotReplyError(QNetworkReply::NetworkError);//响应接收错误
-    void slotReplyDownloadProgress(qint64, qint64);//提示文件下载进度
+    void slotReplyDownloadProgress(qint64 bytesReceived, qint64 bytesTotal);//提示文件下载进度
 
 signals:
     void sigDownloadFinishedSignal();

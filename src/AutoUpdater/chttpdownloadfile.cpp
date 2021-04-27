@@ -39,22 +39,35 @@ void CHttpDownloadFile::slotReplyFinished()
 {
     m_netAccessManager->deleteLater();
     m_netReply->deleteLater();
-    if(m_file)
-    {
-        m_file->close();
-        m_file->deleteLater();
-    }
+    m_file->close();
+    m_file->deleteLater();
 }
 
 /**下载过程中出现错误处理**/
 void CHttpDownloadFile::slotReplyError(QNetworkReply::NetworkError)
 {
     qDebug() << "slotReplyError ...";
+    QNetworkReply::NetworkError error = m_netReply->error();
+    switch (error) {
+    case QNetworkReply::ConnectionRefusedError:
+        qDebug() << QStringLiteral("远程服务器拒绝连接");
+        break;
+    case QNetworkReply::HostNotFoundError:
+        qDebug() << QStringLiteral("远程主机名未找到（无效主机名）");
+        break;
+    case QNetworkReply::TooManyRedirectsError:
+        qDebug() << QStringLiteral("请求超过了设定的最大重定向次数");
+        break;
+    default:
+        qDebug() << QStringLiteral("未知错误");
+    }
 }
 
 /**下载文件进度提示**/
-void CHttpDownloadFile::slotReplyDownloadProgress(qint64, qint64)
+void CHttpDownloadFile::slotReplyDownloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
+    m_nReceived = bytesReceived;
+    m_nTotal = bytesTotal;
     qDebug() << "slotReplyDownloadProgress ...";
 }
 

@@ -1,4 +1,4 @@
-#include "cxmlparser.h"
+﻿#include "cxmlparser.h"
 
 #include <QDomDocument>
 #include <QFile>
@@ -49,4 +49,14 @@ void CXMLParser::XMLParse(QString xml)
                      << nodeList.at(i).toElement().attribute("version");
         }
     }
+}
+
+/**
+ * @brief CXMLParser::XMLParseVersion
+ * @param xml
+ * 解析获取版本控制文件中版本号
+ */
+QString CXMLParser::XMLParseVersion(QString xml)
+{
+    return "";
 }

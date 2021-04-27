@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_CHttpDownloadFile_t {
-    QByteArrayData data[8];
-    char stringdata0[156];
+    QByteArrayData data[10];
+    char stringdata0[181];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,13 +38,16 @@ QT_MOC_LITERAL(3, 45, 23), // "slotReplyNewDataArrived"
 QT_MOC_LITERAL(4, 69, 17), // "slotReplyFinished"
 QT_MOC_LITERAL(5, 87, 14), // "slotReplyError"
 QT_MOC_LITERAL(6, 102, 27), // "QNetworkReply::NetworkError"
-QT_MOC_LITERAL(7, 130, 25) // "slotReplyDownloadProgress"
+QT_MOC_LITERAL(7, 130, 25), // "slotReplyDownloadProgress"
+QT_MOC_LITERAL(8, 156, 13), // "bytesReceived"
+QT_MOC_LITERAL(9, 170, 10) // "bytesTotal"
 
     },
     "CHttpDownloadFile\0sigDownloadFinishedSignal\0"
     "\0slotReplyNewDataArrived\0slotReplyFinished\0"
     "slotReplyError\0QNetworkReply::NetworkError\0"
-    "slotReplyDownloadProgress"
+    "slotReplyDownloadProgress\0bytesReceived\0"
+    "bytesTotal"
 };
 #undef QT_MOC_LITERAL
 
@@ -77,7 +80,7 @@ static const uint qt_meta_data_CHttpDownloadFile[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 6,    2,
-    QMetaType::Void, QMetaType::LongLong, QMetaType::LongLong,    2,    2,
+    QMetaType::Void, QMetaType::LongLong, QMetaType::LongLong,    8,    9,
 
        0        // eod
 };

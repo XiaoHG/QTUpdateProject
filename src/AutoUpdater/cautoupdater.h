@@ -22,6 +22,7 @@ public:
     bool CheckVersionForUpdate();
     void DownloadUpdateFiles();
     void ExitApp(QString name);
+    QStringList GetVersionInfo(QString txt = "");
 
     QStringList GetUpdateFileDir();
     QStringList GetUpdateFileName();

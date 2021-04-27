@@ -1,5 +1,7 @@
 ﻿
 #include "cupdateclientui.h"
+#include "cxmlparser.h"
+
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
@@ -11,6 +13,12 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <QMovie>
+#include <QProcess>
+
+//m_btnClose->setStyleSheet("QPushButton{background-color:rgba(150, 150, 1500, 100%);\
+//color: white;   border-radius: 10px;  border: 2px groove gray; border-style: outset;}" // 按键本色
+//"QPushButton:hover{background-color:white; color: black;}"  // 鼠标停放时的色彩
+//"QPushButton:pressed{background-color:rgb(85, 170, 255); border-style: inset; }");   // 鼠标按下的色彩
 
 CUpdateClientUI::CUpdateClientUI(QWidget *parent)
     :QDialog(parent)
@@ -67,6 +75,8 @@ void CUpdateClientUI::InitUI()
     m_outputVersionInfoEdit->setTextColor(QColor(200, 200, 200, 255));
     m_updateWidgets.push_back(m_outputVersionInfoEdit);
     m_notUpdateWidgets.push_back(m_outputVersionInfoEdit);
+    m_updatingWidgets.push_back(m_outputVersionInfoEdit);
+    m_finishWidgets.push_back(m_outputVersionInfoEdit);
 
     QFont logTitleLabelFont( "Microsoft YaHei", 9, 75);
     m_logTitleLabel = new QLabel(this);
@@ -78,6 +88,8 @@ void CUpdateClientUI::InitUI()
     m_logTitleLabel->setStyleSheet("color:rgb(200, 200, 200)");
     m_updateWidgets.push_back(m_logTitleLabel);
     m_notUpdateWidgets.push_back(m_logTitleLabel);
+    m_updatingWidgets.push_back(m_logTitleLabel);
+    m_finishWidgets.push_back(m_logTitleLabel);
 
     //splitter for update and cansel button and style
     m_btnUpdate = new QPushButton(this);
@@ -86,6 +98,13 @@ void CUpdateClientUI::InitUI()
     m_btnUpdate->setGeometry(20, m_outputVersionInfoEdit->height() + m_titleLabel->height() + 50, 70, 30);
     m_btnUpdate->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
     m_updateWidgets.push_back(m_btnUpdate);
+
+    QFont labelLasterVersionFont( "Microsoft YaHei", 10, 75);
+    m_labelLasterVersion = new QLabel(this);
+    m_labelLasterVersion->setFont(labelLasterVersionFont);
+    m_labelLasterVersion->setGeometry(m_outputVersionInfoEdit->width() - 50, m_btnUpdate->y() - 10, m_outputVersionInfoEdit->width(), 30);
+    m_labelLasterVersion->setStyleSheet("color:rgb(150, 150, 150)");
+    m_notUpdateWidgets.push_back(m_labelLasterVersion);
 
     //laster version info
     m_newVersionInfoLabel = new QLabel(this);
@@ -97,34 +116,58 @@ void CUpdateClientUI::InitUI()
     m_newVersionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
     m_updateWidgets.push_back(m_newVersionInfoLabel);
 
-    btnClose = new QPushButton(this);
-    btnClose->setGeometry(this->width() - m_titleLabel->height(), 0,
+    m_btnClose = new QPushButton(this);
+    m_btnClose->setGeometry(this->width() - m_titleLabel->height(), 0,
                           m_titleLabel->height(), m_titleLabel->height());
-    btnClose->setStyleSheet("background-color:rgb(150, 150, 150)");
-    btnClose->setIcon(QIcon(":/image/close.png"));
-    btnClose->setFlat(true);
-    connect(btnClose, SIGNAL(clicked(bool)), this, SLOT(close()));
-    m_updateWidgets.push_back(btnClose);
-    m_notUpdateWidgets.push_back(btnClose);
+    m_btnClose->setStyleSheet(
+            "QPushButton:hover{background-color:rgb(200, 200, 200)}; border-style: outset;}"
+                );  // 鼠标停放时的色彩
+
+
+    m_btnClose->setIcon(QIcon(":/image/close.png"));
+    m_btnClose->setFlat(true);
+    connect(m_btnClose, SIGNAL(clicked(bool)), this, SLOT(close()));
+    m_updateWidgets.push_back(m_btnClose);
+    m_notUpdateWidgets.push_back(m_btnClose);
+
+    m_UpdateProgressBar = new QProgressBar(this);
+    m_UpdateProgressBar->setGeometry(m_outputVersionInfoEdit->x(), this->height() - 50,
+                                       m_outputVersionInfoEdit->width(), 20);
+    //m_sliderUpdateProcess->setOrientation(Qt::Horizontal);
+    //m_sliderUpdateProcess->setStyleSheet("QProgressBar{background:white;} QProgressBar::chunk{background:blue}");
+    m_UpdateProgressBar->setStyleSheet("color:rgb(200, 200, 200)");
+    m_updatingWidgets.push_back(m_UpdateProgressBar);
+
+    m_btnOk = new QPushButton(this);
+    m_btnOk->setText(QString::fromLocal8Bit("重启"));
+    m_btnOk->setGeometry(m_btnUpdate->x(), m_btnUpdate->y(),
+                         m_btnUpdate->width(), m_btnUpdate->height());
+    m_btnOk->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
+    m_finishWidgets.push_back(m_btnOk);
+
+    m_btnCansel = new QPushButton(this);
+    m_btnCansel->setText(QString::fromLocal8Bit("取消"));
+    m_btnCansel->setGeometry(m_btnUpdate->x() + m_btnOk->width() + 10, m_btnUpdate->y(),
+                             m_btnUpdate->width(), m_btnUpdate->height());
+    m_btnCansel->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
+    m_finishWidgets.push_back(m_btnCansel);
+
+    m_labelFinishInfo = new QLabel(this);
+    m_labelFinishInfo->setText(QString::fromLocal8Bit("点击重启退出当前版本，执行新版本！"));
+    m_labelFinishInfo->setGeometry(m_btnCansel->x() + m_btnCansel->width() + 10, m_btnCansel->y(),
+                             m_outputVersionInfoEdit->width() - m_btnCansel->width() * 2 - 20,
+                             m_btnUpdate->height());
+    m_labelFinishInfo->setStyleSheet("color:rgb(200, 200, 200)");
+    m_finishWidgets.push_back(m_labelFinishInfo);
 
     //update prosess timer
     m_updateProsessTimer = new QTimer(this);
     connect(m_updateProsessTimer, SIGNAL(timeout()), this, SLOT(slotUpdateTimeOut()));
     m_updateProsessTimer->stop();
 
-    m_updatingLabelGif= new QLabel(this);
-    m_updatingLabelGif->setScaledContents(true);
-    m_updatingLabelGifMovie = new QMovie(":/image/updating.gif");
-    m_updatingLabelGif->setMovie(m_updatingLabelGifMovie);
-    m_updatingLabelGifMovie->start();
-    m_updatingWidgets.push_back(m_updatingLabelGif);
 
-    m_updatingProcessLabel = new QLabel(this);
-    m_updatingProcessLabel->setStyleSheet("color:rgb(200, 200, 200)");
-    m_updatingProcessLabel->setVisible(false);
-    m_updatingProcessLabel->setAlignment(Qt::AlignCenter);
-    m_updatingWidgets.push_back(m_updatingProcessLabel);
-
+    connect(m_btnOk, SIGNAL(clicked(bool)), this, SLOT(slotOkBtnClicked()));
+    connect(m_btnCansel, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(m_btnUpdate, SIGNAL(clicked(bool)), this, SLOT(slotUpdateBtnClicked()));
 
     //this->show();
@@ -172,7 +215,7 @@ bool CUpdateClientUI::CheckUpdate()
     m_isUpdate = m_updater.CheckVersionForUpdate();//对比下载下来的XML和本地版本的XML
     //更新则isUpdate = true,否则false
     qDebug() << "m_isUpdate = " << m_isUpdate;
-
+    //m_isUpdate = true;
     if(m_isUpdate)
     {
         //此时需要更新，弹出对话框让客户端进行选择更新与否
@@ -186,14 +229,6 @@ bool CUpdateClientUI::CheckUpdate()
         NotUpdateUI();
     }
 
-    //判断第一次启动标志位
-    static int firstStartApp = 1;
-    if(firstStartApp == 1 && m_isUpdate == false)
-    {
-        firstStartApp = 0;
-        return m_isUpdate;
-    }
-    firstStartApp = 0;
     this->exec();
     return m_isUpdate;
 }
@@ -205,19 +240,21 @@ void CUpdateClientUI::UpdateUI()
     //m_downloadVersionInfos获取到了最新版本的版本信息，m_outputVersionInfoEdit进行显示
     //目前为设置读取XML，所以此时为空
     //m_downloadVersionInfos = m_updater.GetUpdateFileDir();
-    QStringList updateFileDirs = m_updater.GetUpdateFileDir();
-    QStringList updateFileNames = m_updater.GetUpdateFileName();
-    if(!updateFileDirs.isEmpty())
-        m_outputVersionInfoEdit->append(QString::fromLocal8Bit("以下文件可更新："));
-    for(int i = 0; i < updateFileDirs.size(); ++i)
+    QStringList strListVersionInfo = m_updater.GetVersionInfo();
+    if(strListVersionInfo.isEmpty())
+        m_outputVersionInfoEdit->append(QString::fromLocal8Bit("版本信息缺失！"));
+    for(int i = 0; i < strListVersionInfo.size(); ++i)
     {
-        m_outputVersionInfoEdit->append(updateFileDirs.at(i) + "/" + updateFileNames.at(i));
+        m_outputVersionInfoEdit->append(strListVersionInfo.at(i));
     }
 
     m_titleLabel->setText(QString::fromLocal8Bit("检查更新！"));
 
     //隐藏正在更新界面组件
     SetVisibleUpdatingUI(false);
+
+    //隐藏更新完成的部件
+    SetVisibleFinishUpdateUI(false);
 
     //显示检查更新界面组件
     SetVisibleUpdateUI(true);
@@ -235,12 +272,18 @@ void CUpdateClientUI::NotUpdateUI()
     //此时无可更新版本，m_outputVersionInfoEdit显示的是当前版本信息，即最新版本信息
     //m_currentVersionInfoList保存的是从当前版本XML读取出的的版本信息
     //此时还没有读取XML信息，所以为空。
-    for(int i = 0; i < m_currentVersionInfoList.size(); ++i)
+    //在没有更新的时候，显示本地存在的版本信息，当然此时本地的版本也是最新的版本。
+    QString strVersionInfoPath = QDir::currentPath() + "/versionInfo.txt";
+    QStringList strListVersionInfo = m_updater.GetVersionInfo(strVersionInfoPath);
+    if(strListVersionInfo.isEmpty())
+        m_outputVersionInfoEdit->append(QString::fromLocal8Bit("版本信息缺失！"));
+    for(int i = 0; i < strListVersionInfo.size(); ++i)
     {
-        m_outputVersionInfoEdit->append(m_currentVersionInfoList[i]);
+        m_outputVersionInfoEdit->append(strListVersionInfo.at(i));
     }
 
-    m_outputVersionInfoEdit->setText(QString::fromLocal8Bit("当前版本是最新版本：V2.1"));
+    QString strCurrentVersion = "V" + m_updater.getElementVersion("localxml", "version");
+    m_labelLasterVersion->setText(strCurrentVersion);
     m_titleLabel->setText(QString::fromLocal8Bit("当前版本是最新版本！"));
 
 //    m_btnUpdate->setVisible(false);
@@ -252,6 +295,9 @@ void CUpdateClientUI::NotUpdateUI()
     //隐藏正在更新界面组件
     SetVisibleUpdatingUI(false);
 
+    //隐藏更新完成的部件
+    SetVisibleFinishUpdateUI(false);
+
     //显示不需要更新的界面组件
     SetVisibleNotUpdateUI(true);
 }
@@ -261,8 +307,20 @@ void CUpdateClientUI::slotUpdateBtnClicked()
 {
     UpdatingUI();
     //update,and start updateProsessTimer
-    m_updateProsessTimer->start(20);
+    m_updateProsessTimer->start(50);
     Updating();
+}
+
+void CUpdateClientUI::slotOkBtnClicked()
+{
+    QString name = ""; //主程序名
+    return;
+    /**运行主程序，并且退出当前更新程序(说明：主程序在上上一级目录中)**/
+    if(!QProcess::startDetached(name))//启动主程序，主程序在其上一级目录
+    {
+        QMessageBox::warning(this, "warning", name, QMessageBox::Ok, QMessageBox::NoButton);
+    }
+    this->close();
 }
 
 void CUpdateClientUI::Updating()
@@ -277,7 +335,6 @@ void CUpdateClientUI::Updating()
 void CUpdateClientUI::UpdatingUI()
 {
     m_outputVersionInfoEdit->clear();
-    m_updatingLabelGifMovie->start();
     m_titleLabel->setText(QString::fromLocal8Bit("正在更新 ..."));
 
     //隐藏检查更新界面组件
@@ -286,24 +343,34 @@ void CUpdateClientUI::UpdatingUI()
     //显示正在更新界面组件
     SetVisibleUpdatingUI(true);
 
-    m_updatingLabelGif->setGeometry((this->width() - m_updatingLabelGif->width()) / 2, 80,
-                                  m_updatingLabelGif->width(), m_updatingLabelGif->height());
-    m_updatingProcessLabel->setGeometry(0, 90 + m_updatingLabelGif->height(),
-                               this->width(), 30);
-
 }
 
 void CUpdateClientUI::slotUpdateTimeOut()
 {
     static int process = 0;
-    QString strTmp = QString::fromLocal8Bit("更新进度 ...");
-    strTmp += QString::asprintf("%1\%").arg(process);
-    m_updatingProcessLabel->setText(strTmp);
+    QString strCurrentDir = QDir::currentPath();
+    QStringList strListDownloadFileDir = m_updater.GetUpdateFileDir();
+    QStringList strListDownloadFileName = m_updater.GetUpdateFileName();
+    QString strTmpDir;
+    static int i = 0;
+    if(process % (100 / strListDownloadFileDir.size()) == 0 && i < strListDownloadFileDir.size())
+    {
+        strTmpDir = strCurrentDir + "/" + strListDownloadFileDir.at(i)
+                + "/" + strListDownloadFileName.at(i);
+        m_outputVersionInfoEdit->append(QString::fromLocal8Bit("正在更新文件") +
+                                        strListDownloadFileName.at(i) + " ...");
+        m_outputVersionInfoEdit->append(strTmpDir);
+        m_outputVersionInfoEdit->append(QString::fromLocal8Bit("文件") +
+                                        strListDownloadFileName.at(i) +
+                                        QString::fromLocal8Bit("更新完成"));
+        i++;
+    }
+    m_UpdateProgressBar->setValue(process);
     if(process++ == 100)
     {
         //Update finish
         process = 0;
-        m_titleLabel->setText(QString::fromLocal8Bit("更新完成，请重启！"));
+        m_titleLabel->setText(QString::fromLocal8Bit("更新完成！"));
         FinishUpdate();
     }
 }
@@ -312,12 +379,16 @@ void CUpdateClientUI::FinishUpdate()
 {
     //UpdateFinishUI();
     m_updateProsessTimer->stop();
-    m_updatingLabelGifMovie->stop();
-    QMessageBox::information(this, QString::fromLocal8Bit("更新完成"),
-                             QString::fromLocal8Bit("更新完成，请重启！"));
 
     m_isUpdate = false;
-    this->close();
+
+    //隐藏正在更新的部件
+    SetVisibleUpdatingUI(false);
+
+    //显示更新完成的部件
+    SetVisibleFinishUpdateUI(true);
+
+    //this->close();
 }
 
 void CUpdateClientUI::SetVisibleUpdateUI(bool b)
@@ -341,6 +412,14 @@ void CUpdateClientUI::SetVisibleNotUpdateUI(bool b)
     for(int i = 0; i < m_notUpdateWidgets.size(); ++i)
     {
         m_notUpdateWidgets.at(i)->setVisible(b);
+    }
+}
+
+void CUpdateClientUI::SetVisibleFinishUpdateUI(bool b)
+{
+    for(int i = 0; i < m_finishWidgets.size(); ++i)
+    {
+        m_finishWidgets.at(i)->setVisible(b);
     }
 }
 
