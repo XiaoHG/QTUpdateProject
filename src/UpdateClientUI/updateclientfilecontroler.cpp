@@ -4,21 +4,21 @@
 #include <QFile>
 
 UpdateClientFileControler::UpdateClientFileControler(QString &filePath)
-    :varsionFilePath(filePath)
+    :versionFilePath(filePath)
 {
 
 }
 
 QStringList UpdateClientFileControler::readFile()
 {
-    QFile varsionFile(varsionFilePath);
-    if(varsionFile.open(QFile::ReadOnly))
+    QFile versionFile(versionFilePath);
+    if(versionFile.open(QFile::ReadOnly))
     {
-        QTextStream varsionFileStream(&varsionFile);
-        while(!varsionFileStream.atEnd())
+        QTextStream versionFileStream(&versionFile);
+        while(!versionFileStream.atEnd())
         {
-            varsionInfos.push_back(varsionFileStream.readLine().toLocal8Bit());
+            versionInfos.push_back(versionFileStream.readLine().toLocal8Bit());
         }
-        return varsionInfos;
+        return versionInfos;
     }
 }

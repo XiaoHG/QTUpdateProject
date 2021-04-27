@@ -208,9 +208,15 @@ release/moc_mainwindow.cpp: ../../../../Qt5.9.0/5.9/mingw53_32/include/QtWidgets
 		../../../../Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtabwidget.h \
 		../../../../Qt5.9.0/5.9/mingw53_32/include/QtGui/qicon.h \
 		mainwindow.h \
+<<<<<<< HEAD
 		release/moc_predefs.h \
 		../../../../Qt5.9.0/5.9/mingw53_32/bin/moc.exe
 	F:\QT\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IF:/QT/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -IF:/QT/updateClient/QTUpdateProject/test/UpdateClientUITest -IF:/QT/updateClient/QTUpdateProject/src/UpdateClientUI -IF:/QT/Qt5.9.0/5.9/mingw53_32/include -IF:/QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IF:/QT/Qt5.9.0/5.9/mingw53_32/include/QtGui -IF:/QT/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IF:/QT/Qt5.9.0/5.9/mingw53_32/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\winrt" mainwindow.h -o release\moc_mainwindow.cpp
+=======
+		release\moc_predefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
+	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -I"C:/Users/anycubic/Desktop/intern/update client UI/test/UpdateClientUITest" -I"C:/Users/anycubic/Desktop/intern/update client UI/src/UpdateClientUI" -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\winrt" mainwindow.h -o release\moc_mainwindow.cpp
+>>>>>>> 6a49bda4e37bb26cb04376ec6ae13f1fe9476d16
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -233,6 +239,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
+<<<<<<< HEAD
 release/main.o: main.cpp mainwindow.h \
 		../../../../Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QMainWindow \
 		../../../../Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qmainwindow.h \
@@ -534,6 +541,310 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_mainwindow.o release\moc_mainwindow.cpp
+=======
+release\main.obj: main.cpp mainwindow.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMainWindow \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmainwindow.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig-bootstrapped.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtcore-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsystemdetection.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qprocessordetection.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcompilerdetection.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtypeinfo.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsysinfo.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlogging.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qflags.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qatomic.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasicatomic.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qatomic_bootstrap.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qgenericatomic.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qatomic_cxx11.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qglobalstatic.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmutex.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnumeric.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qversiontagging.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qwidget.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstring.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qchar.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbytearray.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrefcount.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qarraydata.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringliteral.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringalgorithms.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringview.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringbuilder.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlist.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qalgorithms.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiterator.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhashfunctions.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpair.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbytearraylist.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringlist.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qregexp.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringmatcher.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcoreevent.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qscopedpointer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmetatype.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmargins.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpaintdevice.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrect.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsize.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpoint.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpalette.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcolor.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgb.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgba64.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qbrush.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvector.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qmatrix.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpolygon.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qregion.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdatastream.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qline.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtransform.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpainterpath.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimage.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixelformat.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixmap.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfont.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontmetrics.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontinfo.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qsizepolicy.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcursor.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qkeysequence.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qevent.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvariant.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmap.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdebug.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextstream.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlocale.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qset.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurlquery.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfile.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfiledevice.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qicon.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QApplication \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qapplication.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcoreapplication.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qeventloop.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qguiapplication.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qinputmethod.h \
+		..\..\src\UpdateClientUI\updateclientui.h \
+		..\..\src\UpdateClientUI\updateclientui_global.h \
+		..\..\src\UpdateClientUI\versioninfocontroler.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QStringList \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QTextEdit \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtextedit.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qframe.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextoption.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextcursor.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextformat.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpen.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QLabel \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlabel.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTimer \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtimer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasictimer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QDialog \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QList \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QMovie \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qmovie.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimagereader.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimageiohandler.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qplugin.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpointer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonobject.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonvalue.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfactoryinterface.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDebug
+
+release\mainwindow.obj: mainwindow.cpp mainwindow.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMainWindow \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmainwindow.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig-bootstrapped.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtcore-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsystemdetection.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qprocessordetection.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcompilerdetection.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtypeinfo.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsysinfo.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlogging.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qflags.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qatomic.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasicatomic.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qatomic_bootstrap.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qgenericatomic.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qatomic_cxx11.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qglobalstatic.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmutex.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnumeric.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qversiontagging.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qwidget.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstring.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qchar.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbytearray.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrefcount.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qarraydata.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringliteral.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringalgorithms.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringview.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringbuilder.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlist.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qalgorithms.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiterator.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhashfunctions.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpair.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbytearraylist.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringlist.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qregexp.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringmatcher.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcoreevent.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qscopedpointer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmetatype.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmargins.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpaintdevice.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrect.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsize.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpoint.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpalette.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcolor.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgb.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgba64.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qbrush.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvector.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qmatrix.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpolygon.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qregion.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdatastream.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qline.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtransform.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpainterpath.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimage.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixelformat.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixmap.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfont.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontmetrics.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontinfo.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qsizepolicy.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcursor.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qkeysequence.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qevent.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvariant.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmap.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdebug.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextstream.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlocale.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qset.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurlquery.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfile.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfiledevice.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qicon.h \
+		ui_mainwindow.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMessageBox \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmessagebox.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h \
+		..\..\src\UpdateClientUI\updateclientui.h \
+		..\..\src\UpdateClientUI\updateclientui_global.h \
+		..\..\src\UpdateClientUI\versioninfocontroler.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QStringList \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QTextEdit \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtextedit.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qframe.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextdocument.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextoption.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextcursor.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextformat.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpen.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QLabel \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlabel.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTimer \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtimer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasictimer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QDialog \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QList \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QMovie \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qmovie.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimagereader.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcoreapplication.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qeventloop.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimageiohandler.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qplugin.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpointer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonobject.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonvalue.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfactoryinterface.h
+
+release\moc_mainwindow.obj: release\moc_mainwindow.cpp 
+>>>>>>> 6a49bda4e37bb26cb04376ec6ae13f1fe9476d16
 
 ####### Install
 
