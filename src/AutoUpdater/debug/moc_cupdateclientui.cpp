@@ -114,7 +114,7 @@ void CUpdateClientUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
 }
 
 QT_INIT_METAOBJECT const QMetaObject CUpdateClientUI::staticMetaObject = {
-    { &QDialog::staticMetaObject, qt_meta_stringdata_CUpdateClientUI.data,
+    { &QMainWindow::staticMetaObject, qt_meta_stringdata_CUpdateClientUI.data,
       qt_meta_data_CUpdateClientUI,  qt_static_metacall, nullptr, nullptr}
 };
 
@@ -129,12 +129,12 @@ void *CUpdateClientUI::qt_metacast(const char *_clname)
     if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_CUpdateClientUI.stringdata0))
         return static_cast<void*>(this);
-    return QDialog::qt_metacast(_clname);
+    return QMainWindow::qt_metacast(_clname);
 }
 
 int CUpdateClientUI::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QDialog::qt_metacall(_c, _id, _a);
+    _id = QMainWindow::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {

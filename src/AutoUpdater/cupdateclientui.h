@@ -14,8 +14,9 @@
 #include <QDialog>
 #include <QMovie>
 #include <QProgressBar>
+#include <QMainWindow>
 
-class CUpdateClientUI : public QDialog
+class CUpdateClientUI : public QMainWindow
 {
     Q_OBJECT
 
@@ -95,7 +96,6 @@ private:
     QProgressBar *m_UpdateProgressBar;
     QPushButton *m_btnOk;
     QPushButton *m_btnCansel;
-    QLabel *m_labelFinishInfo;
 
     //cellect to control widget
     QList<QWidget*> m_notUpdateWidgets;

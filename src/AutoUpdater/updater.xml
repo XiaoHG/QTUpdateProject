@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <filelist>
 	<version>V1.2</version>
-	<file name="version" version="2.4"/>
+	<file name="version" version="2.0"/>
 	<file name="Qt5Cored.dll" dir="imageformats" version="1.0"/>
 	<file name="Qt5Guid.dll" dir="imageformats" version="1.0"/>
 	<file name="Qt5Svgd.dll" dir="imageformats" version="1.0"/>

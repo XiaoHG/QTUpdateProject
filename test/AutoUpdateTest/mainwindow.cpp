@@ -23,3 +23,8 @@ void MainWindow::on_actionactUpdate_triggered()
     qDebug() << strExe;
     QProcess::startDetached(strExe);
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    this->close();
+}
