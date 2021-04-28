@@ -106,7 +106,7 @@ int CAutoUpdater::CheckUpdateFiles(QString xml1, QString xml2)
                                 }
                                 else
                                 {
-                                    qDebug() << "文件是最新版本，不需要更新  " << version << dir << name;
+                                    qDebug() << QStringLiteral("文件是最新版本，不需要更新  ") << version << dir << name;
                                 }
                             }
                         }
@@ -119,35 +119,35 @@ int CAutoUpdater::CheckUpdateFiles(QString xml1, QString xml2)
                     }
                     else
                     {
-                        m_strTip = "XML 文件内容错误";
+                        m_strTip = QStringLiteral("XML 文件内容错误");
                         qDebug() << m_strTip;
                         return 0;
                     }
                 }
                 else
                 {
-                    m_strTip = "获取XML doc失败";
+                    m_strTip = QStringLiteral("获取XML doc失败");
                     qDebug() << m_strTip;
                     return 0;
                 }
             }
             else
             {
-                m_strTip = "不能打开更新文件！";
+                m_strTip = QStringLiteral("不能打开更新文件！");
                 qDebug() << m_strTip;
                 return 0;
             }
         }
         else
         {
-            m_strTip = "下载更新文件错误！";
+            m_strTip = QStringLiteral("下载更新文件错误！");
             qDebug() << m_strTip;
             return 0;
         }
     }
     else
     {
-        m_strTip = "本地更新文件不存在";
+        m_strTip = QStringLiteral("本地更新文件不存在");
         qDebug() << m_strTip;
         return 0;
     }
@@ -273,7 +273,7 @@ void CAutoUpdater::DownloadUpdateFiles()
 
     if(m_listFileDir.isEmpty() || m_listFileName.isEmpty())
     {
-        qDebug() << "没有需要更新的文件！";
+        qDebug() << QStringLiteral("没有需要更新的文件！");
         return;
     }
 
@@ -283,7 +283,7 @@ void CAutoUpdater::DownloadUpdateFiles()
 
     for(int i = 0; i < m_listFileName.size(); ++i)
     {
-        m_strTip = "正在下载文件 ..." + m_listFileName.at(i);
+        m_strTip = QStringLiteral("正在下载文件 ...") + m_listFileName.at(i);
         qDebug() << m_strTip;
         m_progUpdate->setValue(100 * i / m_listFileName.size());
 
@@ -297,7 +297,9 @@ void CAutoUpdater::DownloadUpdateFiles()
 
         //文件在服务器中的存储位置
         QString strFileDirServer = strServer + m_listFileDir.at(i) + "/" + m_listFileName.at(i);
-        CHttpDownloadFile *http = new CHttpDownloadFile(strFileDirServer, m_listFileName.at(i), strPlaceDir, this);//调用下载文件的类
+        CHttpDownloadFile *http = new CHttpDownloadFile(strFileDirServer,
+                                                        m_listFileName.at(i),
+                                                        strPlaceDir, this);//调用下载文件的类
         http->DownloadFile();
 //        m_urlAdress = strFileDirServer;
 //        m_strFileName = "";
@@ -317,7 +319,7 @@ void CAutoUpdater::DownloadUpdateFiles()
             QCoreApplication::processEvents();
         }
 
-        m_strTip = "文件" + m_listFileName.at(i) + "下载完成";
+        m_strTip = QStringLiteral("文件") + m_listFileName.at(i) + QStringLiteral("下载完成");
         qDebug() << m_strTip;
 
         /**将下载好的文件复制到主目录中,先删除原先的文件**/
@@ -341,7 +343,7 @@ void CAutoUpdater::DownloadUpdateFiles()
     }
 
     m_blsFinished = true;
-    m_strTip = "更新完成！";
+    m_strTip = QStringLiteral("更新完成！");
     qDebug() << m_strTip;
 
     /**替换旧的xml文件**/

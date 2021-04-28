@@ -86,7 +86,7 @@ void CUpdateClientUI::InitUI()
     m_logTitleLabel->setStyleSheet("color:white");
     m_logTitleLabel->setGeometry(m_outputVersionInfoEdit->x(), m_outputVersionInfoEdit->y() - 25, m_outputVersionInfoEdit->width(), 20);
     m_logTitleLabel->setScaledContents(true);
-    m_logTitleLabel->setText("更新日志 : ");
+    m_logTitleLabel->setText(QStringLiteral("更新日志 : "));
     m_logTitleLabel->setStyleSheet("color:rgb(200, 200, 200)");
     m_updateWidgets.push_back(m_logTitleLabel);
     m_notUpdateWidgets.push_back(m_logTitleLabel);
@@ -265,14 +265,14 @@ void CUpdateClientUI::UpdateUI()
     //m_downloadVersionInfos = m_updater.GetUpdateFileDir();
     QStringList strListVersionInfo = m_updater.GetVersionInfo();
     if(strListVersionInfo.isEmpty())
-        m_outputVersionInfoEdit->append("版本信息缺失！");
+        m_outputVersionInfoEdit->append(QStringLiteral("版本信息缺失！"));
     for(int i = 0; i < strListVersionInfo.size(); ++i)
     {
         m_outputVersionInfoEdit->append(strListVersionInfo.at(i));
     }
     m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
 
-    m_titleLabel->setText("检查更新！");
+    m_titleLabel->setText(QStringLiteral("检查更新！"));
 
     //隐藏正在更新界面组件
     SetVisibleUpdatingUI(false);
@@ -285,8 +285,8 @@ void CUpdateClientUI::UpdateUI()
 
     //m_versionServerInfo: 获取到下载的XML的版本，进行显示
     m_versionServerInfo = "V" + m_updater.getElementVersion("downloadxml", "version");
-    m_newVersionInfoLabel->setText("检查到新版本 " + m_versionServerInfo +
-                                   " 点击更新！");
+    m_newVersionInfoLabel->setText(QStringLiteral("检查到新版本 ") + m_versionServerInfo +
+                                   QStringLiteral(" 点击更新！"));
 }
 
 void CUpdateClientUI::NotUpdateUI()
@@ -300,7 +300,7 @@ void CUpdateClientUI::NotUpdateUI()
     QString strVersionInfoPath = QDir::currentPath() + "/versionInfo.txt";
     QStringList strListVersionInfo = m_updater.GetVersionInfo(strVersionInfoPath);
     if(strListVersionInfo.isEmpty())
-        m_outputVersionInfoEdit->append("版本信息缺失！");
+        m_outputVersionInfoEdit->append(QStringLiteral("版本信息缺失！"));
     for(int i = 0; i < strListVersionInfo.size(); ++i)
     {
         m_outputVersionInfoEdit->append(strListVersionInfo.at(i));
@@ -339,7 +339,7 @@ void CUpdateClientUI::slotUpdateBtnClicked()
 void CUpdateClientUI::UpdatingUI()
 {
     m_outputVersionInfoEdit->clear();
-    m_titleLabel->setText("正在更新 ...");
+    m_titleLabel->setText(QStringLiteral("正在更新 ..."));
 
     //隐藏检查更新界面组件
     SetVisibleUpdateUI(false);
@@ -384,7 +384,7 @@ void CUpdateClientUI::slotUpdateTimeOut()
     static int i = 0;
     if(process % (100 / strListDownloadFileDir.size()) == 0 && i < strListDownloadFileDir.size())
     {
-        m_outputVersionInfoEdit->append("正在更新文件" +
+        m_outputVersionInfoEdit->append(QStringLiteral("正在更新文件") +
                                         strListDownloadFileName.at(i) + " ...");
         strTmpDir = strCurrentDir + "/" + strListDownloadFileDir.at(i)
                 + "/" + strListDownloadFileName.at(i);
@@ -393,19 +393,19 @@ void CUpdateClientUI::slotUpdateTimeOut()
     }
 
     if((process+1) % (100 / strListDownloadFileDir.size()) == 0 && i <= strListDownloadFileDir.size())
-        m_outputVersionInfoEdit->append("文件" +
+        m_outputVersionInfoEdit->append(QStringLiteral("文件") +
                                     strListDownloadFileName.at(i - 1) +
-                                    "更新完成");
+                                    QStringLiteral("更新完成"));
 
     m_UpdateProgressBar->setValue(process);
     if(process++ == 100)
     {
-        m_outputVersionInfoEdit->append("注意：所有文件已经更新完成，"
+        m_outputVersionInfoEdit->append(QStringLiteral("注意：所有文件已经更新完成，"
                                           "点击重启客户端会启动最新版本，"
-                                          "点击取消保持当前版本运行，下次启动为最新版本！");
+                                          "点击取消保持当前版本运行，下次启动为最新版本！"));
         //Update finish
         process = 0;
-        m_titleLabel->setText("更新完成！");
+        m_titleLabel->setText(QStringLiteral("更新完成！"));
         FinishUpdate();
     }
 }
