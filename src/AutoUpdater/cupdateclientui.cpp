@@ -86,7 +86,7 @@ void CUpdateClientUI::InitUI()
     m_logTitleLabel->setStyleSheet("color:white");
     m_logTitleLabel->setGeometry(m_outputVersionInfoEdit->x(), m_outputVersionInfoEdit->y() - 25, m_outputVersionInfoEdit->width(), 20);
     m_logTitleLabel->setScaledContents(true);
-    m_logTitleLabel->setText(QString::fromLocal8Bit("更新日志 : "));
+    m_logTitleLabel->setText("更新日志 : ");
     m_logTitleLabel->setStyleSheet("color:rgb(200, 200, 200)");
     m_updateWidgets.push_back(m_logTitleLabel);
     m_notUpdateWidgets.push_back(m_logTitleLabel);
@@ -157,7 +157,7 @@ void CUpdateClientUI::InitUI()
     m_updatingWidgets.push_back(m_UpdateProgressBar);
 
     m_btnOk = new QPushButton(this);
-    m_btnOk->setText(QString::fromLocal8Bit("Restart"));
+    m_btnOk->setText("Restart");
     //m_btnOk->setIcon(QIcon(":/image/restart.png"));
     m_btnOk->setGeometry(m_btnUpdate->x() + 200, m_btnUpdate->y(),
                          m_btnUpdate->width(), m_btnUpdate->height());
@@ -168,7 +168,7 @@ void CUpdateClientUI::InitUI()
     m_finishWidgets.push_back(m_btnOk);
 
     m_btnCansel = new QPushButton(this);
-    m_btnCansel->setText(QString::fromLocal8Bit("Cancel"));
+    m_btnCansel->setText("Cancel");
     //m_btnCansel->setIcon(QIcon(":/image/cansel1.png"));
     m_btnCansel->setGeometry(m_btnUpdate->x() + m_btnOk->width() + 210, m_btnUpdate->y(),
                              m_btnUpdate->width(), m_btnUpdate->height());
@@ -229,7 +229,7 @@ bool CUpdateClientUI::CheckUpdate()
 {
 
     //从版本文件中读取版本号，并进行本地版本和下载XML版本对比，得出是否更新的结论
-    //updater.downloadXMLFile();//拉取服务器版本XML
+    //m_updater.downloadXMLFile();//拉取服务器版本XML
     m_isUpdate = m_updater.CheckVersionForUpdate();//对比下载下来的XML和本地版本的XML
     //更新则isUpdate = true,否则false
     qDebug() << "m_isUpdate = " << m_isUpdate;
@@ -238,6 +238,11 @@ bool CUpdateClientUI::CheckUpdate()
     {
         //此时需要更新，弹出对话框让客户端进行选择更新与否
         m_updater.CheckUpdateFiles();
+        QStringList tmpList = m_updater.GetUpdateFileName();
+        for(int i = 0; i < tmpList.size(); ++i)
+        {
+            qDebug() << "tmpList.at(i) = " << tmpList.at(i);
+        }
         UpdateUI();
     }
     else
@@ -260,14 +265,14 @@ void CUpdateClientUI::UpdateUI()
     //m_downloadVersionInfos = m_updater.GetUpdateFileDir();
     QStringList strListVersionInfo = m_updater.GetVersionInfo();
     if(strListVersionInfo.isEmpty())
-        m_outputVersionInfoEdit->append(QStringLiteral("版本信息缺失！"));
+        m_outputVersionInfoEdit->append("版本信息缺失！");
     for(int i = 0; i < strListVersionInfo.size(); ++i)
     {
         m_outputVersionInfoEdit->append(strListVersionInfo.at(i));
     }
     m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
 
-    m_titleLabel->setText(QStringLiteral("检查更新！"));
+    m_titleLabel->setText("检查更新！");
 
     //隐藏正在更新界面组件
     SetVisibleUpdatingUI(false);
@@ -280,8 +285,8 @@ void CUpdateClientUI::UpdateUI()
 
     //m_versionServerInfo: 获取到下载的XML的版本，进行显示
     m_versionServerInfo = "V" + m_updater.getElementVersion("downloadxml", "version");
-    m_newVersionInfoLabel->setText(QStringLiteral("检查到新版本 ") + m_versionServerInfo +
-                                   QString::fromLocal8Bit(" 点击更新！"));
+    m_newVersionInfoLabel->setText("检查到新版本 " + m_versionServerInfo +
+                                   " 点击更新！");
 }
 
 void CUpdateClientUI::NotUpdateUI()
@@ -295,7 +300,7 @@ void CUpdateClientUI::NotUpdateUI()
     QString strVersionInfoPath = QDir::currentPath() + "/versionInfo.txt";
     QStringList strListVersionInfo = m_updater.GetVersionInfo(strVersionInfoPath);
     if(strListVersionInfo.isEmpty())
-        m_outputVersionInfoEdit->append(QString::fromLocal8Bit("版本信息缺失！"));
+        m_outputVersionInfoEdit->append("版本信息缺失！");
     for(int i = 0; i < strListVersionInfo.size(); ++i)
     {
         m_outputVersionInfoEdit->append(strListVersionInfo.at(i));
@@ -304,7 +309,7 @@ void CUpdateClientUI::NotUpdateUI()
 
     QString strCurrentVersion = "V" + m_updater.getElementVersion("localxml", "version");
     m_labelLasterVersion->setText(strCurrentVersion);
-    m_titleLabel->setText(QString::fromLocal8Bit("当前版本是最新版本！"));
+    m_titleLabel->setText("当前版本是最新版本！");
 
 //    m_btnUpdate->setVisible(false);
 //    m_newVersionInfoLabel->setVisible(false);
@@ -331,6 +336,22 @@ void CUpdateClientUI::slotUpdateBtnClicked()
     Updating();
 }
 
+void CUpdateClientUI::UpdatingUI()
+{
+    m_outputVersionInfoEdit->clear();
+    m_titleLabel->setText("正在更新 ...");
+
+    //隐藏检查更新界面组件
+    SetVisibleUpdateUI(false);
+
+    //显示正在更新界面组件
+    SetVisibleUpdatingUI(true);
+
+
+    m_updater.DownloadUpdateFiles();
+
+}
+
 void CUpdateClientUI::slotOkBtnClicked()
 {
     QString name = ""; //主程序名
@@ -338,7 +359,8 @@ void CUpdateClientUI::slotOkBtnClicked()
     /**运行主程序，并且退出当前更新程序(说明：主程序在上上一级目录中)**/
     if(!QProcess::startDetached(name))//启动主程序，主程序在其上一级目录
     {
-        QMessageBox::warning(this, "warning", name, QMessageBox::Ok, QMessageBox::NoButton);
+        QMessageBox::warning(this, "warning", name,
+                             QMessageBox::Ok, QMessageBox::NoButton);
     }
     this->close();
 }
@@ -352,19 +374,6 @@ void CUpdateClientUI::Updating()
 
 }
 
-void CUpdateClientUI::UpdatingUI()
-{
-    m_outputVersionInfoEdit->clear();
-    m_titleLabel->setText(QString::fromLocal8Bit("正在更新 ..."));
-
-    //隐藏检查更新界面组件
-    SetVisibleUpdateUI(false);
-
-    //显示正在更新界面组件
-    SetVisibleUpdatingUI(true);
-
-}
-
 void CUpdateClientUI::slotUpdateTimeOut()
 {
     static int process = 0;
@@ -375,7 +384,7 @@ void CUpdateClientUI::slotUpdateTimeOut()
     static int i = 0;
     if(process % (100 / strListDownloadFileDir.size()) == 0 && i < strListDownloadFileDir.size())
     {
-        m_outputVersionInfoEdit->append(QString::fromLocal8Bit("正在更新文件") +
+        m_outputVersionInfoEdit->append("正在更新文件" +
                                         strListDownloadFileName.at(i) + " ...");
         strTmpDir = strCurrentDir + "/" + strListDownloadFileDir.at(i)
                 + "/" + strListDownloadFileName.at(i);
@@ -384,19 +393,19 @@ void CUpdateClientUI::slotUpdateTimeOut()
     }
 
     if((process+1) % (100 / strListDownloadFileDir.size()) == 0 && i <= strListDownloadFileDir.size())
-        m_outputVersionInfoEdit->append(QString::fromLocal8Bit("文件") +
+        m_outputVersionInfoEdit->append("文件" +
                                     strListDownloadFileName.at(i - 1) +
-                                    QString::fromLocal8Bit("更新完成"));
+                                    "更新完成");
 
     m_UpdateProgressBar->setValue(process);
     if(process++ == 100)
     {
-        m_outputVersionInfoEdit->append(QString::fromLocal8Bit("注意：所有文件已经更新完成，"
-                                                               "点击重启客户端会启动最新版本，"
-                                                               "点击取消保持当前版本运行，下次启动为最新版本！"));
+        m_outputVersionInfoEdit->append("注意：所有文件已经更新完成，"
+                                          "点击重启客户端会启动最新版本，"
+                                          "点击取消保持当前版本运行，下次启动为最新版本！");
         //Update finish
         process = 0;
-        m_titleLabel->setText(QString::fromLocal8Bit("更新完成！"));
+        m_titleLabel->setText("更新完成！");
         FinishUpdate();
     }
 }

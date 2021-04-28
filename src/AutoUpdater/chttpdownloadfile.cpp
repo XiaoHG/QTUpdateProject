@@ -37,10 +37,12 @@ void CHttpDownloadFile::slotReplyNewDataArrived()
 /**文件下载完成，释放资源**/
 void CHttpDownloadFile::slotReplyFinished()
 {
+    m_blsFinished = true;
     m_netAccessManager->deleteLater();
     m_netReply->deleteLater();
     m_file->close();
     m_file->deleteLater();
+    qDebug() << m_strFileName << " 下载完成";
 }
 
 /**下载过程中出现错误处理**/
@@ -66,9 +68,12 @@ void CHttpDownloadFile::slotReplyError(QNetworkReply::NetworkError)
 /**下载文件进度提示**/
 void CHttpDownloadFile::slotReplyDownloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
+    m_blsFinished = false;
     m_nReceived = bytesReceived;
     m_nTotal = bytesTotal;
-    qDebug() << "slotReplyDownloadProgress ...";
+    qDebug() << "slotReplyDownloadProgress ..." <<
+                "Received: " << m_nReceived <<
+                " m_nTotal: " << m_nTotal;
 }
 
 /**下载文件服务器上的文件，并保存到指定目录下**/

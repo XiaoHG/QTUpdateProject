@@ -164,8 +164,11 @@ compiler_rcc_clean:
 debug\qrc_icon.cpp: ..\..\source\icon.qrc \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\rcc.exe \
 		..\..\source\image\close.png \
+		..\..\source\image\cansel1.png \
+		..\..\source\image\restart.png \
 		..\..\source\image\update.png \
-		..\..\source\image\updating.gif
+		..\..\source\image\updating.gif \
+		..\..\source\image\cansel.png
 	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\rcc.exe -name icon ..\..\source\icon.qrc -o debug\qrc_icon.cpp
 
 compiler_moc_predefs_make_all: debug\moc_predefs.h
@@ -318,6 +321,8 @@ debug\moc_cupdateclientui.cpp: cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonobject.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonvalue.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfactoryinterface.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QProgressBar \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qprogressbar.h \
 		cupdateclientui.h \
 		debug\moc_predefs.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
@@ -750,6 +755,8 @@ debug\main.obj: main.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonobject.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonvalue.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfactoryinterface.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QProgressBar \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qprogressbar.h \
 		cxmlparser.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QString
 
@@ -895,6 +902,8 @@ debug\cupdateclientui.obj: cupdateclientui.cpp cupdateclientui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonobject.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonvalue.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfactoryinterface.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QProgressBar \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qprogressbar.h \
 		cxmlparser.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QString \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
@@ -919,7 +928,14 @@ debug\cupdateclientui.obj: cupdateclientui.cpp cupdateclientui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmessagebox.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTextStream \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QProcess \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qprocess.h
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qprocess.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QTextCursor \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QTextBlock \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextobject.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextlayout.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qglyphrun.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrawfont.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontdatabase.h
 
 debug\cxmlparser.obj: cxmlparser.cpp cxmlparser.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QString \

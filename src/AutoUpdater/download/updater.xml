@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <filelist>
-	<file name="version" version="2.5"/>
-	<file name="Qt5Cored.dll" dir="imageformats" version="1.0"/>
-	<file name="Qt5Guid.dll" dir="imageformats" version="1.0"/>
-	<file name="Qt5Svgd.dll" dir="imageformats" version="1.0"/>
+	<file name="version" version="1.2.1"/>
+	<file name="versionInfo.txt" version="1.2.1"/>
+	<file name="Qt5Cored.dll" dir="" version="1.0"/>
+	<file name="Qt5Guid.dll" dir="" version="1.1"/>
+	<file name="Qt5Svgd.dll" dir="" version="1.0"/>
+	<file name="D3Dcompiler_47.dll" dir="" version="1.0"/>
+	<file name="libEGLd.dll" dir="" version="1.1"/>
+	<file name="libGLESV2d.dll" dir="" version="1.0"/>
+	<file name="opengl32sw.dll" dir="" version="1.1"/>
+	<file name="qgifd.dll" dir="imageformats" version="1.1"/>
+	<file name="qicnsd.dll" dir="imageformats" version="1.0"/>
+	<file name="qjpegd.dll" dir="imageformats" version="1.1"/>
+	<file name="qwbmpd.dll" dir="imageformats" version="1.0"/>
+	<file name="qwebpd.dll" dir="imageformats" version="1.0"/>
 </filelist>

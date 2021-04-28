@@ -1,4 +1,5 @@
-﻿#ifndef CAUTOUPDATER_H
+﻿
+#ifndef CAUTOUPDATER_H
 #define CAUTOUPDATER_H
 
 #include <QWidget>

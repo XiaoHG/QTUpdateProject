@@ -34,7 +34,10 @@ void CAutoUpdater::downloadXMLFile()
         diretory.mkpath(strDownload);
     }
 
-    m_httpXML = new CHttpDownloadFile("http://localhost/updateClientversion/updater.xml", "updater.xml", strDownload, this);//调用下载文件的类
+    //http://localhost/updateClientVarsion/
+    //http://localhost/updateClientversion/
+    m_httpXML = new CHttpDownloadFile("http://localhost/updateClientversion/updater.xml",
+                                      "updater.xml", strDownload, this);//调用下载文件的类
     //connect(m_httpXML, SIGNAL(sigDownloadFinishedSignal()), this, SLOT(slotReplyHttpFinished()));//发生错误时一样会发送此信号
     m_httpXML->DownloadFile();
 }
@@ -86,6 +89,7 @@ int CAutoUpdater::CheckUpdateFiles(QString xml1, QString xml2)
                             QString dir = nodeList.at(i).toElement().attribute("dir");
                             QString version = nodeList.at(i).toElement().attribute("version");
 
+                            qDebug() << "CheckUpdateFiles xml1 name = " << name;
                             QString versionDownload = getElementVersion(xml2, name);//获取本地xml文件对应文件（name）的版本信息
                             if(versionDownload.isEmpty())//本地XML没有此文件：下载并放到相应的目录中
                             {
@@ -246,6 +250,7 @@ bool CAutoUpdater::CheckVersionForUpdate()
     QString strLocalXML = QDir::currentPath() + "/updater.xml";
     QString strDownloadXML = QDir::currentPath() + "/download/updater.xml";
     qDebug() << "strLocalXML = " << strLocalXML;
+    qDebug() << "strDownloadXML = " << strDownloadXML;
     QString xml1Version = getElementVersion(strLocalXML, "version");
     QString xml2Version = getElementVersion(strDownloadXML, "version");
     return CheckVersion(xml1Version, xml2Version);
@@ -357,16 +362,16 @@ void CAutoUpdater::DownloadUpdateFiles()
 **/
 void CAutoUpdater::ExitApp(QString name)
 {
-    if(!name.isEmpty())
-    {
-        qDebug() << "主程序启动：" << name;
-        /**运行主程序，并且退出当前更新程序(说明：主程序在上上一级目录中)**/
-        if(!QProcess::startDetached(name))//启动主程序，主程序在其上一级目录
-        {
-            QMessageBox::warning(this, "warning", name, QMessageBox::Ok, QMessageBox::NoButton);
-        }
-    }
-    this->close();
+//    if(!name.isEmpty())
+//    {
+//        qDebug() << "主程序启动：" << name;
+//        /**运行主程序，并且退出当前更新程序(说明：主程序在上上一级目录中)**/
+//        if(!QProcess::startDetached(name))//启动主程序，主程序在其上一级目录
+//        {
+//            QMessageBox::warning(this, "warning", name, QMessageBox::Ok, QMessageBox::NoButton);
+//        }
+//    }
+//    this->close();
 }
 
 /**读取版本信息文件**/

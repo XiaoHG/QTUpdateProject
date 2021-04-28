@@ -34,7 +34,7 @@ FORMS += \
         mainwindow.ui
 
 INCLUDEPATH += ../../src/UpdateClientUI
-LIBS += -L../../lib -lUpdateClientUI_d
+LIBS += -L../../lib -lUpdateClientUI
 
 #CONFIG(debug, debug | release){
 #    LIBS += -L../../lib -lUpdateClientUI_d

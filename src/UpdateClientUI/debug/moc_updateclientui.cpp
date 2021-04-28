@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'updateclientui.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.11.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'updateclientui.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.11.0. It"
+#error "This file was generated using the moc from 5.9.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -91,16 +91,27 @@ void CUpdateClientUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
+        void **func = reinterpret_cast<void **>(_a[1]);
         {
+<<<<<<< HEAD:src/UpdateClientUI/release/moc_updateclientui.cpp
+            typedef void (UpdateClientUI::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&UpdateClientUI::sigCloseMainWindow)) {
+=======
             using _t = void (CUpdateClientUI::*)();
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&CUpdateClientUI::sigCloseMainWindow)) {
+>>>>>>> 6a49bda4e37bb26cb04376ec6ae13f1fe9476d16:src/UpdateClientUI/debug/moc_updateclientui.cpp
                 *result = 0;
                 return;
             }
         }
         {
+<<<<<<< HEAD:src/UpdateClientUI/release/moc_updateclientui.cpp
+            typedef void (UpdateClientUI::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&UpdateClientUI::sigUpdate)) {
+=======
             using _t = void (CUpdateClientUI::*)();
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&CUpdateClientUI::sigUpdate)) {
+>>>>>>> 6a49bda4e37bb26cb04376ec6ae13f1fe9476d16:src/UpdateClientUI/debug/moc_updateclientui.cpp
                 *result = 1;
                 return;
             }
@@ -109,9 +120,15 @@ void CUpdateClientUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
     Q_UNUSED(_a);
 }
 
+<<<<<<< HEAD:src/UpdateClientUI/release/moc_updateclientui.cpp
+const QMetaObject UpdateClientUI::staticMetaObject = {
+    { &QDialog::staticMetaObject, qt_meta_stringdata_UpdateClientUI.data,
+      qt_meta_data_UpdateClientUI,  qt_static_metacall, nullptr, nullptr}
+=======
 QT_INIT_METAOBJECT const QMetaObject CUpdateClientUI::staticMetaObject = {
     { &QDialog::staticMetaObject, qt_meta_stringdata_CUpdateClientUI.data,
       qt_meta_data_CUpdateClientUI,  qt_static_metacall, nullptr, nullptr}
+>>>>>>> 6a49bda4e37bb26cb04376ec6ae13f1fe9476d16:src/UpdateClientUI/debug/moc_updateclientui.cpp
 };
 
 
@@ -123,8 +140,13 @@ const QMetaObject *CUpdateClientUI::metaObject() const
 void *CUpdateClientUI::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
+<<<<<<< HEAD:src/UpdateClientUI/release/moc_updateclientui.cpp
+    if (!strcmp(_clname, qt_meta_stringdata_UpdateClientUI.stringdata0))
+        return static_cast<void*>(const_cast< UpdateClientUI*>(this));
+=======
     if (!strcmp(_clname, qt_meta_stringdata_CUpdateClientUI.stringdata0))
         return static_cast<void*>(this);
+>>>>>>> 6a49bda4e37bb26cb04376ec6ae13f1fe9476d16:src/UpdateClientUI/debug/moc_updateclientui.cpp
     return QDialog::qt_metacast(_clname);
 }
 
