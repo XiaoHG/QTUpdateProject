@@ -18,12 +18,13 @@ public:
 public:
     void downloadXMLFile();
     QString getElementVersion(QString xml, QString name);
-    int CheckUpdateFiles(QString name1 = "default", QString name2 = "default");
+    int CheckUpdateFiles(QString xml1, QString xml2);
     bool CheckVersion(QString version, QString versionDownload);
     bool CheckVersionForUpdate();
     void DownloadUpdateFiles();
     void ExitApp(QString name);
     QStringList GetVersionInfo(QString txt = "");
+    QString GetVersion(QString xml);
 
     QStringList GetUpdateFileDir();
     QStringList GetUpdateFileName();

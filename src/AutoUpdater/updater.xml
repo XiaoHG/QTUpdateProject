@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<filelist>
-	<file name="version" version="1.0"/>
-</filelist>
+<autoupdate>
+	<version>V2.2</version>
+	<filelist>
+		<file name="versionInfo.txt" version="1.2.1"/>
+		<file name="Qt5Cored.dll" dir="" version="1.0"/>
+		<file name="qwbmpd.dll" dir="imageformats" version="1.0"/>
+		<file name="qwebpd.dll" dir="imageformats" version="1.0"/>
+	</filelist>
+</autoupdate>

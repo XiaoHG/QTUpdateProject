@@ -1,5 +1,7 @@
 ﻿#include "cautoupdater.h"
 #include "chttpdownloadfile.h"
+#include "cxmlparser.h"
+
 #include <QDir>
 #include <QDomDocument>
 #include <QCoreApplication>
@@ -56,91 +58,57 @@ int CAutoUpdater::CheckUpdateFiles(QString xml1, QString xml2)
     if(xml1.isEmpty() || xml2.isEmpty())
         return 0;
 
-    if(xml1 == "default" && xml2 == "default")
-    {
-        xml1 = QDir::currentPath() + "/updater.xml";
-        xml2 = QDir::currentPath() + "/download/updater.xml";
-        qDebug() << "xml1 and xml2 is default";
-    }
+    qDebug() << QStringLiteral("下载的版本文件 xml1 = ") << xml1;
+    qDebug() << QStringLiteral("本地版本文件 xml2 = ") << xml2;
 
     if(QFile::exists(xml1))
     {
         if(QFile::exists(xml2))
         {
-            m_strTip = "检查需要更新的文件...";
+            m_strTip = QStringLiteral("检查需要更新的文件...");
             qDebug() << m_strTip;
-            qDebug() << xml1;
-            QFile file(xml1);
-            if(file.open(QIODevice::ReadOnly | QFile::Text))
-            {
-                QString errorStr;
-                int errorLine;
-                int errorColumn;
-                QDomDocument doc;
-                if(doc.setContent(&file, false, &errorStr, &errorLine, &errorColumn))
-                {
-                    QDomElement root = doc.documentElement();
-                    if(root.tagName() == "filelist")
-                    {
-                        QDomNodeList nodeList = root.elementsByTagName("file");
-                        for(int i = 0; i < nodeList.size(); ++i)
-                        {
-                            QString name = nodeList.at(i).toElement().attribute("name");
-                            QString dir = nodeList.at(i).toElement().attribute("dir");
-                            QString version = nodeList.at(i).toElement().attribute("version");
 
-                            qDebug() << "CheckUpdateFiles xml1 name = " << name;
-                            QString versionDownload = getElementVersion(xml2, name);//获取本地xml文件对应文件（name）的版本信息
-                            if(versionDownload.isEmpty())//本地XML没有此文件：下载并放到相应的目录中
-                            {
-                                m_listFileDir.append(dir);
-                                m_listFileName.append(name);
-                            }
-                            else
-                            {
-                                /**检查版本，如果本地版本低于下载版本，则下载**/
-                                if(!CheckVersion(version, versionDownload))
-                                {
-                                    m_listFileDir.append(dir);
-                                    m_listFileName.append(name);
-                                }
-                                else
-                                {
-                                    qDebug() << QStringLiteral("文件是最新版本，不需要更新  ") << version << dir << name;
-                                }
-                            }
-                        }
-                        //debug code
-                        for(int i = 0; i < m_listFileName.size(); ++i)
-                        {
-                            qDebug() << "File " << m_listFileName.at(i) << " need to update!";
-                        }
-                        return 1;
-                    }
-                    else
-                    {
-                        m_strTip = QStringLiteral("XML 文件内容错误");
-                        qDebug() << m_strTip;
-                        return 0;
-                    }
+            QDomNodeList nodeList = CXMLParser::XMLParseElement(xml1, "file");
+            for(int i = 0; i < nodeList.size(); ++i)
+            {
+                QString name = nodeList.at(i).toElement().attribute("name");
+                QString dir = nodeList.at(i).toElement().attribute("dir");
+                QString version = nodeList.at(i).toElement().attribute("version");
+
+                qDebug() << "CheckUpdateFiles xml1 name = " << name;
+                QString localVersion = getElementVersion(xml2, name);//获取本地xml文件对应文件（name）的版本信息
+                if(localVersion.isEmpty())//本地XML没有此文件：下载并放到相应的目录中
+                {
+                    qDebug() << QStringLiteral("需要更新：") << name << " version = " << localVersion << " file need to update!";
+                    m_listFileDir.append(dir);
+                    m_listFileName.append(name);
                 }
                 else
                 {
-                    m_strTip = QStringLiteral("获取XML doc失败");
-                    qDebug() << m_strTip;
-                    return 0;
+                    /**检查版本，如果本地版本低于下载版本，则下载**/
+                    qDebug() << "Checked version : " << version << ", " << localVersion;
+                    if(CheckVersion(version, localVersion))
+                    {
+                        qDebug() << QStringLiteral("需要更新：") << name << " version = " << localVersion << " file need to update!";
+                        m_listFileDir.append(dir);
+                        m_listFileName.append(name);
+                    }
+                    else
+                    {
+                        qDebug() << QStringLiteral("文件是最新版本，不需要更新  ") << version << dir << name;
+                    }
                 }
             }
-            else
+            //debug code
+            for(int i = 0; i < m_listFileName.size(); ++i)
             {
-                m_strTip = QStringLiteral("不能打开更新文件！");
-                qDebug() << m_strTip;
-                return 0;
+                qDebug() << "File " << m_listFileName.at(i) << " need to update!";
             }
+            return 1;
         }
         else
         {
-            m_strTip = QStringLiteral("下载更新文件错误！");
+            m_strTip = QStringLiteral("下载更新文件不存在！");
             qDebug() << m_strTip;
             return 0;
         }
@@ -167,64 +135,53 @@ QString CAutoUpdater::getElementVersion(QString xml, QString name)
         return result;
     }
 
-    //判断要获取本地版本号，还是下载下来的版本号
-    if(xml == "localxml")
-        xml = QDir::currentPath() + "/updater.xml";
-
-    if(xml == "downloadxml")
-        xml = QDir::currentPath() + "/download/updater.xml";
-
     if(!QFile::exists(xml))
     {
         qDebug() << "xml not exist!";
         return result;
     }
-
-    QFile file(xml);
-    if(file.open(QIODevice::ReadOnly | QFile::Text))
+    int i = 0;
+    QDomNodeList nodeList = CXMLParser::XMLParseElement(xml, "file");
+    for(; i < nodeList.size(); ++i)
     {
-        QDomDocument doc;
-        if(doc.setContent(&file))
-        {
-            QDomElement root = doc.documentElement();
-            if(root.tagName() == "filelist")
-            {
-                int i = 0;
-                QDomNodeList nodeList = root.elementsByTagName("file");
-                for(; i < nodeList.size(); ++i)
-                {
-                    QString tmpName = nodeList.at(i).toElement().attribute("name");
-                    //QString dir = nodeList.at(i).toElement().attribute("dir");
-                    QString version = nodeList.at(i).toElement().attribute("version");
+        QString tmpName = nodeList.at(i).toElement().attribute("name");
+        //QString dir = nodeList.at(i).toElement().attribute("dir");
+        QString version = nodeList.at(i).toElement().attribute("version");
 
-                    if(name == tmpName)
-                    {
-                        qDebug() << "find!, version = " << version;
-                        result = version;
-                        break;
-                    }
-                }
-                if(i == nodeList.size())
-                {
-                    qDebug() << "can't find!" << name;
-                }
-            }
-            else
-            {
-                qDebug() << "root.tagname != filelist ...";
-            }
-        }
-        else
+        if(name == tmpName)
         {
-            qDebug() << "Set content error!";
+            qDebug() << name << " find!, version = " << version;
+            result = version;
+            break;
         }
-        file.close();
     }
-    else
+    if(i == nodeList.size())
     {
-        qDebug() << "Open for read error!";
+        qDebug() << "can't find!" << name;
     }
+
     return result;
+}
+
+bool CAutoUpdater::CheckVersionForUpdate()
+{
+
+    QString strLocalXML = QDir::currentPath() + "/updater.xml";
+    QString strDownloadXML = QDir::currentPath() + "/download/updater.xml";
+    qDebug() << "strLocalXML = " << strLocalXML;
+    qDebug() << "strDownloadXML = " << strDownloadXML;
+    QString xml1Version = GetVersion(strLocalXML);
+    QString xml2Version = GetVersion(strDownloadXML);
+    qDebug() << QStringLiteral("两个版本对比：") << "local = " << xml1Version
+             << ", download = " << xml2Version;
+    return CheckVersion(xml1Version, xml2Version);
+}
+
+QString CAutoUpdater::GetVersion(QString xml)
+{
+    QDomNodeList nodeList = CXMLParser::XMLParseElement(xml, "version");
+    QString version = nodeList.at(0).toElement().text();
+    return version;
 }
 
 /**
@@ -237,23 +194,15 @@ bool CAutoUpdater::CheckVersion(QString version, QString versionDownload)
 {
     QStringList localVersionList = version.split('.');
     QStringList downloadVersionList = versionDownload.split('.');
-    for(int i = 0 ; i < localVersionList.size(); ++i)
+    for(int i = 0 ; i < downloadVersionList.size(); ++i)
     {
-        if(downloadVersionList.at(i) > localVersionList.at(i))
+        if(i >= localVersionList.size() || downloadVersionList.at(i) > localVersionList.at(i))
+        {
+            qDebug() << QStringLiteral("服务器版本比较新，需要更新！");
             return true;
+        }
     }
     return false;
-}
-
-bool CAutoUpdater::CheckVersionForUpdate()
-{
-    QString strLocalXML = QDir::currentPath() + "/updater.xml";
-    QString strDownloadXML = QDir::currentPath() + "/download/updater.xml";
-    qDebug() << "strLocalXML = " << strLocalXML;
-    qDebug() << "strDownloadXML = " << strDownloadXML;
-    QString xml1Version = getElementVersion(strLocalXML, "version");
-    QString xml2Version = getElementVersion(strDownloadXML, "version");
-    return CheckVersion(xml1Version, xml2Version);
 }
 
 /**
@@ -280,6 +229,7 @@ void CAutoUpdater::DownloadUpdateFiles()
     m_strTip = "开始下载更新文件 ...";
     qDebug() << m_strTip;
     m_blsFinished = false;
+    QStringList strPlaceDirList;
 
     for(int i = 0; i < m_listFileName.size(); ++i)
     {
@@ -289,6 +239,7 @@ void CAutoUpdater::DownloadUpdateFiles()
 
         /**放置下载文件的路径**/
         QString strPlaceDir = strCurrentDir + "/download/" + m_listFileDir.at(i);
+        strPlaceDirList.push_back(strPlaceDir);
         QDir directory(strPlaceDir);//如果路径不存在，则创建
         if(!directory.exists())
         {
@@ -301,10 +252,6 @@ void CAutoUpdater::DownloadUpdateFiles()
                                                         m_listFileName.at(i),
                                                         strPlaceDir, this);//调用下载文件的类
         http->DownloadFile();
-//        m_urlAdress = strFileDirServer;
-//        m_strFileName = "";
-//        m_strDir = strPlaceDir;
-//        DownLoadFile();
 
         while(!http->m_blsFinished)
         {
@@ -322,6 +269,16 @@ void CAutoUpdater::DownloadUpdateFiles()
         m_strTip = QStringLiteral("文件") + m_listFileName.at(i) + QStringLiteral("下载完成");
         qDebug() << m_strTip;
 
+
+    }
+
+    m_blsFinished = true;
+    m_strTip = QStringLiteral("更新完成！");
+    qDebug() << m_strTip;
+
+    //统一复制到旧的目录下。
+    for(int i = 0; i < m_listFileName.size(); ++i)
+    {
         /**将下载好的文件复制到主目录中,先删除原先的文件**/
         QString strLocalFileName = strCurrentDir + "/" + m_listFileDir.at(i) + "/" + m_listFileName.at(i);
         if(QFile::exists(strLocalFileName))
@@ -334,24 +291,21 @@ void CAutoUpdater::DownloadUpdateFiles()
 
         //拷贝
         qDebug() << "copy : -----------------==============------------------";
-        qDebug() << strPlaceDir + "/" + m_listFileName.at(i);
+        qDebug() << strPlaceDirList.at(i) + "/" + m_listFileName.at(i);
         qDebug() << strLocalFileName;
-        if(QFile::copy(strPlaceDir + "/" + m_listFileName.at(i), strLocalFileName))
+        if(QFile::copy(strPlaceDirList.at(i) + "/" + m_listFileName.at(i), strLocalFileName))
         {
             qDebug() << "File: " << m_listFileName.at(i) << " copy over!";
         }
     }
 
-    m_blsFinished = true;
-    m_strTip = QStringLiteral("更新完成！");
-    qDebug() << m_strTip;
-
     /**替换旧的xml文件**/
     QString strNewXML = strCurrentDir + "/download/updater.xml"; //最新的XML文件
     QString strOldXML = strCurrentDir + "/updater.xml"; //旧的XML文件
-
     QFile::remove(strOldXML);
     QFile::copy(strNewXML, strOldXML);
+
+    //这里复制完成，考虑删掉临时下载文件。
 
     //到此更新了全部该更新的文件，执行主程序。
     ExitApp(strCurrentDir + "main.exe");
@@ -390,6 +344,7 @@ QStringList CAutoUpdater::GetVersionInfo(QString txt)
     strLine = in.readLine();//读取一行放到字符串里
     while(!strLine.isNull())//字符串有内容
     {
+        //QStringLiteral
         strTxtList.append(strLine.toLocal8Bit());
         strLine = in.readLine();//循环读取下行
     }

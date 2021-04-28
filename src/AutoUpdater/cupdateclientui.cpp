@@ -232,17 +232,12 @@ bool CUpdateClientUI::CheckUpdate()
     //m_updater.downloadXMLFile();//拉取服务器版本XML
     m_isUpdate = m_updater.CheckVersionForUpdate();//对比下载下来的XML和本地版本的XML
     //更新则isUpdate = true,否则false
-    qDebug() << "m_isUpdate = " << m_isUpdate;
-    //m_isUpdate = true;
     if(m_isUpdate)
     {
         //此时需要更新，弹出对话框让客户端进行选择更新与否
-        m_updater.CheckUpdateFiles();
-        QStringList tmpList = m_updater.GetUpdateFileName();
-        for(int i = 0; i < tmpList.size(); ++i)
-        {
-            qDebug() << "tmpList.at(i) = " << tmpList.at(i);
-        }
+        m_updater.CheckUpdateFiles(QDir::currentPath() + "/download/updater.xml",
+                                   QDir::currentPath() + "/updater.xml");
+
         UpdateUI();
     }
     else
@@ -284,7 +279,8 @@ void CUpdateClientUI::UpdateUI()
     SetVisibleUpdateUI(true);
 
     //m_versionServerInfo: 获取到下载的XML的版本，进行显示
-    m_versionServerInfo = "V" + m_updater.getElementVersion("downloadxml", "version");
+
+    m_versionServerInfo = m_updater.GetVersion(QDir::currentPath() + "/download/updater.xml");
     m_newVersionInfoLabel->setText(QStringLiteral("检查到新版本 ") + m_versionServerInfo +
                                    QStringLiteral(" 点击更新！"));
 }
@@ -307,9 +303,9 @@ void CUpdateClientUI::NotUpdateUI()
     }
     m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
 
-    QString strCurrentVersion = "V" + m_updater.getElementVersion("localxml", "version");
+    QString strCurrentVersion = m_updater.GetVersion(QDir::currentPath() + "/updater.xml");
     m_labelLasterVersion->setText(strCurrentVersion);
-    m_titleLabel->setText("当前版本是最新版本！");
+    m_titleLabel->setText(QStringLiteral("当前版本是最新版本！"));
 
 //    m_btnUpdate->setVisible(false);
 //    m_newVersionInfoLabel->setVisible(false);
@@ -347,8 +343,7 @@ void CUpdateClientUI::UpdatingUI()
     //显示正在更新界面组件
     SetVisibleUpdatingUI(true);
 
-
-    m_updater.DownloadUpdateFiles();
+    //m_updater.DownloadUpdateFiles();
 
 }
 
@@ -371,6 +366,7 @@ void CUpdateClientUI::Updating()
     //this->setWindowTitle("Updating...");
 
     //这里执行更新，就是XML对比出来后的所有需更新文件的下载，拷贝。
+    //m_updater.DownloadUpdateFiles();
 
 }
 
