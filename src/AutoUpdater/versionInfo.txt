@@ -1,98 +1,395 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-<head> 
-<title>IIS 10.0 详细错误 - 404.0 - Not Found</title> 
-<style type="text/css"> 
-<!-- 
-body{margin:0;font-size:.7em;font-family:Verdana,Arial,Helvetica,sans-serif;} 
-code{margin:0;color:#006600;font-size:1.1em;font-weight:bold;} 
-.config_source code{font-size:.8em;color:#000000;} 
-pre{margin:0;font-size:1.4em;word-wrap:break-word;} 
-ul,ol{margin:10px 0 10px 5px;} 
-ul.first,ol.first{margin-top:5px;} 
-fieldset{padding:0 15px 10px 15px;word-break:break-all;} 
-.summary-container fieldset{padding-bottom:5px;margin-top:4px;} 
-legend.no-expand-all{padding:2px 15px 4px 10px;margin:0 0 0 -12px;} 
-legend{color:#333333;;margin:4px 0 8px -12px;_margin-top:0px; 
-font-weight:bold;font-size:1em;} 
-a:link,a:visited{color:#007EFF;font-weight:bold;} 
-a:hover{text-decoration:none;} 
-h1{font-size:2.4em;margin:0;color:#FFF;} 
-h2{font-size:1.7em;margin:0;color:#CC0000;} 
-h3{font-size:1.4em;margin:10px 0 0 0;color:#CC0000;} 
-h4{font-size:1.2em;margin:10px 0 5px 0; 
-}#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS",Verdana,sans-serif; 
- color:#FFF;background-color:#5C87B2; 
-}#content{margin:0 0 0 2%;position:relative;} 
-.summary-container,.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;} 
-.content-container p{margin:0 0 10px 0; 
-}#details-left{width:35%;float:left;margin-right:2%; 
-}#details-right{width:63%;float:left;overflow:hidden; 
-}#server_version{width:96%;_height:1px;min-height:1px;margin:0 0 5px 0;padding:11px 2% 8px 2%;color:#FFFFFF; 
- background-color:#5A7FA5;border-bottom:1px solid #C1CFDD;border-top:1px solid #4A6C8E;font-weight:normal; 
- font-size:1em;color:#FFF;text-align:right; 
-}#server_version p{margin:5px 0;} 
-table{margin:4px 0 4px 0;width:100%;border:none;} 
-td,th{vertical-align:top;padding:3px 0;text-align:left;font-weight:normal;border:none;} 
-th{width:30%;text-align:right;padding-right:2%;font-weight:bold;} 
-thead th{background-color:#ebebeb;width:25%; 
-}#details-right th{width:20%;} 
-table tr.alt td,table tr.alt th{} 
-.highlight-code{color:#CC0000;font-weight:bold;font-style:italic;} 
-.clear{clear:both;} 
-.preferred{padding:0 5px 2px 5px;font-weight:normal;background:#006633;color:#FFF;font-size:.8em;} 
---> 
-</style> 
- 
-</head> 
-<body> 
-<div id="content"> 
-<div class="content-container"> 
-  <h3>HTTP 错误 404.0 - Not Found</h3> 
-  <h4>您要找的资源已被删除、已更名或暂时不可用。</h4> 
-</div> 
-<div class="content-container"> 
- <fieldset><h4>最可能的原因:</h4> 
-  <ul> 	<li>指定的目录或文件在 Web 服务器上不存在。</li> 	<li>URL 拼写错误。</li> 	<li>某个自定义筛选器或模块(如 URLScan)限制了对该文件的访问。</li> </ul> 
- </fieldset> 
-</div> 
-<div class="content-container"> 
- <fieldset><h4>可尝试的操作:</h4> 
-  <ul> 	<li>在 Web 服务器上创建内容。</li> 	<li>检查浏览器 URL。</li> 	<li>创建跟踪规则以跟踪此 HTTP 状态代码的失败请求，并查看是哪个模块在调用 SetStatus。有关为失败的请求创建跟踪规则的详细信息，请单击<a href="http://go.microsoft.com/fwlink/?LinkID=66439">此处</a>。</li> </ul> 
- </fieldset> 
-</div> 
- 
-<div class="content-container"> 
- <fieldset><h4>详细错误信息:</h4> 
-  <div id="details-left"> 
-   <table border="0" cellpadding="0" cellspacing="0"> 
-    <tr class="alt"><th>模块</th><td>&nbsp;&nbsp;&nbsp;IIS Web Core</td></tr> 
-    <tr><th>通知</th><td>&nbsp;&nbsp;&nbsp;MapRequestHandler</td></tr> 
-    <tr class="alt"><th>处理程序</th><td>&nbsp;&nbsp;&nbsp;StaticFile</td></tr> 
-    <tr><th>错误代码</th><td>&nbsp;&nbsp;&nbsp;0x80070002</td></tr> 
-     
-   </table> 
-  </div> 
-  <div id="details-right"> 
-   <table border="0" cellpadding="0" cellspacing="0"> 
-    <tr class="alt"><th>请求的 URL</th><td>&nbsp;&nbsp;&nbsp;http://localhost:80/updateClientVersion/versionInfo.txt</td></tr> 
-    <tr><th>物理路径</th><td>&nbsp;&nbsp;&nbsp;C:\inetpub\wwwroot\updateClientVersion\versionInfo.txt</td></tr> 
-    <tr class="alt"><th>登录方法</th><td>&nbsp;&nbsp;&nbsp;匿名</td></tr> 
-    <tr><th>登录用户</th><td>&nbsp;&nbsp;&nbsp;匿名</td></tr> 
-     
-   </table> 
-   <div class="clear"></div> 
-  </div> 
- </fieldset> 
-</div> 
- 
-<div class="content-container"> 
- <fieldset><h4>详细信息:</h4> 
-  此错误表明文件或目录在服务器上不存在。请创建文件或目录并重新尝试请求。 
-  <p><a href="https://go.microsoft.com/fwlink/?LinkID=62293&amp;IIS70Error=404,0,0x80070002,19041">查看详细信息 &raquo;</a></p> 
-   
- </fieldset> 
-</div> 
-</div> 
-</body> 
-</html> 
+V 1.8.1
+温馨提示：若您之前使用的是V1.8.0版本软件，需要特别注意先在原来的版本导出您的配置文件，然后再在此版本导入文件。否则会引起历史配置文件信息的丢失。若您之前使用的是其它版本的软件，可忽略此提示。
+
+1.机器调整
+（1）新增了QIDI 6.08 mono机器
+（2）更新了QIDI i-box mono机器参数
+（3）删除了QIDI Shadow5.5机器
+（4）更新了ELEGOO Saturn机器参数
+（5）更新了Peopoly Phenom机器参数
+（6）更新了Peopoly Phenom L机器参数
+（7）更新了Peopoly Phenom Noir机器参数
+（8）更新了Peopoly Phenom XXL机器参数
+（9）更新了AnyCubic Photon-S机器参数
+2.功能优化
+（1）优化减少了软件使用过程中固有物理内存的占有量
+（2）调整底部公差补偿对象为底层和过渡层
+（3）优化了孤岛检测对象为基于切片层实时状态非初始模型状态
+（4）调整了默认参数保存机制
+（5）调整了三维视图立方的使用逻辑
+（6）优化新增了镂空过程动画显示的复选框
+（7）调整旋转功能的模型旋转基数角度为45°
+（8）调整文件列表框边界为可延展模式
+4. Bug修复
+（1）修复了自动保存时触发软件奔溃的bug
+（2）修复了移动支撑后支撑消失的bug
+（3）修复了缩放以适应模型出错的bug
+（4）修复了满幅面尺寸设定状态下切片时提示超出边界线的bug
+（5）修复了支撑编辑状态时连续点击连接球时支撑消失的bug
+（6）修复了切片时切片图衍生出多余图形的bug
+（7）修复了倍速预览模型截面图时模型消失的bug
+（8）修复了支撑穿过平台底部的bug
+（9）修复了手动支撑时，保存项目（Ctrl+S）文件时，软件崩溃的bug
+（10）修复了Anycubic photon 机器切片保存无格式选择的bug
+5. 其他
+
+
+V 1.8.0 Beta
+1. 新增机器
+  AnyCubic Photon X
+  AnyCubic Photon Mono
+  AnyCubic Photon Mono SE
+  AnyCubic Photon Mono X
+  AnyCubic Photon Zero
+  Peopoly Phenom XXL
+  QIDI i-box mono
+  Voxelab Ceres 8.9
+  WanHao CGR MINI MONO
+  WanHao CGR MONO
+2. 新加功能
+（1）增加了检测孤岛和删除孤岛的功能
+（2）增加了公差补偿和底部公差补偿的功能
+（3）增加了预览指定层的功能
+（4）增加了支撑预览的功能
+（5）增加了文件列表Ctrl+点击文件可进行复选和取消选择的功能
+（6）增加了文件列表Shift+点击文件可进行连续选择的功能
+（7）增加了使用Ctrl+点击模型可进行复选和取消选择的功能
+（8）增加了Tooltip提示的功能
+（9）增加了镜像保留原始模型的功能
+（10）在编辑支撑界面增加了鼠标左键可拖动视窗的功能
+（11）在设置界面增加了调整平台网格大小的功能
+（12）在设置界面增加了预览支撑、显示支撑辅助线、打开图形工具提示的功能开关
+3. 优化变更
+（1）优化了切片保存速度
+（2）将显示/隐藏支撑辅助线按钮调整为显示/隐藏底部和中部支撑按钮
+（3）优化增加了添加支撑时顶部接触点与底部接触点的距离阈值
+（4）优化了三维视图立方
+（5）优化调整切换于支撑界面时可处理模型为选中模型而非全部模型
+（6）进行移动、旋转、缩放、镜像、复制、镂空和修复等功能操作时操作对象由指向模型调整为选中模型
+（7）在编辑支撑状态下，支撑编辑由红色调整为绿色
+（8）保存切片文件过程中返回初始界面调整为保持当前切片预览界面
+4. Bug修复
+（1）修复了删除支撑时软件崩溃的bug
+（2）修复了模型变换尺寸后百分比历史记录未保持的bug
+（3）修复了底筏面积小于模型向平台投影面积时添加支撑存在悬空现象的bug
+（4）修复了预览界面参数显示错误的bug
+（5）修复了多显示屏时， 第二个显示屏中的模型无法编辑的bug
+（6）修复了支撑界面存在多个模型时，只能编辑一个模型的支撑的bug
+5. 其他
+
+
+V1.7.0
+1.机器列表里新增
+CREALITY LD-006
+ELEGOO MARS 2
+EPAX E6 mono
+EPAX E10 89mono
+EPAX X1K 2Kmono
+EPAX X10 89mono
+Longer 3D Orange4K
+Phrozen Shuffle 16
+Phrozen Sonic 4K
+Phrozen Sonic Mighty 4K
+Phrozen Sonic Mini 4K
+Voxelab Proxima
+2.增加了复制顶部支撑（双击复制）的功能
+3.增加了切换支撑类型的快捷键（CTRL+1:细支撑，CTRL+2:中支撑，CTRL+3:粗支撑）
+4.修复了模型之间底部支撑不可编辑的bug
+5.修复了某些支撑无联动的bug 
+6.修复了更换机器切片设置导致软件崩溃的bug 
+7.修复了更改中部支撑形状无效的bug
+8.修复了编辑顶部支撑形状无效的bug
+9.支持了macOS Big Sur操作系统
+10.Mac系统增加了在支撑模式下，所选模型将自动放置在透视中心的可选项
+11.修复了更改小柱子形状无效的bug
+12.修复在切片预览下缩小窗口，模型条被遮挡的bug
+13.为平移、旋转、缩放、镜像模型功能增加了标题显示
+14.优化了坐标轴显示
+15.修复了下拉框菜单下二级菜单只能点击字体才能生效的bug
+16.修复了关闭支撑辅助线时切换支撑类型，支撑辅助线依然显示的bug
+17.修复了编辑项目文件中顶部支撑时，接触深度显示错误的bug
+18.修复了在移动支撑时会克隆支撑的bug
+19.修复了某些项目文件编辑支撑会崩溃的bug
+20.优化了切片保存速度
+21.其他
+
+
+
+
+V1.6.5.1
+1.机器列表里新增
+QIDI S-box
+2.增加了修正翻译的功能
+3.增加了隐藏底部支撑和底筏的功能
+4.增加了在支撑模式下，所选模型将自动放置在透视的中心的可选功能
+5.增加了交叉宽度参数，可以在手动添加支撑时候，如果周围一定范围内有支撑，则进行分叉而不必直接落在平台上
+6.优化支撑移动的范围
+7.修复了关闭或开启缩略图预览无效的bug
+8.修复了无法双击打开文件的bug
+9.修复了挖洞后支撑穿过模型的bug
+10.修复了修改含有多个辅助中部支撑的直径时，连接点消失的bug
+11.修复了支撑无法联动的bug
+12.修复了linux系统中支撑圆球消失的bug
+13.修复了多窗口无法拖动的bug
+14.其他
+
+V1.6.5
+1.机器列表里新增
+CREALITY LD-002H 
+ELEGOO MARS C
+ELEGOO MARS 2 PRO
+Phrozen Shuffle XL Lite
+Voxelab Polaris
+2.增加了埃及，芬兰，匈牙利，波兰语的翻译
+3.增加了自动保存功能
+4.增加模型修复功能
+5.增加快捷键列表
+6.增加了灰度级别设置、图像模糊功能
+7.ELEGOO SATURN增加了过渡层功能
+8.增加了仰视图角度下隐藏支撑功能
+9.增加了选择区域添加支撑的功能
+10.增加了反转法线功能
+11.增加了显示支撑辅助线功能
+12.增加了切片后生成预览图视角的自定义
+13.修正了ELEGOO SATURN的默认参数
+14.优化了镂空功能
+15.优化了挖洞功能
+16.优化了支撑算法和支撑结构
+17.优化了支撑下端与模型接触点结构
+18.优化了底部支撑接触点的默认参数
+19.修复了点击“缩放以适应”错误的bug
+20.修复了修改项目文件后保存项目无提示的bug
+21.修复了添加支撑后，点击“缩放以适应”模型消失的bug
+22.修复了手动添加支撑时无法锁定添加位置的bug
+23.修复了编辑含有多个模型的项目文件支撑导致软件崩溃的bug
+24.修复了在某些情况下添加和编辑支撑软件崩溃的bug
+25.其他
+
+
+
+V1.6.4.3 Beta
+1.修复了Windows 7 64位系统缩略图程序可能导致资源管理器崩溃的bug
+2.将默认支撑密度由70%改成50%
+
+V1.6.4.2 Beta
+1.修复了win10系统的兼容性问题
+2.修复了模型显示阴影的问题
+3.支持了fdg格式
+4.修复了不同分辨率屏幕引起的灰度差异。
+5.修复了模型显示阴影的问题
+6.修正了某些模型只能预览部分的bug
+7.修正了打印参数中曝光时间无法输入小数点的bug
+8.增加了切片选项的界面
+9.其他
+
+V1.6.4.1 Beta
+1.在Windows 64系统中为stl / obj / chitubox / cbddlp / ctb / slc ...添加缩略图预览
+2.优化自动支撑算法
+3.优化了小柱子的移动方式
+4.增加批量编辑支撑的功能
+5.修复了Phrozen Sonic Mini机器的镜像选择
+6.优化了切片文件三维预览的速度
+7.优化了镂空和打洞细节
+8.修复了模型超出平台后体积计算问题
+9.优化了支撑密度的定义
+10.其他
+
+V1.6.4.0 Beta
+1.机器列表里新增
+Peopoly Phenom
+Peopoly Phenom L
+Peopoly Phenom Noir
+QIDI Shadow6.0 Pro
+EPAX X1
+EPAX X10 2Kcolor
+EPAX X133 4mono
+EPAX X156 4Kcolor
+2.增加了捷克语的支持
+3.修正了意大利语部分翻译
+4.修正了超大文件导入程序崩溃的bug
+5.优化了内存使用
+6.优化了切片速度和保存速度
+7.其他
+
+
+V1.6.3
+1.增加了Windows平台下的3Dconnexion的支持
+2.增加了支撑的重做和撤销功能:撤销(Ctrl+Z),重做(Ctrl+Y)
+3.增加了支撑模式切换的快捷键:添加(A),删除(D),编辑(E)
+4.修正了上个版本体积计算错误的bug
+5.完善了对不同分辨率的屏幕支持
+6.完善了镂空和打洞过程中的取消功能
+7.完善了镂空和打洞的重做和撤销功能
+8.其他
+
+
+V1.6.2
+1.机器列表里新增
+CREALITY LD-002R
+Phrozen Shuffle Lite
+Phrozen Sonic
+Phrozen Transform
+2.新增了对2K,4K屏幕的显示兼容
+3.新增了对构建区域偏移的设置
+4.新增了树脂参数的单独导出和复位功能
+5.新增西班牙说明书
+6.优化了编辑支撑的功能
+7.修正了对Intel(R) HD Graphics 3000显卡的兼容
+8.修正了德语部分翻译 
+9.修正了上个版本引入的部分显卡无法显示模型的bug
+10.修正了抗锯齿的cbddlp格式导入后再导出会数据出错的bug
+11.修正了svgx格式镂空后打印依旧为实体的bug
+12.修正了双击stl打开软件后，无法正常使用插件导出文件的bug
+13.其他
+
+
+V1.6.1
+1.增加了ctb,phz,svgx切片文件格式
+2.机器列表里新增
+ELEGOO Mars Pro
+ELEGOO SATURN
+Flashforge Explorer Max
+Longer3D Orange10
+Longer3D Orange30
+Phrozen Shuffle 4K
+Phrozen Sonic Mini
+QIDI Shadow5.5
+QIDI Shadow5.5s
+Zortrax Inkspire
+3.增加了机器的推荐树脂参数
+4.增加了模型贴底面的指示颜色
+5.增加了当导入模型过小时的提示弹窗
+6.增加了编辑支撑的时时显示功能
+7.增加了XYZ坐标指示图
+8.增加了小柱子支撑菜单选项
+9.增加了切片图层的底层预览功能
+10.增加了移除所有支撑的确认弹窗
+11.增加了部分修复功能
+12.优化了支撑密度的定义
+13.优化了拖动条字体的兼容性
+14.优化了插件的接口定义
+15.修正了某些情况下切片图层残缺的bug
+16.修正了某些情况下，无法添加手动支撑的bug
+17.修正了放大视角时模型不正常显示的bug
+18.修正了小视窗情况下进度条关闭按钮被遮挡的bug
+19.修正了意大利语部分翻译
+20.加粗了旋转拖动条
+21.取消了不同打印机之间互导切片参数的限制
+22.其他
+
+V1.5.0
+1.增加了单独导出支撑参数的选项及切片参数的选择列表
+2.增加了打洞深度的选项
+3.增加了导出全局配置的选项
+4.增加了生成自动支撑和关闭软件时的提示弹窗
+5.增加了日语翻译
+6.增加了法语用户手册
+7.优化了格式插件的兼容性
+8.开放了Anycubic Photon机型的速度和距离参数选项
+9.优化了支撑和切片参数的默认设置
+10.修正了恢复出厂设置不生效的bug
+11.修正了SLC切片文件支撑缺失的bug
+12.修正了SparkMaker FHD机型抗锯齿一直开启的bug
+13.修正了在多模型的情况下，旋转模型时光标错位的bug
+14.修正了某些情况下，旋转模型导致支撑错位的bug
+15.修正了某些情况下，模型与支撑无接触的bug
+16.修正了软件打开时，字体缺失的bug
+17.安装目录新增Thanks.txt
+18.其它
+
+V1.4.0
+1.增加了对WanHao GR 1 、Photon-s机型的支持
+2.开放网络发送功能进行公测（暂时只支持部分机器）
+3.增加了软件用户手册的选项
+4.增加了切片格式的插件功能，便于用户自行支持所需切片格式
+5.修正了支撑突出平台的bug
+6.修正了在某些情况下，语言及配置文件丢失的bug
+7.修正了体积估算错误的bug
+8.优化了手动及自动支撑的部分算法
+9.优化了平面边缘加支撑的算法
+10.修正了因模型Z方向位置引起打洞错位的bug
+11.修正了加完支撑后打洞易失败的bug，优化了打洞的细节
+12.修正了在某些情况下，切片文件保存路径出错的bug
+13.修正了部分情况下配置文件无法导出的bug
+14.录屏F1,取消录屏F2,截屏F3等快捷键分别改为CTRL+F1,CTRL+F2,CTRL+F3
+15.切片文件按钮“导出”改为 “保存”
+16.校正了意大利语和西班牙语部分翻译
+17.修正了录屏时间设置不生效的bug
+18.修正了因修改部分支撑参数对支撑密度所造成的影响
+19.修正了因切换软件语言而导致软件卡死的bug
+20.修正了在某些情况下，切片图片错位的bug
+21.增加了模型批量镂空的功能
+22.其他
+
+V1.3.0
+1.支持了德语，法语，俄语，韩语，意大利语，西班牙语，巴西葡萄牙语，土耳其语，希腊语
+2.取消所有登入限制
+3.完善了自动布局功能
+4.编辑支撑状态下，移动之后做成磁吸，允许单独添加底阀及支撑编辑时时显示
+5.支持模型单独加支撑，或者所有模型同时加支撑
+6.修正了z抬升为零的时候，支撑无法添加的bug
+7.修正了导入新零件或者复制当前文件，会把已自动布局的模型打乱的bug
+8.修正了水平底面下加支撑，支撑不垂直的问题
+9.修正了Sparkmaker的格式兼容性问题
+10.修正了支撑预览的相关bug
+11.修正了手动支撑模式下，支撑无法自由添加的bug
+12.增加快捷鍵,ctrl+左键为增加支撑，ctrl+右键为删除支撑
+13.增加快捷鍵,f1录屏、f2停止、f3截图
+14.深度完善了镂空功能，使模型内壁圆滑。增加打洞不成功的原因提示
+15.修改了默认的切片参数和支撑参数
+16.加完支撑后再点镜像，支撑将移除
+17.修正了模型镜像操作之后，另存为，再导入，法向量会反掉的bug
+18.修正了某些情况下切片参数无法生效的bug
+19.修正了灭灯延迟的定义，与DLP Slicer的off-time保持一致
+20.修正了当模型超出打印区域时，保存项目文件导致软件奔溃的bug
+21.修正了一些单位的bug
+22.修正了Linux版本切片精度下降的bug
+23.增加中部支撑的角度设置
+24.其他
+
+V1.2.0
+1. 取消必须登入才可使用软件的限制，允许用户离线使用软件，同时开放选择是否收集使用信息。
+2. 修复了部分老版本显卡软件显示不出模型的bug
+3. 大幅度缩小了ZIP文件的文件大小
+4. 修复了电脑系统语言在非英语情况下的语言不显示问题
+5. 修复了在旋转菜单里输入非整数导致软件闪退的bug
+6. 增加了历史文件的文件夹路径
+7. 完善了Mac系统下文件的保存路径
+8. 复制模型功能，由复制初始模型变为复制当前状态模型
+9. 完善了底阀的默认大小设置
+10. 修复了生成gif文件的进度条语言显示问题
+11. 修复了支撑凸出底部的bug
+12. 增加了模型填充功能
+13. 修复了在某些情况下打洞功能失效的bug
+14. 增加了正交视角和透视视角切换功能
+15. 改善了支撑密度计算的效果
+16. 完善了在低分辨率屏幕下界面显示的兼容性
+17. 修复了在某些情况下加支撑造成软件闪退的bug
+18. 细化了镂空格子
+19. 快速旋转默认角度改为15°
+20. 修复了模型抬升高度变化，引起的支撑不在平台底部的bug
+21. linux 支持了ubuntu desktop 16.04和ubuntu desktop 18.04
+22. 修复了文件名有逗号无法打开的bug
+23. 完善了撤销功能
+24. 修复了双击cbddlp文件，预览界面中相关信息显示不对的bug
+25. 项目文件增加了位置信息
+26. 增加了支撑底部透视功能
+
+V1.1.0
+1.支持了简体中文，繁体中文，英文
+2.增加了批量导入模型功能
+3.支持了cbddlp/photon/zip/slc切片格式，增加了项目文件.chitubox格式，模型文件
+obj格式
+4.增加了Ctrl+鼠标左键慢速移动视角功能
+5.增加了球形支撑及更多支撑设置
+6.增加了在支撑上添加支撑的功能，允许设置支撑交叉起始高度
+7.解决了模型和支撑交叉的bug
+8.切换到支撑模式下，允许自定义模型Z抬升高度
+9.解决了底部skate的边缘角度过小问题
+10.增加了底阀参数选项
+11.增加了切片文件二次编辑功能
+12.增加了由切片文件反向生成三维模型文件功能
+13.增加了撤销，前进，截图和录屏等功能
+14.增加了模型自动排版，按面摆放模型，模型镜像等功能
+15.增加了多种切片参数，开放速度，距离，抗锯齿等多种参数设置
+16.增加了简单化的镂空和打孔功能

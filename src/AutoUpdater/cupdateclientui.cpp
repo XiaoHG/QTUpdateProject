@@ -54,7 +54,8 @@ void CUpdateClientUI::InitUI()
     m_titleLabel->setFont(titleLabelFont);
     m_titleLabel->setAlignment(Qt::AlignCenter);
     m_titleLabel->setScaledContents(true);
-    m_titleLabel->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
+    m_titleLabel->setStyleSheet("background-color:rgb(50, 50, 50);"
+                                "color:rgb(200, 200, 200)");
 
     //add a Text edit widget for output file that need to update
     //QFont outputEditFont( "Microsoft YaHei", 8, 75);
@@ -64,7 +65,8 @@ void CUpdateClientUI::InitUI()
     m_outputVersionInfoEdit->setText("This is a test");
     m_outputVersionInfoEdit->setGeometry(20, m_titleLabel->height() + 40, this->width() - 40,
                             this->height() - m_titleLabel->height() - 100);
-    m_outputVersionInfoEdit->setStyleSheet("background-color:rgb(100, 100, 100);color:rgb(200, 200, 200)");
+    m_outputVersionInfoEdit->setStyleSheet("background-color:rgb(100, 100, 100);"
+                                           "color:rgb(200, 200, 200)");
     m_outputVersionInfoEdit->setTextColor(QColor(200, 200, 200, 255));
     m_updateWidgets.push_back(m_outputVersionInfoEdit);
     m_notUpdateWidgets.push_back(m_outputVersionInfoEdit);
@@ -75,7 +77,10 @@ void CUpdateClientUI::InitUI()
     m_logTitleLabel = new QLabel(this);
     m_logTitleLabel->setFont(logTitleLabelFont);
     m_logTitleLabel->setStyleSheet("color:white");
-    m_logTitleLabel->setGeometry(m_outputVersionInfoEdit->x(), m_outputVersionInfoEdit->y() - 25, m_outputVersionInfoEdit->width(), 20);
+    m_logTitleLabel->setGeometry(m_outputVersionInfoEdit->x(),
+                                 m_outputVersionInfoEdit->y() - 25,
+                                 m_outputVersionInfoEdit->width(),
+                                 20);
     m_logTitleLabel->setScaledContents(true);
     m_logTitleLabel->setText(QStringLiteral("更新日志 : "));
     m_logTitleLabel->setStyleSheet("color:rgb(200, 200, 200)");
@@ -90,24 +95,29 @@ void CUpdateClientUI::InitUI()
     m_btnUpdate->setText("UPDATE");
     m_btnUpdate->setIcon(QIcon("://image/update.png"));
     m_btnUpdate->setGeometry(20, m_outputVersionInfoEdit->height() + m_titleLabel->height() + 50, 70, 25);
-    m_btnUpdate->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);\
-                        color: white;   border-radius: 5; border-style: outset;}" // 按键本色
+    m_btnUpdate->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);"
+                        "color: white;   border-radius: 5; border-style: outset;}" // 按键本色
                         "QPushButton:hover{background-color:white; color: black;}"  // 鼠标停放时的色彩
-                        "QPushButton:pressed{background-color:rgb(85, 170, 255); border-style: inset; }");   // 鼠标按下的色彩
+                        "QPushButton:pressed{background-color:rgb(85, 170, 255); "
+                        "border-style: inset; }");   // 鼠标按下的色彩
     m_updateWidgets.push_back(m_btnUpdate);
 
     QFont labelLasterVersionFont( "Microsoft YaHei", 10, 75);
     m_labelLasterVersion = new QLabel(this);
     m_labelLasterVersion->setFont(labelLasterVersionFont);
-    m_labelLasterVersion->setGeometry(m_outputVersionInfoEdit->width() - 50, m_btnUpdate->y() - 10, m_outputVersionInfoEdit->width(), 30);
+    m_labelLasterVersion->setGeometry(m_btnUpdate->x() + 5,
+                                      m_btnUpdate->y() - 10,
+                                      m_outputVersionInfoEdit->width(),
+                                      30);
     m_labelLasterVersion->setStyleSheet("color:rgb(150, 150, 150)");
     m_notUpdateWidgets.push_back(m_labelLasterVersion);
 
     //laster version info
     m_newVersionInfoLabel = new QLabel(this);
-    m_newVersionInfoLabel->setGeometry(m_btnUpdate->x() + m_btnUpdate->width() + 10, m_btnUpdate->y(),
-                                     m_outputVersionInfoEdit->width() - m_btnUpdate->width() - 10,
-                                     m_btnUpdate->height());
+    m_newVersionInfoLabel->setGeometry(m_btnUpdate->x() + m_btnUpdate->width() + 10,
+                                       m_btnUpdate->y(),
+                                       m_outputVersionInfoEdit->width() - m_btnUpdate->width() - 10,
+                                       m_btnUpdate->height());
     m_newVersionInfoLabel->setScaledContents(true);
     m_newVersionInfoLabel->setWordWrap(true);
     m_newVersionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
@@ -117,10 +127,11 @@ void CUpdateClientUI::InitUI()
     m_btnClose->setIcon(QIcon(":/image/close.png"));
     m_btnClose->setGeometry(this->width() - m_titleLabel->height(), 0,
                           m_titleLabel->height(), m_titleLabel->height());
-    m_btnClose->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);\
-                                color: white; border-style: outset;}" // 按键本色
+    m_btnClose->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);"
+                                "color: white; border-style: outset;}" // 按键本色
                                 "QPushButton:hover{background-color:rgb(100, 100, 100);}"  // 鼠标停放时的色彩
-                                "QPushButton:pressed{background-color:rgb(150, 150, 150); border-style: inset; }");   // 鼠标按下的色彩
+                                "QPushButton:pressed{background-color:rgb(150, 150, 150); "
+                                "border-style: inset; }");   // 鼠标按下的色彩
     m_btnClose->setFlat(true);
     connect(m_btnClose, SIGNAL(clicked(bool)), this, SLOT(close()));
     m_updateWidgets.push_back(m_btnClose);
@@ -130,38 +141,38 @@ void CUpdateClientUI::InitUI()
     m_UpdateProgressBar = new QProgressBar(this);
     m_UpdateProgressBar->setGeometry(m_outputVersionInfoEdit->x(), this->height() - 50,
                                        m_outputVersionInfoEdit->width(), 20);
-    m_UpdateProgressBar->setStyleSheet("QProgressBar{\
-                                       font:9pt;\
-                                       border-radius:5px;\
-                                       text-align:center;\
-                                       border:1px solid #E8EDF2;\
-                                       background-color: rgb(255, 255, 255);\
-                                       border-color: rgb(180, 180, 180);\
-                                   }\
-                                   QProgressBar:chunk{\
-                                       border-radius:5px;\
-                                       background-color:#1ABC9C;\
-                                   }");
+    m_UpdateProgressBar->setStyleSheet("QProgressBar{"
+                                       "font:9pt;"
+                                       "border-radius:5px;"
+                                       "text-align:center;"
+                                       "border:1px solid #E8EDF2;"
+                                       "background-color: rgb(255, 255, 255);"
+                                       "border-color: rgb(180, 180, 180);}"
+                                       "QProgressBar:chunk{"
+                                       "border-radius:5px;"
+                                       "background-color:#1ABC9C;}");
     m_updatingWidgets.push_back(m_UpdateProgressBar);
 
     m_btnOk = new QPushButton(this);
-    m_btnOk->setText("Restart");
+    m_btnOk->setText("Reboot");
     m_btnOk->setGeometry(m_btnUpdate->x() + 200, m_btnUpdate->y(),
                          m_btnUpdate->width(), m_btnUpdate->height());
-    m_btnOk->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);\
-                        color: white;   border-radius: 5; border-style: outset;}" // 按键本色
+    m_btnOk->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);"
+                        "color: white;   border-radius: 5; border-style: outset;}" // 按键本色
                         "QPushButton:hover{background-color:white; color: black;}"  // 鼠标停放时的色彩
-                        "QPushButton:pressed{background-color:rgb(85, 170, 255); border-style: inset; }");   // 鼠标按下的色彩
+                        "QPushButton:pressed{background-color:rgb(85, 170, 255); "
+                        "border-style: inset; }");   // 鼠标按下的色彩
     m_finishWidgets.push_back(m_btnOk);
 
     m_btnCansel = new QPushButton(this);
     m_btnCansel->setText("Cancel");
     m_btnCansel->setGeometry(m_btnUpdate->x() + m_btnOk->width() + 210, m_btnUpdate->y(),
                              m_btnUpdate->width(), m_btnUpdate->height());
-    m_btnCansel->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);\
-                        color: white;   border-radius: 5; border-style: outset;}" // 按键本色
+    m_btnCansel->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);"
+                        "color: white; border-radius: 5; border-style: outset;}" // 按键本色
                         "QPushButton:hover{background-color:white; color: black;}"  // 鼠标停放时的色彩
-                        "QPushButton:pressed{background-color:rgb(85, 170, 255); border-style: inset; }");   // 鼠标按下的色彩
+                        "QPushButton:pressed{background-color:rgb(85, 170, 255); "
+                        "border-style: inset; }");   // 鼠标按下的色彩
     m_finishWidgets.push_back(m_btnCansel);
 
     //update prosess timer
