@@ -17,6 +17,9 @@ public:
                       QString dir, QObject *parent = 0);
 
     void DownloadFile();
+    bool GetBlsFinish();
+    qint64 GetReceiving();
+    qint64 GetTotalReceive();
 
 
 public slots:
@@ -28,7 +31,7 @@ public slots:
 signals:
     void sigDownloadFinishedSignal();
 
-public:
+private:
    QNetworkAccessManager *m_netAccessManager;//网络参数
    QNetworkReply *m_netReply;
    QUrl m_urlAddress;//网络地址

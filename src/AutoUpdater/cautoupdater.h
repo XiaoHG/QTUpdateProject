@@ -29,6 +29,8 @@ public:
     QStringList GetUpdateFileDir();
     QStringList GetUpdateFileName();
 
+    int GetDownProcess();
+    int GetUpdateProcess();
 protected slots:
     void slotReplyHttpFinished();
 
@@ -43,10 +45,12 @@ private:
     QString m_strTip;//下载过程提示信息
 
     //更新进度条
-    QSlider *m_progUpdate;
-    QSlider *m_progDownload;
+    int m_progUpdate;
+    int m_progDownload;
 
-    bool m_blsFinished;//下载完成与否标记
+    //拷贝结束的条件
+    bool m_bCopyOver;
+
 };
 
 #endif // CAUTOUPDATER_H

@@ -13,6 +13,8 @@ CHttpDownloadFile::CHttpDownloadFile(QString url, QString fileName,
     m_strFileName = fileName;
     m_strDir = dir;
     m_netAccessManager = new QNetworkAccessManager();
+    m_blsFinished = false;
+    m_nTotal = -1;
     this->setParent(parent);
 }
 
@@ -42,7 +44,7 @@ void CHttpDownloadFile::slotReplyFinished()
     m_netReply->deleteLater();
     m_file->close();
     m_file->deleteLater();
-    qDebug() << m_strFileName << " 下载完成";
+    qDebug() << m_strFileName << QStringLiteral(" 下载完成!");
 }
 
 /**下载过程中出现错误处理**/
@@ -68,7 +70,6 @@ void CHttpDownloadFile::slotReplyError(QNetworkReply::NetworkError)
 /**下载文件进度提示**/
 void CHttpDownloadFile::slotReplyDownloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
-    m_blsFinished = false;
     m_nReceived = bytesReceived;
     m_nTotal = bytesTotal;
     qDebug() << "slotReplyDownloadProgress ..." <<
@@ -76,10 +77,25 @@ void CHttpDownloadFile::slotReplyDownloadProgress(qint64 bytesReceived, qint64 b
                 " m_nTotal: " << m_nTotal;
 }
 
+bool CHttpDownloadFile::GetBlsFinish()
+{
+    return m_blsFinished;
+}
+
+qint64 CHttpDownloadFile::GetReceiving()
+{
+    return m_nReceived;
+}
+
+qint64 CHttpDownloadFile::GetTotalReceive()
+{
+    return m_nTotal;
+}
+
 /**下载文件服务器上的文件，并保存到指定目录下**/
 void CHttpDownloadFile::DownloadFile()
 {
-    qDebug() << "m_urlAddress = " << m_urlAddress;
+    qDebug() << QStringLiteral("下载地址 = ") << m_urlAddress;
     m_netReply = m_netAccessManager->get(QNetworkRequest(m_urlAddress));
     //当有新数据到达时就会触发此信号
     connect(m_netReply, SIGNAL(readyRead()), this, SLOT(slotReplyNewDataArrived()));
@@ -93,6 +109,7 @@ void CHttpDownloadFile::DownloadFile()
             SLOT(slotReplyDownloadProgress(qint64, qint64)));
 
     /***存储文件的检测及使用***/
+    m_blsFinished = false;
     if(m_strFileName.isEmpty()) //文件名
     {
         //m_urlAddress = http://localhost/updateClientVersion/updater.xml

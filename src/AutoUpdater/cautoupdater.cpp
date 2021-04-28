@@ -7,12 +7,14 @@
 #include <QCoreApplication>
 #include <QProcess>
 #include <QMessageBox>
+#include <QThread>
 
 CAutoUpdater::CAutoUpdater(QWidget *parent)
     :QMainWindow(parent)
 {
-    m_progUpdate = new QSlider();
-    m_progDownload = new QSlider();
+    m_progUpdate = 1;
+    m_progDownload = 1;
+    m_bCopyOver = false;
 
     //this->setWindowFlags(Qt::FramelessWindowHint);
     this->setFixedSize(400, 200);
@@ -228,14 +230,13 @@ void CAutoUpdater::DownloadUpdateFiles()
 
     m_strTip = "开始下载更新文件 ...";
     qDebug() << m_strTip;
-    m_blsFinished = false;
     QStringList strPlaceDirList;
 
     for(int i = 0; i < m_listFileName.size(); ++i)
     {
         m_strTip = QStringLiteral("正在下载文件 ...") + m_listFileName.at(i);
         qDebug() << m_strTip;
-        m_progUpdate->setValue(100 * i / m_listFileName.size());
+        m_progUpdate = 100 * i / m_listFileName.size();
 
         /**放置下载文件的路径**/
         QString strPlaceDir = strCurrentDir + "/download/" + m_listFileDir.at(i);
@@ -251,28 +252,27 @@ void CAutoUpdater::DownloadUpdateFiles()
         CHttpDownloadFile *http = new CHttpDownloadFile(strFileDirServer,
                                                         m_listFileName.at(i),
                                                         strPlaceDir, this);//调用下载文件的类
-        http->DownloadFile();
+        http->DownloadFile(); //下载文件
 
-        while(!http->m_blsFinished)
+        while(!http->GetBlsFinish())
         {
-            if(http->m_nTotal == -1)
+            if(http->GetTotalReceive() == -1)
             {
-                m_progDownload->setValue(1);
+                m_progDownload = 1;
             }
             else
             {
-                m_progDownload->setValue(100 * http->m_nReceived / http->m_nTotal);
+                m_progDownload = 100 * http->GetReceiving() / http->GetTotalReceive();
             }
             QCoreApplication::processEvents();
         }
 
+        //单个文件下载完成
         m_strTip = QStringLiteral("文件") + m_listFileName.at(i) + QStringLiteral("下载完成");
         qDebug() << m_strTip;
-
-
     }
 
-    m_blsFinished = true;
+    //所有文件下载完成
     m_strTip = QStringLiteral("更新完成！");
     qDebug() << m_strTip;
 
@@ -305,10 +305,25 @@ void CAutoUpdater::DownloadUpdateFiles()
     QFile::remove(strOldXML);
     QFile::copy(strNewXML, strOldXML);
 
+    //拷贝结束的条件，到这里就整个更新过程结束了。
+    QThread::sleep(2);
+    m_bCopyOver = true;
+    m_progUpdate += 1;
+
     //这里复制完成，考虑删掉临时下载文件。
 
     //到此更新了全部该更新的文件，执行主程序。
-    ExitApp(strCurrentDir + "main.exe");
+    //ExitApp(strCurrentDir + "main.exe");
+}
+
+int CAutoUpdater::GetDownProcess()
+{
+    return m_progDownload;
+}
+
+int CAutoUpdater::GetUpdateProcess()
+{
+    return m_progUpdate - 1;
 }
 
 /** * @brief name

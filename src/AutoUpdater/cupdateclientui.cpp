@@ -366,7 +366,7 @@ void CUpdateClientUI::Updating()
     //this->setWindowTitle("Updating...");
 
     //这里执行更新，就是XML对比出来后的所有需更新文件的下载，拷贝。
-    //m_updater.DownloadUpdateFiles();
+    m_updater.DownloadUpdateFiles();
 
 }
 
@@ -393,8 +393,12 @@ void CUpdateClientUI::slotUpdateTimeOut()
                                     strListDownloadFileName.at(i - 1) +
                                     QStringLiteral("更新完成"));
 
-    m_UpdateProgressBar->setValue(process);
-    if(process++ == 100)
+    //m_UpdateProgressBar->setValue(process);
+    m_UpdateProgressBar->setValue(m_updater.GetUpdateProcess());
+    //if(process++ == 100)
+    qDebug() << "m_updater.GetDownProcess() = " << m_updater.GetDownProcess();
+    qDebug() << "m_updater.GetUpdateProcess() = " << m_updater.GetUpdateProcess();
+    if(m_updater.GetUpdateProcess() == 88)
     {
         m_outputVersionInfoEdit->append(QStringLiteral("注意：所有文件已经更新完成，"
                                           "点击重启客户端会启动最新版本，"

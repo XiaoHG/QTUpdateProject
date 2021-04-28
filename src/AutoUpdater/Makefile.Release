@@ -758,6 +758,10 @@ release\main.obj: main.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QProgressBar \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qprogressbar.h \
 		cxmlparser.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\QDomDocument \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qdom.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qtxmlglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qtxml-config.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QString
 
 release\cupdateclientui.obj: cupdateclientui.cpp cupdateclientui.h \
@@ -905,6 +909,10 @@ release\cupdateclientui.obj: cupdateclientui.cpp cupdateclientui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QProgressBar \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qprogressbar.h \
 		cxmlparser.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\QDomDocument \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qdom.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qtxmlglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qtxml-config.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QString \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
@@ -938,9 +946,9 @@ release\cupdateclientui.obj: cupdateclientui.cpp cupdateclientui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontdatabase.h
 
 release\cxmlparser.obj: cxmlparser.cpp cxmlparser.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QString \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstring.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qchar.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\QDomDocument \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qdom.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qtxmlglobal.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qglobal.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig-bootstrapped.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig.h \
@@ -961,6 +969,9 @@ release\cxmlparser.obj: cxmlparser.cpp cxmlparser.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmutex.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnumeric.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qversiontagging.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qtxml-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstring.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qchar.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbytearray.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrefcount.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
@@ -969,10 +980,7 @@ release\cxmlparser.obj: cxmlparser.cpp cxmlparser.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringalgorithms.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringview.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringbuilder.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\QDomDocument \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qdom.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qtxmlglobal.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qtxml-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QString \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QFile \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfile.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfiledevice.h \
@@ -1302,13 +1310,14 @@ release\cautoupdater.obj: cautoupdater.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtNetwork\qnetworkreply.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QIODevice \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtNetwork\QNetworkRequest \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDir \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdir.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfileinfo.h \
+		cxmlparser.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\QDomDocument \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qdom.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qtxmlglobal.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qtxml-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDir \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdir.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfileinfo.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QCoreApplication \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcoreapplication.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qeventloop.h \
@@ -1316,7 +1325,9 @@ release\cautoupdater.obj: cautoupdater.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qprocess.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMessageBox \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmessagebox.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QThread \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qthread.h
 
 release\qrc_icon.obj: release\qrc_icon.cpp 
 
