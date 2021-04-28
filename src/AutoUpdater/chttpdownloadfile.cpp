@@ -63,7 +63,7 @@ void CHttpDownloadFile::slotReplyError(QNetworkReply::NetworkError)
         qDebug() << QStringLiteral("请求超过了设定的最大重定向次数");
         break;
     default:
-        qDebug() << QStringLiteral("未知错误");
+        qDebug() << QStringLiteral("未知错误") << error;
     }
 }
 
@@ -75,21 +75,6 @@ void CHttpDownloadFile::slotReplyDownloadProgress(qint64 bytesReceived, qint64 b
     qDebug() << "slotReplyDownloadProgress ..." <<
                 "Received: " << m_nReceived <<
                 " m_nTotal: " << m_nTotal;
-}
-
-bool CHttpDownloadFile::GetBlsFinish()
-{
-    return m_blsFinished;
-}
-
-qint64 CHttpDownloadFile::GetReceiving()
-{
-    return m_nReceived;
-}
-
-qint64 CHttpDownloadFile::GetTotalReceive()
-{
-    return m_nTotal;
 }
 
 /**下载文件服务器上的文件，并保存到指定目录下**/
@@ -147,4 +132,18 @@ void CHttpDownloadFile::DownloadFile()
     }
 }
 
+bool CHttpDownloadFile::GetBlsFinish()
+{
+    return m_blsFinished;
+}
+
+qint64 CHttpDownloadFile::GetReceiving()
+{
+    return m_nReceived;
+}
+
+qint64 CHttpDownloadFile::GetTotalReceive()
+{
+    return m_nTotal;
+}
 

@@ -398,7 +398,7 @@ void CUpdateClientUI::slotUpdateTimeOut()
     //if(process++ == 100)
     qDebug() << "m_updater.GetDownProcess() = " << m_updater.GetDownProcess();
     qDebug() << "m_updater.GetUpdateProcess() = " << m_updater.GetUpdateProcess();
-    if(m_updater.GetUpdateProcess() == 88)
+    if(m_updater.GetUpdateProcess() == 100)
     {
         m_outputVersionInfoEdit->append(QStringLiteral("注意：所有文件已经更新完成，"
                                           "点击重启客户端会启动最新版本，"

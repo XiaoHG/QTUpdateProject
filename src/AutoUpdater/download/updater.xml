@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <autoupdate>
-	<version>V2.4</version>
+	<version>V2.5</version>
 	<filelist>
 		<file name="versionInfo.txt" version="1.2.1"/>
 		<file name="Qt5Cored.dll" dir="" version="1.0"/>
@@ -9,11 +9,17 @@
 		<file name="D3Dcompiler_47.dll" dir="" version="1.0"/>
 		<file name="libEGLd.dll" dir="" version="1.1"/>
 		<file name="libGLESV2d.dll" dir="" version="1.0"/>
-		<file name="opengl32sw.dll" dir="" version="1.1"/>
+		<file name="AutoUpdater.exe" dir="" version="1.1"/>
+		
+		
 		<file name="qgifd.dll" dir="imageformats" version="1.1"/>
 		<file name="qicnsd.dll" dir="imageformats" version="1.0"/>
+		<file name="qicod.dll" dir="imageformats" version="1.1"/>
 		<file name="qjpegd.dll" dir="imageformats" version="1.1"/>
-		<file name="qwbmpd.dll" dir="imageformats" version="1.0"/>
-		<file name="qwebpd.dll" dir="imageformats" version="1.0"/>
+		<file name="qsvgd.dll" dir="imageformats" version="1.1"/>
+		
+		<file name="qwindowsd.dll" dir="platforms" version="1.1"/>
+		
+		<file name="qgenericbearerd.dll" dir="bearer" version="1.1"/>
 	</filelist>
 </autoupdate>

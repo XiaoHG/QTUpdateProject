@@ -308,7 +308,7 @@ void CAutoUpdater::DownloadUpdateFiles()
     //拷贝结束的条件，到这里就整个更新过程结束了。
     QThread::sleep(2);
     m_bCopyOver = true;
-    m_progUpdate += 1;
+    m_progUpdate = 100;
 
     //这里复制完成，考虑删掉临时下载文件。
 
@@ -323,7 +323,7 @@ int CAutoUpdater::GetDownProcess()
 
 int CAutoUpdater::GetUpdateProcess()
 {
-    return m_progUpdate - 1;
+    return m_progUpdate;
 }
 
 /** * @brief name
