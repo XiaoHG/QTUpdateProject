@@ -260,14 +260,14 @@ void CUpdateClientUI::UpdateUI()
     //m_downloadVersionInfos = m_updater.GetUpdateFileDir();
     QStringList strListVersionInfo = m_updater.GetVersionInfo();
     if(strListVersionInfo.isEmpty())
-        m_outputVersionInfoEdit->append(QString::fromLocal8Bit("版本信息缺失！"));
+        m_outputVersionInfoEdit->append(QStringLiteral("版本信息缺失！"));
     for(int i = 0; i < strListVersionInfo.size(); ++i)
     {
         m_outputVersionInfoEdit->append(strListVersionInfo.at(i));
     }
     m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
 
-    m_titleLabel->setText(QString::fromLocal8Bit("检查更新！"));
+    m_titleLabel->setText(QStringLiteral("检查更新！"));
 
     //隐藏正在更新界面组件
     SetVisibleUpdatingUI(false);
@@ -280,7 +280,7 @@ void CUpdateClientUI::UpdateUI()
 
     //m_versionServerInfo: 获取到下载的XML的版本，进行显示
     m_versionServerInfo = "V" + m_updater.getElementVersion("downloadxml", "version");
-    m_newVersionInfoLabel->setText(QString::fromLocal8Bit("检查到新版本 ") + m_versionServerInfo +
+    m_newVersionInfoLabel->setText(QStringLiteral("检查到新版本 ") + m_versionServerInfo +
                                    QString::fromLocal8Bit(" 点击更新！"));
 }
 
