@@ -42,12 +42,8 @@ void CUpdateClientUI::Init()
 void CUpdateClientUI::InitUI()
 {
     updateFiles = new QStringList;
-//    QWidget *centerWidget = new QWidget(this);
-    //this->setStyleSheet("background-color:rgb(100, 100, 100);border-radius: 10px;");
     this->setStyleSheet("background-color:rgb(100, 100, 100)");
     this->setWindowFlags(Qt::FramelessWindowHint);
-    //this->setStyleSheet("border-radius: 10px;");
-    //Set update client dialog fix size
     this->resize(400, 300);
     this->setWindowTitle("Check Update");
 
@@ -56,7 +52,6 @@ void CUpdateClientUI::InitUI()
     m_titleLabel = new QLabel(this);
     m_titleLabel->setGeometry(0 , 0, this->width(), 40);
     m_titleLabel->setFont(titleLabelFont);
-//    titleLabel->setText("Current Version V1.0.1");
     m_titleLabel->setAlignment(Qt::AlignCenter);
     m_titleLabel->setScaledContents(true);
     m_titleLabel->setStyleSheet("background-color:rgb(50, 50, 50);color:rgb(200, 200, 200)");
@@ -64,16 +59,12 @@ void CUpdateClientUI::InitUI()
     //add a Text edit widget for output file that need to update
     //QFont outputEditFont( "Microsoft YaHei", 8, 75);
     m_outputVersionInfoEdit = new QTextEdit(this);
-    //outputEdit->setFont(outputEditFont);
-    //outputEdit->setEnabled(false);
     m_outputVersionInfoEdit->setFocusPolicy(Qt::NoFocus);
     m_outputVersionInfoEdit->setWindowFlags(Qt::FramelessWindowHint);
     m_outputVersionInfoEdit->setText("This is a test");
-    //outputEdit->setFrameShape(QFrame::NoFrame);
     m_outputVersionInfoEdit->setGeometry(20, m_titleLabel->height() + 40, this->width() - 40,
                             this->height() - m_titleLabel->height() - 100);
     m_outputVersionInfoEdit->setStyleSheet("background-color:rgb(100, 100, 100);color:rgb(200, 200, 200)");
-    //outputEdit->setStyleSheet("border-radius: 0px;");
     m_outputVersionInfoEdit->setTextColor(QColor(200, 200, 200, 255));
     m_updateWidgets.push_back(m_outputVersionInfoEdit);
     m_notUpdateWidgets.push_back(m_outputVersionInfoEdit);
@@ -96,7 +87,6 @@ void CUpdateClientUI::InitUI()
     //splitter for update and cansel button and style
     //QFont btnUpdateFont( "Microsoft YaHei", 7, 50);
     m_btnUpdate = new QPushButton(this);
-    //m_btnUpdate->setFont(btnUpdateFont);
     m_btnUpdate->setText("UPDATE");
     m_btnUpdate->setIcon(QIcon("://image/update.png"));
     m_btnUpdate->setGeometry(20, m_outputVersionInfoEdit->height() + m_titleLabel->height() + 50, 70, 25);
@@ -140,8 +130,6 @@ void CUpdateClientUI::InitUI()
     m_UpdateProgressBar = new QProgressBar(this);
     m_UpdateProgressBar->setGeometry(m_outputVersionInfoEdit->x(), this->height() - 50,
                                        m_outputVersionInfoEdit->width(), 20);
-    //m_sliderUpdateProcess->setOrientation(Qt::Horizontal);
-    //m_sliderUpdateProcess->setStyleSheet("QProgressBar{background:white;} QProgressBar::chunk{background:blue}");
     m_UpdateProgressBar->setStyleSheet("QProgressBar{\
                                        font:9pt;\
                                        border-radius:5px;\
@@ -158,7 +146,6 @@ void CUpdateClientUI::InitUI()
 
     m_btnOk = new QPushButton(this);
     m_btnOk->setText("Restart");
-    //m_btnOk->setIcon(QIcon(":/image/restart.png"));
     m_btnOk->setGeometry(m_btnUpdate->x() + 200, m_btnUpdate->y(),
                          m_btnUpdate->width(), m_btnUpdate->height());
     m_btnOk->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);\
@@ -169,7 +156,6 @@ void CUpdateClientUI::InitUI()
 
     m_btnCansel = new QPushButton(this);
     m_btnCansel->setText("Cancel");
-    //m_btnCansel->setIcon(QIcon(":/image/cansel1.png"));
     m_btnCansel->setGeometry(m_btnUpdate->x() + m_btnOk->width() + 210, m_btnUpdate->y(),
                              m_btnUpdate->width(), m_btnUpdate->height());
     m_btnCansel->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);\
@@ -307,9 +293,6 @@ void CUpdateClientUI::NotUpdateUI()
     m_labelLasterVersion->setText(strCurrentVersion);
     m_titleLabel->setText(QStringLiteral("当前版本是最新版本！"));
 
-//    m_btnUpdate->setVisible(false);
-//    m_newVersionInfoLabel->setVisible(false);
-
     //隐藏检查更新界面组件
     SetVisibleUpdateUI(false);
 
@@ -343,14 +326,11 @@ void CUpdateClientUI::UpdatingUI()
     //显示正在更新界面组件
     SetVisibleUpdatingUI(true);
 
-    //m_updater.DownloadUpdateFiles();
-
 }
 
 void CUpdateClientUI::slotOkBtnClicked()
 {
     QString name = ""; //主程序名
-    return;
     /**运行主程序，并且退出当前更新程序(说明：主程序在上上一级目录中)**/
     if(!QProcess::startDetached(name))//启动主程序，主程序在其上一级目录
     {
@@ -363,11 +343,9 @@ void CUpdateClientUI::slotOkBtnClicked()
 void CUpdateClientUI::Updating()
 {
     //start update prosess timer at the begining update.
-    //this->setWindowTitle("Updating...");
 
     //这里执行更新，就是XML对比出来后的所有需更新文件的下载，拷贝。
     m_updater.DownloadUpdateFiles();
-
 }
 
 void CUpdateClientUI::slotUpdateTimeOut()
@@ -393,9 +371,7 @@ void CUpdateClientUI::slotUpdateTimeOut()
                                     strListDownloadFileName.at(i - 1) +
                                     QStringLiteral("更新完成"));
 
-    //m_UpdateProgressBar->setValue(process);
     m_UpdateProgressBar->setValue(m_updater.GetUpdateProcess());
-    //if(process++ == 100)
     qDebug() << "m_updater.GetDownProcess() = " << m_updater.GetDownProcess();
     qDebug() << "m_updater.GetUpdateProcess() = " << m_updater.GetUpdateProcess();
     if(m_updater.GetUpdateProcess() == 100)

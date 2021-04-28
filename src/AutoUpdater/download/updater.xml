@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <autoupdate>
-	<version>V2.5</version>
+	<version>V2.6</version>
 	<filelist>
 		<file name="versionInfo.txt" version="1.2.1"/>
 		<file name="Qt5Cored.dll" dir="" version="1.0"/>
+		
 		<file name="Qt5Guid.dll" dir="" version="1.1"/>
 		<file name="Qt5Svgd.dll" dir="" version="1.0"/>
 		<file name="D3Dcompiler_47.dll" dir="" version="1.0"/>

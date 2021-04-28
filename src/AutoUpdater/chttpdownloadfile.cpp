@@ -5,6 +5,7 @@
 #include <QCoreApplication>
 #include <QProcess>
 #include <QMessageBox>
+#include <QTextCodec>
 
 CHttpDownloadFile::CHttpDownloadFile(QString url, QString fileName,
                                      QString dir, QObject *parent)
@@ -12,7 +13,7 @@ CHttpDownloadFile::CHttpDownloadFile(QString url, QString fileName,
     m_urlAddress = url;
     m_strFileName = fileName;
     m_strDir = dir;
-    m_netAccessManager = new QNetworkAccessManager();
+    m_netAccessManager = new QNetworkAccessManager(this);
     m_blsFinished = false;
     m_nTotal = -1;
     this->setParent(parent);
@@ -23,6 +24,9 @@ void CHttpDownloadFile::slotReplyNewDataArrived()
 {
     if(m_file)
     {
+        //这里，为了能显示下载的中文，我们使用了QTextCodec 类对象，应用utf8编码。
+        //QTextCodec *codec = QTextCodec::codecForName(“utf8″);
+        //QString all = codec->toUnicode(m_netReply->readAll());
         if(m_file->write(m_netReply->readAll()) == -1)
         {
             qDebug() << "文件写入错误";
@@ -92,6 +96,60 @@ void CHttpDownloadFile::DownloadFile()
     //用来提示文件下载进度
     connect(m_netReply, SIGNAL(downloadProgress(qint64,qint64)),this,
             SLOT(slotReplyDownloadProgress(qint64, qint64)));
+
+    /***存储文件的检测及使用***/
+    m_blsFinished = false;
+    if(m_strFileName.isEmpty()) //文件名
+    {
+        //m_urlAddress = http://localhost/updateClientVersion/updater.xml
+        //m_strFileName = /updateClientVersion/updater.xml
+        QFile fileInfo(m_urlAddress.path());
+        m_strFileName = fileInfo.fileName();
+    }
+
+    if(!m_strDir.isEmpty()) //文件夹
+    {
+        QDir directory(m_strDir);
+        if(!directory.exists()) //没有此文件夹则创建
+        {
+            qDebug() << "m_strDir1 = " << m_strDir;
+            directory.mkpath(m_strDir);
+        }
+        qDebug() << "m_strDir2 = " << m_strDir;
+        qDebug() << "add m_strDir before: m_strFileName = " << m_strFileName;
+        m_strFileName = m_strDir + "/" + m_strFileName;
+    }
+
+    if(QFile::exists(m_strFileName))//如果文件存在，那么删除
+    {
+        QFile::remove(m_strFileName);
+    }
+
+    qDebug() << "add m_strDir after: m_strFileName = " << m_strFileName;
+    m_file = new QFile(m_strFileName);
+    if(!m_file->open(QIODevice::WriteOnly))
+    {
+        qDebug()<<"can not store file：" << m_strFileName;
+        delete m_file;
+        m_file = NULL;
+        return;
+    }
+}
+
+void CHttpDownloadFile::FtpDownloadFile()
+{
+    m_netAccessManager->setNetworkAccessible(QNetworkAccessManager::Accessible);
+    QUrl url(m_urlAddress);
+    url.setPort(21);
+    url.setUserName("qin");
+    url.setPassword("123456");
+
+    m_netReply = m_netAccessManager->get(QNetworkRequest(m_urlAddress));
+
+    connect(m_netReply, SIGNAL(readyRead()), this, SLOT(slotReplyNewDataArrived()));
+    connect(m_netReply, SIGNAL(finished(QNetworkReply*)), this, SLOT(slotReplyFinished(QNetworkReply*)));
+    connect(m_netReply, SIGNAL(error(QNetworkReply::NetworkError)),this,SLOT(slotReplyError(QNetworkReply::NetworkError)));
+    connect(m_netReply, SIGNAL(downloadProgress(qint64 ,qint64)), this, SLOT(slotReplyDownloadProgress(qint64 ,qint64)));
 
     /***存储文件的检测及使用***/
     m_blsFinished = false;

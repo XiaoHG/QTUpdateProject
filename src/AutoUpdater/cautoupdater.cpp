@@ -311,9 +311,6 @@ void CAutoUpdater::DownloadUpdateFiles()
     m_progUpdate = 100;
 
     //这里复制完成，考虑删掉临时下载文件。
-
-    //到此更新了全部该更新的文件，执行主程序。
-    //ExitApp(strCurrentDir + "main.exe");
 }
 
 int CAutoUpdater::GetDownProcess()

@@ -17,6 +17,7 @@ public:
                       QString dir, QObject *parent = 0);
 
     void DownloadFile();
+    void FtpDownloadFile();
     bool GetBlsFinish();
     qint64 GetReceiving();
     qint64 GetTotalReceive();

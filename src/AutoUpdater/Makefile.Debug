@@ -1167,7 +1167,9 @@ debug\chttpdownloadfile.obj: chttpdownloadfile.cpp chttpdownloadfile.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qprocess.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMessageBox \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmessagebox.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTextCodec \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextcodec.h
 
 debug\cautoupdater.obj: cautoupdater.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
