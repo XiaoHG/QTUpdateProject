@@ -163,16 +163,46 @@ QString CAutoUpdater::GetElementVersion(QString xml, QString name)
 
 bool CAutoUpdater::CheckVersionForUpdate()
 {
-
-    QString strLocalXML = QDir::currentPath() + "/updater.xml";
-    QString strDownloadXML = QDir::currentPath() + "/download/updater.xml";
-    qDebug() << "strLocalXML = " << strLocalXML;
-    qDebug() << "strDownloadXML = " << strDownloadXML;
-    QString xml1Version = GetVersion(strLocalXML);
-    QString xml2Version = GetVersion(strDownloadXML);
+    //这里需要一个函数检查本版版本控制文件是否存在，如果不存在则创建一个基本内容
+    //的版本文件
+    QString localXML = QDir::currentPath() + "/updater.xml";
+    QString downloadXML = QDir::currentPath() + "/download/updater.xml";
+    if(!CheckXML(localXML))
+    {
+        makeXML(localXML);
+    }
+    QString xml1Version = GetVersion(localXML);
+    QString xml2Version = GetVersion(downloadXML);
     qDebug() << QStringLiteral("两个版本对比：") << "local = " << xml1Version
              << ", download = " << xml2Version;
     return CheckVersion(xml1Version, xml2Version);
+}
+
+bool CAutoUpdater::CheckXML(QString xml)
+{
+    QFile file(xml);
+    if(file.exists())
+        return true;
+    return false;
+}
+
+void CAutoUpdater::makeXML(QString xml)
+{
+    QFile file(xml);
+    if(!file.open(QIODevice::WriteOnly))
+    {
+        qDebug() << "makeXML false, can not open + " << xml;
+        return;
+    }
+    QString str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+                  "<autoupdate>\n"
+                  "    <version>V1.0</version>\n"
+                  "    <filelist>\n"
+                  "    </filelist>\n"
+                  "</autoupdate>";
+    QTextStream txtStream(&file);
+    txtStream << str;
+    file.close();
 }
 
 QString CAutoUpdater::GetVersion(QString xml)
@@ -228,6 +258,7 @@ void CAutoUpdater::DownloadUpdateFiles()
     qDebug() << m_strTip;
     QStringList strPlaceDirList;
 
+      //这里是下载模块，现在没有服务器，暂时不进行下载动作，解决在本地download文件拷贝。
     for(int i = 0; i < m_listFileName.size(); ++i)
     {
         m_strTip = QStringLiteral("正在下载文件 ...") + m_listFileName.at(i);
@@ -301,7 +332,7 @@ void CAutoUpdater::DownloadUpdateFiles()
     QFile::copy(strNewXML, strOldXML);
 
     //拷贝结束的条件，到这里就整个更新过程结束了。
-    QThread::sleep(2);
+    //QThread::sleep(2);
     m_bCopyOver = true;
     m_progUpdate = 100;
 

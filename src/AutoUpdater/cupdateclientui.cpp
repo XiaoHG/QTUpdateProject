@@ -387,8 +387,14 @@ void CUpdateClientUI::slotUpdateTimeOut()
     {
         m_outputVersionInfoEdit->append(QStringLiteral("正在更新文件") +
                                         strListDownloadFileName.at(i) + " ...");
-        strTmpDir = strCurrentDir + "/" + strListDownloadFileDir.at(i)
-                + "/" + strListDownloadFileName.at(i);
+        if(strListDownloadFileDir.at(i) == "")
+        {
+            strTmpDir = strCurrentDir + "/" + strListDownloadFileName.at(i);
+        }
+        else
+        {
+            strTmpDir = strCurrentDir + "/" + strListDownloadFileDir.at(i) + "/" + strListDownloadFileName.at(i);
+        }
         m_outputVersionInfoEdit->append(strTmpDir);
         i++;
     }

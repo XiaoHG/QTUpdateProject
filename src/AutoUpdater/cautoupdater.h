@@ -19,6 +19,8 @@ public:
     int CheckUpdateFiles(QString xml1, QString xml2);
     bool CheckVersion(QString version, QString versionDownload);
     bool CheckVersionForUpdate();
+    bool CheckXML(QString xml);
+    void makeXML(QString xml);
     QString GetElementVersion(QString xml, QString name);
     QStringList GetVersionInfo(QString txt = "");
     QString GetVersion(QString xml);

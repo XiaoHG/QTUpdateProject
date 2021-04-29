@@ -14,7 +14,6 @@ int main(int argc, char *argv[])
     qDebug() << strExe;
     QProcess::startDetached(strExe);
 
-    //QFile::copy(QDir::currentPath() + "/versionInfo.txt", QDir::currentPath() + "/versionInfo11111111.txt");
 
     return a.exec();
 }
