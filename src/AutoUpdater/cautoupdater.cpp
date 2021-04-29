@@ -39,7 +39,6 @@ void CAutoUpdater::DownloadXMLFile()
     //http://localhost/updateClientversion/
     CHttpDownloadFile httpXML("http://localhost/updateClientversion/updater.xml",
                               "updater.xml", strDownload, this);//调用下载文件的类
-    //connect(m_httpXML, SIGNAL(sigDownloadFinishedSignal()), this, SLOT(slotReplyHttpFinished()));//发生错误时一样会发送此信号
     httpXML.DownloadFile();
 }
 
@@ -380,9 +379,4 @@ QStringList CAutoUpdater::GetUpdateFileDir()
 QStringList CAutoUpdater::GetUpdateFileName()
 {
     return m_listFileName;
-}
-
-void CAutoUpdater::slotReplyHttpFinished()
-{
-
 }

@@ -49,6 +49,9 @@ private:
     void SetVisibleNotUpdateUI(bool b);
     void SetVisibleFinishUpdateUI(bool b);
 
+public:
+    bool GetConfigFlag();
+
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);

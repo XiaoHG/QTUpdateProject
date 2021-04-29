@@ -250,8 +250,6 @@ bool CUpdateClientUI::CheckUpdate()
         //and show the laster notify message and ok button.
         NotUpdateUI();
     }
-
-    this->show();
     return m_isUpdate;
 }
 
@@ -290,6 +288,8 @@ void CUpdateClientUI::UpdateUI()
     m_versionServerInfo = m_updater.GetVersion(QDir::currentPath() + "/download/updater.xml");
     m_newVersionInfoLabel->setText(QStringLiteral("检查到新版本 ") + m_versionServerInfo +
                                    QStringLiteral(" 点击更新！"));
+
+    this->show();
 }
 
 void CUpdateClientUI::NotUpdateUI()
@@ -325,6 +325,17 @@ void CUpdateClientUI::NotUpdateUI()
 
     //显示不需要更新的界面组件
     SetVisibleNotUpdateUI(true);
+
+    //读取和主程序交互的配置文件，如果flag为false则无弹窗并且直接退出更新程序；
+    //需要处理更新程序的自结束，现在时卡死状态
+    if(GetConfigFlag())
+    {
+        this->show();
+    }
+    else{
+        qDebug() << "this->close()";
+        this->close();
+    }
 }
 
 void CUpdateClientUI::UpdatingUI()
@@ -466,5 +477,22 @@ void CUpdateClientUI::SetVisibleFinishUpdateUI(bool b)
     {
         m_finishWidgets.at(i)->setVisible(b);
     }
+}
+
+/**
+ * @brief CUpdateClientUI::GetConfigFlag
+ * @return
+ * 读取主程序和更新程序公用的配置文件，控制无更新时窗口的弹出
+ */
+bool CUpdateClientUI::GetConfigFlag()
+{
+    QString strConfigName = QDir::currentPath() + "/updateConfig.txt";
+    QFile file(strConfigName);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() << "GetConfigFlag false, cant't open file " << strConfigName;
+        return false;
+    }
+    return file.readAll().toInt();
 }
 

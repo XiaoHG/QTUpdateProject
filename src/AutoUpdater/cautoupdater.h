@@ -22,8 +22,8 @@ public:
     bool CheckXML(QString xml);
     void makeXML(QString xml);
     QString GetElementVersion(QString xml, QString name);
-    QStringList GetVersionInfo(QString txt = "");
     QString GetVersion(QString xml);
+    QStringList GetVersionInfo(QString txt = "");
     QStringList GetUpdateFileDir();
     QStringList GetUpdateFileName();
     int GetDownProcess();
