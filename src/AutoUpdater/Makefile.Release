@@ -181,10 +181,10 @@ compiler_moc_header_make_all: release\moc_cupdateclientui.cpp release\moc_chttpd
 compiler_moc_header_clean:
 	-$(DEL_FILE) release\moc_cupdateclientui.cpp release\moc_chttpdownloadfile.cpp release\moc_cautoupdater.cpp
 release\moc_cupdateclientui.cpp: cautoupdater.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qwidget.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObject \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qglobal.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig-bootstrapped.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig.h \
@@ -205,14 +205,7 @@ release\moc_cupdateclientui.cpp: cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmutex.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnumeric.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qversiontagging.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstring.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qchar.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbytearray.h \
@@ -237,6 +230,16 @@ release\moc_cupdateclientui.cpp: cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qwidget.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmargins.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpaintdevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrect.h \
@@ -283,16 +286,11 @@ release\moc_cupdateclientui.cpp: cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMainWindow \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmainwindow.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qicon.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qicon.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QTextEdit \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtextedit.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
@@ -323,6 +321,9 @@ release\moc_cupdateclientui.cpp: cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfactoryinterface.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QProgressBar \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qprogressbar.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMainWindow \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmainwindow.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
 		cupdateclientui.h \
 		release\moc_predefs.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
@@ -467,10 +468,10 @@ release\moc_chttpdownloadfile.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtN
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
 	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -IC:/Users/anycubic/Desktop/intern/update_client_UI/src/AutoUpdater -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtXml -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtNetwork -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\winrt" chttpdownloadfile.h -o release\moc_chttpdownloadfile.cpp
 
-release\moc_cautoupdater.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qwidget.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+release\moc_cautoupdater.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObject \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qglobal.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig-bootstrapped.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig.h \
@@ -491,14 +492,7 @@ release\moc_cautoupdater.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidget
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmutex.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnumeric.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qversiontagging.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstring.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qchar.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbytearray.h \
@@ -523,6 +517,16 @@ release\moc_cautoupdater.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidget
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qwidget.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmargins.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpaintdevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrect.h \
@@ -569,13 +573,6 @@ release\moc_cautoupdater.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidget
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMainWindow \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmainwindow.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qicon.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
 		cautoupdater.h \
 		release\moc_predefs.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
@@ -605,10 +602,10 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 ####### Compile
 
 release\main.obj: main.cpp cautoupdater.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qwidget.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObject \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qglobal.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig-bootstrapped.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig.h \
@@ -629,14 +626,7 @@ release\main.obj: main.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmutex.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnumeric.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qversiontagging.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstring.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qchar.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbytearray.h \
@@ -661,6 +651,16 @@ release\main.obj: main.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qwidget.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmargins.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpaintdevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrect.h \
@@ -707,13 +707,6 @@ release\main.obj: main.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMainWindow \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmainwindow.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qicon.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QApplication \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qapplication.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcoreapplication.h \
@@ -729,6 +722,8 @@ release\main.obj: main.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qicon.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QTextEdit \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtextedit.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
@@ -757,6 +752,9 @@ release\main.obj: main.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfactoryinterface.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QProgressBar \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qprogressbar.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMainWindow \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmainwindow.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
 		cxmlparser.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\QDomDocument \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qdom.h \
@@ -766,10 +764,10 @@ release\main.obj: main.cpp cautoupdater.h \
 
 release\cupdateclientui.obj: cupdateclientui.cpp cupdateclientui.h \
 		cautoupdater.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qwidget.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObject \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qglobal.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig-bootstrapped.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig.h \
@@ -790,14 +788,7 @@ release\cupdateclientui.obj: cupdateclientui.cpp cupdateclientui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmutex.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnumeric.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qversiontagging.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstring.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qchar.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbytearray.h \
@@ -822,6 +813,16 @@ release\cupdateclientui.obj: cupdateclientui.cpp cupdateclientui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qwidget.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmargins.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpaintdevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrect.h \
@@ -868,16 +869,11 @@ release\cupdateclientui.obj: cupdateclientui.cpp cupdateclientui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMainWindow \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmainwindow.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qicon.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qicon.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QTextEdit \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtextedit.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
@@ -908,6 +904,9 @@ release\cupdateclientui.obj: cupdateclientui.cpp cupdateclientui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfactoryinterface.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QProgressBar \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qprogressbar.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMainWindow \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmainwindow.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
 		cxmlparser.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\QDomDocument \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\qdom.h \
@@ -1172,10 +1171,10 @@ release\chttpdownloadfile.obj: chttpdownloadfile.cpp chttpdownloadfile.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextcodec.h
 
 release\cautoupdater.obj: cautoupdater.cpp cautoupdater.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qwidget.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObject \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qglobal.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig-bootstrapped.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qconfig.h \
@@ -1196,14 +1195,7 @@ release\cautoupdater.obj: cautoupdater.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmutex.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnumeric.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qversiontagging.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qnamespace.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstring.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qchar.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbytearray.h \
@@ -1228,6 +1220,16 @@ release\cautoupdater.obj: cautoupdater.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qwidget.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmargins.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpaintdevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrect.h \
@@ -1274,13 +1276,6 @@ release\cautoupdater.obj: cautoupdater.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfiledevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMainWindow \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmainwindow.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qicon.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
 		chttpdownloadfile.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtNetwork\QNetworkAccessManager \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtNetwork\qnetworkaccessmanager.h \
@@ -1292,7 +1287,6 @@ release\cautoupdater.obj: cautoupdater.cpp cautoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QUrl \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QVariant \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QVector \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObject \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtNetwork\QSslConfiguration \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtNetwork\qsslconfiguration.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtNetwork\qsslsocket.h \

@@ -29,19 +29,16 @@ public slots:
     void slotReplyError(QNetworkReply::NetworkError);//响应接收错误
     void slotReplyDownloadProgress(qint64 bytesReceived, qint64 bytesTotal);//提示文件下载进度
 
-signals:
-    void sigDownloadFinishedSignal();
-
 private:
    QNetworkAccessManager *m_netAccessManager;//网络参数
-   QNetworkReply *m_netReply;
+   QNetworkReply *m_netReply;//接收服务器数据
    QUrl m_urlAddress;//网络地址
    QString m_strFileName;//需要下载的文件名
    QString m_strDir;//文件的存储位置
    QFile *m_file;//下载的文件
 
    qint64 m_nReceived;//下载文件时，已经接收的文件大小和总共大小
-   qint64 m_nTotal;
+   qint64 m_nTotal;//总接收文件大小
    bool m_blsFinished;//下载完成与否标记
 };
 

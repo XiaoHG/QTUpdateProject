@@ -9,25 +9,22 @@
 #include <QMessageBox>
 #include <QThread>
 
-CAutoUpdater::CAutoUpdater(QWidget *parent)
-    :QMainWindow(parent)
+CAutoUpdater::CAutoUpdater()
 {
     m_progUpdate = 1;
     m_progDownload = 1;
     m_bCopyOver = false;
+}
 
-    //this->setWindowFlags(Qt::FramelessWindowHint);
-    this->setFixedSize(400, 200);
-    QPalette pal;
-    pal.setColor(QPalette::Background, QColor(255, 245, 225));
-    this->setPalette(pal);
-    this->setAutoFillBackground(true);
+CAutoUpdater::~CAutoUpdater()
+{
+
 }
 
 /**
  * 下载服务器版本控制文件updater.xml
 **/
-void CAutoUpdater::downloadXMLFile()
+void CAutoUpdater::DownloadXMLFile()
 {
     QString strCurrentDir = QDir::currentPath();
     QString strDownload = strCurrentDir + "/download";
@@ -40,10 +37,10 @@ void CAutoUpdater::downloadXMLFile()
 
     //http://localhost/updateClientVarsion/
     //http://localhost/updateClientversion/
-    m_httpXML = new CHttpDownloadFile("http://localhost/updateClientversion/updater.xml",
-                                      "updater.xml", strDownload, this);//调用下载文件的类
+    CHttpDownloadFile httpXML("http://localhost/updateClientversion/updater.xml",
+                              "updater.xml", strDownload, this);//调用下载文件的类
     //connect(m_httpXML, SIGNAL(sigDownloadFinishedSignal()), this, SLOT(slotReplyHttpFinished()));//发生错误时一样会发送此信号
-    m_httpXML->DownloadFile();
+    httpXML.DownloadFile();
 }
 
 /**
@@ -78,7 +75,7 @@ int CAutoUpdater::CheckUpdateFiles(QString xml1, QString xml2)
                 QString version = nodeList.at(i).toElement().attribute("version");
 
                 qDebug() << "CheckUpdateFiles xml1 name = " << name;
-                QString localVersion = getElementVersion(xml2, name);//获取本地xml文件对应文件（name）的版本信息
+                QString localVersion = GetElementVersion(xml2, name);//获取本地xml文件对应文件（name）的版本信息
                 if(localVersion.isEmpty())//本地XML没有此文件：下载并放到相应的目录中
                 {
                     qDebug() << QStringLiteral("需要更新：") << name << " version = " << localVersion << " file need to update!";
@@ -101,12 +98,11 @@ int CAutoUpdater::CheckUpdateFiles(QString xml1, QString xml2)
                     }
                 }
             }
-            //debug code
-            for(int i = 0; i < m_listFileName.size(); ++i)
-            {
-                qDebug() << "File " << m_listFileName.at(i) << " need to update!";
-            }
-            return 1;
+            qDebug() << "m_listFileName.size() = " << m_listFileName.size();
+            if(!m_listFileName.isEmpty())
+                return 1;
+            else
+                return 0;
         }
         else
         {
@@ -128,7 +124,7 @@ int CAutoUpdater::CheckUpdateFiles(QString xml1, QString xml2)
  * 查找的是指定文件（name）的版本号
  * 前提是已经存在版本管理文件（xml）,对其进行解析。
 **/
-QString CAutoUpdater::getElementVersion(QString xml, QString name)
+QString CAutoUpdater::GetElementVersion(QString xml, QString name)
 {
     QString result = "";
     if(xml.isEmpty() || name.isEmpty())
@@ -249,20 +245,18 @@ void CAutoUpdater::DownloadUpdateFiles()
 
         //文件在服务器中的存储位置
         QString strFileDirServer = strServer + m_listFileDir.at(i) + "/" + m_listFileName.at(i);
-        CHttpDownloadFile *http = new CHttpDownloadFile(strFileDirServer,
-                                                        m_listFileName.at(i),
-                                                        strPlaceDir, this);//调用下载文件的类
-        http->DownloadFile(); //下载文件
+        CHttpDownloadFile http(strFileDirServer, m_listFileName.at(i), strPlaceDir, this);//调用下载文件的类
+        http.DownloadFile(); //下载文件
 
-        while(!http->GetBlsFinish())
+        while(!http.GetBlsFinish())
         {
-            if(http->GetTotalReceive() == -1)
+            if(http.GetTotalReceive() == -1)
             {
                 m_progDownload = 1;
             }
             else
             {
-                m_progDownload = 100 * http->GetReceiving() / http->GetTotalReceive();
+                m_progDownload = 100 * http.GetReceiving() / http.GetTotalReceive();
             }
             QCoreApplication::processEvents();
         }
@@ -276,7 +270,8 @@ void CAutoUpdater::DownloadUpdateFiles()
     m_strTip = QStringLiteral("更新完成！");
     qDebug() << m_strTip;
 
-    //统一复制到旧的目录下。
+    //统一复制到旧的目录下。 这里的代码是复制的代码
+    qDebug() << "Copy file size = " << m_listFileName.size();
     for(int i = 0; i < m_listFileName.size(); ++i)
     {
         /**将下载好的文件复制到主目录中,先删除原先的文件**/
@@ -321,25 +316,6 @@ int CAutoUpdater::GetDownProcess()
 int CAutoUpdater::GetUpdateProcess()
 {
     return m_progUpdate;
-}
-
-/** * @brief name
- * 退出当前程序，并且启动需要的程序
- * name:需要启动的程序，可以使用相对位置
- * 程序不能使用exit(0),会发生线程错误，这里使用this->close()函数
-**/
-void CAutoUpdater::ExitApp(QString name)
-{
-//    if(!name.isEmpty())
-//    {
-//        qDebug() << "主程序启动：" << name;
-//        /**运行主程序，并且退出当前更新程序(说明：主程序在上上一级目录中)**/
-//        if(!QProcess::startDetached(name))//启动主程序，主程序在其上一级目录
-//        {
-//            QMessageBox::warning(this, "warning", name, QMessageBox::Ok, QMessageBox::NoButton);
-//        }
-//    }
-//    this->close();
 }
 
 /**读取版本信息文件**/

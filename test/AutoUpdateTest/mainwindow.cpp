@@ -26,5 +26,7 @@ void MainWindow::on_actionactUpdate_triggered()
 
 void MainWindow::on_pushButton_clicked()
 {
-    this->close();
+    QString strExe = QDir::currentPath() + "/../../src/AutoUpdater/debug/AutoUpdater.exe";
+    qDebug() << strExe;
+    QProcess::startDetached(strExe);
 }

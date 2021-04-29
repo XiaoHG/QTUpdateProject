@@ -41,7 +41,7 @@ void CUpdateClientUI::Init()
 /*UI defined*/
 void CUpdateClientUI::InitUI()
 {
-    updateFiles = new QStringList;
+    m_updateFiles = new QStringList;
     this->setStyleSheet("background-color:rgb(100, 100, 100)");
     this->setWindowFlags(Qt::FramelessWindowHint);
     this->resize(400, 300);
@@ -138,10 +138,10 @@ void CUpdateClientUI::InitUI()
     m_notUpdateWidgets.push_back(m_btnClose);
     m_finishWidgets.push_back(m_btnClose);
 
-    m_UpdateProgressBar = new QProgressBar(this);
-    m_UpdateProgressBar->setGeometry(m_outputVersionInfoEdit->x(), this->height() - 50,
+    m_updateProgressBar = new QProgressBar(this);
+    m_updateProgressBar->setGeometry(m_outputVersionInfoEdit->x(), this->height() - 50,
                                        m_outputVersionInfoEdit->width(), 20);
-    m_UpdateProgressBar->setStyleSheet("QProgressBar{"
+    m_updateProgressBar->setStyleSheet("QProgressBar{"
                                        "font:9pt;"
                                        "border-radius:5px;"
                                        "text-align:center;"
@@ -151,7 +151,7 @@ void CUpdateClientUI::InitUI()
                                        "QProgressBar:chunk{"
                                        "border-radius:5px;"
                                        "background-color:#1ABC9C;}");
-    m_updatingWidgets.push_back(m_UpdateProgressBar);
+    m_updatingWidgets.push_back(m_updateProgressBar);
 
     m_btnOk = new QPushButton(this);
     m_btnOk->setText("Reboot");
@@ -232,10 +232,17 @@ bool CUpdateClientUI::CheckUpdate()
     if(m_isUpdate)
     {
         //此时需要更新，弹出对话框让客户端进行选择更新与否
-        m_updater.CheckUpdateFiles(QDir::currentPath() + "/download/updater.xml",
+        int n = m_updater.CheckUpdateFiles(QDir::currentPath() + "/download/updater.xml",
                                    QDir::currentPath() + "/updater.xml");
-
-        UpdateUI();
+        if(n != 1)
+        {
+            NotUpdateUI();
+            m_isUpdate = false;
+        }
+        else
+        {
+            UpdateUI();
+        }
     }
     else
     {
@@ -271,6 +278,9 @@ void CUpdateClientUI::UpdateUI()
 
     //隐藏更新完成的部件
     SetVisibleFinishUpdateUI(false);
+
+    //隐藏不需要更新的部件
+    SetVisibleNotUpdateUI(false);
 
     //显示检查更新界面组件
     SetVisibleUpdateUI(true);
@@ -317,15 +327,6 @@ void CUpdateClientUI::NotUpdateUI()
     SetVisibleNotUpdateUI(true);
 }
 
-/*update function*/
-void CUpdateClientUI::slotUpdateBtnClicked()
-{
-    UpdatingUI();
-    //update,and start updateProsessTimer
-    m_updateProsessTimer->start(50);
-    Updating();
-}
-
 void CUpdateClientUI::UpdatingUI()
 {
     m_outputVersionInfoEdit->clear();
@@ -339,62 +340,12 @@ void CUpdateClientUI::UpdatingUI()
 
 }
 
-void CUpdateClientUI::slotOkBtnClicked()
-{
-    QString name = ""; //主程序名
-    /**运行主程序，并且退出当前更新程序(说明：主程序在上上一级目录中)**/
-    if(!QProcess::startDetached(name))//启动主程序，主程序在其上一级目录
-    {
-        QMessageBox::warning(this, "warning", name,
-                             QMessageBox::Ok, QMessageBox::NoButton);
-    }
-    this->close();
-}
-
 void CUpdateClientUI::Updating()
 {
     //start update prosess timer at the begining update.
 
     //这里执行更新，就是XML对比出来后的所有需更新文件的下载，拷贝。
     m_updater.DownloadUpdateFiles();
-}
-
-void CUpdateClientUI::slotUpdateTimeOut()
-{
-    static int process = 0;
-    QString strCurrentDir = QDir::currentPath();
-    QStringList strListDownloadFileDir = m_updater.GetUpdateFileDir();
-    QStringList strListDownloadFileName = m_updater.GetUpdateFileName();
-    QString strTmpDir;
-    static int i = 0;
-    if(process % (100 / strListDownloadFileDir.size()) == 0 && i < strListDownloadFileDir.size())
-    {
-        m_outputVersionInfoEdit->append(QStringLiteral("正在更新文件") +
-                                        strListDownloadFileName.at(i) + " ...");
-        strTmpDir = strCurrentDir + "/" + strListDownloadFileDir.at(i)
-                + "/" + strListDownloadFileName.at(i);
-        m_outputVersionInfoEdit->append(strTmpDir);
-        i++;
-    }
-
-    if((process+1) % (100 / strListDownloadFileDir.size()) == 0 && i <= strListDownloadFileDir.size())
-        m_outputVersionInfoEdit->append(QStringLiteral("文件") +
-                                    strListDownloadFileName.at(i - 1) +
-                                    QStringLiteral("更新完成"));
-
-    m_UpdateProgressBar->setValue(m_updater.GetUpdateProcess());
-    qDebug() << "m_updater.GetDownProcess() = " << m_updater.GetDownProcess();
-    qDebug() << "m_updater.GetUpdateProcess() = " << m_updater.GetUpdateProcess();
-    if(m_updater.GetUpdateProcess() == 100)
-    {
-        m_outputVersionInfoEdit->append(QStringLiteral("注意：所有文件已经更新完成，"
-                                          "点击重启客户端会启动最新版本，"
-                                          "点击取消保持当前版本运行，下次启动为最新版本！"));
-        //Update finish
-        process = 0;
-        m_titleLabel->setText(QStringLiteral("更新完成！"));
-        FinishUpdate();
-    }
 }
 
 void CUpdateClientUI::FinishUpdate()
@@ -411,6 +362,72 @@ void CUpdateClientUI::FinishUpdate()
     SetVisibleFinishUpdateUI(true);
 
     //this->close();
+}
+
+/*update function*/
+void CUpdateClientUI::slotUpdateBtnClicked()
+{
+    UpdatingUI();
+    //update,and start updateProsessTimer
+    m_updateProsessTimer->start(50);
+    Updating();
+}
+
+void CUpdateClientUI::slotUpdateTimeOut()
+{
+    static int process = 0;
+    QString strCurrentDir = QDir::currentPath();
+    QStringList strListDownloadFileDir = m_updater.GetUpdateFileDir();
+    QStringList strListDownloadFileName = m_updater.GetUpdateFileName();
+    QString strTmpDir;
+    static int i = 0;
+    qDebug() << "Time out strListDownloadFileName size = " << strListDownloadFileName.size();
+    qDebug() << "Time out strListDownloadFileDir size = " << strListDownloadFileDir.size();
+    if(process % (100 / strListDownloadFileDir.size()) == 0 && i < strListDownloadFileDir.size())
+    {
+        m_outputVersionInfoEdit->append(QStringLiteral("正在更新文件") +
+                                        strListDownloadFileName.at(i) + " ...");
+        strTmpDir = strCurrentDir + "/" + strListDownloadFileDir.at(i)
+                + "/" + strListDownloadFileName.at(i);
+        m_outputVersionInfoEdit->append(strTmpDir);
+        i++;
+    }
+
+    if((process+1) % (100 / strListDownloadFileDir.size()) == 0 && i <= strListDownloadFileDir.size())
+        m_outputVersionInfoEdit->append(QStringLiteral("文件") +
+                                    strListDownloadFileName.at(i - 1) +
+                                    QStringLiteral("更新完成"));
+
+    m_updateProgressBar->setValue(m_updater.GetUpdateProcess());
+    qDebug() << "m_updater.GetDownProcess() = " << m_updater.GetDownProcess();
+    qDebug() << "m_updater.GetUpdateProcess() = " << m_updater.GetUpdateProcess();
+    if(m_updater.GetUpdateProcess() == 100)
+    {
+        m_outputVersionInfoEdit->append(QStringLiteral("注意：所有文件已经更新完成，"
+                                          "点击重启客户端会启动最新版本，"
+                                          "点击取消保持当前版本运行，下次启动为最新版本！"));
+        //Update finish
+        process = 0;
+        m_titleLabel->setText(QStringLiteral("更新完成！"));
+        FinishUpdate();
+    }
+}
+
+void CUpdateClientUI::slotOkBtnClicked()
+{
+    QString name = QDir::currentPath() + "/debug/AutoUpdateTest.exe"; //主程序名
+    ExitApp(name);
+}
+
+void CUpdateClientUI::ExitApp(QString name)
+{
+    /**运行主程序，并且退出当前更新程序(说明：主程序在上上一级目录中)**/
+    if(!QProcess::startDetached(name))//启动主程序，主程序在其上一级目录
+    {
+        QMessageBox::warning(this, "warning", QStringLiteral("主程序打开错误！"),
+                             QMessageBox::Ok, QMessageBox::NoButton);
+    }
+    this->close();
 }
 
 void CUpdateClientUI::SetVisibleUpdateUI(bool b)
