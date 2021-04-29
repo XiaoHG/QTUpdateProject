@@ -29,9 +29,6 @@ public:
     int GetDownProcess();
     int GetUpdateProcess();
 
-protected slots:
-    void slotReplyHttpFinished();
-
 private:
     QStringList m_listFileDir; //需要更新的文件路径
     QStringList m_listFileName; //需要更新的文件

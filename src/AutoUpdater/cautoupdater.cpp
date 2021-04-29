@@ -306,7 +306,9 @@ void CAutoUpdater::DownloadUpdateFiles()
     for(int i = 0; i < m_listFileName.size(); ++i)
     {
         /**将下载好的文件复制到主目录中,先删除原先的文件**/
-        QString strLocalFileName = strCurrentDir + "/" + m_listFileDir.at(i) + "/" + m_listFileName.at(i);
+        QString strLocalFileName = strCurrentDir + "/" +
+                                    m_listFileDir.at(i) + "/"
+                                    + m_listFileName.at(i);
         if(QFile::exists(strLocalFileName))
             QFile::remove(strLocalFileName);
 
