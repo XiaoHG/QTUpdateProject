@@ -1,15 +1,23 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2021-04-20T09:31:45
+# Project created by QtCreator 2021-05-06T09:59:24
 #
 #-------------------------------------------------
 
-QT += core gui
+QT       += widgets
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+TARGET = AutoUpdaterUI
+TEMPLATE = lib
 
-TARGET = UpdateClientUITestV1.0
-TEMPLATE = app
+DEFINES += AUTOUPDATERUI_LIBRARY
+DESTDIR = ../../lib
+DLLDESTDIR = ../../bin
+
+CONFIG(debug, debug | release){
+    TARGET = AutoUpdaterUI_d
+}else{
+    TARGET = AutoUpdaterUI
+}
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -22,22 +30,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp
+    autoupdaterui.cpp
 
 HEADERS += \
-        mainwindow.h
+        autoupdaterui_global.h \  
+    autoupdaterui.h
 
-FORMS += \
-        mainwindow.ui
-
-INCLUDEPATH += ../../src/UpdateClientUI
-LIBS += -L../../lib -lUpdateClientUI_d
-
-#CONFIG(debug, debug | release){
-#    LIBS += -L../../lib -lUpdateClientUI_d
-#}else{
-#    LIBS += -L../../lib -lUpdateClientUI
-#}
+unix {
+    target.path = /usr/lib
+    INSTALLS += target
+}

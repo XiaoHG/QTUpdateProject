@@ -147,8 +147,11 @@ compiler_rcc_clean:
 release\qrc_icon.cpp: ..\..\source\icon.qrc \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\rcc.exe \
 		..\..\source\image\close.png \
+		..\..\source\image\cansel1.png \
+		..\..\source\image\restart.png \
 		..\..\source\image\update.png \
-		..\..\source\image\updating.gif
+		..\..\source\image\updating.gif \
+		..\..\source\image\cansel.png
 	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\rcc.exe -name icon ..\..\source\icon.qrc -o release\qrc_icon.cpp
 
 compiler_moc_predefs_make_all: release\moc_predefs.h
@@ -301,7 +304,7 @@ release\moc_updateclientui.cpp: updateclientui_global.h \
 		updateclientui.h \
 		release\moc_predefs.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
-	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -I"C:/Users/anycubic/Desktop/intern/update client UI/src/UpdateClientUI" -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\winrt" updateclientui.h -o release\moc_updateclientui.cpp
+	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -IE:/xiaohg/anycubic/intern/update_client_UI/src/UpdateClientUI -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\winrt" updateclientui.h -o release\moc_updateclientui.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:

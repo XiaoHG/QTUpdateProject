@@ -227,7 +227,6 @@ void CUpdateClientUI::mouseReleaseEvent(QMouseEvent *event)
 /*update or not, checked update*/
 bool CUpdateClientUI::CheckUpdate()
 {
-
     //从版本文件中读取版本号，并进行本地版本和下载XML版本对比，得出是否更新的结论
     //updater.downloadXMLFile();//拉取服务器版本XML
     m_isUpdate = m_updater.CheckVersionForUpdate();//对比下载下来的XML和本地版本的XML

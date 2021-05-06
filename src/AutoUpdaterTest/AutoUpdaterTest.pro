@@ -1,14 +1,14 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2021-04-20T09:31:45
+# Project created by QtCreator 2021-05-06T10:12:10
 #
 #-------------------------------------------------
 
-QT += core gui
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = UpdateClientUITestV1.0
+TARGET = AutoUpdaterTest
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -33,11 +33,5 @@ HEADERS += \
 FORMS += \
         mainwindow.ui
 
-INCLUDEPATH += ../../src/UpdateClientUI
-LIBS += -L../../lib -lUpdateClientUI_d
-
-#CONFIG(debug, debug | release){
-#    LIBS += -L../../lib -lUpdateClientUI_d
-#}else{
-#    LIBS += -L../../lib -lUpdateClientUI
-#}
+INCLUDEPATH += ../../src/AutoUpdaterUI
+LIBS += -L../../lib -lAutoUpdaterUI_d

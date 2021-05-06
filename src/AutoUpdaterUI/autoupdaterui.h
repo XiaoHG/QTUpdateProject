@@ -1,7 +1,8 @@
-﻿#ifndef UPDATECLIENTUI_H
-#define UPDATECLIENTUI_H
+﻿#ifndef AUTOUPDATERUI_H
+#define AUTOUPDATERUI_H
 
-#include "updateclientui_global.h"
+#include "autoupdaterui_global.h"
+#include <QDialog>
 #include <QPushButton>
 #include <QWidget>
 #include <QTextEdit>
@@ -13,7 +14,7 @@
 #include <QDialog>
 #include <QMovie>
 
-class UPDATECLIENTUISHARED_EXPORT CUpdateClientUI : public QDialog
+class AUTOUPDATERUISHARED_EXPORT AutoUpdaterUI : public QDialog
 {
     Q_OBJECT
 
@@ -40,6 +41,7 @@ private:
     void SetVisibleUpdateUI(bool b);
     void SetVisibleUpdatingUI(bool b);
     void SetVisibleNotUpdateUI(bool b);
+    void SetVisibleFinishUpdateUI(bool b);
 
 public:
     bool CheckUpdate();
@@ -51,6 +53,7 @@ protected:
 
 protected slots:
     void slotUpdateBtnClicked();
+    void slotOkBtnClicked();
     void slotUpdateTimeOut();
 
 signals:
@@ -82,19 +85,23 @@ private:
     QStringList m_downloadVersionInfos;
     //当前版本info
     QStringList m_currentVersionInfoList;
+    QLabel *m_labelLasterVersion;
     //log info title
     QLabel *m_logTitleLabel;
     //close btn
-    QPushButton *btnClose;
-    //updating label
-    QLabel *m_updatingLabelGif;
-    QLabel *m_updatingProcessLabel;
-    QMovie *m_updatingLabelGifMovie;
+    QPushButton *m_btnClose;
+    //更新进度条
+    QProgressBar *m_UpdateProgressBar;
+    QPushButton *m_btnOk;
+    QPushButton *m_btnCansel;
 
     //cellect to control widget
     QList<QWidget*> m_notUpdateWidgets;
     QList<QWidget*> m_updateWidgets;
     QList<QWidget*> m_updatingWidgets;
+    QList<QWidget*> m_finishWidgets;
+
+    CAutoUpdater m_updater;
 };
 
-#endif // UPDATECLIENTUI_H
+#endif // AUTOUPDATERUI_H

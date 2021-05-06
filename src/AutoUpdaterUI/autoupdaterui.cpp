@@ -1,5 +1,5 @@
 ﻿
-#include "updateclientui.h"
+#include "autoupdaterui.h"
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
@@ -12,24 +12,24 @@
 #include <QTextStream>
 #include <QMovie>
 
-CUpdateClientUI::CUpdateClientUI(QWidget *parent)
+AutoUpdaterUI::AutoUpdaterUI(QWidget *parent)
     :QDialog(parent)
 {
     Init();
 }
 
-CUpdateClientUI::~CUpdateClientUI()
+AutoUpdaterUI::~AutoUpdaterUI()
 {
 }
 
 /*init all*/
-void CUpdateClientUI::Init()
+void AutoUpdaterUI::Init()
 {
     InitUI();
 }
 
 /*UI defined*/
-void CUpdateClientUI::InitUI()
+void AutoUpdaterUI::InitUI()
 {
     updateFiles = new QStringList;
 //    QWidget *centerWidget = new QWidget(this);
@@ -128,7 +128,7 @@ void CUpdateClientUI::InitUI()
     connect(m_btnUpdate, SIGNAL(clicked(bool)), this, SLOT(slotUpdateBtnClicked()));
 }
 
-void CUpdateClientUI::mousePressEvent(QMouseEvent *event)
+void AutoUpdaterUI::mousePressEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)
     {
@@ -141,7 +141,7 @@ void CUpdateClientUI::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void CUpdateClientUI::mouseMoveEvent(QMouseEvent *event)
+void AutoUpdaterUI::mouseMoveEvent(QMouseEvent *event)
 {
     if(m_bDrag)
     {
@@ -153,7 +153,7 @@ void CUpdateClientUI::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void CUpdateClientUI::mouseReleaseEvent(QMouseEvent *event)
+void AutoUpdaterUI::mouseReleaseEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)
     {
@@ -162,7 +162,7 @@ void CUpdateClientUI::mouseReleaseEvent(QMouseEvent *event)
 }
 
 /*update or not, checked update*/
-bool CUpdateClientUI::CheckUpdate()
+bool AutoUpdaterUI::CheckUpdate()
 {
 //    //checked update and set isUpdate flag.
 //    //read version file
@@ -180,7 +180,7 @@ bool CUpdateClientUI::CheckUpdate()
 
     //从版本文件中读取版本号，并进行本地版本和下载XML版本对比，得出是否更新的结论
     //更新则isUpdate = true,否则false
-    m_isUpdate = false;
+    m_isUpdate = true;
 
     if(m_isUpdate)
     {
@@ -214,7 +214,7 @@ bool CUpdateClientUI::CheckUpdate()
     return m_isUpdate;
 }
 
-void CUpdateClientUI::UpdateUI()
+void AutoUpdaterUI::UpdateUI()
 {
     m_outputVersionInfoEdit->clear();
 
@@ -238,7 +238,7 @@ void CUpdateClientUI::UpdateUI()
                                    QString::fromLocal8Bit("，点击更新按钮执行更新！"));
 }
 
-void CUpdateClientUI::NotUpdateUI()
+void AutoUpdaterUI::NotUpdateUI()
 {
     m_outputVersionInfoEdit->clear();
 
@@ -267,7 +267,7 @@ void CUpdateClientUI::NotUpdateUI()
 }
 
 /*update function*/
-void CUpdateClientUI::slotUpdateBtnClicked()
+void AutoUpdaterUI::slotUpdateBtnClicked()
 {
     UpdatingUI();
     //update,and start updateProsessTimer
@@ -275,7 +275,7 @@ void CUpdateClientUI::slotUpdateBtnClicked()
     Updating();
 }
 
-void CUpdateClientUI::Updating()
+void AutoUpdaterUI::Updating()
 {
     //start update prosess timer at the begining update.
     //this->setWindowTitle("Updating...");
@@ -284,7 +284,7 @@ void CUpdateClientUI::Updating()
 
 }
 
-void CUpdateClientUI::UpdatingUI()
+void AutoUpdaterUI::UpdatingUI()
 {
     m_outputVersionInfoEdit->clear();
     m_updatingLabelGifMovie->start();
@@ -303,7 +303,7 @@ void CUpdateClientUI::UpdatingUI()
 
 }
 
-void CUpdateClientUI::slotUpdateTimeOut()
+void AutoUpdaterUI::slotUpdateTimeOut()
 {
     static int process = 0;
     QString strTmp = QString::fromLocal8Bit("更新进度 ...");
@@ -318,7 +318,7 @@ void CUpdateClientUI::slotUpdateTimeOut()
     }
 }
 
-void CUpdateClientUI::FinishUpdate()
+void AutoUpdaterUI::FinishUpdate()
 {
     //UpdateFinishUI();
     m_updateProsessTimer->stop();
@@ -330,7 +330,7 @@ void CUpdateClientUI::FinishUpdate()
     this->close();
 }
 
-void CUpdateClientUI::SetVisibleUpdateUI(bool b)
+void AutoUpdaterUI::SetVisibleUpdateUI(bool b)
 {
     for(int i = 0; i < m_updateWidgets.size(); ++i)
     {
@@ -338,7 +338,7 @@ void CUpdateClientUI::SetVisibleUpdateUI(bool b)
     }
 }
 
-void CUpdateClientUI::SetVisibleUpdatingUI(bool b)
+void AutoUpdaterUI::SetVisibleUpdatingUI(bool b)
 {
     for(int i = 0; i < m_updatingWidgets.size(); ++i)
     {
@@ -346,7 +346,7 @@ void CUpdateClientUI::SetVisibleUpdatingUI(bool b)
     }
 }
 
-void CUpdateClientUI::SetVisibleNotUpdateUI(bool b)
+void AutoUpdaterUI::SetVisibleNotUpdateUI(bool b)
 {
     for(int i = 0; i < m_notUpdateWidgets.size(); ++i)
     {
