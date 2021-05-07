@@ -34,16 +34,12 @@ AutoUpdaterUI::~AutoUpdaterUI()
 /*init all*/
 void AutoUpdaterUI::Init()
 {
-    FtpManager *ftp[2];
-    for(int i = 0; i < 2; ++i)
-    {
-        ftp[i] = new FtpManager();
-        ftp[i]->setHost("localhost");
-    }
-    connect(ftp[0], SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
-    connect(ftp[1], SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
-    ftp[0]->get("/mainV1.0/updater.xml", QApplication::applicationDirPath() + "/download/updater.xml");
-    ftp[1]->get("/mainV1.0/versionInfo.txt", QApplication::applicationDirPath() + "/download/versionInfo.txt");
+    FtpManager *ftp = new FtpManager();
+    ftp->setHost("localhost");
+    connect(ftp, SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
+    ftp->get("/mainV1.0/updater.xml", QApplication::applicationDirPath() + "/download/updater.xml");
+
+
 }
 
 /*UI defined*/
@@ -370,7 +366,12 @@ void AutoUpdaterUI::NotUpdateUI()
 void AutoUpdaterUI::slotDownloadUpdaterXmlOver()
 {
     qDebug() << "slotDownloadUpdaterXmlOver";
-    CheckUpdate();
+
+    FtpManager *ftp = new FtpManager();
+    ftp->setHost("localhost");
+    connect(ftp, SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
+    ftp->get("/mainV1.0/versionInfo.txt", QApplication::applicationDirPath() + "/download/versionInfo.txt");
+
 }
 
 void AutoUpdaterUI::slotDownloadVersionInfoFileOver()
@@ -378,6 +379,7 @@ void AutoUpdaterUI::slotDownloadVersionInfoFileOver()
     qDebug() << "slotDownloadVersionInfoFileOver";
     //m_downloadVersionInfos获取到了最新版本的版本信息，m_outputVersionInfoEdit进行显示
     //目前为设置读取XML，所以此时为空
+    CheckUpdate();
     QStringList strListVersionInfo = m_updater.GetVersionInfo();
     if(strListVersionInfo.isEmpty())
         m_outputVersionInfoEdit->append(QStringLiteral("版本信息缺失！"));
