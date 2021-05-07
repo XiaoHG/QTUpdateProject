@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <autoupdate>
-	<version>V1.2</version>
+	<version>V1.3</version>
 	<filelist>
-		<file name="AutoUpdater.exe" dir="" version="1.0"/>
+		<file name="AutoUpdater.exe" dir="" version="1.1"/>
 		<file name="D3Dcompiler_47.dll" dir="" version="1.0"/>
-		<file name="libEGLd.dll" dir="" version="1.0"/>
-		<file name="libGLESV2d.dll" dir="" version="1.0"/>
-		<file name="opengl32sw.dll" dir="" version="1.0"/>
-		<file name="Qt5Cored.dll" dir="" version="1.0"/>
-		<file name="Qt5Guid.dll" dir="" version="1.0"/>
-		<file name="Qt5Svgd.dll" dir="" version="1.0"/>
 		<file name="Qt5Widgetsd.dll" dir="" version="1.0"/>
 		<file name="Qt5Xmld.dll" dir="" version="1.0"/>
 		<file name="versionInfo.txt" version="1.0"/>
@@ -23,12 +17,6 @@
 		<file name="qicod.dll" dir="imageformats" version="1.0"/>
 		<file name="qjpegd.dll" dir="imageformats" version="1.0"/>
 		<file name="qsvgd.dll" dir="imageformats" version="1.0"/>
-		<file name="qtgad.dll" dir="imageformats" version="1.0"/>
-		<file name="qtiffd.dll" dir="imageformats" version="1.0"/>
-		<file name="qwbmpd.dll" dir="imageformats" version="1.0"/>
-		<file name="qwebpd.dll" dir="imageformats" version="1.0"/>
-		
-		<file name="qwindowsd.dll" dir="platforms" version="1.0"/>
 		
 		<file name="qwindowsvistastyled.dll" dir="styles" version="1.0"/>
 		

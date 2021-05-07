@@ -26,7 +26,7 @@ QDomNodeList CXMLParser::XMLParseElement(QString xml, QString element)
     QDomDocument doc;
     if(!doc.setContent(&file, false, &errorStr, &errorLine, &errorColumn))
     {
-        qDebug() << "Setcontent error ... ";
+        qDebug() << xml + " Setcontent error ... ";
         qDebug() << errorStr;
         qDebug() << errorLine;
         qDebug() << errorColumn;

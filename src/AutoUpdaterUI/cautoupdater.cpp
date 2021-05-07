@@ -1,6 +1,7 @@
 ﻿#include "cautoupdater.h"
 #include "chttpdownloadfile.h"
 #include "cxmlparser.h"
+#include "ftpmanager.h"
 
 #include <QDir>
 #include <QDomDocument>
@@ -8,6 +9,7 @@
 #include <QProcess>
 #include <QMessageBox>
 #include <QThread>
+#include <QApplication>
 
 CAutoUpdater::CAutoUpdater()
 {
@@ -21,24 +23,18 @@ CAutoUpdater::~CAutoUpdater()
 
 }
 
-/**
- * 下载服务器版本控制文件updater.xml
-**/
-void CAutoUpdater::DownloadXMLFile()
+void CAutoUpdater::DownloadFile(QString filename)
 {
-    QString strCurrentDir = QDir::currentPath();
-    QString strDownload = strCurrentDir + "/download";
-    qDebug() << "strDownload = " << strDownload;
-    QDir diretory(strDownload);
+    QString strDownloadPath = QDir::currentPath() + "/download";
+    qDebug() << "strDownload = " << strDownloadPath;
+    QDir diretory(strDownloadPath);
     if(!diretory.exists())//如果路径不存在，则创建
     {
-        diretory.mkpath(strDownload);
+        diretory.mkpath(strDownloadPath);
     }
 
-    //http://localhost/updateClientVarsion/
-    //http://localhost/updateClientversion/
-    CHttpDownloadFile httpXML("http://localhost/updateClientversion/updater.xml",
-                              "updater.xml", strDownload, this);//调用下载文件的类
+    CHttpDownloadFile httpXML(tr("ftp://localhost/mainV1.0/%1").arg(filename),
+                              filename, strDownloadPath, this);//调用下载文件的类
     httpXML.DownloadFile();
 }
 
@@ -164,8 +160,8 @@ bool CAutoUpdater::CheckVersionForUpdate()
 {
     //这里需要一个函数检查本版版本控制文件是否存在，如果不存在则创建一个基本内容
     //的版本文件
-    QString localXML = QDir::currentPath() + "/updater.xml";
-    QString downloadXML = QDir::currentPath() + "/download/updater.xml";
+    QString localXML = QApplication::applicationDirPath() + "/updater.xml";
+    QString downloadXML = QApplication::applicationDirPath() + "/download/updater.xml";
     if(!CheckXML(localXML))
     {
         makeXML(localXML);
@@ -243,7 +239,7 @@ void CAutoUpdater::DownloadUpdateFiles()
 {
     //需要下载的文件的存储位置
     //即版本服务器存储版本的根目录
-    QString strServer = "http://localhost/updateClientVersion/";
+    QString strServer = "ftp://localhost/mainV1.0/";
 
     //下载下来的文件需要保存到应用程序当前目录下的download目录下，这个是自定义的，
     //可以选择不同的目录去保存。
@@ -353,13 +349,11 @@ int CAutoUpdater::GetUpdateProcess()
 }
 
 /**读取版本信息文件**/
-QStringList CAutoUpdater::GetVersionInfo(QString txt)
+QStringList CAutoUpdater::GetVersionInfo()
 {
     QStringList strTxtList;
     QString strLine;
-    if(txt == "")
-        txt = QDir::currentPath() + "/download/versionInfo.txt";
-    QFile file(txt);
+    QFile file(QApplication::applicationDirPath() + "/download/versionInfo.txt");
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return strTxtList;
     QTextStream in(&file);  //用文件构造流
