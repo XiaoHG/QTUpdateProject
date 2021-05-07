@@ -24,6 +24,7 @@ AutoUpdaterUI::AutoUpdaterUI(QWidget *parent)
     :QDialog(parent)
 {
     Init();
+    InitUI();
 }
 
 AutoUpdaterUI::~AutoUpdaterUI()
@@ -33,15 +34,14 @@ AutoUpdaterUI::~AutoUpdaterUI()
 /*init all*/
 void AutoUpdaterUI::Init()
 {
-    InitUI();
     FtpManager *ftp[2];
     for(int i = 0; i < 2; ++i)
     {
         ftp[i] = new FtpManager();
         ftp[i]->setHost("localhost");
-        connect(ftp[i], SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
-        connect(ftp[i], SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
     }
+    connect(ftp[0], SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
+    connect(ftp[1], SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
     ftp[0]->get("/mainV1.0/updater.xml", QApplication::applicationDirPath() + "/download/updater.xml");
     ftp[1]->get("/mainV1.0/versionInfo.txt", QApplication::applicationDirPath() + "/download/versionInfo.txt");
 }
@@ -237,7 +237,7 @@ void AutoUpdaterUI::testInterface()
 
 void AutoUpdaterUI::CheckUpdater()
 {
-    m_ftp->get("/mainV1.0/updater.xml", QApplication::applicationDirPath() + "/download/updater.xml");
+    Init();
 }
 
 /*update or not, checked update*/
@@ -290,7 +290,7 @@ void AutoUpdaterUI::UpdateUI()
 
     //m_versionServerInfo: 获取到下载的XML的版本，进行显示
 
-    m_versionServerInfo = m_updater.GetVersion(QDir::currentPath() + "/download/updater.xml");
+    m_versionServerInfo = m_updater.GetVersion(QApplication::applicationDirPath() + "/download/updater.xml");
     m_newVersionInfoLabel->setText(QStringLiteral("检查到新版本 ") + m_versionServerInfo +
                                    QStringLiteral(" 点击更新！"));
 

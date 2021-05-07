@@ -243,7 +243,7 @@ void CAutoUpdater::DownloadUpdateFiles()
 
     //下载下来的文件需要保存到应用程序当前目录下的download目录下，这个是自定义的，
     //可以选择不同的目录去保存。
-    QString strCurrentDir = QDir::currentPath();//当前程序运行路径
+    QString strCurrentDir = QApplication::applicationDirPath();//当前程序运行路径
 
     if(m_listFileDir.isEmpty() || m_listFileName.isEmpty())
     {
@@ -353,9 +353,16 @@ QStringList CAutoUpdater::GetVersionInfo()
 {
     QStringList strTxtList;
     QString strLine;
+    qDebug() << "versionInfo file: " << QApplication::applicationDirPath() + "/download/versionInfo.txt";
     QFile file(QApplication::applicationDirPath() + "/download/versionInfo.txt");
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() << "can't open file: " << QApplication::applicationDirPath() + "/download/versionInfo.txt";
         return strTxtList;
+    }
+
+    //file.readAll();
+
     QTextStream in(&file);  //用文件构造流
     strLine = in.readLine();//读取一行放到字符串里
     while(!strLine.isNull())//字符串有内容
