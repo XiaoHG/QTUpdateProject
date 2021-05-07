@@ -31,14 +31,18 @@ public:
 private:
     CUpdateClientUI(QWidget *parent = 0);
 
+public:
+    bool CheckUpdate();
+    void ExitApp(QString name);
+
 private:
     void Init();
     void InitUI();
-    void Updating();
-    void UpdatingUI();
-    void FinishUpdate();
     void UpdateUI();
+    void UpdatingUI();
     void NotUpdateUI();
+    void Updating();
+    void FinishUpdate();
 
     void SetVisibleUpdateUI(bool b);
     void SetVisibleUpdatingUI(bool b);
@@ -46,7 +50,7 @@ private:
     void SetVisibleFinishUpdateUI(bool b);
 
 public:
-    bool CheckUpdate();
+    bool GetConfigFlag();
 
 protected:
     void mousePressEvent(QMouseEvent *event);
@@ -58,11 +62,7 @@ protected slots:
     void slotOkBtnClicked();
     void slotUpdateTimeOut();
 
-signals:
-    void sigCloseMainWindow();
-    void sigUpdate();
-
-private://drag event
+private://鼠标拖拽事件
     bool m_bDrag;
     QPoint m_mouseStartPoint;
     QPoint m_windowTopLeftPoint;
@@ -79,7 +79,7 @@ private:
     //update prosess timer
     QTimer *m_updateProsessTimer;
     //need to update
-    QStringList *updateFiles;
+    QStringList *m_updateFiles;
     //version server new version information
     QLabel *m_newVersionInfoLabel;
     //server laster version info
@@ -92,17 +92,18 @@ private:
     QLabel *m_logTitleLabel;
     //close btn
     QPushButton *m_btnClose;
-    //更新进度条
-    QProgressBar *m_UpdateProgressBar;
+    //更新进度
+    QProgressBar *m_updateProgressBar;
     QPushButton *m_btnOk;
     QPushButton *m_btnCansel;
 
-    //cellect to control widget
+    //界面部件集中处理
     QList<QWidget*> m_notUpdateWidgets;
     QList<QWidget*> m_updateWidgets;
     QList<QWidget*> m_updatingWidgets;
     QList<QWidget*> m_finishWidgets;
 
+    //AutoUpdater 对象
     CAutoUpdater m_updater;
 };
 

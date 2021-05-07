@@ -396,7 +396,13 @@ release\main.obj: main.cpp mainwindow.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qeventloop.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qguiapplication.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qinputmethod.h
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qinputmethod.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDebug \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDir \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdir.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfileinfo.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QProcess \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qprocess.h
 
 release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMainWindow \

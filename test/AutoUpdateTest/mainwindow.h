@@ -15,9 +15,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void WriteConfigFileFlag(const char *flag);
 private slots:
-    void on_actionactUpdate_triggered();
-
     void on_pushButton_clicked();
 
 private:

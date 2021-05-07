@@ -4,20 +4,21 @@
 #
 #-------------------------------------------------
 
-QT       += widgets
+QT       += widgets xml network
 
 TARGET = AutoUpdaterUI
 TEMPLATE = lib
 
 DEFINES += AUTOUPDATERUI_LIBRARY
-DESTDIR = ../../lib
-DLLDESTDIR = ../../bin
 
-CONFIG(debug, debug | release){
-    TARGET = AutoUpdaterUI_d
-}else{
+CONFIG(release, debug|release){
     TARGET = AutoUpdaterUI
 }
+else{
+    TARGET = AutoUpdaterUI_d
+}
+
+DESTDIR = ../../lib
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -31,11 +32,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    autoupdaterui.cpp
+        autoupdaterui.cpp \
+    cautoupdater.cpp \
+    chttpdownloadfile.cpp \
+    cxmlparser.cpp \
+    ftpmanager.cpp
 
 HEADERS += \
-        autoupdaterui_global.h \  
-    autoupdaterui.h
+        autoupdaterui.h \
+        autoupdaterui_global.h \ 
+    cautoupdater.h \
+    chttpdownloadfile.h \
+    cxmlparser.h \
+    ftpmanager.h
 
 unix {
     target.path = /usr/lib

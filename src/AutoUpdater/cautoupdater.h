@@ -1,50 +1,46 @@
-﻿#ifndef CAUTOUPDATER_H
+﻿
+#ifndef CAUTOUPDATER_H
 #define CAUTOUPDATER_H
 
-#include <QWidget>
-#include <QMainWindow>
+#include <QObject>
 #include <QSlider>
 
-class CHttpDownloadFile;
-
-class CAutoUpdater : public QMainWindow
+class CAutoUpdater : public QObject
 {
     Q_OBJECT
 
 public:
-    CAutoUpdater(QWidget *parent = 0);
+    CAutoUpdater();
+    ~CAutoUpdater();
 
 public:
-    void downloadXMLFile();
-    QString getElementVersion(QString xml, QString name);
-    int CheckUpdateFiles(QString name1 = "default", QString name2 = "default");
+    void DownloadXMLFile();
+    void DownloadUpdateFiles();
+    int CheckUpdateFiles(QString xml1, QString xml2);
     bool CheckVersion(QString version, QString versionDownload);
     bool CheckVersionForUpdate();
-    void DownloadUpdateFiles();
-    void ExitApp(QString name);
+    bool CheckXML(QString xml);
+    void makeXML(QString xml);
+    QString GetElementVersion(QString xml, QString name);
+    QString GetVersion(QString xml);
     QStringList GetVersionInfo(QString txt = "");
-
     QStringList GetUpdateFileDir();
     QStringList GetUpdateFileName();
-
-protected slots:
-    void slotReplyHttpFinished();
-
-signals:
-    void sigDownloadFinishedSignal();
+    int GetDownProcess();
+    int GetUpdateProcess();
 
 private:
-    CHttpDownloadFile *m_httpXML;
     QStringList m_listFileDir; //需要更新的文件路径
     QStringList m_listFileName; //需要更新的文件
-
     QString m_strTip;//下载过程提示信息
 
     //更新进度条
-    QSlider *m_progUpdate;
-    QSlider *m_progDownload;
+    int m_progUpdate;
+    int m_progDownload;
 
-    bool m_blsFinished;//下载完成与否标记
+    //拷贝结束的条件,同时也是全部更新完成的标志
+    bool m_bCopyOver;
+
 };
 
 #endif // CAUTOUPDATER_H
