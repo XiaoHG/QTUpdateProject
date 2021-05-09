@@ -36,7 +36,6 @@ public:
     void ExitApp(QString name);
 
 private:
-    void Init();
     void InitUI();
     void UpdateUI();
     void UpdatingUI();

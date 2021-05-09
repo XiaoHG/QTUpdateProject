@@ -23,23 +23,11 @@
 AutoUpdaterUI::AutoUpdaterUI(QWidget *parent)
     :QDialog(parent)
 {
-    Init();
     InitUI();
 }
 
 AutoUpdaterUI::~AutoUpdaterUI()
 {
-}
-
-/*init all*/
-void AutoUpdaterUI::Init()
-{
-    FtpManager *ftp = new FtpManager();
-    ftp->setHost("localhost");
-    connect(ftp, SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
-    ftp->get("/mainV1.0/updater.xml", QApplication::applicationDirPath() + "/download/updater.xml");
-
-
 }
 
 /*UI defined*/
@@ -189,7 +177,7 @@ void AutoUpdaterUI::InitUI()
     connect(m_btnCansel, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(m_btnUpdate, SIGNAL(clicked(bool)), this, SLOT(slotUpdateBtnClicked()));
 
-    //this->show();
+    //this->exec();
 }
 
 void AutoUpdaterUI::mousePressEvent(QMouseEvent *event)
@@ -233,7 +221,10 @@ void AutoUpdaterUI::testInterface()
 
 void AutoUpdaterUI::CheckUpdater()
 {
-    Init();
+    FtpManager *ftp = new FtpManager();
+    ftp->setHost("localhost");
+    connect(ftp, SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
+    ftp->get("/mainV1.0/updater.xml", QApplication::applicationDirPath() + "/download/updater.xml");
 }
 
 /*update or not, checked update*/
@@ -290,7 +281,7 @@ void AutoUpdaterUI::UpdateUI()
     m_newVersionInfoLabel->setText(QStringLiteral("检查到新版本 ") + m_versionServerInfo +
                                    QStringLiteral(" 点击更新！"));
 
-    this->show();
+    this->exec();
 }
 
 
@@ -355,7 +346,7 @@ void AutoUpdaterUI::NotUpdateUI()
     //需要处理更新程序的自结束，现在时卡死状态
     if(GetConfigFlag())
     {
-        this->show();
+        this->exec();
     }
     else{
         qDebug() << "this->close()";
@@ -379,7 +370,6 @@ void AutoUpdaterUI::slotDownloadVersionInfoFileOver()
     qDebug() << "slotDownloadVersionInfoFileOver";
     //m_downloadVersionInfos获取到了最新版本的版本信息，m_outputVersionInfoEdit进行显示
     //目前为设置读取XML，所以此时为空
-    CheckUpdate();
     QStringList strListVersionInfo = m_updater.GetVersionInfo();
     if(strListVersionInfo.isEmpty())
         m_outputVersionInfoEdit->append(QStringLiteral("版本信息缺失！"));
@@ -388,6 +378,7 @@ void AutoUpdaterUI::slotDownloadVersionInfoFileOver()
         m_outputVersionInfoEdit->append(strListVersionInfo.at(i));
     }
     m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
+    CheckUpdate();
 }
 
 /*update function*/
