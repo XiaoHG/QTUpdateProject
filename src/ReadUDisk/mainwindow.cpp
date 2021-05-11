@@ -42,7 +42,9 @@ MainWindow::MainWindow(QWidget *parent) :
     //release
 //    this->setStyleSheet("QPushButton{border-radius:10px;border-style: outset;}"
 //                        "QPushButton:hover{background-color:rgba(229, 241, 251, 100); color: black;}"
-//                        "QPushButton:pressed{background-color:rgba(204, 228, 247, 200);border-style: inset;}");
+//                        "QPushButton:pressed{background-color:rgba(204, 228, 247, 200);border-style: inset;}"
+//                        "QLineEdit{background-color:transparent}"
+//                        "QLineEdit{border-width:0;border-style:outset}");
 
 
     m_btnBack = new QPushButton(this);
@@ -63,6 +65,9 @@ MainWindow::MainWindow(QWidget *parent) :
     MoveZUI();
     DetectResinUI();
     DetectLightUI();
+    ConnectCloudUI();
+    PowerTestUI();
+    InnTestUI();
 
     QPalette palette;
     palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/1.png")));
@@ -80,6 +85,9 @@ MainWindow::MainWindow(QWidget *parent) :
     g_pfShowUIMap.insert(MOVEZ, &MainWindow::ShowMoveZUI);
     g_pfShowUIMap.insert(DETECTRESIN_1, &MainWindow::ShowDetectResinUI);
     g_pfShowUIMap.insert(DETECTLIGHT, &MainWindow::ShowDetectLightUI);
+    g_pfShowUIMap.insert(CONNCLOUD, &MainWindow::ShowConnectCloudUI);
+    g_pfShowUIMap.insert(POWERSET, &MainWindow::ShowPowerTestUI);
+    g_pfShowUIMap.insert(INNTEST, &MainWindow::ShowInnTestUI);
 }
 
 MainWindow::~MainWindow()
@@ -311,6 +319,7 @@ void MainWindow::ToolPage_1UI()
     QPushButton *btnConWeb = new QPushButton(tr("btnConWeb"), this);
     btnConWeb->setGeometry(btnDetectResin->x(), btnDetectLight->y(),
                            btnMoveZ->width(), btnMoveZ->height());
+    connect(btnConWeb, &QPushButton::clicked, this, [=](){WhichUI(CONNCLOUD);});
 
     QPushButton *btnNextPage = new QPushButton(tr("btnNextPage"), this);
     btnNextPage->setGeometry(m_btnLanguage->x() + m_btnPrePage->width() + 140, m_btnPrePage->y(),
@@ -332,10 +341,12 @@ void MainWindow::ToolPage_2UI()
 {
     QPushButton *btnPowerSet = new QPushButton(tr("btnPowerSet"), this);
     btnPowerSet->setGeometry(24, 61, 209, 90);
+    connect(btnPowerSet, &QPushButton::clicked, this, [=](){WhichUI(POWERSET);});
 
     QPushButton *btnInnTest = new QPushButton(tr("btnInnTest"), this);
     btnInnTest->setGeometry(btnPowerSet->x() + btnPowerSet->width() + 14, btnPowerSet->y(),
                          btnPowerSet->width(), btnPowerSet->height());
+    connect(btnInnTest, &QPushButton::clicked, this, [=](){WhichUI(INNTEST);});
 
     QPushButton *btnUnused_2 = new QPushButton(tr("btnUnused_2"), this);
     btnUnused_2->setGeometry(btnPowerSet->x(), btnPowerSet->y() + btnPowerSet->height() + 10,
@@ -394,12 +405,6 @@ void MainWindow::NetInfoUI()
     m_netInfoUIList.push_back(leSSID);
     m_netInfoUIList.push_back(leIP);
     m_netInfoUIList.push_back(leNetStatus);
-
-    for(int i = 0; i < m_netInfoUIList.size(); ++i)
-    {
-//        m_netInfoUIList.at(i)->setStyleSheet("QLineEdit{background-color:transparent}"
-//                                           "QLineEdit{border-width:0;border-style:outset}");
-    }
 
     //Init set false
     ShowNetInfoUI(false);
@@ -544,6 +549,33 @@ void MainWindow::DetectResinUI()
 
 void MainWindow::DetectLightUI()
 {
+    QButtonGroup *box = new QButtonGroup;
+    box->setExclusive(true);
+
+    QPushButton *btn_1 = new QPushButton(tr("btn_1"), this);
+    btn_1->setGeometry(25, 58, 158, 120);
+    btn_1->setCheckable(true);
+    connect(btn_1, SIGNAL(clicked(bool)), this, SLOT(slotTest()));
+    box->addButton(btn_1);
+
+    QPushButton *btn_2 = new QPushButton(tr("btn_2"), this);
+    btn_2->setGeometry(25 + btn_2->width() + 70, 58, 158, 120);
+    btn_2->setCheckable(true);
+    connect(btn_2, SIGNAL(clicked(bool)), this, SLOT(slotTest()));
+    box->addButton(btn_2);
+
+    QPushButton *btn_3 = new QPushButton(tr("btn_3"), this);
+    btn_3->setGeometry(25, 58 + btn_2->height() + 12, 158, 120);
+    btn_3->setCheckable(true);
+    connect(btn_3, SIGNAL(clicked(bool)), this, SLOT(slotTest()));
+    box->addButton(btn_3);
+
+    QPushButton *btn_4 = new QPushButton(tr("btn_4"), this);
+    btn_4->setGeometry(btn_2->x(), btn_3->y(), 158, 120);
+    btn_4->setCheckable(true);
+    connect(btn_4, SIGNAL(clicked(bool)), this, SLOT(slotTest()));
+    box->addButton(btn_4);
+
     QLineEdit *leSec = new QLineEdit(tr("leSec"), this);
     //leSec->setGeometry(this->width() - leSec->width() - 17, 57, 93, 60);
     leSec->setGeometry(this->width() - leSec->width() - 10, 72, 60, 30);
@@ -551,6 +583,7 @@ void MainWindow::DetectLightUI()
 
     QPushButton *btnUp = new QPushButton(tr("btnUp"), this);
     btnUp->setGeometry(this->width() - btnUp->width() - 15, 130, 92, 46);
+
 
     QPushButton *btnDown = new QPushButton(tr("btnDown"), this);
     btnDown->setGeometry(btnUp->x(), btnUp->y() + btnUp->height() + 14,
@@ -561,6 +594,10 @@ void MainWindow::DetectLightUI()
                            btnUp->width(), btnUp->height() + 15);
 
 
+    m_detectLightUIList.push_back(btn_1);
+    m_detectLightUIList.push_back(btn_2);
+    m_detectLightUIList.push_back(btn_3);
+    m_detectLightUIList.push_back(btn_4);
     m_detectLightUIList.push_back(leSec);
     m_detectLightUIList.push_back(btnUp);
     m_detectLightUIList.push_back(btnDown);
@@ -570,14 +607,103 @@ void MainWindow::DetectLightUI()
     ShowDetectLightUI(false);
 }
 
+void MainWindow::ConnectCloudUI()
+{
+    QLineEdit *leDevCN = new QLineEdit(tr("leDevCN"), this);
+    leDevCN->setGeometry(140, 66, 310, 30);
+
+    QCheckBox *chbCloudCtl = new QCheckBox(tr("CloudCtl"), this);
+    chbCloudCtl->setGeometry(this->width() - 110, 117, 100, 30);
+
+    QCheckBox *chbCloudCamero = new QCheckBox(tr("CloudCamero"), this);
+    chbCloudCamero->setGeometry(this->width() - 110, chbCloudCtl->y() + chbCloudCtl->height() + 20,
+                                chbCloudCtl->width(), chbCloudCtl->height());
+
+    QCheckBox *chbWIFI = new QCheckBox(tr("WIFI"), this);
+    chbWIFI->setGeometry(this->width() - 110, chbCloudCamero->y() + chbCloudCamero->height() + 20,
+                         chbCloudCtl->width(), chbCloudCtl->height());
+
+    m_connectCloudUIList.push_back(leDevCN);
+    m_connectCloudUIList.push_back(chbCloudCtl);
+    m_connectCloudUIList.push_back(chbCloudCamero);
+    m_connectCloudUIList.push_back(chbWIFI);
+
+    ShowConnectCloudUI(false);
+}
+
+void MainWindow::PowerTestUI()
+{
+
+    QLineEdit *lePercentage = new QLineEdit(tr("100"), this);
+    lePercentage->setGeometry(130, 135, 160, 50);
+    lePercentage->setAlignment(Qt::AlignHCenter);
+    lePercentage->setFont(QFont(tr("黑体"), 28, QFont::Bold));
+
+    QPushButton *btnConFirm = new QPushButton(tr("btnConFirm"), this);
+    btnConFirm->setGeometry(m_btnLanguage->x() + m_btnPrePage->width() + 140, m_btnPrePage->y(),
+                              m_btnPrePage->width(), m_btnPrePage->height());
+
+    m_powerTestUIList.push_back(lePercentage);
+    m_powerTestUIList.push_back(btnConFirm);
+
+    //Init set false
+    ShowPowerTestUI(false);
+}
+
+void MainWindow::InnTestUI()
+{
+    QPushButton *btnCloudTest = new QPushButton(tr("btnCloudTest"), this);
+    btnCloudTest->setGeometry(24, 61, 209, 90);
+
+    QPushButton *btnNetTest = new QPushButton(tr("btnNetTest"), this);
+    btnNetTest->setGeometry(btnCloudTest->x() + btnCloudTest->width() + 14, btnCloudTest->y(),
+                         btnCloudTest->width(), btnCloudTest->height());
+
+    QPushButton *btnCameroTest = new QPushButton(tr("btnCameroTest"), this);
+    btnCameroTest->setGeometry(btnCloudTest->x(), btnCloudTest->y() + btnCloudTest->height() + 10,
+                           btnCloudTest->width(), btnCloudTest->height());
+
+    QPushButton *btnNon = new QPushButton(tr("btnNon"), this);
+    btnNon->setGeometry(btnNetTest->x(), btnCameroTest->y(),
+                           btnCloudTest->width(), btnCloudTest->height());
+
+    QPushButton *btnPrePage = new QPushButton(tr("btnPrePage"), this);
+    btnPrePage->setGeometry(btnCloudTest->x(), btnCameroTest->y() + btnCameroTest->height() + 16,
+                          btnCloudTest->width() - 63, btnCloudTest->height() / 2 - 5);
+
+    QPushButton *btnNextPage = new QPushButton(tr("m_btnPrePage"), this);
+    btnNextPage->setGeometry(btnCloudTest->x() + btnPrePage->width() + 140, btnPrePage->y(),
+                              btnPrePage->width(), btnPrePage->height());
+
+    m_innTestUIList.push_back(btnCloudTest);
+    m_innTestUIList.push_back(btnNetTest);
+    m_innTestUIList.push_back(btnCameroTest);
+    m_innTestUIList.push_back(btnNon);
+    m_innTestUIList.push_back(btnPrePage);
+    m_innTestUIList.push_back(btnNextPage);
+
+    //Init set false
+    ShowInnTestUI(false);
+}
+
 void MainWindow::slotTest()
 {
     QPushButton *tmp;
-    for(int i = 0; i < m_moveZUIList.size(); ++i)
+//    for(int i = 0; i < m_moveZUIList.size(); ++i)
+//    {
+//        tmp = static_cast<QPushButton*>(m_moveZUIList.at(i));
+//        if(tmp->text() == "btn0_1mm" || tmp->text() == "btn1mm" || tmp->text() == "btn10mm")
+//            qDebug() << tmp->text() << " :" << tmp->isChecked();
+//    }
+
+    for(int i = 0; i < m_detectLightUIList.size(); ++i)
     {
-        tmp = static_cast<QPushButton*>(m_moveZUIList.at(i));
-        if(tmp->text() == "btn0_1mm" || tmp->text() == "btn1mm" || tmp->text() == "btn10mm")
-            qDebug() << tmp->text() << " :" << tmp->isChecked();
+        if(m_detectLightUIList.at(i)->inherits("QPushButton")) //get class type
+        {
+            tmp = static_cast<QPushButton*>(m_detectLightUIList.at(i));
+            if(tmp->text() == "btn_1" || tmp->text() == "btn_2" || tmp->text() == "btn_3" || tmp->text() == "btn_4")
+                qDebug() << tmp->text() << " :" << tmp->isChecked();
+        }
     }
 }
 
@@ -677,6 +803,30 @@ void MainWindow::ShowDetectLightUI(bool visible)
     }
 }
 
+void MainWindow::ShowConnectCloudUI(bool visible)
+{
+    for(int i = 0; i < m_connectCloudUIList.size(); ++i)
+    {
+        m_connectCloudUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowPowerTestUI(bool visible)
+{
+    for(int i = 0; i < m_powerTestUIList.size(); ++i)
+    {
+        m_powerTestUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowInnTestUI(bool visible)
+{
+    for(int i = 0; i < m_innTestUIList.size(); ++i)
+    {
+        m_innTestUIList.at(i)->setVisible(visible);
+    }
+}
+
 void MainWindow::WhichUI(const EWHICHPAGE which)
 {
     QPalette palette;
@@ -731,6 +881,18 @@ void MainWindow::WhichUI(const EWHICHPAGE which)
     case DETECTLIGHT:
         palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/13.png")));
         connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_1);});
+        break;
+    case CONNCLOUD:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/14.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_1);});
+        break;
+    case POWERSET:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/15.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_2);});
+        break;
+    case INNTEST:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/16.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_2);});
         break;
     default:
         break;

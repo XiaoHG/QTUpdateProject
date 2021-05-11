@@ -28,7 +28,7 @@ typedef enum eWhichPage{
     DETECTLIGHT,
     CONNCLOUD,
     POWERSET,
-    ININSIDETEST,
+    INNTEST,
     PRINTTEST,
     DETECTRESIN_2,
     EXECLIGHT,
@@ -61,6 +61,9 @@ public:
     void MoveZUI();
     void DetectResinUI();
     void DetectLightUI();
+    void ConnectCloudUI();
+    void PowerTestUI();
+    void InnTestUI();
 
     void ShowMainUI(bool visible);
     void ShowFileListUI(bool visible);
@@ -74,6 +77,9 @@ public:
     void ShowMoveZUI(bool visible);
     void ShowDetectResinUI(bool visible);
     void ShowDetectLightUI(bool visible);
+    void ShowConnectCloudUI(bool visible);
+    void ShowPowerTestUI(bool visible);
+    void ShowInnTestUI(bool visible);
 
     void WhichUI(const EWHICHPAGE which);
 
@@ -143,6 +149,15 @@ private:
 
     //Detect light UI
     QList<QWidget*> m_detectLightUIList;
+
+    //Connect cloud UI
+    QList<QWidget*> m_connectCloudUIList;
+
+    //Power test UI
+    QList<QWidget*> m_powerTestUIList;
+
+    //Inn Test UI
+    QList<QWidget*> m_innTestUIList;
 };
 
 #endif // MAINWINDOW_H
