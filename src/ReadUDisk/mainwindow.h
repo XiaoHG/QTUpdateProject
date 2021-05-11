@@ -34,6 +34,7 @@ typedef enum eWhichPage{
     EXECLIGHT,
     NETTEST,
     CLOUDTEST,
+    CAMEROTEST,
     DETECTCAMERA,
     PRINTPARAMETER
 }EWHICHPAGE;
@@ -64,6 +65,9 @@ public:
     void ConnectCloudUI();
     void PowerTestUI();
     void InnTestUI();
+    void CloudTestUI();
+    void NetTestUI();
+    void CameroTestUI();
 
     void ShowMainUI(bool visible);
     void ShowFileListUI(bool visible);
@@ -80,12 +84,16 @@ public:
     void ShowConnectCloudUI(bool visible);
     void ShowPowerTestUI(bool visible);
     void ShowInnTestUI(bool visible);
+    void ShowCloudTestUI(bool visible);
+    void ShowNetTestUI(bool visible);
+    void ShowCameroTestUI(bool visible);
 
     void WhichUI(const EWHICHPAGE which);
 
 public slots:
 
     void slotTest();
+    void slotTestMM();
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
@@ -158,6 +166,15 @@ private:
 
     //Inn Test UI
     QList<QWidget*> m_innTestUIList;
+
+    //Cloud test UI
+    QList<QWidget*> m_cloudTestUIList;
+
+    //Net test UI
+    QList<QWidget*> m_netTestUIList;
+
+    //Camero test UI
+    QList<QWidget*> m_cameroTestUIList;
 };
 
 #endif // MAINWINDOW_H
