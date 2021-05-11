@@ -14,6 +14,9 @@
 #include <QLineEdit>
 #include <QCheckBox>
 #include <QRadioButton>
+#include <QButtonGroup>
+
+//info: 设置objectName用于遍历找到对应控件并设置对应值
 
 // 设置按钮样式及悬浮、按下时的状态
 //ui->pushButton->setStyleSheet("QPushButton{background-color: rgb(225, 225, 225);border:2px groove gray;border-radius:10px;padding:2px 4px;border-style: outset;}"
@@ -54,6 +57,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ToolPage_1UI();
     ToolPage_2UI();
     LanguageUI();
+    NetInfoUI();
+    VersionInfoUI();
+    SystemSetUI();
+    MoveZUI();
+    DetectResinUI();
+    DetectLightUI();
 
     QPalette palette;
     palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/1.png")));
@@ -65,6 +74,12 @@ MainWindow::MainWindow(QWidget *parent) :
     g_pfShowUIMap.insert(TOOLPAGE_1, &MainWindow::ShowToolPage_1UI);
     g_pfShowUIMap.insert(TOOLPAGE_2, &MainWindow::ShowToolPage_2UI);
     g_pfShowUIMap.insert(LANGUAGE, &MainWindow::ShowLanguageUI);
+    g_pfShowUIMap.insert(NETINFO, &MainWindow::ShowNetInfoUI);
+    g_pfShowUIMap.insert(VERSIONINFO, &MainWindow::ShowVersionInfoUI);
+    g_pfShowUIMap.insert(SYSTEMSET, &MainWindow::ShowSystemSetUI);
+    g_pfShowUIMap.insert(MOVEZ, &MainWindow::ShowMoveZUI);
+    g_pfShowUIMap.insert(DETECTRESIN_1, &MainWindow::ShowDetectResinUI);
+    g_pfShowUIMap.insert(DETECTLIGHT, &MainWindow::ShowDetectLightUI);
 }
 
 MainWindow::~MainWindow()
@@ -243,17 +258,20 @@ void MainWindow::SystemUI()
     //connect(m_btnLanguage, SIGNAL(clicked(bool)), this, SLOT(slotLanguageUI()));
     connect(m_btnLanguage, &QPushButton::clicked, this, [=](){WhichUI(LANGUAGE);});
 
-    m_btnWeb = new QPushButton(tr("m_btnWeb"), this);
-    m_btnWeb->setGeometry(m_btnLanguage->x() + m_btnLanguage->width() + 14, m_btnLanguage->y(),
+    m_btnNetInfo = new QPushButton(tr("m_btnNetInfo"), this);
+    m_btnNetInfo->setGeometry(m_btnLanguage->x() + m_btnLanguage->width() + 14, m_btnLanguage->y(),
                          m_btnLanguage->width(), m_btnLanguage->height());
+    connect(m_btnNetInfo, &QPushButton::clicked, this, [=](){WhichUI(NETINFO);});
 
     m_btnVersion = new QPushButton(tr("m_btnVersion"), this);
     m_btnVersion->setGeometry(m_btnLanguage->x(), m_btnLanguage->y() + m_btnLanguage->height() + 10,
                            m_btnLanguage->width(), m_btnLanguage->height());
+    connect(m_btnVersion, &QPushButton::clicked, this, [=](){WhichUI(VERSIONINFO);});
 
     m_btnSet = new QPushButton(tr("m_btnSet"), this);
-    m_btnSet->setGeometry(m_btnWeb->x(), m_btnVersion->y(),
+    m_btnSet->setGeometry(m_btnNetInfo->x(), m_btnVersion->y(),
                            m_btnLanguage->width(), m_btnLanguage->height());
+    connect(m_btnSet, &QPushButton::clicked, this, [=](){WhichUI(SYSTEMSET);});
 
     m_btnPrePage = new QPushButton(tr("m_btnPrePage"), this);
     m_btnPrePage->setGeometry(m_btnLanguage->x(), m_btnVersion->y() + m_btnVersion->height() + 16,
@@ -264,7 +282,7 @@ void MainWindow::SystemUI()
                               m_btnPrePage->width(), m_btnPrePage->height());
 
     m_systemUIList.push_back(m_btnLanguage);
-    m_systemUIList.push_back(m_btnWeb);
+    m_systemUIList.push_back(m_btnNetInfo);
     m_systemUIList.push_back(m_btnVersion);
     m_systemUIList.push_back(m_btnSet);
     m_systemUIList.push_back(m_btnPrePage);
@@ -278,14 +296,17 @@ void MainWindow::ToolPage_1UI()
 {
     QPushButton *btnMoveZ = new QPushButton(tr("btnMoveZ"), this);
     btnMoveZ->setGeometry(24, 61, 209, 90);
+    connect(btnMoveZ, &QPushButton::clicked, this, [=](){WhichUI(MOVEZ);});
 
     QPushButton *btnDetectResin = new QPushButton(tr("btnDetectResin"), this);
     btnDetectResin->setGeometry(btnMoveZ->x() + btnMoveZ->width() + 14, btnMoveZ->y(),
                          btnMoveZ->width(), btnMoveZ->height());
+    connect(btnDetectResin, &QPushButton::clicked, this, [=](){WhichUI(DETECTRESIN_1);});
 
     QPushButton *btnDetectLight = new QPushButton(tr("btnDetectLight"), this);
     btnDetectLight->setGeometry(btnMoveZ->x(), btnMoveZ->y() + btnMoveZ->height() + 10,
                            btnMoveZ->width(), btnMoveZ->height());
+    connect(btnDetectLight, &QPushButton::clicked, this, [=](){WhichUI(DETECTLIGHT);});
 
     QPushButton *btnConWeb = new QPushButton(tr("btnConWeb"), this);
     btnConWeb->setGeometry(btnDetectResin->x(), btnDetectLight->y(),
@@ -356,6 +377,210 @@ void MainWindow::LanguageUI()
     ShowLanguageUI(false);
 }
 
+void MainWindow::NetInfoUI()
+{
+    QLineEdit *leSSID = new QLineEdit(tr("leSSID"), this);
+    leSSID->setGeometry(140, 66, 310, 30);
+
+    QLineEdit *leIP = new QLineEdit(tr("leIP"), this);
+    leIP->setGeometry(leSSID->x(), leSSID->y() + leSSID->height() + 20,
+                           leSSID->width(), leSSID->height());
+
+    QLineEdit *leNetStatus = new QLineEdit(tr("leNetStatus"), this);
+    leNetStatus->setGeometry(leSSID->x() + 110, leIP->y() + leIP->height() + 20,
+                                leSSID->width() - 110, leSSID->height());
+
+
+    m_netInfoUIList.push_back(leSSID);
+    m_netInfoUIList.push_back(leIP);
+    m_netInfoUIList.push_back(leNetStatus);
+
+    for(int i = 0; i < m_netInfoUIList.size(); ++i)
+    {
+//        m_netInfoUIList.at(i)->setStyleSheet("QLineEdit{background-color:transparent}"
+//                                           "QLineEdit{border-width:0;border-style:outset}");
+    }
+
+    //Init set false
+    ShowNetInfoUI(false);
+}
+
+void MainWindow::VersionInfoUI()
+{
+    QLineEdit *leDevName = new QLineEdit(tr("leDevName"), this);
+    leDevName->setObjectName("DevName");//set object name for used in choose widget
+    leDevName->setGeometry(187, 66, 263, 30);
+
+    QLineEdit *leSliderVersion = new QLineEdit(tr("leSliderVersion"), this);
+    leSliderVersion->setGeometry(leDevName->x(), leDevName->y() + leDevName->height() + 20,
+                                    leDevName->width(), leDevName->height());
+
+    QLineEdit *leUIVersion = new QLineEdit(tr("leUIVersion"), this);
+    leUIVersion->setGeometry(leSliderVersion->x(), leSliderVersion->y() + leSliderVersion->height() + 20,
+                                    leSliderVersion->width(), leSliderVersion->height());
+
+    QLineEdit *leCN = new QLineEdit(tr("leCN"), this);
+    leCN->setGeometry(leUIVersion->x() - 68, leUIVersion->y() + leUIVersion->height() + 20,
+                                leUIVersion->width() + 68, leUIVersion->height());
+
+
+    m_versionInfoUIList.push_back(leDevName);
+    m_versionInfoUIList.push_back(leSliderVersion);
+    m_versionInfoUIList.push_back(leUIVersion);
+    m_versionInfoUIList.push_back(leCN);
+
+    for(int i = 0; i < m_versionInfoUIList.size(); ++i)
+    {
+//        m_versionInfoUIList.at(i)->setStyleSheet("QLineEdit{background-color:transparent}"
+//                                           "QLineEdit{border-width:0;border-style:outset}");
+    }
+
+    //Set version by object name
+//    for(int i = 0; i < m_versionInfoUIList.size(); ++i)
+//    {
+//        if(m_versionInfoUIList.at(i)->objectName() == "DevName")
+//        {
+//            QLineEdit *tmp = static_cast<QLineEdit*>(m_versionInfoUIList.at(i));
+//            tmp->setText("11111111111111111111");
+//        }
+//    }
+
+    //Init set false
+    ShowVersionInfoUI(false);
+}
+
+void MainWindow::SystemSetUI()
+{
+    QCheckBox *chbSound = new QCheckBox(tr("Check"), this);
+    chbSound->setGeometry(this->width() - 110, 66, 100, 30);
+
+    QCheckBox *chkDetectGate = new QCheckBox(tr("Check"), this);
+    chkDetectGate->setGeometry(chbSound->x(), chbSound->y() + chbSound->height() + 20,
+                                chbSound->width(), chbSound->height());
+
+    m_systemSetUIList.push_back(chbSound);
+    m_systemSetUIList.push_back(chkDetectGate);
+
+    //Init set false
+    ShowSystemSetUI(false);
+}
+
+void MainWindow::MoveZUI()
+{
+    //pushbutton 的按下效果没有显示
+    QButtonGroup *box = new QButtonGroup;
+    box->setExclusive(true);
+    QPushButton *btn0_1mm = new QPushButton(tr("btn0_1mm"), this);
+    btn0_1mm->setGeometry(40, 80, 125, 50);
+    btn0_1mm->setCheckable(true);
+    box->addButton(btn0_1mm);
+
+    QPushButton *btn1mm = new QPushButton(tr("btn1mm"), this);
+    btn1mm->setGeometry(btn0_1mm->x() + btn0_1mm->width() + 12, btn0_1mm->y(),
+                         btn0_1mm->width(), btn0_1mm->height());
+    btn1mm->setCheckable(true);
+    box->addButton(btn1mm);
+
+    QPushButton *btn10mm = new QPushButton(tr("btn10mm"), this);
+    btn10mm->setGeometry(btn1mm->x() + btn1mm->width() + 12, btn1mm->y(),
+                           btn1mm->width(), btn1mm->height());
+    btn10mm->setCheckable(true);
+    box->addButton(btn10mm);
+
+    QPushButton *btnUp = new QPushButton(tr("btnUp"), this);
+    btnUp->setGeometry(24, 161, 113, 65);
+    connect(btnUp, SIGNAL(clicked(bool)), this, SLOT(slotTest()));//test code
+
+    QPushButton *btnDown = new QPushButton(tr("btnDown"), this);
+    btnDown->setGeometry(btnUp->x() + btnUp->width() + 47, btnUp->y(),
+                         btnUp->width(), btnUp->height());
+
+    QPushButton *btnNon = new QPushButton(tr("btnNon"), this);
+    btnNon->setGeometry(btnUp->x(), btnUp->y() + btnUp->height() + 14,
+                         btnUp->width(), btnUp->height());
+
+    QPushButton *btnZ0 = new QPushButton(tr("btnZ0"), this);
+    btnZ0->setGeometry(btnDown->x(), btnNon->y(),
+                         btnUp->width(), btnUp->height());
+
+    QPushButton *btnHome = new QPushButton(tr("btnHome"), this);
+    btnHome->setGeometry(btnDown->x() + btnDown->width() + 47, btnDown->y(),
+                         btnUp->width(), btnUp->height() * 2 + 14);
+    connect(btnHome, &QPushButton::clicked, this, [=](){WhichUI(MAIN);});
+
+    m_moveZUIList.push_back(btn0_1mm);
+    m_moveZUIList.push_back(btn1mm);
+    m_moveZUIList.push_back(btn10mm);
+    m_moveZUIList.push_back(btnUp);
+    m_moveZUIList.push_back(btnDown);
+    m_moveZUIList.push_back(btnNon);
+    m_moveZUIList.push_back(btnZ0);
+    m_moveZUIList.push_back(btnHome);
+
+    //Init set false
+    ShowMoveZUI(false);
+}
+
+void MainWindow::DetectResinUI()
+{
+    QRadioButton *radioChiese = new QRadioButton(tr("Check"), this);
+    radioChiese->setGeometry(this->width() - 110, 66, 100, 30);
+
+    QRadioButton *radioEnglish = new QRadioButton(tr("Check"), this);
+    radioEnglish->setGeometry(radioChiese->x(), radioChiese->y() + radioChiese->height() + 20,
+                           radioChiese->width(), radioChiese->height());
+
+    QPushButton *btnDetect = new QPushButton(tr("btnDetect"), this);
+    btnDetect->setGeometry(m_btnLanguage->x() + m_btnPrePage->width() + 140, m_btnPrePage->y(),
+                              m_btnPrePage->width(), m_btnPrePage->height());
+
+    m_detectResinUIList.push_back(radioChiese);
+    m_detectResinUIList.push_back(radioEnglish);
+    m_detectResinUIList.push_back(btnDetect);
+
+    //Init set false
+    ShowDetectResinUI(false);
+}
+
+void MainWindow::DetectLightUI()
+{
+    QLineEdit *leSec = new QLineEdit(tr("leSec"), this);
+    //leSec->setGeometry(this->width() - leSec->width() - 17, 57, 93, 60);
+    leSec->setGeometry(this->width() - leSec->width() - 10, 72, 60, 30);
+    leSec->setAlignment(Qt::AlignRight);
+
+    QPushButton *btnUp = new QPushButton(tr("btnUp"), this);
+    btnUp->setGeometry(this->width() - btnUp->width() - 15, 130, 92, 46);
+
+    QPushButton *btnDown = new QPushButton(tr("btnDown"), this);
+    btnDown->setGeometry(btnUp->x(), btnUp->y() + btnUp->height() + 14,
+                           btnUp->width(), btnUp->height());
+
+    QPushButton *btnNext = new QPushButton(tr("btnNext"), this);
+    btnNext->setGeometry(btnUp->x(), btnDown->y() + btnDown->height() + 12,
+                           btnUp->width(), btnUp->height() + 15);
+
+
+    m_detectLightUIList.push_back(leSec);
+    m_detectLightUIList.push_back(btnUp);
+    m_detectLightUIList.push_back(btnDown);
+    m_detectLightUIList.push_back(btnNext);
+
+    //Init set false
+    ShowDetectLightUI(false);
+}
+
+void MainWindow::slotTest()
+{
+    QPushButton *tmp;
+    for(int i = 0; i < m_moveZUIList.size(); ++i)
+    {
+        tmp = static_cast<QPushButton*>(m_moveZUIList.at(i));
+        if(tmp->text() == "btn0_1mm" || tmp->text() == "btn1mm" || tmp->text() == "btn10mm")
+            qDebug() << tmp->text() << " :" << tmp->isChecked();
+    }
+}
+
 void MainWindow::ShowMainUI(bool visible)
 {
     for(int i = 0; i < m_mainUIList.size(); ++i)
@@ -404,10 +629,59 @@ void MainWindow::ShowLanguageUI(bool visible)
     }
 }
 
+void MainWindow::ShowNetInfoUI(bool visible)
+{
+    for(int i = 0; i < m_netInfoUIList.size(); ++i)
+    {
+        m_netInfoUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowVersionInfoUI(bool visible)
+{
+    for(int i = 0; i < m_versionInfoUIList.size(); ++i)
+    {
+        m_versionInfoUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowSystemSetUI(bool visible)
+{
+    for(int i = 0; i < m_systemSetUIList.size(); ++i)
+    {
+        m_systemSetUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowMoveZUI(bool visible)
+{
+    for(int i = 0; i < m_moveZUIList.size(); ++i)
+    {
+        m_moveZUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowDetectResinUI(bool visible)
+{
+    for(int i = 0; i < m_detectResinUIList.size(); ++i)
+    {
+        m_detectResinUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowDetectLightUI(bool visible)
+{
+    for(int i = 0; i < m_detectLightUIList.size(); ++i)
+    {
+        m_detectLightUIList.at(i)->setVisible(visible);
+    }
+}
+
 void MainWindow::WhichUI(const EWHICHPAGE which)
 {
     QPalette palette;
     m_btnBack->setVisible(true);
+    m_btnBack->disconnect();
     qDebug() << "which = " << which;
     switch (which) {
     case MAIN:
@@ -434,58 +708,30 @@ void MainWindow::WhichUI(const EWHICHPAGE which)
         palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/7.png")));
         connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(SYSTEM);});
         break;
-    default:
-        break;
-    }
-
-    this->setPalette(palette);
-
-    QMap<EWHICHPAGE, pfShowUI>::iterator itr = g_pfShowUIMap.begin();
-    for(; itr != g_pfShowUIMap.end(); ++itr)
-    {
-        if(itr.key() == which)
-        {
-            (this->*(itr.value()))(true);
-        }
-        else
-        {
-            (this->*(itr.value()))(false);
-        }
-    }
-}
-
-void MainWindow::slotWhichUI()
-{
-    QPushButton* btn = (QPushButton*)sender();
-    EWHICHPAGE which;
-    QPalette palette;
-    m_btnBack->setVisible(true);
-    qDebug() << "which = " << which;
-    switch (which) {
-    case MAIN:
-        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/1.png")));
-        m_btnBack->setVisible(false);
-        break;
-    case FILELIST:
-        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/2.png")));
-        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(MAIN);});
-        break;
-    case SYSTEM:
-        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/3.png")));
-        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(MAIN);});
-        break;
-    case TOOLPAGE_1:
-        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/4.png")));
-        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(MAIN);});
-        break;
-    case TOOLPAGE_2:
-        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/5.png")));
-        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(MAIN);});
-        break;
-    case LANGUAGE:
-        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/7.png")));
+    case NETINFO:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/8.png")));
         connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(SYSTEM);});
         break;
+    case VERSIONINFO:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/9.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(SYSTEM);});
+        break;
+    case SYSTEMSET:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/10.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(SYSTEM);});
+        break;
+    case MOVEZ:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/11.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_1);});
+        break;
+    case DETECTRESIN_1:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/12.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_1);});
+        break;
+    case DETECTLIGHT:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/13.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_1);});
+        break;
     default:
         break;
     }
@@ -505,4 +751,5 @@ void MainWindow::slotWhichUI()
         }
     }
 }
+
 

@@ -24,13 +24,13 @@ typedef enum eWhichPage{
     VERSIONINFO,
     SYSTEMSET,
     MOVEZ,
-    DETECTRESION_1,
+    DETECTRESIN_1,
     DETECTLIGHT,
     CONNCLOUD,
     POWERSET,
     ININSIDETEST,
     PRINTTEST,
-    DETECTRESION_2,
+    DETECTRESIN_2,
     EXECLIGHT,
     NETTEST,
     CLOUDTEST,
@@ -55,18 +55,31 @@ public:
     void ToolPage_1UI();
     void ToolPage_2UI();
     void LanguageUI();
+    void NetInfoUI();
+    void VersionInfoUI();
+    void SystemSetUI();
+    void MoveZUI();
+    void DetectResinUI();
+    void DetectLightUI();
+
     void ShowMainUI(bool visible);
     void ShowFileListUI(bool visible);
     void ShowSystemUI(bool visible);
     void ShowToolPage_1UI(bool visible);
     void ShowToolPage_2UI(bool visible);
     void ShowLanguageUI(bool visible);
+    void ShowNetInfoUI(bool visible);
+    void ShowVersionInfoUI(bool visible);
+    void ShowSystemSetUI(bool visible);
+    void ShowMoveZUI(bool visible);
+    void ShowDetectResinUI(bool visible);
+    void ShowDetectLightUI(bool visible);
 
     void WhichUI(const EWHICHPAGE which);
 
 public slots:
 
-    void slotWhichUI();
+    void slotTest();
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
@@ -97,7 +110,7 @@ private:
 
     //system UI
     QPushButton *m_btnLanguage;
-    QPushButton *m_btnWeb;
+    QPushButton *m_btnNetInfo;
     QPushButton *m_btnVersion;
     QPushButton *m_btnSet;
     QPushButton *m_btnPrePage;
@@ -112,6 +125,24 @@ private:
 
     //Language UI
     QList<QWidget*> m_languageUIList;
+
+    //Net information UI
+    QList<QWidget*> m_netInfoUIList;
+
+    //Version UI
+    QList<QWidget*> m_versionInfoUIList;
+
+    //System set UI
+    QList<QWidget*> m_systemSetUIList;
+
+    //Move Z UI
+    QList<QWidget*> m_moveZUIList;
+
+    //Detect resin UI
+    QList<QWidget*> m_detectResinUIList;
+
+    //Detect light UI
+    QList<QWidget*> m_detectLightUIList;
 };
 
 #endif // MAINWINDOW_H
