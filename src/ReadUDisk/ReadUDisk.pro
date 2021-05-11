@@ -28,7 +28,11 @@ SOURCES += \
         mainwindow.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    ../build-ReadUDisk-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/ui_mainwindow.h
 
 FORMS += \
         mainwindow.ui
+
+RESOURCES += \
+    ../../source/anycubic_ui.qrc

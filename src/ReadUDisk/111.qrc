@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>1.bmp</file>
+        <file>cansel.png</file>
+        <file>main.cpp</file>
+        <file>mainwindow.cpp</file>
+        <file>mainwindow.h</file>
+    </qresource>
+</RCC>

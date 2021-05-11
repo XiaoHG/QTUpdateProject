@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/">
+        <file>anycubic_UI/2.bmp</file>
+        <file>anycubic_UI/3.bmp</file>
+        <file>anycubic_UI/4.bmp</file>
+        <file>anycubic_UI/5.bmp</file>
+        <file>anycubic_UI/6.bmp</file>
+        <file>anycubic_UI/7.bmp</file>
+        <file>anycubic_UI/8.bmp</file>
+        <file>anycubic_UI/9.bmp</file>
+        <file>anycubic_UI/10.bmp</file>
+        <file>anycubic_UI/11.bmp</file>
+        <file>anycubic_UI/12.bmp</file>
+        <file>anycubic_UI/13.bmp</file>
+        <file>anycubic_UI/14.bmp</file>
+        <file>anycubic_UI/15.bmp</file>
+        <file>anycubic_UI/16.bmp</file>
+        <file>anycubic_UI/19.bmp</file>
+        <file>anycubic_UI/20.bmp</file>
+        <file>anycubic_UI/21.bmp</file>
+        <file>anycubic_UI/22.bmp</file>
+        <file>anycubic_UI/23.bmp</file>
+        <file>anycubic_UI/24.bmp</file>
+        <file>anycubic_UI/25.bmp</file>
+        <file>anycubic_UI/26.bmp</file>
+        <file>anycubic_UI/2.png</file>
+        <file>anycubic_UI/1.png</file>
+    </qresource>
+</RCC>
