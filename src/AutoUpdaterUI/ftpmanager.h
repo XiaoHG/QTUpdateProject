@@ -24,7 +24,7 @@ public:
 public slots:
     void uploadFinished();
     void downloadFinished();
-    void error(QNetworkReply::NetworkError error);
+    void error(QNetworkReply::NetworkError);
 
 signals:
     void sigDownloadUpdaterXmlOver();

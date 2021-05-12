@@ -34,6 +34,8 @@ QNetworkReply *FtpManager::get(const QString &downloadPath, const QString &local
     // 设置下载路径
     url.setPath(downloadPath);
 
+    qDebug() << "downloadPath = " << downloadPath;
+
     QNetworkReply *pReply = manager.get(QNetworkRequest(url));
     connect(pReply, SIGNAL(finished()), SLOT(downloadFinished()));
     connect(pReply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(error(QNetworkReply::NetworkError)));
@@ -69,15 +71,17 @@ void FtpManager::downloadFinished()
     {
         sigDownloadUpdaterXmlOver();
         qDebug() << "file: " << path << " download success!";
+        return;
     }
     if(path.contains("versionInfo.txt"))
     {
         sigDownloadVersionInfoFileOver();
         qDebug() << "file: " << path << " download success!";
+        return;
     }
 }
 
-void FtpManager::error(QNetworkReply::NetworkError error)
+void FtpManager::error(QNetworkReply::NetworkError)
 {
-    qDebug() << error;
+    qDebug() << "error = ";
 }

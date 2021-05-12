@@ -77,7 +77,7 @@ static const uint qt_meta_data_FtpManager[] = {
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 7,    6,
+    QMetaType::Void, 0x80000000 | 7,    2,
 
        0        // eod
 };

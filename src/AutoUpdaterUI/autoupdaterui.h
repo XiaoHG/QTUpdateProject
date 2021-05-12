@@ -112,7 +112,6 @@ private:
     CAutoUpdater m_updater;
 
     FtpManager *m_ftp;
-
 };
 
 #endif // AUTOUPDATERUI_H

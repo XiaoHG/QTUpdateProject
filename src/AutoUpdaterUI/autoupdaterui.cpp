@@ -221,10 +221,14 @@ void AutoUpdaterUI::testInterface()
 
 void AutoUpdaterUI::CheckUpdater()
 {
+    QDir downloadDir(QApplication::applicationDirPath() + "/download");
+    if(!downloadDir.exists())
+        downloadDir.mkdir(QApplication::applicationDirPath() + "/download");
+
     FtpManager *ftp = new FtpManager();
     ftp->setHost("localhost");
-    connect(ftp, SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
     ftp->get("/mainV1.0/updater.xml", QApplication::applicationDirPath() + "/download/updater.xml");
+    connect(ftp, SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
 }
 
 /*update or not, checked update*/
@@ -232,6 +236,19 @@ bool AutoUpdaterUI::CheckUpdate()
 {
     //从版本文件中读取版本号，并进行本地版本和下载XML版本对比，得出是否更新的结论
     m_isUpdate = m_updater.CheckVersionForUpdate();//对比下载下来的XML和本地版本的XML
+
+    m_outputVersionInfoEdit->clear();
+    QStringList strListVersionInfo = m_updater.GetVersionInfo();
+    if(strListVersionInfo.isEmpty())
+        m_outputVersionInfoEdit->append(QStringLiteral("版本信息缺失！"));
+    qDebug() << "strListVersionInfo.size = " << strListVersionInfo.size();
+    for(int i = 0; i < strListVersionInfo.size(); ++i)
+    {
+        qDebug() << "version content: " << i << " : " << strListVersionInfo.at(i);
+        m_outputVersionInfoEdit->append(strListVersionInfo.at(i));
+    }
+    m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
+
     //更新则isUpdate = true,否则false
     if(m_isUpdate)
     {
@@ -245,6 +262,7 @@ bool AutoUpdaterUI::CheckUpdate()
         }
         else
         {
+
             UpdateUI();
         }
     }
@@ -259,8 +277,6 @@ bool AutoUpdaterUI::CheckUpdate()
 
 void AutoUpdaterUI::UpdateUI()
 {
-    m_outputVersionInfoEdit->clear();
-
     m_titleLabel->setText(QStringLiteral("检查更新！"));
 
     //隐藏正在更新界面组件
@@ -324,7 +340,6 @@ void AutoUpdaterUI::FinishUpdate()
 
 void AutoUpdaterUI::NotUpdateUI()
 {
-    m_outputVersionInfoEdit->clear();
 
     QString strCurrentVersion = m_updater.GetVersion(QApplication::applicationDirPath() + "/updater.xml");
     m_labelLasterVersion->setText(strCurrentVersion);
@@ -360,9 +375,8 @@ void AutoUpdaterUI::slotDownloadUpdaterXmlOver()
 
     FtpManager *ftp = new FtpManager();
     ftp->setHost("localhost");
-    connect(ftp, SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
     ftp->get("/mainV1.0/versionInfo.txt", QApplication::applicationDirPath() + "/download/versionInfo.txt");
-
+    connect(ftp, SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
 }
 
 void AutoUpdaterUI::slotDownloadVersionInfoFileOver()
@@ -370,14 +384,6 @@ void AutoUpdaterUI::slotDownloadVersionInfoFileOver()
     qDebug() << "slotDownloadVersionInfoFileOver";
     //m_downloadVersionInfos获取到了最新版本的版本信息，m_outputVersionInfoEdit进行显示
     //目前为设置读取XML，所以此时为空
-    QStringList strListVersionInfo = m_updater.GetVersionInfo();
-    if(strListVersionInfo.isEmpty())
-        m_outputVersionInfoEdit->append(QStringLiteral("版本信息缺失！"));
-    for(int i = 0; i < strListVersionInfo.size(); ++i)
-    {
-        m_outputVersionInfoEdit->append(strListVersionInfo.at(i));
-    }
-    m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
     CheckUpdate();
 }
 

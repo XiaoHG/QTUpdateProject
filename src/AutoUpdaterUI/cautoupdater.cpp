@@ -263,7 +263,7 @@ void CAutoUpdater::DownloadUpdateFiles()
         m_progUpdate = 100 * i / m_listFileName.size();
 
         /**放置下载文件的路径**/
-        QString strPlaceDir = strCurrentDir + "/download/" + m_listFileDir.at(i);
+        QString strPlaceDir = QApplication::applicationDirPath() + "/download/" + m_listFileDir.at(i);
         strPlaceDirList.push_back(strPlaceDir);
         QDir directory(strPlaceDir);//如果路径不存在，则创建
         if(!directory.exists())
@@ -298,21 +298,25 @@ void CAutoUpdater::DownloadUpdateFiles()
     m_strTip = QStringLiteral("更新完成！");
     qDebug() << m_strTip;
 
-    //统一复制到旧的目录下。 这里的代码是复制的代码
+    //统一复制到旧的目录的上一级目录，作为一个独立目录，文件命为版本。 这里的代码是复制的代码
+    QString xml = QApplication::applicationDirPath() + "/download/updater.xml";
+    QString copyTiggerPath = QApplication::applicationDirPath() + tr("/../anycubic%1").arg(GetVersion(xml));
     qDebug() << "Copy file size = " << m_listFileName.size();
     for(int i = 0; i < m_listFileName.size(); ++i)
     {
         /**将下载好的文件复制到主目录中,先删除原先的文件**/
-        QString strLocalFileName = strCurrentDir + "/" +
+        QString strLocalFileName = copyTiggerPath + "/" +
                                     m_listFileDir.at(i) + "/"
                                     + m_listFileName.at(i);
         if(QFile::exists(strLocalFileName))
             QFile::remove(strLocalFileName);
 
+        qDebug() << "strLocalFileName = " << strLocalFileName;
+
         //如果路径不存在，则创建
-        QDir directory1(strCurrentDir + "/" + m_listFileDir.at(i));
+        QDir directory1(copyTiggerPath + "/" + m_listFileDir.at(i));
         if(!directory1.exists())
-            directory1.mkpath(strCurrentDir + "/" + m_listFileDir.at(i));
+            directory1.mkpath(copyTiggerPath + "/" + m_listFileDir.at(i));
 
         //拷贝
         qDebug() << "copy : -----------------==============------------------";
@@ -325,8 +329,8 @@ void CAutoUpdater::DownloadUpdateFiles()
     }
 
     /**替换旧的xml文件**/
-    QString strNewXML = strCurrentDir + "/download/updater.xml"; //最新的XML文件
-    QString strOldXML = strCurrentDir + "/updater.xml"; //旧的XML文件
+    QString strNewXML = QApplication::applicationDirPath() + "/download/updater.xml"; //最新的XML文件
+    QString strOldXML = copyTiggerPath + "/updater.xml"; //旧的XML文件
     QFile::remove(strOldXML);
     QFile::copy(strNewXML, strOldXML);
 

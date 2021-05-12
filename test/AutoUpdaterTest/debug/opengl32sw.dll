@@ -75,8 +75,8 @@ table tr.alt td,table tr.alt th{}
   </div> 
   <div id="details-right"> 
    <table border="0" cellpadding="0" cellspacing="0"> 
-    <tr class="alt"><th>请求的 URL</th><td>&nbsp;&nbsp;&nbsp;http://localhost:80/updateClientVersion/versionInfo.txt</td></tr> 
-    <tr><th>物理路径</th><td>&nbsp;&nbsp;&nbsp;C:\inetpub\wwwroot\updateClientVersion\versionInfo.txt</td></tr> 
+    <tr class="alt"><th>请求的 URL</th><td>&nbsp;&nbsp;&nbsp;http://localhost:80/updateClientVersion/opengl32sw.dll</td></tr> 
+    <tr><th>物理路径</th><td>&nbsp;&nbsp;&nbsp;C:\inetpub\wwwroot\updateClientVersion\opengl32sw.dll</td></tr> 
     <tr class="alt"><th>登录方法</th><td>&nbsp;&nbsp;&nbsp;匿名</td></tr> 
     <tr><th>登录用户</th><td>&nbsp;&nbsp;&nbsp;匿名</td></tr> 
      

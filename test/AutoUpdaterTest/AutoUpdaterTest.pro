@@ -37,6 +37,4 @@ INCLUDEPATH += ../../src/AutoUpdaterUI
 LIBS += -L../../lib -lAutoUpdaterUI_d
 
 RESOURCES += \
-    ../../source/icon.qrc \
-    ../../source/readudisk.qrc \
-    ../../source/anycubic_ui.qrc
+    ../../source/icon.qrc
