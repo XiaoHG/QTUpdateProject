@@ -1,5 +1,5 @@
 ﻿#include "mainwindow.h"
-#include "mywidget.h"
+#include "fileselectwidget.h"
 #include "ui_mainwindow.h"
 
 #include <QDebug>
@@ -228,43 +228,43 @@ void MainWindow::FileListUI()
     QLineEdit *printFileNameLE[4];
     QVBoxLayout *vbLayout[4];
 
-    MyWidget *myWidgets[4];
+    FileSelectWidget *FileSelectWidgets[4];
     for(int i = 0; i < 4; ++i)
     {
-        myWidgets[i] = new MyWidget(this);
-        connect(myWidgets[i], &MyWidget::clicked, this, [=](){WhichUI(PRINTTEST);});
+        FileSelectWidgets[i] = new FileSelectWidget(this);
+        connect(FileSelectWidgets[i], &FileSelectWidget::clicked, this, [=](){WhichUI(PRINTTEST);});
 
-        showFileLabel[i] = new QLabel(myWidgets[i]);
+        showFileLabel[i] = new QLabel(FileSelectWidgets[i]);
         showFileLabel[i]->setScaledContents(true);
 
-        printFileNameLE[i] = new QLineEdit(myWidgets[i]);
+        printFileNameLE[i] = new QLineEdit(FileSelectWidgets[i]);
         printFileNameLE[i]->setAlignment(Qt::AlignCenter);
 
-        vbLayout[i] = new QVBoxLayout(myWidgets[i]);
+        vbLayout[i] = new QVBoxLayout(FileSelectWidgets[i]);
         vbLayout[i]->addWidget(showFileLabel[i]);
         vbLayout[i]->addWidget(printFileNameLE[i]);
         vbLayout[i]->setSpacing(20);
 
-        myWidgets[i]->setLayout(vbLayout[i]);
+        FileSelectWidgets[i]->setLayout(vbLayout[i]);
 
     }
 
-    myWidgets[0]->setGeometry(24, 57, 158, 120);
-    myWidgets[1]->setGeometry(myWidgets[0]->x() + myWidgets[1]->width() + 70, myWidgets[0]->y(),
-                                myWidgets[0]->width(), myWidgets[0]->height());
-    myWidgets[2]->setGeometry(myWidgets[0]->x(), myWidgets[0]->y() + myWidgets[0]->height() + 12,
-                                myWidgets[0]->width(), myWidgets[0]->height());
-    myWidgets[3]->setGeometry(myWidgets[1]->x(), myWidgets[2]->y(),
-                                myWidgets[0]->width(), myWidgets[0]->height());
+    FileSelectWidgets[0]->setGeometry(24, 57, 158, 120);
+    FileSelectWidgets[1]->setGeometry(FileSelectWidgets[0]->x() + FileSelectWidgets[1]->width() + 70, FileSelectWidgets[0]->y(),
+                                FileSelectWidgets[0]->width(), FileSelectWidgets[0]->height());
+    FileSelectWidgets[2]->setGeometry(FileSelectWidgets[0]->x(), FileSelectWidgets[0]->y() + FileSelectWidgets[0]->height() + 12,
+                                FileSelectWidgets[0]->width(), FileSelectWidgets[0]->height());
+    FileSelectWidgets[3]->setGeometry(FileSelectWidgets[1]->x(), FileSelectWidgets[2]->y(),
+                                FileSelectWidgets[0]->width(), FileSelectWidgets[0]->height());
 
 
 
     for(int j = 0; j < 4; ++j)
     {
-        QList<QLineEdit*> lineEdList = myWidgets[j]->findChildren<QLineEdit*>();
+        QList<QLineEdit*> lineEdList = FileSelectWidgets[j]->findChildren<QLineEdit*>();
         lineEdList[0]->setText(tr("file 1"));
 
-        QList<QLabel*> labelList = myWidgets[j]->findChildren<QLabel*>();
+        QList<QLabel*> labelList = FileSelectWidgets[j]->findChildren<QLabel*>();
         labelList[0]->setStyleSheet("border-radius:5px");
 
         //debug
@@ -292,7 +292,7 @@ void MainWindow::FileListUI()
     m_fileUIList.push_back(m_btnUDiskFile);
     for(int i = 0; i < 4; ++i)
     {
-        m_fileUIList.push_back(myWidgets[i]);
+        m_fileUIList.push_back(FileSelectWidgets[i]);
     }
 
     //Init set false

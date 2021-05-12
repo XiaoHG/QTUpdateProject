@@ -26,12 +26,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    mywidget.cpp
+    fileselectwidget.cpp
 
 HEADERS += \
         mainwindow.h \
     ../build-ReadUDisk-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/ui_mainwindow.h \
-    mywidget.h
+    fileselectwidget.h
 
 FORMS += \
         mainwindow.ui
