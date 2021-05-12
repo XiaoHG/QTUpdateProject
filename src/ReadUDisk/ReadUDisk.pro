@@ -25,11 +25,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    mywidget.cpp
 
 HEADERS += \
         mainwindow.h \
-    ../build-ReadUDisk-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/ui_mainwindow.h
+    ../build-ReadUDisk-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/ui_mainwindow.h \
+    mywidget.h
 
 FORMS += \
         mainwindow.ui

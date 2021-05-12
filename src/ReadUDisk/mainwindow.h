@@ -68,6 +68,9 @@ public:
     void CloudTestUI();
     void NetTestUI();
     void CameroTestUI();
+    void ExecLightUI();
+    void PrintTestUI();
+    void PrintParameterUI();
 
     void ShowMainUI(bool visible);
     void ShowFileListUI(bool visible);
@@ -87,13 +90,17 @@ public:
     void ShowCloudTestUI(bool visible);
     void ShowNetTestUI(bool visible);
     void ShowCameroTestUI(bool visible);
+    void ShowExecLightUI(bool visible);
+    void ShowPrintTestUI(bool visible);
+    void ShowPrintParameterUI(bool visible);
 
     void WhichUI(const EWHICHPAGE which);
 
+    void ExecLight();
 public slots:
-
     void slotTest();
     void slotTestMM();
+    void slotExecLightProcess();
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
@@ -119,7 +126,6 @@ private:
     QPushButton *m_btnUp;
     QPushButton *m_btnDown;
     QPushButton *m_btnUDiskFile;
-    QWidget *m_widgets[4];
     QList<QWidget*> m_fileUIList;
 
     //system UI
@@ -175,6 +181,16 @@ private:
 
     //Camero test UI
     QList<QWidget*> m_cameroTestUIList;
+
+    //Exec Light UI
+    QList<QWidget*> m_execLightUIList;
+
+    //Print test UI
+    QList<QWidget*> m_printTestUIList;
+
+    //
+    //Print parameter UI
+    QList<QWidget*> m_printParameterUIList;
 };
 
 #endif // MAINWINDOW_H

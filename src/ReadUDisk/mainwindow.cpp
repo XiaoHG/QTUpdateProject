@@ -1,4 +1,5 @@
 ﻿#include "mainwindow.h"
+#include "mywidget.h"
 #include "ui_mainwindow.h"
 
 #include <QDebug>
@@ -15,6 +16,9 @@
 #include <QCheckBox>
 #include <QRadioButton>
 #include <QButtonGroup>
+#include <QProgressBar>
+#include <QTimer>
+#include <QTextEdit>
 
 //info: 设置objectName用于遍历找到对应控件并设置对应值
 
@@ -47,6 +51,11 @@ MainWindow::MainWindow(QWidget *parent) :
 //                        "QLineEdit{border-width:0;border-style:outset}");
 
 
+    //font
+    QFont f(tr("黑体"), 12);
+    this->setFont(f);
+
+
     m_btnBack = new QPushButton(this);
     m_btnBack->setGeometry(this->width() - m_btnBack->width() + 20, 0, 80, 45);
     //connect(m_btnBack, SIGNAL(clicked(bool)), this, SLOT(slotMainUI()));
@@ -71,6 +80,9 @@ MainWindow::MainWindow(QWidget *parent) :
     CloudTestUI();
     NetTestUI();
     CameroTestUI();
+    ExecLightUI();
+    PrintTestUI();
+    PrintParameterUI();
 
     QPalette palette;
     palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/1.png")));
@@ -94,6 +106,9 @@ MainWindow::MainWindow(QWidget *parent) :
     g_pfShowUIMap.insert(CLOUDTEST, &MainWindow::ShowCloudTestUI);
     g_pfShowUIMap.insert(NETTEST, &MainWindow::ShowNetTestUI);
     g_pfShowUIMap.insert(CAMEROTEST, &MainWindow::ShowCameroTestUI);
+    g_pfShowUIMap.insert(EXECLIGHT, &MainWindow::ShowExecLightUI);
+    g_pfShowUIMap.insert(PRINTTEST, &MainWindow::ShowPrintTestUI);
+    g_pfShowUIMap.insert(PRINTPARAMETER, &MainWindow::ShowPrintParameterUI);
 }
 
 MainWindow::~MainWindow()
@@ -188,12 +203,13 @@ void MainWindow::MainUI()
     m_mainUIList.push_back(m_btnTool);
 
     //All main widget is visible
+    ShowMainUI(true);
 }
 
 void MainWindow::FileListUI()
 {
     m_btnResFile = new QPushButton(tr("m_btnResFile"), this);
-    m_btnResFile->setGeometry(this->width() - m_btnResFile->width() - 17, 57, 93, 60);
+    m_btnResFile->setGeometry(this->width() - m_btnResFile->width() - 16, 57, 93, 60);
 
     m_btnUp = new QPushButton(tr("m_btnUp"), this);
     m_btnUp->setGeometry(m_btnResFile->x(), m_btnResFile->y() + m_btnResFile->height() + 13,
@@ -207,46 +223,46 @@ void MainWindow::FileListUI()
     m_btnUDiskFile->setGeometry(m_btnDown->x(), m_btnDown->y() + m_btnDown->height() + 12,
                            m_btnResFile->width(), m_btnResFile->height());
 
-    QLabel *printFileLabel[4];
+    QLabel *showFileLabel[4];
     QLineEdit *printFileNameLE[4];
     QVBoxLayout *vbLayout[4];
+
+    MyWidget *myWidgets[4];
     for(int i = 0; i < 4; ++i)
     {
-        m_widgets[i] = new QWidget(this);
-        m_widgets[i]->setStyleSheet("background-color:rbga(100, 100, 100, 100);"
-                                    "border-radius:10px");
+        myWidgets[i] = new MyWidget(this);
+        connect(myWidgets[i], &MyWidget::clicked, this, [=](){WhichUI(PRINTTEST);});
 
-        printFileLabel[i] = new QLabel(m_widgets[i]);
+        showFileLabel[i] = new QLabel(myWidgets[i]);
+        showFileLabel[i]->setScaledContents(true);
 
-        printFileNameLE[i] = new QLineEdit(m_widgets[i]);
-        printFileNameLE[i]->setAlignment(Qt::AlignHCenter);
+        printFileNameLE[i] = new QLineEdit(myWidgets[i]);
+        printFileNameLE[i]->setAlignment(Qt::AlignCenter);
 
-        vbLayout[i] = new QVBoxLayout(m_widgets[i]);
-        vbLayout[i]->addWidget(printFileLabel[i]);
+        vbLayout[i] = new QVBoxLayout(myWidgets[i]);
+        vbLayout[i]->addWidget(showFileLabel[i]);
         vbLayout[i]->addWidget(printFileNameLE[i]);
+        vbLayout[i]->setSpacing(16);
 
-        m_widgets[i]->setLayout(vbLayout[i]);
+        myWidgets[i]->setLayout(vbLayout[i]);
 
     }
-    m_widgets[0]->setGeometry(25, 58, 158, 120);
-    m_widgets[1]->setGeometry(25 + m_widgets[1]->width() + 70, 58, 158, 120);
-    m_widgets[2]->setGeometry(25, 58 + m_widgets[1]->height() + 12, 158, 120);
-    m_widgets[3]->setGeometry(m_widgets[1]->x(), m_widgets[2]->y(), 158, 120);
 
-    QImage *img = new QImage();
-    img->load(":/anycubic_UI_png/2.png");
-    QList<QLabel*> labelList = m_widgets[0]->findChildren<QLabel*>();
-    labelList.at(0)->setPixmap(QPixmap::fromImage(*img));
-    labelList.at(0)->setScaledContents(true);
+    myWidgets[0]->setGeometry(24, 57, 158, 120);
+    myWidgets[1]->setGeometry(myWidgets[0]->x() + myWidgets[1]->width() + 70, myWidgets[0]->y(),
+                                myWidgets[0]->width(), myWidgets[0]->height());
+    myWidgets[2]->setGeometry(myWidgets[0]->x(), myWidgets[0]->y() + myWidgets[0]->height() + 12,
+                                myWidgets[0]->width(), myWidgets[0]->height());
+    myWidgets[3]->setGeometry(myWidgets[1]->x(), myWidgets[2]->y(),
+                                myWidgets[0]->width(), myWidgets[0]->height());
 
-    for(int i = 0; i < 4; ++i)
+    for(int j = 0; j < 4; ++j)
     {
-        QList<QLabel*> labelList = m_widgets[i]->findChildren<QLabel*>();
-        labelList.at(0)->setPixmap(QPixmap::fromImage(*img));
-        labelList.at(0)->setScaledContents(true);
+        QList<QLineEdit*> lineEdList = myWidgets[j]->findChildren<QLineEdit*>();
+        lineEdList[0]->setText(tr("file 1"));
 
-        QList<QLineEdit*> lineEdList = m_widgets[i]->findChildren<QLineEdit*>();
-        lineEdList.at(0)->setText(tr("File %1").arg(i));
+        QList<QLabel*> labelList = myWidgets[j]->findChildren<QLabel*>();
+        labelList[0]->setPixmap(QPixmap(":/anycubic_UI_png/1.png"));
     }
 
     m_fileUIList.push_back(m_btnResFile);
@@ -255,7 +271,7 @@ void MainWindow::FileListUI()
     m_fileUIList.push_back(m_btnUDiskFile);
     for(int i = 0; i < 4; ++i)
     {
-        m_fileUIList.push_back(m_widgets[i]);
+        m_fileUIList.push_back(myWidgets[i]);
     }
 
     //Init set false
@@ -266,10 +282,6 @@ void MainWindow::SystemUI()
 {
     m_btnLanguage = new QPushButton(tr("m_btnLanguage"), this);
     m_btnLanguage->setGeometry(24, 61, 209, 90);
-    //set property for use
-    m_btnLanguage->setProperty("Language", LANGUAGE);
-    //connect(m_btnLanguage, SIGNAL(clicked(bool)), this, SLOT(slotWhichUI()));
-    //connect(m_btnLanguage, SIGNAL(clicked(bool)), this, SLOT(slotLanguageUI()));
     connect(m_btnLanguage, &QPushButton::clicked, this, [=](){WhichUI(LANGUAGE);});
 
     m_btnNetInfo = new QPushButton(tr("m_btnNetInfo"), this);
@@ -440,22 +452,6 @@ void MainWindow::VersionInfoUI()
     m_versionInfoUIList.push_back(leUIVersion);
     m_versionInfoUIList.push_back(leCN);
 
-    for(int i = 0; i < m_versionInfoUIList.size(); ++i)
-    {
-//        m_versionInfoUIList.at(i)->setStyleSheet("QLineEdit{background-color:transparent}"
-//                                           "QLineEdit{border-width:0;border-style:outset}");
-    }
-
-    //Set version by object name
-//    for(int i = 0; i < m_versionInfoUIList.size(); ++i)
-//    {
-//        if(m_versionInfoUIList.at(i)->objectName() == "DevName")
-//        {
-//            QLineEdit *tmp = static_cast<QLineEdit*>(m_versionInfoUIList.at(i));
-//            tmp->setText("11111111111111111111");
-//        }
-//    }
-
     //Init set false
     ShowVersionInfoUI(false);
 }
@@ -564,29 +560,24 @@ void MainWindow::DetectLightUI()
     QPushButton *btn_1 = new QPushButton(tr("btn_1"), this);
     btn_1->setGeometry(25, 58, 158, 120);
     btn_1->setCheckable(true);
-    connect(btn_1, SIGNAL(clicked(bool)), this, SLOT(slotTest()));
     box->addButton(btn_1);
 
     QPushButton *btn_2 = new QPushButton(tr("btn_2"), this);
     btn_2->setGeometry(25 + btn_2->width() + 70, 58, 158, 120);
     btn_2->setCheckable(true);
-    connect(btn_2, SIGNAL(clicked(bool)), this, SLOT(slotTest()));
     box->addButton(btn_2);
 
     QPushButton *btn_3 = new QPushButton(tr("btn_3"), this);
     btn_3->setGeometry(25, 58 + btn_2->height() + 12, 158, 120);
     btn_3->setCheckable(true);
-    connect(btn_3, SIGNAL(clicked(bool)), this, SLOT(slotTest()));
     box->addButton(btn_3);
 
     QPushButton *btn_4 = new QPushButton(tr("btn_4"), this);
     btn_4->setGeometry(btn_2->x(), btn_3->y(), 158, 120);
     btn_4->setCheckable(true);
-    connect(btn_4, SIGNAL(clicked(bool)), this, SLOT(slotTest()));
     box->addButton(btn_4);
 
     QLineEdit *leSec = new QLineEdit(tr("leSec"), this);
-    //leSec->setGeometry(this->width() - leSec->width() - 17, 57, 93, 60);
     leSec->setGeometry(this->width() - leSec->width() - 10, 72, 60, 30);
     leSec->setAlignment(Qt::AlignRight);
 
@@ -611,6 +602,12 @@ void MainWindow::DetectLightUI()
     m_detectLightUIList.push_back(btnUp);
     m_detectLightUIList.push_back(btnDown);
     m_detectLightUIList.push_back(btnNext);
+
+    for(int i = 0; i < 4; ++i)
+    {
+        QPushButton *btnTmp = static_cast<QPushButton*>(m_detectLightUIList.at(i));
+        connect(btnTmp, &QPushButton::clicked, this, [=](){WhichUI(EXECLIGHT);});
+    }
 
     //Init set false
     ShowDetectLightUI(false);
@@ -751,6 +748,112 @@ void MainWindow::CameroTestUI()
     m_cameroTestUIList.push_back(leCameroStatus);
 
     ShowCameroTestUI(false);
+}
+
+void MainWindow::ExecLightUI()
+{
+    QWidget *widget = new QWidget(this);
+    widget->setGeometry(43, 84, 396, 115);
+    widget->setStyleSheet("QWidget{background-color:rgba(100, 100, 100, 50)}"
+                          "QWidget{border-radius:8px}");
+
+    QProgressBar *proess = new QProgressBar(this);
+    proess->setGeometry(92, widget->y() + widget->height() + 41, 296, 36);
+    proess->setOrientation(Qt::Horizontal);
+    proess->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
+    proess->setValue(100);
+    proess->setFormat(tr("Current progress : %1%").arg(50));
+    proess->setStyleSheet("QProgressBar{background-color:rgba(0, 0, 0, 0); color:white}"
+                          "QProgressBar::chunk{border-radius:3px;background:rgb(57, 97, 148)}");
+
+
+    m_execLightUIList.push_back(widget);
+    m_execLightUIList.push_back(proess);
+
+    ShowExecLightUI(false);
+}
+
+void MainWindow::PrintTestUI()
+{
+    QWidget *viewWidget = new QWidget(this);
+    viewWidget->setGeometry(26, 58, 327, 161);
+    viewWidget->setStyleSheet("QWidget{background-color:rgba(100, 100, 100, 100)}"
+                                "QWidget{border-radius:10px}");
+    QLabel *labelView = new QLabel(this);
+    labelView->setScaledContents(true);
+    labelView->setGeometry(30, 60, 320, 155);
+    labelView->setPixmap(QPixmap(":/anycubic_UI_png/1.png"));
+
+    QPushButton *btnSet = new QPushButton(tr("btnSet"), this);
+    btnSet->setGeometry(this->width() - btnSet->width() - 10, 56, 86, 76);
+    connect(btnSet, &QPushButton::clicked, this, [=](){WhichUI(PRINTPARAMETER);});
+
+    QPushButton *btnStart = new QPushButton(tr("btnStart"), this);
+    btnStart->setGeometry(btnSet->x(), btnSet->y() + btnSet->height() + 13,
+                         btnSet->width(), btnSet->height());
+
+    QPushButton *btnCansel = new QPushButton(tr("btnCansel"), this);
+    btnCansel->setGeometry(btnStart->x(), btnStart->y() + btnStart->height() + 13,
+                           btnStart->width(), btnStart->height());
+    connect(btnCansel, &QPushButton::clicked, this, [=](){WhichUI(FILELIST);});
+
+    QLineEdit *lePass = new QLineEdit(this);
+    lePass->setGeometry(70, this->height() - 50, 80, 27);
+    lePass->setText(tr("12:01:30"));
+
+    QLineEdit *leTotal = new QLineEdit(this);
+    leTotal->setGeometry(lePass->x() + lePass->width() + 43, lePass->y(),
+                            lePass->width(), lePass->height());
+    leTotal->setText(tr("24:01:30"));
+
+    QPushButton *btnMore = new QPushButton(this);
+    btnMore->setGeometry(leTotal->x() + leTotal->width() + 20, leTotal->y(), 28, 28);
+
+    m_printTestUIList.push_back(viewWidget);
+    m_printTestUIList.push_back(labelView);
+    m_printTestUIList.push_back(btnSet);
+    m_printTestUIList.push_back(btnStart);
+    m_printTestUIList.push_back(btnCansel);
+    m_printTestUIList.push_back(lePass);
+    m_printTestUIList.push_back(leTotal);
+    m_printTestUIList.push_back(btnMore);
+
+    ShowPrintTestUI(false);
+}
+
+void MainWindow::PrintParameterUI()
+{
+    QLineEdit *leFileName = new QLineEdit(tr("leFileName"), this);
+    leFileName->setGeometry(175, 61, 275, 30);
+
+    QLineEdit *lePrintTime = new QLineEdit(tr("lePrintTime"), this);
+    lePrintTime->setGeometry(leFileName->x(), leFileName->y() + leFileName->height() + 13,
+                             leFileName->width(), leFileName->height());
+
+    QLineEdit *leLeftTime = new QLineEdit(tr("leLeftTime"), this);
+    leLeftTime->setGeometry(lePrintTime->x(), lePrintTime->y() + lePrintTime->height() + 13,
+                             leFileName->width(), leFileName->height());
+
+    QLineEdit *leLeftWork = new QLineEdit(tr("leLeftWork"), this);
+    leLeftWork->setGeometry(leLeftTime->x(), leLeftTime->y() + leLeftTime->height() + 13,
+                             leFileName->width(), leFileName->height());
+
+    QLineEdit *leNeedResin = new QLineEdit(tr("leNeedResin"), this);
+    leNeedResin->setGeometry(leLeftWork->x(), leLeftWork->y() + leLeftWork->height() + 13,
+                             leFileName->width(), leFileName->height());
+
+    QLineEdit *lePrintProcess = new QLineEdit(tr("lePrintProcess"), this);
+    lePrintProcess->setGeometry(leNeedResin->x(), leNeedResin->y() + leNeedResin->height() + 13,
+                             leFileName->width(), leFileName->height());
+
+    m_printParameterUIList.push_back(leFileName);
+    m_printParameterUIList.push_back(lePrintTime);
+    m_printParameterUIList.push_back(leLeftTime);
+    m_printParameterUIList.push_back(leLeftWork);
+    m_printParameterUIList.push_back(leNeedResin);
+    m_printParameterUIList.push_back(lePrintProcess);
+
+    ShowPrintParameterUI(false);
 }
 
 void MainWindow::ShowMainUI(bool visible)
@@ -897,6 +1000,31 @@ void MainWindow::ShowCameroTestUI(bool visible)
     }
 }
 
+void MainWindow::ShowExecLightUI(bool visible)
+{
+    for(int i = 0; i < m_execLightUIList.size(); ++i)
+    {
+        m_execLightUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowPrintTestUI(bool visible)
+{
+    for(int i = 0; i < m_printTestUIList.size(); ++i)
+    {
+        m_printTestUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowPrintParameterUI(bool visible)
+{
+    for(int i = 0; i < m_printParameterUIList.size(); ++i)
+    {
+        m_printParameterUIList.at(i)->setVisible(visible);
+    }
+}
+
+
 void MainWindow::WhichUI(const EWHICHPAGE which)
 {
     QPalette palette;
@@ -976,12 +1104,25 @@ void MainWindow::WhichUI(const EWHICHPAGE which)
         palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/24.png")));
         connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(INNTEST);});
         break;
+    case EXECLIGHT:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/21.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(DETECTLIGHT);});
+        m_btnBack->setVisible(false);
+        ExecLight();//debug
+        break;
+    case PRINTTEST:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/19.png")));
+        m_btnBack->setVisible(false);
+        break;
+    case PRINTPARAMETER:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/26.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(PRINTTEST);});
+        break;
     default:
         break;
     }
 
     this->setPalette(palette);
-
     QMap<EWHICHPAGE, pfShowUI>::iterator itr = g_pfShowUIMap.begin();
     for(; itr != g_pfShowUIMap.end(); ++itr)
     {
@@ -993,6 +1134,49 @@ void MainWindow::WhichUI(const EWHICHPAGE which)
         {
             (this->*(itr.value()))(false);
         }
+    }
+}
+
+static QTimer *t;
+void MainWindow::ExecLight()
+{
+    QProgressBar *pbTmp;
+    for(int i = 0; i < m_execLightUIList.size(); ++i)
+    {
+        if(m_execLightUIList.at(i)->inherits("QProgressBar"))
+        {
+            pbTmp = static_cast<QProgressBar*>(m_execLightUIList.at(i));
+        }
+    }
+    pbTmp->setValue(0);
+    pbTmp->setFormat(tr("Current progress : %1%").arg(0));
+    qDebug() << "maximum = " << pbTmp->maximum();
+    t = new QTimer(this);
+    connect(t, SIGNAL(timeout()), this, SLOT(slotExecLightProcess()));
+    t->start(100);
+}
+
+void MainWindow::slotExecLightProcess()
+{
+    static int j = 0;
+    static QProgressBar *pbTmp;
+    for(int i = 0; i < m_execLightUIList.size(); ++i)
+    {
+        if(m_execLightUIList.at(i)->inherits("QProgressBar"))
+        {
+            pbTmp = static_cast<QProgressBar*>(m_execLightUIList.at(i));
+        }
+    }
+    j = pbTmp->value() + 1;
+    pbTmp->setValue(j);
+    pbTmp->setFormat(tr("Current progress : %1%").arg(j));
+    qDebug() << "j = " << j;
+    qDebug() << "maximum = " << pbTmp->maximum();
+    if(j == pbTmp->maximum())
+    {
+        t->stop();
+        m_btnBack->setVisible(true);
+        //pbTmp->setValue(0);
     }
 }
 
