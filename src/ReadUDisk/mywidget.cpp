@@ -6,18 +6,18 @@
 MyWidget::MyWidget(QWidget *parent)
     :QWidget(parent)
 {
-    this->setStyleSheet("background-color:rgba(150, 150, 150, 100)");
+    this->setStyleSheet("background-color:rgba(57, 97, 148, 255)");
 }
 
 void MyWidget::mouseReleaseEvent(QMouseEvent *ev)
 {
     Q_UNUSED(ev)
     emit clicked();
-    this->setStyleSheet("background-color:rgba(150, 150, 150, 100)");
+    this->setStyleSheet("background-color:rgba(57, 97, 148, 255)");
 }
 
 void MyWidget::mousePressEvent(QMouseEvent *ev)
 {
     Q_UNUSED(ev)
-    this->setStyleSheet("background-color:rgba(200, 200, 200, 100)");
+    this->setStyleSheet("background-color:rgba(57, 97, 148, 100)");
 }

@@ -19,6 +19,7 @@
 #include <QProgressBar>
 #include <QTimer>
 #include <QTextEdit>
+#include <QBitmap>
 
 //info: 设置objectName用于遍历找到对应控件并设置对应值
 
@@ -39,16 +40,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // 设置按钮样式及悬浮、按下时的状态
     //debug
-    this->setStyleSheet("QPushButton{border:2px groove gray;border-radius:10px;padding:2px 4px;border-style: outset;}"
-                        "QPushButton:hover{background-color:rgba(229, 241, 251, 100); color: black;}"
-                        "QPushButton:pressed{background-color:rgba(204, 228, 247, 200);border-style: inset;}");
+//    this->setStyleSheet("QPushButton{border:2px groove gray;border-radius:10px;padding:2px 4px;border-style: outset;}"
+//                        "QPushButton:hover{background-color:rgba(229, 241, 251, 100); color: black;}"
+//                        "QPushButton:pressed{background-color:rgba(204, 228, 247, 200);border-style: inset;}");
 
     //release
-//    this->setStyleSheet("QPushButton{border-radius:10px;border-style: outset;}"
-//                        "QPushButton:hover{background-color:rgba(229, 241, 251, 100); color: black;}"
-//                        "QPushButton:pressed{background-color:rgba(204, 228, 247, 200);border-style: inset;}"
-//                        "QLineEdit{background-color:transparent}"
-//                        "QLineEdit{border-width:0;border-style:outset}");
+    this->setStyleSheet("QPushButton{border-radius:10px;border-style: outset;}"
+                        "QPushButton:hover{background-color:rgba(229, 241, 251, 100); color: black;}"
+                        "QPushButton:pressed{background-color:rgba(204, 228, 247, 200);border-style: inset;}"
+                        "QLineEdit{background-color:transparent}"
+                        "QLineEdit{border-width:0;border-style:outset}");
 
 
     //font
@@ -242,7 +243,7 @@ void MainWindow::FileListUI()
         vbLayout[i] = new QVBoxLayout(myWidgets[i]);
         vbLayout[i]->addWidget(showFileLabel[i]);
         vbLayout[i]->addWidget(printFileNameLE[i]);
-        vbLayout[i]->setSpacing(16);
+        vbLayout[i]->setSpacing(20);
 
         myWidgets[i]->setLayout(vbLayout[i]);
 
@@ -256,13 +257,33 @@ void MainWindow::FileListUI()
     myWidgets[3]->setGeometry(myWidgets[1]->x(), myWidgets[2]->y(),
                                 myWidgets[0]->width(), myWidgets[0]->height());
 
+
+
     for(int j = 0; j < 4; ++j)
     {
         QList<QLineEdit*> lineEdList = myWidgets[j]->findChildren<QLineEdit*>();
         lineEdList[0]->setText(tr("file 1"));
 
         QList<QLabel*> labelList = myWidgets[j]->findChildren<QLabel*>();
-        labelList[0]->setPixmap(QPixmap(":/anycubic_UI_png/1.png"));
+        labelList[0]->setStyleSheet("border-radius:5px");
+
+        //debug
+        QPixmap pixmap(":/anycubic_UI_png/printTest.jpeg");
+        // 画成圆形图片
+        int width = labelList[0]->width();
+        int height = labelList[0]->height();
+        QSize size(width, height);
+        QBitmap mask(size);
+        QPainter painter(&mask);
+        painter.setRenderHint(QPainter::Antialiasing);
+        painter.setRenderHint(QPainter::SmoothPixmapTransform);
+        painter.fillRect(0, 0, size.width(), size.height(), Qt::white);
+        painter.setBrush(QColor(0, 0, 0));
+        painter.drawRoundedRect(0, 0, size.width(), size.height(), 5, 5);//修改这个值，可以改弧度，和直径相等就是圆形
+        QPixmap image = pixmap.scaled(size);
+        image.setMask(mask);
+
+        labelList[0]->setPixmap(image);
     }
 
     m_fileUIList.push_back(m_btnResFile);
@@ -775,14 +796,27 @@ void MainWindow::ExecLightUI()
 
 void MainWindow::PrintTestUI()
 {
-    QWidget *viewWidget = new QWidget(this);
-    viewWidget->setGeometry(26, 58, 327, 161);
-    viewWidget->setStyleSheet("QWidget{background-color:rgba(100, 100, 100, 100)}"
-                                "QWidget{border-radius:10px}");
     QLabel *labelView = new QLabel(this);
     labelView->setScaledContents(true);
-    labelView->setGeometry(30, 60, 320, 155);
-    labelView->setPixmap(QPixmap(":/anycubic_UI_png/1.png"));
+    labelView->setGeometry(30, 61, 319, 155);
+    //labelView->setStyleSheet("border:2px groove gray;border-radius:10px;padding:2px 4px;");
+    QPixmap pixmap(":/anycubic_UI_png/printTest.jpeg");
+
+    // 画成圆形图片
+    int width = labelView->width();
+    int height = labelView->height();
+    QSize size(width, height);
+    QBitmap mask(size);
+    QPainter painter(&mask);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
+    painter.fillRect(0, 0, size.width(), size.height(), Qt::white);
+    painter.setBrush(QColor(0, 0, 0));
+    painter.drawRoundedRect(0, 0, size.width(), size.height(), 10, 10);//修改这个值，可以改弧度，和直径相等就是圆形
+    QPixmap image = pixmap.scaled(size);
+    image.setMask(mask);
+
+    labelView->setPixmap(image);
 
     QPushButton *btnSet = new QPushButton(tr("btnSet"), this);
     btnSet->setGeometry(this->width() - btnSet->width() - 10, 56, 86, 76);
@@ -809,7 +843,6 @@ void MainWindow::PrintTestUI()
     QPushButton *btnMore = new QPushButton(this);
     btnMore->setGeometry(leTotal->x() + leTotal->width() + 20, leTotal->y(), 28, 28);
 
-    m_printTestUIList.push_back(viewWidget);
     m_printTestUIList.push_back(labelView);
     m_printTestUIList.push_back(btnSet);
     m_printTestUIList.push_back(btnStart);

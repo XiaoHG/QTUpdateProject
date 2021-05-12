@@ -24,5 +24,6 @@
         <file>anycubic_UI_png/24.png</file>
         <file>anycubic_UI_png/25.png</file>
         <file>anycubic_UI_png/26.png</file>
+        <file>anycubic_UI_png/printTest.jpeg</file>
     </qresource>
 </RCC>
