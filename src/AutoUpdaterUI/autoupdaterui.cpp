@@ -232,7 +232,7 @@ void AutoUpdaterUI::CheckUpdater(bool isFirst)
         downloadDir.mkdir(QApplication::applicationDirPath() + "/download");
 
     FtpManager *ftp = new FtpManager();
-    ftp->setHost("localhost");
+    ftp->setHost("192.168.4.176");
     ftp->get("/version/updater.xml", QApplication::applicationDirPath() + "/download/updater.xml");
     connect(ftp, SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
 }
@@ -329,7 +329,7 @@ void AutoUpdaterUI::slotDownloadUpdaterXmlOver()
     qDebug() << "slotDownloadUpdaterXmlOver";
 
     FtpManager *ftp = new FtpManager();
-    ftp->setHost("localhost");
+    ftp->setHost("192.168.4.176");
     ftp->get("/version/versionInfo.txt", QApplication::applicationDirPath() + "/download/versionInfo.txt");
     connect(ftp, SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
 }

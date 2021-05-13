@@ -25,9 +25,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(btnDownload, SIGNAL(clicked(bool)), this, SLOT(slotBtnDownloadCliecked()));
     vl->addWidget(btnDownload);
 
-    QPushButton *btnTest1_0 = new QPushButton(tr("btnTest1_0") ,centerWidget);
-    connect(btnTest1_0, SIGNAL(clicked(bool)), this, SLOT(slotBtnDownloadCliecked()));
-    vl->addWidget(btnTest1_0);
+    QPushButton *btnTest2_0 = new QPushButton(tr("btnTest2_0") ,centerWidget);
+    connect(btnTest2_0, SIGNAL(clicked(bool)), this, SLOT(slotBtnDownloadCliecked()));
+    vl->addWidget(btnTest2_0);
 }
 
 MainWindow::~MainWindow()

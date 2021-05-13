@@ -259,7 +259,7 @@ void CAutoUpdater::DownloadUpdateFiles()
                                         m_listFileDir.at(i) + "/" + m_listFileName.at(i);
         strPlaceDir += "/" + m_listFileName.at(i);
         FtpManager *ftp = new FtpManager();
-        ftp->setHost("localhost");
+        ftp->setHost("192.168.4.176");
         qDebug() << "Download: ";
         qDebug() << strFileDirServer;
         qDebug() << strPlaceDir;
