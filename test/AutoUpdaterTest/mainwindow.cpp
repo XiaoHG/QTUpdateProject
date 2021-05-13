@@ -24,6 +24,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QPushButton *btnDownload = new QPushButton(tr("btnDownload") ,centerWidget);
     connect(btnDownload, SIGNAL(clicked(bool)), this, SLOT(slotBtnDownloadCliecked()));
     vl->addWidget(btnDownload);
+
+    QPushButton *btnTest1_0 = new QPushButton(tr("btnTest1_0") ,centerWidget);
+    connect(btnTest1_0, SIGNAL(clicked(bool)), this, SLOT(slotBtnDownloadCliecked()));
+    vl->addWidget(btnTest1_0);
 }
 
 MainWindow::~MainWindow()
@@ -45,13 +49,10 @@ void MainWindow::WriteConfigFileFlag(const char* flag)
 
 void MainWindow::slotBtnUpdateCliecked()
 {
-    //主程序开始启动，在调用更新程序之前都将配置文件中的flag设置为false，表示如果没有更新则更新程序不要弹窗
-    //flag = false;
-    WriteConfigFileFlag("1");
-    AutoUpdaterUI::getInstance()->CheckUpdater();
+    AutoUpdaterUI::getInstance()->CheckUpdater(false);
 }
 
 void MainWindow::slotBtnDownloadCliecked()
 {
-    AutoUpdaterUI::getInstance()->testInterface();
+
 }

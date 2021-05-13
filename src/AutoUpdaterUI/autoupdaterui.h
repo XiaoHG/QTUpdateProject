@@ -32,42 +32,37 @@ private:
     AutoUpdaterUI(QWidget *parent = 0);
 
 public:
-    bool CheckUpdate();
+    void CheckUpdater(bool isFirst);
 
 private:
-    void Updating();
     void FinishUpdate();
 
     void InitUI();
     void CheckUpdateUI();
     void UpdateUI();
     void UpdatingUI();
-    void NotUpdateUI();
     void FinishUpdateUI();
+    void NotUpdateUI();
 
+    void ShowCheckUpdateUI(bool b);
     void ShowUpdateUI(bool b);
     void ShowUpdatingUI(bool b);
-    void ShowNotUpdateUI(bool b);
     void ShowFinishUpdateUI(bool b);
-    void ShowCheckUpdateUI(bool b);
+    void ShowNotUpdateUI(bool b);
 
-public:
-    bool GetConfigFlag();
-
-    void testInterface();
-    void CheckUpdater();
 public slots:
     void slotDownloadUpdaterXmlOver();
     void slotDownloadVersionInfoFileOver();
+
+protected slots:
+    void slotBtnUpdateClicked();
+    void slotBtnOkClicked();
+    void slotUpdateTimeOut();
+
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
-
-protected slots:
-    void slotUpdateBtnClicked();
-    void slotOkBtnClicked();
-    void slotUpdateTimeOut();
 
 private://鼠标拖拽事件
     bool m_bDrag;
@@ -79,8 +74,6 @@ private:
     QPushButton *m_btnUpdate;
     //output files that need to update
     QTextEdit *m_outputVersionInfoEdit;
-    //update flag
-    bool m_isUpdate;
     //the laster version
     QLabel *m_titleLabel;
     //update prosess timer
@@ -104,7 +97,6 @@ private:
     QPushButton *m_btnOk;
     QPushButton *m_btnCansel;
 
-
     //界面部件集中处理
     QList<QWidget*> m_checkUpdateWidgets;
     QList<QWidget*> m_updateWidgets;
@@ -116,6 +108,7 @@ private:
     CAutoUpdater m_updater;
 
     FtpManager *m_ftp;
+    bool m_first;
 };
 
 #endif // AUTOUPDATERUI_H

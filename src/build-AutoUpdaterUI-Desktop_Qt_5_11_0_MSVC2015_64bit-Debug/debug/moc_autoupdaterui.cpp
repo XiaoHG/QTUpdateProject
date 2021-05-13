@@ -35,14 +35,14 @@ QT_MOC_LITERAL(0, 0, 13), // "AutoUpdaterUI"
 QT_MOC_LITERAL(1, 14, 26), // "slotDownloadUpdaterXmlOver"
 QT_MOC_LITERAL(2, 41, 0), // ""
 QT_MOC_LITERAL(3, 42, 31), // "slotDownloadVersionInfoFileOver"
-QT_MOC_LITERAL(4, 74, 20), // "slotUpdateBtnClicked"
-QT_MOC_LITERAL(5, 95, 16), // "slotOkBtnClicked"
+QT_MOC_LITERAL(4, 74, 20), // "slotBtnUpdateClicked"
+QT_MOC_LITERAL(5, 95, 16), // "slotBtnOkClicked"
 QT_MOC_LITERAL(6, 112, 17) // "slotUpdateTimeOut"
 
     },
     "AutoUpdaterUI\0slotDownloadUpdaterXmlOver\0"
     "\0slotDownloadVersionInfoFileOver\0"
-    "slotUpdateBtnClicked\0slotOkBtnClicked\0"
+    "slotBtnUpdateClicked\0slotBtnOkClicked\0"
     "slotUpdateTimeOut"
 };
 #undef QT_MOC_LITERAL
@@ -85,8 +85,8 @@ void AutoUpdaterUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         switch (_id) {
         case 0: _t->slotDownloadUpdaterXmlOver(); break;
         case 1: _t->slotDownloadVersionInfoFileOver(); break;
-        case 2: _t->slotUpdateBtnClicked(); break;
-        case 3: _t->slotOkBtnClicked(); break;
+        case 2: _t->slotBtnUpdateClicked(); break;
+        case 3: _t->slotBtnOkClicked(); break;
         case 4: _t->slotUpdateTimeOut(); break;
         default: ;
         }

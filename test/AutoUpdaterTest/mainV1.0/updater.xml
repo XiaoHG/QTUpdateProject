@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <autoupdate>
 	<version>V1.0</version>
-	<versionstr>mainV1.0</versionstr>
 	<filelist>
 		<file name="AutoUpdaterTest.exe" dir="" version="1.0"/>
 		<file name="AutoUpdaterUI_d.dll" dir="" version="1.0"/>

@@ -42,7 +42,7 @@ int CAutoUpdater::CheckUpdateFiles(QString xml1, QString xml2)
     {
         if(QFile::exists(xml2))
         {
-            m_strTip = QStringLiteral("检查需要更新的文件...");
+            m_strTip = QStringLiteral("检查需要更新的文件111111111111111111...");
             qDebug() << m_strTip;
 
             QDomNodeList nodeList = CXMLParser::XMLParseElement(xml1, "file");
@@ -64,6 +64,7 @@ int CAutoUpdater::CheckUpdateFiles(QString xml1, QString xml2)
                 {
                     /**检查版本，如果本地版本低于下载版本，则下载**/
                     qDebug() << "Checked version : " << version << ", " << localVersion;
+                    qDebug() << "call CheckVersion!!!!!!!!!!!!!!!!!";
                     if(CheckVersion(version, localVersion))
                     {
                         qDebug() << QStringLiteral("需要更新：") << name << " version = " << localVersion << " file need to update!";
@@ -155,7 +156,7 @@ bool CAutoUpdater::CheckVersionForUpdate()
     QString xml2Version = GetVersion(downloadXML);
     qDebug() << QStringLiteral("两个版本对比：") << "local = " << xml1Version
              << ", download = " << xml2Version;
-    return CheckVersion(xml1Version, xml2Version);
+    return CheckVersion(xml2Version, xml1Version);
 }
 
 bool CAutoUpdater::CheckXML(QString xml)
@@ -176,7 +177,7 @@ void CAutoUpdater::makeXML(QString xml)
     }
     QString str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
                   "<autoupdate>\n"
-                  "    <version>V1.0</version>\n"
+                  "    <version>V0.0</version>\n"
                   "    <filelist>\n"
                   "    </filelist>\n"
                   "</autoupdate>";
@@ -198,18 +199,23 @@ QString CAutoUpdater::GetVersion(QString xml)
  * 返回true表示需要更新当前文件
  * 版本号暂定：V1.0 V2.0 ... , 来进行处理
 **/
-bool CAutoUpdater::CheckVersion(QString version, QString versionDownload)
+bool CAutoUpdater::CheckVersion(QString version, QString versionLocal)
 {
-    QStringList localVersionList = version.split('.');
-    QStringList downloadVersionList = versionDownload.split('.');
+    QStringList downloadVersionList = version.split('.');
+    QStringList localVersionList = versionLocal.split('.');
+    qDebug() << "downloadVersionList.size() = " << downloadVersionList.size();
+    qDebug() << "localVersionList.size() = " << localVersionList.size();
     for(int i = 0 ; i < downloadVersionList.size(); ++i)
     {
+        qDebug() << downloadVersionList.at(i);
+        qDebug() << localVersionList.at(i);
         if(i >= localVersionList.size() || downloadVersionList.at(i) > localVersionList.at(i))
         {
             qDebug() << QStringLiteral("服务器版本比较新，需要更新！");
             return true;
         }
     }
+    qDebug() << QStringLiteral("最新版本，不需要更新！");
     return false;
 }
 
@@ -229,7 +235,7 @@ void CAutoUpdater::DownloadUpdateFiles()
     m_strTip = "开始下载更新文件 ...";
     qDebug() << m_strTip;
 
-    QString DownloadVersion = GetVersion(QApplication::applicationDirPath() + "/download/updater.xml");
+    QString downloadVersion = GetVersion(QApplication::applicationDirPath() + "/download/updater.xml");
 
     //这里是下载模块，现在没有服务器，暂时不进行下载动作，解决在本地download文件拷贝。
     for(int i = 0; i < m_listFileName.size(); ++i)
@@ -239,7 +245,7 @@ void CAutoUpdater::DownloadUpdateFiles()
 
         /**放置下载文件的路径**/
         QString strPlaceDir = QApplication::applicationDirPath() +
-                                "/../anycubic" + DownloadVersion + "/" +
+                                "/../main" + downloadVersion + "/" +
                                 m_listFileDir.at(i);
         m_strPlaceDirList.push_back(strPlaceDir);
         QDir directory(strPlaceDir);//如果路径不存在，则创建
@@ -249,7 +255,8 @@ void CAutoUpdater::DownloadUpdateFiles()
         }
 
         //文件在服务器中的存储位置
-        QString strFileDirServer = "/mainV1.0/" + m_listFileDir.at(i) + "/" + m_listFileName.at(i);
+        QString strFileDirServer = "/version/main" + downloadVersion +
+                                        m_listFileDir.at(i) + "/" + m_listFileName.at(i);
         strPlaceDir += "/" + m_listFileName.at(i);
         FtpManager *ftp = new FtpManager();
         ftp->setHost("localhost");

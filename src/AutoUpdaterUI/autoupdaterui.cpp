@@ -178,9 +178,9 @@ void AutoUpdaterUI::InitUI()
     m_updateProsessTimer->stop();
 
 
-    connect(m_btnOk, SIGNAL(clicked(bool)), this, SLOT(slotOkBtnClicked()));
+    connect(m_btnOk, SIGNAL(clicked(bool)), this, SLOT(slotBtnOkClicked()));
     connect(m_btnCansel, SIGNAL(clicked(bool)), this, SLOT(close()));
-    connect(m_btnUpdate, SIGNAL(clicked(bool)), this, SLOT(slotUpdateBtnClicked()));
+    connect(m_btnUpdate, SIGNAL(clicked(bool)), this, SLOT(slotBtnUpdateClicked()));
 
     //this->exec();
 }
@@ -223,14 +223,9 @@ void AutoUpdaterUI::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
-void AutoUpdaterUI::testInterface()
+void AutoUpdaterUI::CheckUpdater(bool isFirst)
 {
-    m_ftp->get("/mainV1.0/updater.xml", "F:/updater.xml");
-    //connect(pReply, SIGNAL(downloadProgress(qint64,qint64)), SLOT(downloadProgress(qint64,qint64)));
-}
-
-void AutoUpdaterUI::CheckUpdater()
-{
+    m_first = isFirst;
 
     QDir downloadDir(QApplication::applicationDirPath() + "/download");
     if(!downloadDir.exists())
@@ -238,53 +233,8 @@ void AutoUpdaterUI::CheckUpdater()
 
     FtpManager *ftp = new FtpManager();
     ftp->setHost("localhost");
-    ftp->get("/mainV1.0/updater.xml", QApplication::applicationDirPath() + "/download/updater.xml");
+    ftp->get("/version/updater.xml", QApplication::applicationDirPath() + "/download/updater.xml");
     connect(ftp, SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
-}
-
-/*update or not, checked update*/
-bool AutoUpdaterUI::CheckUpdate()
-{
-
-    //从版本文件中读取版本号，并进行本地版本和下载XML版本对比，得出是否更新的结论
-    m_isUpdate = m_updater.CheckVersionForUpdate();//对比下载下来的XML和本地版本的XML
-
-    m_outputVersionInfoEdit->clear();
-    QStringList strListVersionInfo = m_updater.GetVersionInfo();
-    if(strListVersionInfo.isEmpty())
-        m_outputVersionInfoEdit->append(QStringLiteral("版本信息缺失！"));
-    qDebug() << "strListVersionInfo.size = " << strListVersionInfo.size();
-    for(int i = 0; i < strListVersionInfo.size(); ++i)
-    {
-        qDebug() << "version content: " << i << " : " << strListVersionInfo.at(i);
-        m_outputVersionInfoEdit->append(strListVersionInfo.at(i));
-    }
-    m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
-
-    //更新则isUpdate = true,否则false
-    if(m_isUpdate)
-    {
-        //此时需要更新，弹出对话框让客户端进行选择更新与否
-        int n = m_updater.CheckUpdateFiles(QApplication::applicationDirPath() + "/download/updater.xml",
-                                   QApplication::applicationDirPath() + "/updater.xml");
-        if(n != 1)
-        {
-            NotUpdateUI();
-            m_isUpdate = false;
-        }
-        else
-        {
-
-            UpdateUI();
-        }
-    }
-    else
-    {
-        //This is the laster version so hide update button and cansel button,
-        //and show the laster notify message and ok button.
-        NotUpdateUI();
-    }
-    return m_isUpdate;
 }
 
 void AutoUpdaterUI::UpdateUI()
@@ -329,20 +279,10 @@ void AutoUpdaterUI::UpdatingUI()
 
 }
 
-void AutoUpdaterUI::Updating()
-{
-    //start update prosess timer at the begining update.
-
-    //这里执行更新，就是XML对比出来后的所有需更新文件的下载，拷贝。
-    m_updater.DownloadUpdateFiles();
-}
-
 void AutoUpdaterUI::FinishUpdate()
 {
     //UpdateFinishUI();
     m_updateProsessTimer->stop();
-
-    m_isUpdate = false;
 
     //隐藏正在更新的部件
     ShowUpdatingUI(false);
@@ -372,16 +312,11 @@ void AutoUpdaterUI::NotUpdateUI()
     //显示不需要更新的界面组件
     ShowNotUpdateUI(true);
 
-    //读取和主程序交互的配置文件，如果flag为false则无弹窗并且直接退出更新程序；
-    //需要处理更新程序的自结束，现在时卡死状态
-    if(GetConfigFlag())
+    if(m_first)
     {
-        this->exec();
+        return;
     }
-    else{
-        qDebug() << "this->close()";
-        this->close();
-    }
+    this->exec();
 }
 
 void AutoUpdaterUI::FinishUpdateUI()
@@ -395,26 +330,58 @@ void AutoUpdaterUI::slotDownloadUpdaterXmlOver()
 
     FtpManager *ftp = new FtpManager();
     ftp->setHost("localhost");
-    ftp->get("/mainV1.0/versionInfo.txt", QApplication::applicationDirPath() + "/download/versionInfo.txt");
+    ftp->get("/version/versionInfo.txt", QApplication::applicationDirPath() + "/download/versionInfo.txt");
     connect(ftp, SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
 }
 
 void AutoUpdaterUI::slotDownloadVersionInfoFileOver()
 {
-    qDebug() << "slotDownloadVersionInfoFileOver";
-    //m_downloadVersionInfos获取到了最新版本的版本信息，m_outputVersionInfoEdit进行显示
-    //目前为设置读取XML，所以此时为空
-    //隐藏正在检查更新组件
-    CheckUpdate();
+    qDebug() << "slotDownloadVersionInfoFileOver, version infomation download over!";
+
+    m_outputVersionInfoEdit->clear();
+    QStringList strListVersionInfo = m_updater.GetVersionInfo();
+    if(strListVersionInfo.isEmpty())
+        m_outputVersionInfoEdit->append(QStringLiteral("版本信息缺失！"));
+    qDebug() << "strListVersionInfo.size = " << strListVersionInfo.size();
+    for(int i = 0; i < strListVersionInfo.size(); ++i)
+    {
+        qDebug() << "version content: " << i << " : " << strListVersionInfo.at(i);
+        m_outputVersionInfoEdit->append(strListVersionInfo.at(i));
+    }
+    m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
+
+    //更新则isUpdate = true,否则false
+    if(m_updater.CheckVersionForUpdate())
+    {
+        //此时需要更新，弹出对话框让客户端进行选择更新与否
+        int n = m_updater.CheckUpdateFiles(QApplication::applicationDirPath() + "/download/updater.xml",
+                                   QApplication::applicationDirPath() + "/updater.xml");
+        if(n != 1)
+        {
+            NotUpdateUI();
+        }
+        else
+        {
+            UpdateUI();
+        }
+    }
+    else
+    {
+        //This is the laster version so hide update button and cansel button,
+        //and show the laster notify message and ok button.
+        NotUpdateUI();
+    }
 }
 
 /*update function*/
-void AutoUpdaterUI::slotUpdateBtnClicked()
+void AutoUpdaterUI::slotBtnUpdateClicked()
 {
     UpdatingUI();
     //update,and start updateProsessTimer
     m_updateProsessTimer->start(50);
-    Updating();
+
+    //这里执行更新，就是XML对比出来后的所有需更新文件的下载，拷贝。
+    m_updater.DownloadUpdateFiles();
 }
 
 void AutoUpdaterUI::slotUpdateTimeOut()
@@ -451,7 +418,7 @@ void AutoUpdaterUI::slotUpdateTimeOut()
     }
 }
 
-void AutoUpdaterUI::slotOkBtnClicked()
+void AutoUpdaterUI::slotBtnOkClicked()
 {
 
 }
@@ -496,20 +463,4 @@ void AutoUpdaterUI::ShowCheckUpdateUI(bool b)
     }
 }
 
-/**
- * @brief AutoUpdaterUI::GetConfigFlag
- * @return
- * 读取主程序和更新程序公用的配置文件，控制无更新时窗口的弹出
- */
-bool AutoUpdaterUI::GetConfigFlag()
-{
-    QString strConfigName = QDir::currentPath() + "/updateConfig.txt";
-    QFile file(strConfigName);
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        qDebug() << "GetConfigFlag false, cant't open file " << strConfigName;
-        return false;
-    }
-    return file.readAll().toInt();
-}
 
