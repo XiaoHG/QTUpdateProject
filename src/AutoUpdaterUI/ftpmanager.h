@@ -22,8 +22,6 @@ public:
     inline void setUserName(const QString &userName) { m_url.setUserName(userName); }
     inline void setPassword(const QString &password) { m_url.setPassword(password); }
 
-    int GetDownloadCount();
-    QStringList GetCurDownloadFileList();
 public slots:
     void uploadFinished();
     void downloadFinished();
@@ -37,13 +35,15 @@ signals:
 
 public:
     static int m_downloadCount;
+    static int m_finishCount;
+    static QStringList m_currDownloadFileList;
+    static QStringList m_finishDownloadFileList;
 
 private:
     QUrl m_url;
     QString m_path;
     QNetworkAccessManager m_manager;
 
-    QStringList m_curDownloadFileList;
 };
 
 #endif // FTPMANAGER_H

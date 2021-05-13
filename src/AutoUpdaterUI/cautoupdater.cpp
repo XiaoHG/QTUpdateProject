@@ -296,7 +296,20 @@ QStringList CAutoUpdater::GetUpdateFileName()
     return m_listFileName;
 }
 
-bool CAutoUpdater::GetUpdateProcess()
+int CAutoUpdater::GetUpdateProcess()
 {
-    return false;
+    // - 2: updater.xml and versionInfo.txt
+    qDebug() << "FtpManager::m_finishCount = " << FtpManager::m_finishCount;
+    qDebug() << "m_listFileName.size() = " << m_listFileName.size();
+    return (FtpManager::m_finishCount - 2) * 100 / m_listFileName.size();
+}
+
+QStringList CAutoUpdater::GetCurrDownloadFileList()
+{
+    return FtpManager::m_currDownloadFileList;
+}
+
+QStringList CAutoUpdater::GetFinishDownloadFileList()
+{
+    return FtpManager::m_finishDownloadFileList;
 }

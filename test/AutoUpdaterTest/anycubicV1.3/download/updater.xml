@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<autoupdate>
+	<version>V1.4</version>
+	<filelist>
+		<file name="AutoUpdaterTest.exe" dir="" version="1.0"/>
+		<file name="AutoUpdaterUI_d.dll" dir="" version="1.0"/>
+		<file name="D3Dcompiler_47.dll" dir="" version="1.0"/>
+		<file name="libEGLd.dll" dir="" version="1.0"/>
+		<file name="libGLESV2d.dll" dir="" version="1.0"/>
+		<file name="opengl32sw.dll" dir="" version="1.0"/>
+		<file name="Qt5Cored.dll" dir="" version="1.0"/>
+		<file name="Qt5Guid.dll" dir="" version="1.0"/>
+		<file name="Qt5Svgd.dll" dir="" version="1.0"/>
+		<file name="Qt5Widgetsd.dll" dir="" version="1.0"/>
+		<file name="Qt5Xmld.dll" dir="" version="1.0"/>
+		<file name="versionInfo.txt" version="1.0"/>
+		<file name="updater.xml" version="1.0"/>
+		<file name="updateConfig.txt" version="1.0"/>
+		
+		<file name="qgenericbearerd.dll" dir="bearer" version="1.0"/>
+		
+		<file name="qsvgicond.dll" dir="iconengines" version="1.0"/>
+		
+		<file name="qgifd.dll" dir="imageformats" version="1.0"/>
+		<file name="qicnsd.dll" dir="imageformats" version="1.0"/>
+		<file name="qicod.dll" dir="imageformats" version="1.0"/>
+		<file name="qjpegd.dll" dir="imageformats" version="1.0"/>
+		<file name="qsvgd.dll" dir="imageformats" version="1.0"/>
+		<file name="qtgad.dll" dir="imageformats" version="1.0"/>
+		<file name="qtiffd.dll" dir="imageformats" version="1.0"/>
+		<file name="qwbmpd.dll" dir="imageformats" version="1.0"/>
+		<file name="qwebpd.dll" dir="imageformats" version="1.0"/>
+		
+		<file name="qwindowsd.dll" dir="platforms" version="1.0"/>
+		
+		<file name="qwindowsvistastyled.dll" dir="styles" version="1.0"/>
+		
+		<file name="qt_ar.qm" dir="translations" version="1.0"/>
+		<file name="qt_bg.qm" dir="translations" version="1.0"/>
+		<file name="qt_ca.qm" dir="translations" version="1.0"/>
+		<file name="qt_cs.qm" dir="translations" version="1.0"/>
+		<file name="qt_da.qm" dir="translations" version="1.0"/>
+		<file name="qt_de.qm" dir="translations" version="1.0"/>
+		<file name="qt_ec.qm" dir="translations" version="1.0"/>
+		<file name="qt_es.qm" dir="translations" version="1.0"/>
+		<file name="qt_fi.qm" dir="translations" version="1.0"/>
+		<file name="qt_fr.qm" dir="translations" version="1.0"/>
+		<file name="qt_gd.qm" dir="translations" version="1.0"/>
+		<file name="qt_he.qm" dir="translations" version="1.0"/>
+		<file name="qt_hu.qm" dir="translations" version="1.0"/>
+		<file name="qt_it.qm" dir="translations" version="1.0"/>
+		<file name="qt_ja.qm" dir="translations" version="1.0"/>
+		<file name="qt_ko.qm" dir="translations" version="1.0"/>
+		<file name="qt_lv.qm" dir="translations" version="1.0"/>
+		<file name="qt_pl.qm" dir="translations" version="1.0"/>
+		<file name="qt_ru.qm" dir="translations" version="1.0"/>
+		<file name="qt_sk.qm" dir="translations" version="1.0"/>
+		<file name="qt_uk.qm" dir="translations" version="1.0"/>
+		
+		
+	</filelist>
+</autoupdate>

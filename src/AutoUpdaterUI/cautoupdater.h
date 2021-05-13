@@ -25,8 +25,10 @@ public:
     QStringList GetVersionInfo();
     QStringList GetUpdateFileDir();
     QStringList GetUpdateFileName();
-    bool GetUpdateProcess();
+    int GetUpdateProcess();
 
+    QStringList GetCurrDownloadFileList();
+    QStringList GetFinishDownloadFileList();
 public slots:
 
 private:

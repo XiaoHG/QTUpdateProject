@@ -4,13 +4,15 @@
 #include <QNetworkRequest>
 
 int FtpManager::m_downloadCount = 0;
+int FtpManager::m_finishCount = 0;
+QStringList FtpManager::m_currDownloadFileList = {0};
+QStringList FtpManager::m_finishDownloadFileList = {0};
 
 FtpManager::FtpManager(QObject *parent) :
     QObject(parent)
 {
     // 设置协议
     m_url.setScheme("ftp");
-
 }
 
 QNetworkReply *FtpManager::put(const QString &localPath, const QString &uploadPath)
@@ -29,6 +31,11 @@ QNetworkReply *FtpManager::put(const QString &localPath, const QString &uploadPa
     return pReply;
 }
 
+void FtpManager::uploadFinished()
+{
+
+}
+
 QNetworkReply *FtpManager::get(const QString &downloadPath, const QString &localPath)
 {
     m_downloadCount++;
@@ -37,9 +44,7 @@ QNetworkReply *FtpManager::get(const QString &downloadPath, const QString &local
 
     // 设置下载路径
     m_url.setPath(downloadPath);
-    m_curDownloadFileList.push_back(m_url.path());
-
-    qDebug() << "downloadPath = " << downloadPath;
+    m_currDownloadFileList.push_back(m_url.path());
 
     QNetworkReply *pReply = m_manager.get(QNetworkRequest(m_url));
     connect(pReply, SIGNAL(finished()), SLOT(downloadFinished()));
@@ -47,15 +52,13 @@ QNetworkReply *FtpManager::get(const QString &downloadPath, const QString &local
     return pReply;
 }
 
-void FtpManager::uploadFinished()
-{
-
-}
-
 void FtpManager::downloadFinished()
 {
     m_downloadCount--;
-    m_curDownloadFileList.removeOne(m_url.path());
+    m_finishCount++;
+    m_currDownloadFileList.removeOne(m_url.path());
+    m_finishDownloadFileList.push_back(m_url.path());
+
     QNetworkReply *pReply = qobject_cast<QNetworkReply *>(sender());
     if (pReply == NULL)
         return;
@@ -77,13 +80,14 @@ void FtpManager::downloadFinished()
     if(m_path.contains("updater.xml"))
     {
         sigDownloadUpdaterXmlOver();
+        return;
     }
     if(m_path.contains("versionInfo.txt"))
     {
         sigDownloadVersionInfoFileOver();
+        return;
     }
     qDebug() << "file: " << m_path << " download success!";
-    sigSingleFileDownloadFinish(m_path);
 }
 
 void FtpManager::error(QNetworkReply::NetworkError)
@@ -91,15 +95,6 @@ void FtpManager::error(QNetworkReply::NetworkError)
     qDebug() << "error = ";
 }
 
-int FtpManager::GetDownloadCount()
-{
-    return m_downloadCount;
-}
-
-QStringList FtpManager::GetCurDownloadFileList()
-{
-    return m_curDownloadFileList;
-}
 
 
 

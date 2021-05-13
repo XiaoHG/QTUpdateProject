@@ -419,40 +419,33 @@ void AutoUpdaterUI::slotUpdateBtnClicked()
 
 void AutoUpdaterUI::slotUpdateTimeOut()
 {
-    static int process = 0;
-    QString strCurrentDir = QApplication::applicationDirPath();
-    QStringList strListDownloadFileDir = m_updater.GetUpdateFileDir();
-    QStringList strListDownloadFileName = m_updater.GetUpdateFileName();
-    QString strTmpDir;
+    QStringList strCurrDownloadFileList = m_updater.GetCurrDownloadFileList();
+    qDebug() << "strCurrDownloadFileList.size() = " << strCurrDownloadFileList.size();
     static int i = 0;
-    if(process % (100 / strListDownloadFileDir.size()) == 0 && i < strListDownloadFileDir.size())
+    for(; i < strCurrDownloadFileList.size(); ++i)
     {
-        m_outputVersionInfoEdit->append(QStringLiteral("正在更新文件") +
-                                        strListDownloadFileName.at(i) + " ...");
-        if(strListDownloadFileDir.at(i) == "")
-        {
-            strTmpDir = strCurrentDir + "/" + strListDownloadFileName.at(i);
-        }
-        else
-        {
-            strTmpDir = strCurrentDir + "/" + strListDownloadFileDir.at(i) + "/" + strListDownloadFileName.at(i);
-        }
-        m_outputVersionInfoEdit->append(strTmpDir);
-        i++;
+        m_outputVersionInfoEdit->append(QStringLiteral("正在更新文件..."));
+        m_outputVersionInfoEdit->append(strCurrDownloadFileList.at(i));
     }
 
-    if((process+1) % (100 / strListDownloadFileDir.size()) == 0 && i <= strListDownloadFileDir.size())
-        m_outputVersionInfoEdit->append(QStringLiteral("文件") +
-                                    strListDownloadFileName.at(i - 1) +
-                                    QStringLiteral("更新完成"));
+    QStringList strFinishDownloadFileList = m_updater.GetFinishDownloadFileList();
+    qDebug() << "strFinishDownloadFileList.size() = " << strFinishDownloadFileList.size();
+    static int j = 0;
+    for(; j < strFinishDownloadFileList.size(); ++j)
+    {
+        m_outputVersionInfoEdit->append(QStringLiteral("完成更新文件..."));
+        m_outputVersionInfoEdit->append(strFinishDownloadFileList.at(j));
+    }
 
-    if(FtpManager::m_downloadCount == 0)
+    m_updateProgressBar->setValue(m_updater.GetUpdateProcess());
+
+    qDebug() << "m_updateProgressBar->value() = " << m_updateProgressBar->value();
+    qDebug() << "m_updateProgressBar->maximum() = " << m_updateProgressBar->maximum();
+    if(m_updateProgressBar->value() == m_updateProgressBar->maximum())
     {
         m_outputVersionInfoEdit->append(QStringLiteral("注意：所有文件已经更新完成，"
                                           "点击重启客户端会启动最新版本，"
                                           "点击取消保持当前版本运行，下次启动为最新版本！"));
-        //Update finish
-        process = 0;
         m_titleLabel->setText(QStringLiteral("更新完成！"));
         FinishUpdate();
     }
@@ -461,11 +454,6 @@ void AutoUpdaterUI::slotUpdateTimeOut()
 void AutoUpdaterUI::slotOkBtnClicked()
 {
 
-}
-
-void AutoUpdaterUI::slotUpdateProgess(int value)
-{
-    m_updateProgressBar->setValue(value);
 }
 
 void AutoUpdaterUI::ShowUpdateUI(bool b)

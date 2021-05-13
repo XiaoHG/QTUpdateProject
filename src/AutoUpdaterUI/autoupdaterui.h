@@ -68,7 +68,6 @@ protected slots:
     void slotUpdateBtnClicked();
     void slotOkBtnClicked();
     void slotUpdateTimeOut();
-    void slotUpdateProgess(int value);
 
 private://鼠标拖拽事件
     bool m_bDrag;
