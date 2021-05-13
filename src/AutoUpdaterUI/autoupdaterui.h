@@ -33,20 +33,23 @@ private:
 
 public:
     bool CheckUpdate();
-    void ExitApp(QString name);
 
 private:
-    void InitUI();
-    void UpdateUI();
-    void UpdatingUI();
-    void NotUpdateUI();
     void Updating();
     void FinishUpdate();
 
-    void SetVisibleUpdateUI(bool b);
-    void SetVisibleUpdatingUI(bool b);
-    void SetVisibleNotUpdateUI(bool b);
-    void SetVisibleFinishUpdateUI(bool b);
+    void InitUI();
+    void CheckUpdateUI();
+    void UpdateUI();
+    void UpdatingUI();
+    void NotUpdateUI();
+    void FinishUpdateUI();
+
+    void ShowUpdateUI(bool b);
+    void ShowUpdatingUI(bool b);
+    void ShowNotUpdateUI(bool b);
+    void ShowFinishUpdateUI(bool b);
+    void ShowCheckUpdateUI(bool b);
 
 public:
     bool GetConfigFlag();
@@ -102,11 +105,13 @@ private:
     QPushButton *m_btnOk;
     QPushButton *m_btnCansel;
 
+
     //界面部件集中处理
-    QList<QWidget*> m_notUpdateWidgets;
+    QList<QWidget*> m_checkUpdateWidgets;
     QList<QWidget*> m_updateWidgets;
     QList<QWidget*> m_updatingWidgets;
     QList<QWidget*> m_finishWidgets;
+    QList<QWidget*> m_notUpdateWidgets;
 
     //AutoUpdater 对象
     CAutoUpdater m_updater;

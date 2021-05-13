@@ -34,7 +34,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         autoupdaterui.cpp \
     cautoupdater.cpp \
-    chttpdownloadfile.cpp \
     cxmlparser.cpp \
     ftpmanager.cpp
 
@@ -42,7 +41,6 @@ HEADERS += \
         autoupdaterui.h \
         autoupdaterui_global.h \ 
     cautoupdater.h \
-    chttpdownloadfile.h \
     cxmlparser.h \
     ftpmanager.h
 

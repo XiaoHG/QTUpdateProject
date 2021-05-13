@@ -2,7 +2,8 @@
 <autoupdate>
 	<version>V1.2</version>
 	<filelist>
-		<file name="AutoUpdater.exe" dir="" version="1.0"/>
+		<file name="AutoUpdaterTest.exe" dir="" version="1.0"/>
+		<file name="AutoUpdaterUI_d.dll" dir="" version="1.0"/>
 		<file name="D3Dcompiler_47.dll" dir="" version="1.0"/>
 		<file name="libEGLd.dll" dir="" version="1.0"/>
 		<file name="libGLESV2d.dll" dir="" version="1.0"/>
@@ -13,6 +14,7 @@
 		<file name="Qt5Widgetsd.dll" dir="" version="1.0"/>
 		<file name="Qt5Xmld.dll" dir="" version="1.0"/>
 		<file name="versionInfo.txt" version="1.0"/>
+		<file name="updater.xml" version="1.0"/>
 		
 		<file name="qgenericbearerd.dll" dir="bearer" version="1.0"/>
 		

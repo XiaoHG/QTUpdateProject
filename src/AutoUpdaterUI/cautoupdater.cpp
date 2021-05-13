@@ -1,6 +1,6 @@
 ﻿#include "cautoupdater.h"
-#include "chttpdownloadfile.h"
 #include "cxmlparser.h"
+#include "ftpmanager.h"
 #include "ftpmanager.h"
 
 #include <QDir>
@@ -13,29 +13,12 @@
 
 CAutoUpdater::CAutoUpdater()
 {
-    m_progUpdate = 1;
-    m_progDownload = 1;
     m_bCopyOver = false;
 }
 
 CAutoUpdater::~CAutoUpdater()
 {
 
-}
-
-void CAutoUpdater::DownloadFile(QString filename)
-{
-    QString strDownloadPath = QDir::currentPath() + "/download";
-    qDebug() << "strDownload = " << strDownloadPath;
-    QDir diretory(strDownloadPath);
-    if(!diretory.exists())//如果路径不存在，则创建
-    {
-        diretory.mkpath(strDownloadPath);
-    }
-
-    CHttpDownloadFile httpXML(tr("ftp://localhost/mainV1.0/%1").arg(filename),
-                              filename, strDownloadPath, this);//调用下载文件的类
-    httpXML.DownloadFile();
 }
 
 /**
@@ -237,14 +220,6 @@ bool CAutoUpdater::CheckVersion(QString version, QString versionDownload)
 **/
 void CAutoUpdater::DownloadUpdateFiles()
 {
-    //需要下载的文件的存储位置
-    //即版本服务器存储版本的根目录
-    QString strServer = "ftp://localhost/mainV1.0/";
-
-    //下载下来的文件需要保存到应用程序当前目录下的download目录下，这个是自定义的，
-    //可以选择不同的目录去保存。
-    QString strCurrentDir = QApplication::applicationDirPath();//当前程序运行路径
-
     if(m_listFileDir.isEmpty() || m_listFileName.isEmpty())
     {
         qDebug() << QStringLiteral("没有需要更新的文件！");
@@ -253,18 +228,20 @@ void CAutoUpdater::DownloadUpdateFiles()
 
     m_strTip = "开始下载更新文件 ...";
     qDebug() << m_strTip;
-    QStringList strPlaceDirList;
 
-      //这里是下载模块，现在没有服务器，暂时不进行下载动作，解决在本地download文件拷贝。
+    QString DownloadVersion = GetVersion(QApplication::applicationDirPath() + "/download/updater.xml");
+
+    //这里是下载模块，现在没有服务器，暂时不进行下载动作，解决在本地download文件拷贝。
     for(int i = 0; i < m_listFileName.size(); ++i)
     {
         m_strTip = QStringLiteral("正在下载文件 ...") + m_listFileName.at(i);
         qDebug() << m_strTip;
-        m_progUpdate = 100 * i / m_listFileName.size();
 
         /**放置下载文件的路径**/
-        QString strPlaceDir = QApplication::applicationDirPath() + "/download/" + m_listFileDir.at(i);
-        strPlaceDirList.push_back(strPlaceDir);
+        QString strPlaceDir = QApplication::applicationDirPath() +
+                                "/../anycubic" + DownloadVersion + "/" +
+                                m_listFileDir.at(i);
+        m_strPlaceDirList.push_back(strPlaceDir);
         QDir directory(strPlaceDir);//如果路径不存在，则创建
         if(!directory.exists())
         {
@@ -272,84 +249,15 @@ void CAutoUpdater::DownloadUpdateFiles()
         }
 
         //文件在服务器中的存储位置
-        QString strFileDirServer = strServer + m_listFileDir.at(i) + "/" + m_listFileName.at(i);
-        CHttpDownloadFile http(strFileDirServer, m_listFileName.at(i), strPlaceDir, this);//调用下载文件的类
-        http.DownloadFile(); //下载文件
-
-        while(!http.GetBlsFinish())
-        {
-            if(http.GetTotalReceive() == -1)
-            {
-                m_progDownload = 1;
-            }
-            else
-            {
-                m_progDownload = 100 * http.GetReceiving() / http.GetTotalReceive();
-            }
-            QCoreApplication::processEvents();
-        }
-
-        //单个文件下载完成
-        m_strTip = QStringLiteral("文件") + m_listFileName.at(i) + QStringLiteral("下载完成");
-        qDebug() << m_strTip;
+        QString strFileDirServer = "/mainV1.0/" + m_listFileDir.at(i) + "/" + m_listFileName.at(i);
+        strPlaceDir += "/" + m_listFileName.at(i);
+        FtpManager *ftp = new FtpManager();
+        ftp->setHost("localhost");
+        qDebug() << "Download: ";
+        qDebug() << strFileDirServer;
+        qDebug() << strPlaceDir;
+        ftp->get(strFileDirServer, strPlaceDir);
     }
-
-    //所有文件下载完成
-    m_strTip = QStringLiteral("更新完成！");
-    qDebug() << m_strTip;
-
-    //统一复制到旧的目录的上一级目录，作为一个独立目录，文件命为版本。 这里的代码是复制的代码
-    QString xml = QApplication::applicationDirPath() + "/download/updater.xml";
-    QString copyTiggerPath = QApplication::applicationDirPath() + tr("/../anycubic%1").arg(GetVersion(xml));
-    qDebug() << "Copy file size = " << m_listFileName.size();
-    for(int i = 0; i < m_listFileName.size(); ++i)
-    {
-        /**将下载好的文件复制到主目录中,先删除原先的文件**/
-        QString strLocalFileName = copyTiggerPath + "/" +
-                                    m_listFileDir.at(i) + "/"
-                                    + m_listFileName.at(i);
-        if(QFile::exists(strLocalFileName))
-            QFile::remove(strLocalFileName);
-
-        qDebug() << "strLocalFileName = " << strLocalFileName;
-
-        //如果路径不存在，则创建
-        QDir directory1(copyTiggerPath + "/" + m_listFileDir.at(i));
-        if(!directory1.exists())
-            directory1.mkpath(copyTiggerPath + "/" + m_listFileDir.at(i));
-
-        //拷贝
-        qDebug() << "copy : -----------------==============------------------";
-        qDebug() << strPlaceDirList.at(i) + "/" + m_listFileName.at(i);
-        qDebug() << strLocalFileName;
-        if(QFile::copy(strPlaceDirList.at(i) + "/" + m_listFileName.at(i), strLocalFileName))
-        {
-            qDebug() << "File: " << m_listFileName.at(i) << " copy over!";
-        }
-    }
-
-    /**替换旧的xml文件**/
-    QString strNewXML = QApplication::applicationDirPath() + "/download/updater.xml"; //最新的XML文件
-    QString strOldXML = copyTiggerPath + "/updater.xml"; //旧的XML文件
-    QFile::remove(strOldXML);
-    QFile::copy(strNewXML, strOldXML);
-
-    //拷贝结束的条件，到这里就整个更新过程结束了。
-    //QThread::sleep(2);
-    m_bCopyOver = true;
-    m_progUpdate = 100;
-
-    //这里复制完成，考虑删掉临时下载文件。
-}
-
-int CAutoUpdater::GetDownProcess()
-{
-    return m_progDownload;
-}
-
-int CAutoUpdater::GetUpdateProcess()
-{
-    return m_progUpdate;
 }
 
 /**读取版本信息文件**/
@@ -386,4 +294,9 @@ QStringList CAutoUpdater::GetUpdateFileDir()
 QStringList CAutoUpdater::GetUpdateFileName()
 {
     return m_listFileName;
+}
+
+bool CAutoUpdater::GetUpdateProcess()
+{
+    return false;
 }

@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
+#include <QTimer>
 
 class FtpManager : public QObject
 {
@@ -15,12 +16,14 @@ public:
     QNetworkReply *put(const QString &localPath, const QString &uploadPath);
     QNetworkReply *get(const QString &downloadPath, const QString &localPath);
 
-    inline void setPort(int port) { url.setPort(port); }
-    inline void setHost(const QString &host) { url.setHost(host); }
-    inline void setPath(const QString &path) { url.setPath(path); }
-    inline void setUserName(const QString &userName) { url.setUserName(userName); }
-    inline void setPassword(const QString &password) { url.setPassword(password); }
+    inline void setPort(int port) { m_url.setPort(port); }
+    inline void setHost(const QString &host) { m_url.setHost(host); }
+    inline void setPath(const QString &path) { m_url.setPath(path); }
+    inline void setUserName(const QString &userName) { m_url.setUserName(userName); }
+    inline void setPassword(const QString &password) { m_url.setPassword(password); }
 
+    int GetDownloadCount();
+    QStringList GetCurDownloadFileList();
 public slots:
     void uploadFinished();
     void downloadFinished();
@@ -29,11 +32,18 @@ public slots:
 signals:
     void sigDownloadUpdaterXmlOver();
     void sigDownloadVersionInfoFileOver();
+    void sigSingleFileDownloadFinish(QString);
+    void sigAllFileDownFinish();
+
+public:
+    static int m_downloadCount;
 
 private:
-    QUrl url;
-    QString path;
-    QNetworkAccessManager manager;
+    QUrl m_url;
+    QString m_path;
+    QNetworkAccessManager m_manager;
+
+    QStringList m_curDownloadFileList;
 };
 
 #endif // FTPMANAGER_H

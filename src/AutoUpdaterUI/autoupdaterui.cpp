@@ -40,7 +40,7 @@ void AutoUpdaterUI::InitUI()
     this->setWindowTitle("Check Update");
 
     //line edit widget to version notify
-    QFont titleLabelFont( "Microsoft YaHei", 12, 75);
+    QFont titleLabelFont( "Microsoft YaHei", 11, 75);
     m_titleLabel = new QLabel(this);
     m_titleLabel->setGeometry(0 , 0, this->width(), 40);
     m_titleLabel->setFont(titleLabelFont);
@@ -48,6 +48,11 @@ void AutoUpdaterUI::InitUI()
     m_titleLabel->setScaledContents(true);
     m_titleLabel->setStyleSheet("background-color:rgb(50, 50, 50);"
                                 "color:rgb(200, 200, 200)");
+
+    QProgressBar *pbCheckUpdate = new QProgressBar(this);
+    pbCheckUpdate->setGeometry(10, 50, 200, 20);
+    pbCheckUpdate->setVisible(false);
+    m_checkUpdateWidgets.push_back(pbCheckUpdate);
 
     //add a Text edit widget for output file that need to update
     //QFont outputEditFont( "Microsoft YaHei", 8, 75);
@@ -180,6 +185,11 @@ void AutoUpdaterUI::InitUI()
     //this->exec();
 }
 
+void AutoUpdaterUI::CheckUpdateUI()
+{
+
+}
+
 void AutoUpdaterUI::mousePressEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)
@@ -221,6 +231,7 @@ void AutoUpdaterUI::testInterface()
 
 void AutoUpdaterUI::CheckUpdater()
 {
+
     QDir downloadDir(QApplication::applicationDirPath() + "/download");
     if(!downloadDir.exists())
         downloadDir.mkdir(QApplication::applicationDirPath() + "/download");
@@ -234,6 +245,7 @@ void AutoUpdaterUI::CheckUpdater()
 /*update or not, checked update*/
 bool AutoUpdaterUI::CheckUpdate()
 {
+
     //从版本文件中读取版本号，并进行本地版本和下载XML版本对比，得出是否更新的结论
     m_isUpdate = m_updater.CheckVersionForUpdate();//对比下载下来的XML和本地版本的XML
 
@@ -279,17 +291,20 @@ void AutoUpdaterUI::UpdateUI()
 {
     m_titleLabel->setText(QStringLiteral("检查更新！"));
 
+    //隐藏正在检查更新组件
+    ShowCheckUpdateUI(false);
+
     //隐藏正在更新界面组件
-    SetVisibleUpdatingUI(false);
+    ShowUpdatingUI(false);
 
     //隐藏更新完成的部件
-    SetVisibleFinishUpdateUI(false);
+    ShowFinishUpdateUI(false);
 
     //隐藏不需要更新的部件
-    SetVisibleNotUpdateUI(false);
+    ShowNotUpdateUI(false);
 
     //显示检查更新界面组件
-    SetVisibleUpdateUI(true);
+    ShowUpdateUI(true);
 
     //m_versionServerInfo: 获取到下载的XML的版本，进行显示
 
@@ -307,10 +322,10 @@ void AutoUpdaterUI::UpdatingUI()
     m_titleLabel->setText(QStringLiteral("正在更新 ..."));
 
     //隐藏检查更新界面组件
-    SetVisibleUpdateUI(false);
+    ShowUpdateUI(false);
 
     //显示正在更新界面组件
-    SetVisibleUpdatingUI(true);
+    ShowUpdatingUI(true);
 
 }
 
@@ -330,10 +345,10 @@ void AutoUpdaterUI::FinishUpdate()
     m_isUpdate = false;
 
     //隐藏正在更新的部件
-    SetVisibleUpdatingUI(false);
+    ShowUpdatingUI(false);
 
     //显示更新完成的部件
-    SetVisibleFinishUpdateUI(true);
+    ShowFinishUpdateUI(true);
 
     //this->close();
 }
@@ -346,16 +361,16 @@ void AutoUpdaterUI::NotUpdateUI()
     m_titleLabel->setText(QStringLiteral("当前版本是最新版本！"));
 
     //隐藏检查更新界面组件
-    SetVisibleUpdateUI(false);
+    ShowUpdateUI(false);
 
     //隐藏正在更新界面组件
-    SetVisibleUpdatingUI(false);
+    ShowUpdatingUI(false);
 
     //隐藏更新完成的部件
-    SetVisibleFinishUpdateUI(false);
+    ShowFinishUpdateUI(false);
 
     //显示不需要更新的界面组件
-    SetVisibleNotUpdateUI(true);
+    ShowNotUpdateUI(true);
 
     //读取和主程序交互的配置文件，如果flag为false则无弹窗并且直接退出更新程序；
     //需要处理更新程序的自结束，现在时卡死状态
@@ -367,6 +382,11 @@ void AutoUpdaterUI::NotUpdateUI()
         qDebug() << "this->close()";
         this->close();
     }
+}
+
+void AutoUpdaterUI::FinishUpdateUI()
+{
+
 }
 
 void AutoUpdaterUI::slotDownloadUpdaterXmlOver()
@@ -384,6 +404,7 @@ void AutoUpdaterUI::slotDownloadVersionInfoFileOver()
     qDebug() << "slotDownloadVersionInfoFileOver";
     //m_downloadVersionInfos获取到了最新版本的版本信息，m_outputVersionInfoEdit进行显示
     //目前为设置读取XML，所以此时为空
+    //隐藏正在检查更新组件
     CheckUpdate();
 }
 
@@ -399,13 +420,11 @@ void AutoUpdaterUI::slotUpdateBtnClicked()
 void AutoUpdaterUI::slotUpdateTimeOut()
 {
     static int process = 0;
-    QString strCurrentDir = QDir::currentPath();
+    QString strCurrentDir = QApplication::applicationDirPath();
     QStringList strListDownloadFileDir = m_updater.GetUpdateFileDir();
     QStringList strListDownloadFileName = m_updater.GetUpdateFileName();
     QString strTmpDir;
     static int i = 0;
-    qDebug() << "Time out strListDownloadFileName size = " << strListDownloadFileName.size();
-    qDebug() << "Time out strListDownloadFileDir size = " << strListDownloadFileDir.size();
     if(process % (100 / strListDownloadFileDir.size()) == 0 && i < strListDownloadFileDir.size())
     {
         m_outputVersionInfoEdit->append(QStringLiteral("正在更新文件") +
@@ -427,10 +446,7 @@ void AutoUpdaterUI::slotUpdateTimeOut()
                                     strListDownloadFileName.at(i - 1) +
                                     QStringLiteral("更新完成"));
 
-    m_updateProgressBar->setValue(m_updater.GetUpdateProcess());
-    qDebug() << "m_updater.GetDownProcess() = " << m_updater.GetDownProcess();
-    qDebug() << "m_updater.GetUpdateProcess() = " << m_updater.GetUpdateProcess();
-    if(m_updater.GetUpdateProcess() == 100)
+    if(FtpManager::m_downloadCount == 0)
     {
         m_outputVersionInfoEdit->append(QStringLiteral("注意：所有文件已经更新完成，"
                                           "点击重启客户端会启动最新版本，"
@@ -444,8 +460,7 @@ void AutoUpdaterUI::slotUpdateTimeOut()
 
 void AutoUpdaterUI::slotOkBtnClicked()
 {
-    QString name = QDir::currentPath() + "/debug/AutoUpdateTest.exe"; //主程序名
-    ExitApp(name);
+
 }
 
 void AutoUpdaterUI::slotUpdateProgess(int value)
@@ -453,18 +468,7 @@ void AutoUpdaterUI::slotUpdateProgess(int value)
     m_updateProgressBar->setValue(value);
 }
 
-void AutoUpdaterUI::ExitApp(QString name)
-{
-    /**运行主程序，并且退出当前更新程序(说明：主程序在上上一级目录中)**/
-    if(!QProcess::startDetached(name))//启动主程序，主程序在其上一级目录
-    {
-        QMessageBox::warning(this, "warning", QStringLiteral("主程序打开错误！"),
-                             QMessageBox::Ok, QMessageBox::NoButton);
-    }
-    this->close();
-}
-
-void AutoUpdaterUI::SetVisibleUpdateUI(bool b)
+void AutoUpdaterUI::ShowUpdateUI(bool b)
 {
     for(int i = 0; i < m_updateWidgets.size(); ++i)
     {
@@ -472,7 +476,7 @@ void AutoUpdaterUI::SetVisibleUpdateUI(bool b)
     }
 }
 
-void AutoUpdaterUI::SetVisibleUpdatingUI(bool b)
+void AutoUpdaterUI::ShowUpdatingUI(bool b)
 {
     for(int i = 0; i < m_updatingWidgets.size(); ++i)
     {
@@ -480,7 +484,7 @@ void AutoUpdaterUI::SetVisibleUpdatingUI(bool b)
     }
 }
 
-void AutoUpdaterUI::SetVisibleNotUpdateUI(bool b)
+void AutoUpdaterUI::ShowNotUpdateUI(bool b)
 {
     for(int i = 0; i < m_notUpdateWidgets.size(); ++i)
     {
@@ -488,11 +492,19 @@ void AutoUpdaterUI::SetVisibleNotUpdateUI(bool b)
     }
 }
 
-void AutoUpdaterUI::SetVisibleFinishUpdateUI(bool b)
+void AutoUpdaterUI::ShowFinishUpdateUI(bool b)
 {
     for(int i = 0; i < m_finishWidgets.size(); ++i)
     {
         m_finishWidgets.at(i)->setVisible(b);
+    }
+}
+
+void AutoUpdaterUI::ShowCheckUpdateUI(bool b)
+{
+    for(int i = 0; i < m_checkUpdateWidgets.size(); ++i)
+    {
+        m_checkUpdateWidgets.at(i)->setVisible(b);
     }
 }
 

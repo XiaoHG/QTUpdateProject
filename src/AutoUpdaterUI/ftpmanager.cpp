@@ -3,11 +3,14 @@
 #include <QFile>
 #include <QNetworkRequest>
 
+int FtpManager::m_downloadCount = 0;
+
 FtpManager::FtpManager(QObject *parent) :
     QObject(parent)
 {
     // 设置协议
-    url.setScheme("ftp");
+    m_url.setScheme("ftp");
+
 }
 
 QNetworkReply *FtpManager::put(const QString &localPath, const QString &uploadPath)
@@ -18,9 +21,9 @@ QNetworkReply *FtpManager::put(const QString &localPath, const QString &uploadPa
         return NULL;
 
     // 设置上传路径
-    url.setPath(uploadPath);
+    m_url.setPath(uploadPath);
 
-    QNetworkReply *pReply = manager.put(QNetworkRequest(url), file.readAll());
+    QNetworkReply *pReply = m_manager.put(QNetworkRequest(m_url), file.readAll());
     connect(pReply, SIGNAL(finished()), SLOT(uploadFinished()));
     connect(pReply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(error(QNetworkReply::NetworkError)));
     return pReply;
@@ -28,15 +31,17 @@ QNetworkReply *FtpManager::put(const QString &localPath, const QString &uploadPa
 
 QNetworkReply *FtpManager::get(const QString &downloadPath, const QString &localPath)
 {
+    m_downloadCount++;
     // 记录要保存的位置
-    path = localPath;
+    m_path = localPath;
 
     // 设置下载路径
-    url.setPath(downloadPath);
+    m_url.setPath(downloadPath);
+    m_curDownloadFileList.push_back(m_url.path());
 
     qDebug() << "downloadPath = " << downloadPath;
 
-    QNetworkReply *pReply = manager.get(QNetworkRequest(url));
+    QNetworkReply *pReply = m_manager.get(QNetworkRequest(m_url));
     connect(pReply, SIGNAL(finished()), SLOT(downloadFinished()));
     connect(pReply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(error(QNetworkReply::NetworkError)));
     return pReply;
@@ -49,6 +54,8 @@ void FtpManager::uploadFinished()
 
 void FtpManager::downloadFinished()
 {
+    m_downloadCount--;
+    m_curDownloadFileList.removeOne(m_url.path());
     QNetworkReply *pReply = qobject_cast<QNetworkReply *>(sender());
     if (pReply == NULL)
         return;
@@ -58,7 +65,7 @@ void FtpManager::downloadFinished()
         return;
 
     // 写入文件
-    QFile file(path);
+    QFile file(m_path);
     if (!file.open(QIODevice::WriteOnly))
         return;
 
@@ -66,22 +73,34 @@ void FtpManager::downloadFinished()
     file.write(pReply->readAll());
     file.flush();
     file.close();
-    qDebug() << "url.path = " << url.path();
-    if(path.contains("updater.xml"))
+    qDebug() << "url.path = " << m_url.path();
+    if(m_path.contains("updater.xml"))
     {
         sigDownloadUpdaterXmlOver();
-        qDebug() << "file: " << path << " download success!";
-        return;
     }
-    if(path.contains("versionInfo.txt"))
+    if(m_path.contains("versionInfo.txt"))
     {
         sigDownloadVersionInfoFileOver();
-        qDebug() << "file: " << path << " download success!";
-        return;
     }
+    qDebug() << "file: " << m_path << " download success!";
+    sigSingleFileDownloadFinish(m_path);
 }
 
 void FtpManager::error(QNetworkReply::NetworkError)
 {
     qDebug() << "error = ";
 }
+
+int FtpManager::GetDownloadCount()
+{
+    return m_downloadCount;
+}
+
+QStringList FtpManager::GetCurDownloadFileList()
+{
+    return m_curDownloadFileList;
+}
+
+
+
+
