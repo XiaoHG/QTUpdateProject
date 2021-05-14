@@ -35,18 +35,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::WriteConfigFileFlag(const char* flag)
-{
-    QString strConfigName = QDir::currentPath() + "/updateConfig.txt";
-    QFile file(strConfigName);
-    if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        qDebug() << "WriteConfigFileFlag false!";
-        return;
-    }
-    file.write(flag);
-}
-
 void MainWindow::slotBtnUpdateCliecked()
 {
     AutoUpdaterUI::getInstance()->CheckUpdater(false);

@@ -34,7 +34,7 @@ private:
 public:
     void CheckUpdater(bool isFirst);
 
-private:
+public:
     void CheckUpdate();
     void Update();
     void Updating();
@@ -48,17 +48,18 @@ private:
     void FinishUpdateUI();
     void NotUpdateUI();
 
-    void ShowCheckUpdateUI(bool b);
-    void ShowUpdateUI(bool b);
-    void ShowUpdatingUI(bool b);
-    void ShowFinishUpdateUI(bool b);
-    void ShowNotUpdateUI(bool b);
+    void ShowCheckUpdateUI(bool visible);
+    void ShowUpdateUI(bool visible);
+    void ShowUpdatingUI(bool visible);
+    void ShowFinishUpdateUI(bool visible);
+    void ShowNotUpdateUI(bool visible);
 
 protected slots:
     void slotBtnUpdateClicked();
     void slotBtnOkClicked();
-    void slotUpdateTimeOut();
+    void slotUpdateProcess();
     void slotDownloadUpdaterXmlOver();
+    void slotCheckTimeOut();
 
 protected:
     void mousePressEvent(QMouseEvent *event);
@@ -98,6 +99,10 @@ private:
     QPushButton *m_btnOk;
     QPushButton *m_btnCansel;
 
+    //show check update time out
+    QLabel *m_timeLabel;
+    int m_checkupdateTimeOut = 0;
+
     //界面部件集中处理
     //check update widgets
     QList<QWidget*> m_checkUpdateWidgets;
@@ -122,6 +127,9 @@ private:
 
     //first check
     bool m_first;
+
+    //Check time out
+    QTimer *m_checkTimeOut;
 };
 
 #endif // AUTOUPDATERUI_H

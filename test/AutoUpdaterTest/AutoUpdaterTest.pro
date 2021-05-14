@@ -34,7 +34,7 @@ FORMS += \
         mainwindow.ui
 
 INCLUDEPATH += ../../src/AutoUpdaterUI
-LIBS += -L../../lib -lAutoUpdaterUI
+LIBS += -L../../lib -lAutoUpdaterUI_d
 
 RESOURCES += \
     ../../source/icon.qrc

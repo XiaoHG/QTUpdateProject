@@ -61,8 +61,8 @@ static const uint qt_meta_data_AutoUpdater[] = {
        1,    0,   29,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   30,    2, 0x0a /* Public */,
-       4,    0,   31,    2, 0x0a /* Public */,
+       3,    0,   30,    2, 0x09 /* Protected */,
+       4,    0,   31,    2, 0x09 /* Protected */,
 
  // signals: parameters
     QMetaType::Void,

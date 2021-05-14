@@ -24,8 +24,14 @@ AutoUpdaterUI::AutoUpdaterUI(QWidget *parent)
     :QDialog(parent)
 {
     InitUI();
+    qDebug() << "AutoUpdaterUI 100";
     m_updater = new AutoUpdater();
+    qDebug() << "AutoUpdaterUI 200";
     connect(m_updater, SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
+
+    m_checkTimeOut = new QTimer(this);
+    connect(m_checkTimeOut, SIGNAL(timeout()), this, SLOT(slotCheckTimeOut()));
+    m_checkTimeOut->stop();
 }
 
 AutoUpdaterUI::~AutoUpdaterUI()
@@ -39,6 +45,7 @@ AutoUpdaterUI::~AutoUpdaterUI()
 /*UI defined*/
 void AutoUpdaterUI::InitUI()
 {
+    qDebug() << "AutoUpdaterUI 0";
     m_updateFiles = new QStringList;
     this->setStyleSheet("background-color:rgb(100, 100, 100)");
     this->setWindowFlags(Qt::FramelessWindowHint);
@@ -67,6 +74,8 @@ void AutoUpdaterUI::InitUI()
                                            "color:rgb(200, 200, 200)");
     m_outputVersionInfoEdit->setTextColor(QColor(200, 200, 200, 255));
 
+
+
     QFont logTitleLabelFont( "Microsoft YaHei", 9, 75);
     m_logTitleLabel = new QLabel(this);
     m_logTitleLabel->setFont(logTitleLabelFont);
@@ -79,25 +88,19 @@ void AutoUpdaterUI::InitUI()
     m_logTitleLabel->setText(QStringLiteral("更新日志 : "));
     m_logTitleLabel->setStyleSheet("color:rgb(200, 200, 200)");
 
-    //laster version info
-    m_newVersionInfoLabel = new QLabel(this);
-    m_newVersionInfoLabel->setGeometry(m_btnUpdate->x() + m_btnUpdate->width() + 10,
-                                       m_btnUpdate->y(),
-                                       m_outputVersionInfoEdit->width() - m_btnUpdate->width() - 10,
-                                       m_btnUpdate->height());
-    m_newVersionInfoLabel->setScaledContents(true);
-    m_newVersionInfoLabel->setWordWrap(true);
-    m_newVersionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
+    qDebug() << "AutoUpdaterUI 1";
+
+    qDebug() << "AutoUpdaterUI 2";
 
     m_btnClose = new QPushButton(this);
     m_btnClose->setIcon(QIcon(":/image/close.png"));
     m_btnClose->setGeometry(this->width() - m_titleLabel->height(), 0,
                           m_titleLabel->height(), m_titleLabel->height());
     m_btnClose->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%);"
-                                "color: white; border-style: outset;}" // 按键本色
-                                "QPushButton:hover{background-color:rgb(100, 100, 100);}"  // 鼠标停放时的色彩
-                                "QPushButton:pressed{background-color:rgb(150, 150, 150); "
-                                "border-style: inset; }");   // 鼠标按下的色彩
+                        "color: white; border-style: outset;}" // 按键本色
+                        "QPushButton:hover{background-color:white; color: black;}"  // 鼠标停放时的色彩
+                        "QPushButton:pressed{background-color:rgb(85, 170, 255); "
+                        "border-style: inset; }");   // 鼠标按下的色彩
     m_btnClose->setFlat(true);
     connect(m_btnClose, SIGNAL(clicked(bool)), this, SLOT(close()));
 
@@ -106,19 +109,40 @@ void AutoUpdaterUI::InitUI()
     UpdatingUI();
     FinishUpdateUI();
     NotUpdateUI();
-
-    this->exec();
 }
 
 void AutoUpdaterUI::CheckUpdateUI()
 {
+    QFont logTitleLabelFont( "Microsoft YaHei", 9, 75);
+
     QProgressBar *pbCheckUpdate = new QProgressBar(this);
-    pbCheckUpdate->setGeometry((this->width() - pbCheckUpdate->width()) / 2,
+    pbCheckUpdate->setGeometry((this->width() - pbCheckUpdate->width()) / 2 - 50,
                                (this->height() - pbCheckUpdate->height()) / 2,
                                200, 20);
+    pbCheckUpdate->setOrientation(Qt::Horizontal);  // 水平方向
+    pbCheckUpdate->setMinimum(0);  // 最小值
+    pbCheckUpdate->setMaximum(0);  // 最大值， 进度条设置的最小值和最大值都为0，显示繁忙
+    pbCheckUpdate->setStyleSheet("QProgressBar{"
+                                   "font:9pt;"
+                                   "border-radius:5px;"
+                                   "text-align:center;"
+                                   "border:1px solid #E8EDF2;"
+                                   "background-color: rgb(255, 255, 255);"
+                                   "border-color: rgb(180, 180, 180);}"
+                                   "QProgressBar:chunk{"
+                                   "border-radius:5px;"
+                                   "background-color:#1ABC9C;}");
+
+    m_timeLabel = new QLabel(this);
+    m_timeLabel->setGeometry(pbCheckUpdate->x(), pbCheckUpdate->y() + 30, 100, 20);
+    m_timeLabel->setFont(logTitleLabelFont);
 
     m_checkUpdateWidgets.push_back(pbCheckUpdate);
     m_checkUpdateWidgets.push_back(m_btnClose);
+    m_checkUpdateWidgets.push_back(m_timeLabel);
+
+    //init false
+    ShowCheckUpdateUI(false);
 }
 
 void AutoUpdaterUI::UpdateUI()
@@ -135,6 +159,16 @@ void AutoUpdaterUI::UpdateUI()
                         "QPushButton:pressed{background-color:rgb(85, 170, 255); "
                         "border-style: inset; }");   // 鼠标按下的色彩
 
+    //laster version info
+    m_newVersionInfoLabel = new QLabel(this);
+    m_newVersionInfoLabel->setGeometry(m_btnUpdate->x() + m_btnUpdate->width() + 10,
+                                       m_btnUpdate->y(),
+                                       m_outputVersionInfoEdit->width() - m_btnUpdate->width() - 10,
+                                       m_btnUpdate->height());
+    m_newVersionInfoLabel->setScaledContents(true);
+    m_newVersionInfoLabel->setWordWrap(true);
+    m_newVersionInfoLabel->setStyleSheet("color:rgb(200, 200, 200)");
+
     connect(m_btnUpdate, SIGNAL(clicked(bool)), this, SLOT(slotBtnUpdateClicked()));
 
     m_updateWidgets.push_back(m_outputVersionInfoEdit);
@@ -142,6 +176,9 @@ void AutoUpdaterUI::UpdateUI()
     m_updateWidgets.push_back(m_btnUpdate);
     m_updateWidgets.push_back(m_newVersionInfoLabel);
     m_updateWidgets.push_back(m_btnClose);
+
+    //init false
+    ShowUpdateUI(false);
 }
 
 void AutoUpdaterUI::UpdatingUI()
@@ -162,12 +199,15 @@ void AutoUpdaterUI::UpdatingUI()
 
     //update prosess timer
     m_updateProsessTimer = new QTimer(this);
-    connect(m_updateProsessTimer, SIGNAL(timeout()), this, SLOT(slotUpdateTimeOut()));
+    connect(m_updateProsessTimer, SIGNAL(timeout()), this, SLOT(slotUpdateProcess()));
     m_updateProsessTimer->stop();
 
     m_updatingWidgets.push_back(m_outputVersionInfoEdit);
     m_updatingWidgets.push_back(m_logTitleLabel);
     m_updatingWidgets.push_back(m_updateProgressBar);
+
+    //init false
+    ShowUpdatingUI(false);
 }
 
 void AutoUpdaterUI::FinishUpdateUI()
@@ -200,6 +240,9 @@ void AutoUpdaterUI::FinishUpdateUI()
     m_finishWidgets.push_back(m_btnClose);
     m_finishWidgets.push_back(m_btnOk);
     m_finishWidgets.push_back(m_btnCansel);
+
+    //init false
+    ShowFinishUpdateUI(false);
 }
 
 void AutoUpdaterUI::NotUpdateUI()
@@ -216,13 +259,19 @@ void AutoUpdaterUI::NotUpdateUI()
     m_notUpdateWidgets.push_back(m_outputVersionInfoEdit);
     m_notUpdateWidgets.push_back(m_logTitleLabel);
     m_notUpdateWidgets.push_back(m_labelLasterVersion);
+    m_notUpdateWidgets.push_back(m_btnClose);
 
+    //init false
+    ShowNotUpdateUI(false);
 }
 
 void AutoUpdaterUI::CheckUpdate()
 {
     m_titleLabel->setText(QStringLiteral("正在检查更新 ..."));
     m_btnClose->setVisible(true);
+    m_checkTimeOut->start(1000);
+    m_checkupdateTimeOut = 0;
+    m_timeLabel->setText(tr("PASS : 0s"));
 }
 
 void AutoUpdaterUI::Update()
@@ -260,55 +309,67 @@ void AutoUpdaterUI::NotUpdate()
     this->exec();
 }
 
-void AutoUpdaterUI::ShowCheckUpdateUI(bool b)
+void AutoUpdaterUI::ShowCheckUpdateUI(bool visible)
 {
     for(int i = 0; i < m_checkUpdateWidgets.size(); ++i)
     {
-        m_checkUpdateWidgets.at(i)->setVisible(b);
+        m_checkUpdateWidgets.at(i)->setVisible(visible);
     }
 }
 
-void AutoUpdaterUI::ShowUpdateUI(bool b)
+void AutoUpdaterUI::ShowUpdateUI(bool visible)
 {
     for(int i = 0; i < m_updateWidgets.size(); ++i)
     {
-        m_updateWidgets.at(i)->setVisible(b);
+        m_updateWidgets.at(i)->setVisible(visible);
     }
 }
 
-void AutoUpdaterUI::ShowUpdatingUI(bool b)
+void AutoUpdaterUI::ShowUpdatingUI(bool visible)
 {
     for(int i = 0; i < m_updatingWidgets.size(); ++i)
     {
-        m_updatingWidgets.at(i)->setVisible(b);
+        m_updatingWidgets.at(i)->setVisible(visible);
     }
 }
 
-void AutoUpdaterUI::ShowFinishUpdateUI(bool b)
+void AutoUpdaterUI::ShowFinishUpdateUI(bool visible)
 {
     for(int i = 0; i < m_finishWidgets.size(); ++i)
     {
-        m_finishWidgets.at(i)->setVisible(b);
+        m_finishWidgets.at(i)->setVisible(visible);
     }
 }
 
-void AutoUpdaterUI::ShowNotUpdateUI(bool b)
+void AutoUpdaterUI::ShowNotUpdateUI(bool visible)
 {
     for(int i = 0; i < m_notUpdateWidgets.size(); ++i)
     {
-        m_notUpdateWidgets.at(i)->setVisible(b);
+        m_notUpdateWidgets.at(i)->setVisible(visible);
     }
 }
 
 void AutoUpdaterUI::CheckUpdater(bool isFirst)
 {
     m_first = isFirst;
-    m_updater->DownloadUpdaterXmlFile();
+    ShowFinishUpdateUI(false);
+    ShowNotUpdateUI(false);
+    CheckUpdate();
+    ShowCheckUpdateUI(true);
+    //m_updater->DownloadUpdaterXmlFile();
+    this->exec();
+}
+
+void AutoUpdaterUI::slotCheckTimeOut()
+{
+    QString strTime = tr("PASS : %1s").arg(++m_checkupdateTimeOut);
+    m_timeLabel->setText(strTime);
 }
 
 void AutoUpdaterUI::slotDownloadUpdaterXmlOver()
 {
-    qDebug() << "slotDownloadVersionInfoFileOver, version infomation download over!";
+    //检查下载到了updater.xml和versionInfo.txt，说明检查更新结束了。
+    ShowCheckUpdateUI(false);
 
     m_outputVersionInfoEdit->clear();
     QStringList strListVersionInfo = m_updater->GetVersionInfo();
@@ -330,10 +391,12 @@ void AutoUpdaterUI::slotDownloadUpdaterXmlOver()
                                    QApplication::applicationDirPath() + "/updater.xml");
         if(n != 1)
         {
+            NotUpdate();
             ShowNotUpdateUI(true);
         }
         else
         {
+            Update();
             ShowUpdateUI(true);
         }
     }
@@ -341,6 +404,7 @@ void AutoUpdaterUI::slotDownloadUpdaterXmlOver()
     {
         //This is the laster version so hide update button and cansel button,
         //and show the laster notify message and ok button.
+        NotUpdate();
         ShowNotUpdateUI(true);
     }
 }
@@ -348,15 +412,17 @@ void AutoUpdaterUI::slotDownloadUpdaterXmlOver()
 /*update function*/
 void AutoUpdaterUI::slotBtnUpdateClicked()
 {
-    UpdatingUI();
+    Updating();
+    ShowUpdateUI(false);
+    ShowUpdatingUI(true);
     //update,and start updateProsessTimer
     m_updateProsessTimer->start(50);
 
-    //这里执行更新，就是XML对比出来后的所有需更新文件的下载，拷贝。
+    //这里执行更新，就是XML对比出来后的所有需更新文件的下载。
     m_updater->DownloadUpdateFiles();
 }
 
-void AutoUpdaterUI::slotUpdateTimeOut()
+void AutoUpdaterUI::slotUpdateProcess()
 {
     QStringList strCurrDownloadFileList = m_updater->GetCurrDownloadFileList();
     qDebug() << "strCurrDownloadFileList.size() = " << strCurrDownloadFileList.size();
@@ -387,6 +453,8 @@ void AutoUpdaterUI::slotUpdateTimeOut()
                                           "点击取消保持当前版本运行，下次启动为最新版本！"));
         m_titleLabel->setText(QStringLiteral("更新完成！"));
         FinishUpdate();
+        ShowUpdatingUI(false);
+        ShowFinishUpdateUI(true);
     }
 }
 

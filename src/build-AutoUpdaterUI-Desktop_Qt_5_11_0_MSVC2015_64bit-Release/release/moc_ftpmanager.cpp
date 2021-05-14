@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../AutoUpdaterUI/ftpmanager.h"
+#include "C:/Users/anycubic/Desktop/0514/QTUpdateProject-home/src/AutoUpdaterUI/ftpmanager.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)

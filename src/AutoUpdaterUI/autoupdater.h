@@ -33,11 +33,11 @@ public:
     QStringList GetFinishDownloadFileList();
     void DownloadUpdaterXmlFile();
     void DownloadVersionInfoFile();
-public slots:
 
+protected slots:
     void slotDownloadUpdaterXmlOver();
-
     void slotDownloadVersionInfoFileOver();
+
 signals:
     void sigDownloadUpdaterXmlOver();
 
