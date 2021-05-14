@@ -1,5 +1,5 @@
-﻿#include "cautoupdater.h"
-#include "cxmlparser.h"
+﻿#include "autoupdater.h"
+#include "xmlparser.h"
 #include "ftpmanager.h"
 #include "ftpmanager.h"
 
@@ -11,14 +11,47 @@
 #include <QThread>
 #include <QApplication>
 
-CAutoUpdater::CAutoUpdater()
+AutoUpdater::AutoUpdater()
 {
     m_bCopyOver = false;
 }
 
-CAutoUpdater::~CAutoUpdater()
+AutoUpdater::~AutoUpdater()
 {
+    for(int i = 0; i < m_ftpList.size(); ++i)
+    {
+        m_ftpList.at(i)->deleteLater();
+    }
+}
 
+void AutoUpdater::DownloadUpdaterXmlFile()
+{
+    QDir downloadDir(QApplication::applicationDirPath() + "/download");
+    if(!downloadDir.exists())
+        downloadDir.mkdir(QApplication::applicationDirPath() + "/download");
+
+    FtpManager *ftp = new FtpManager();
+    m_ftpList.push_back(ftp);
+    ftp->get("/version/updater.xml", QApplication::applicationDirPath() + "/download/updater.xml");
+    connect(ftp, SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
+}
+
+void AutoUpdater::DownloadVersionInfoFile()
+{
+    FtpManager *ftp = new FtpManager();
+    m_ftpList.push_back(ftp);
+    ftp->get("/version/versionInfo.txt", QApplication::applicationDirPath() + "/download/versionInfo.txt");
+    connect(ftp, SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
+}
+
+void AutoUpdater::slotDownloadUpdaterXmlOver()
+{
+    DownloadVersionInfoFile();
+}
+
+void AutoUpdater::slotDownloadVersionInfoFileOver()
+{
+    sigDownloadUpdaterXmlOver();
 }
 
 /**
@@ -27,7 +60,7 @@ CAutoUpdater::~CAutoUpdater()
  *
 /** * xml1,xml2:两个XML文件，不能为空，并且文件需要存在,xml1必须是最新的xml文件（刚刚下载下来的）,xml2是本地的xml文件;
 **/
-int CAutoUpdater::CheckUpdateFiles(QString xml1, QString xml2)
+int AutoUpdater::CheckUpdateFiles(QString xml1, QString xml2)
 {
     m_listFileDir.clear();
     m_listFileName.clear();
@@ -45,7 +78,7 @@ int CAutoUpdater::CheckUpdateFiles(QString xml1, QString xml2)
             m_strTip = QStringLiteral("检查需要更新的文件111111111111111111...");
             qDebug() << m_strTip;
 
-            QDomNodeList nodeList = CXMLParser::XMLParseElement(xml1, "file");
+            QDomNodeList nodeList = XMLParser::XMLParseElement(xml1, "file");
             for(int i = 0; i < nodeList.size(); ++i)
             {
                 QString name = nodeList.at(i).toElement().attribute("name");
@@ -103,7 +136,7 @@ int CAutoUpdater::CheckUpdateFiles(QString xml1, QString xml2)
  * 查找的是指定文件（name）的版本号
  * 前提是已经存在版本管理文件（xml）,对其进行解析。
 **/
-QString CAutoUpdater::GetElementVersion(QString xml, QString name)
+QString AutoUpdater::GetElementVersion(QString xml, QString name)
 {
     QString result = "";
     if(xml.isEmpty() || name.isEmpty())
@@ -118,7 +151,7 @@ QString CAutoUpdater::GetElementVersion(QString xml, QString name)
         return result;
     }
     int i = 0;
-    QDomNodeList nodeList = CXMLParser::XMLParseElement(xml, "file");
+    QDomNodeList nodeList = XMLParser::XMLParseElement(xml, "file");
     for(; i < nodeList.size(); ++i)
     {
         QString tmpName = nodeList.at(i).toElement().attribute("name");
@@ -140,7 +173,7 @@ QString CAutoUpdater::GetElementVersion(QString xml, QString name)
     return result;
 }
 
-bool CAutoUpdater::CheckVersionForUpdate()
+bool AutoUpdater::CheckVersionForUpdate()
 {
     //这里需要一个函数检查本版版本控制文件是否存在，如果不存在则创建一个基本内容
     //的版本文件
@@ -159,7 +192,7 @@ bool CAutoUpdater::CheckVersionForUpdate()
     return CheckVersion(xml2Version, xml1Version);
 }
 
-bool CAutoUpdater::CheckXML(QString xml)
+bool AutoUpdater::CheckXML(QString xml)
 {
     QFile file(xml);
     if(file.exists())
@@ -167,7 +200,7 @@ bool CAutoUpdater::CheckXML(QString xml)
     return false;
 }
 
-void CAutoUpdater::makeXML(QString xml)
+void AutoUpdater::makeXML(QString xml)
 {
     QFile file(xml);
     if(!file.open(QIODevice::WriteOnly))
@@ -186,9 +219,9 @@ void CAutoUpdater::makeXML(QString xml)
     file.close();
 }
 
-QString CAutoUpdater::GetVersion(QString xml)
+QString AutoUpdater::GetVersion(QString xml)
 {
-    QDomNodeList nodeList = CXMLParser::XMLParseElement(xml, "version");
+    QDomNodeList nodeList = XMLParser::XMLParseElement(xml, "version");
     QString version = nodeList.at(0).toElement().text();
     return version;
 }
@@ -199,7 +232,7 @@ QString CAutoUpdater::GetVersion(QString xml)
  * 返回true表示需要更新当前文件
  * 版本号暂定：V1.0 V2.0 ... , 来进行处理
 **/
-bool CAutoUpdater::CheckVersion(QString version, QString versionLocal)
+bool AutoUpdater::CheckVersion(QString version, QString versionLocal)
 {
     QStringList downloadVersionList = version.split('.');
     QStringList localVersionList = versionLocal.split('.');
@@ -224,7 +257,7 @@ bool CAutoUpdater::CheckVersion(QString version, QString versionLocal)
  * 旧XML中有的文件，新XML没有的，此文件不做处理。（后期在考虑怎么处理）
  * 下载信息由m_listFileName和m_listFileDir提供
 **/
-void CAutoUpdater::DownloadUpdateFiles()
+void AutoUpdater::DownloadUpdateFiles()
 {
     if(m_listFileDir.isEmpty() || m_listFileName.isEmpty())
     {
@@ -259,7 +292,7 @@ void CAutoUpdater::DownloadUpdateFiles()
                                         m_listFileDir.at(i) + "/" + m_listFileName.at(i);
         strPlaceDir += "/" + m_listFileName.at(i);
         FtpManager *ftp = new FtpManager();
-        ftp->setHost("192.168.4.176");
+        m_ftpList.push_back(ftp);
         qDebug() << "Download: ";
         qDebug() << strFileDirServer;
         qDebug() << strPlaceDir;
@@ -268,7 +301,7 @@ void CAutoUpdater::DownloadUpdateFiles()
 }
 
 /**读取版本信息文件**/
-QStringList CAutoUpdater::GetVersionInfo()
+QStringList AutoUpdater::GetVersionInfo()
 {
     QStringList strTxtList;
     QString strLine;
@@ -293,17 +326,17 @@ QStringList CAutoUpdater::GetVersionInfo()
     return strTxtList;
 }
 
-QStringList CAutoUpdater::GetUpdateFileDir()
+QStringList AutoUpdater::GetUpdateFileDir()
 {
     return m_listFileDir;
 }
 
-QStringList CAutoUpdater::GetUpdateFileName()
+QStringList AutoUpdater::GetUpdateFileName()
 {
     return m_listFileName;
 }
 
-int CAutoUpdater::GetUpdateProcess()
+int AutoUpdater::GetUpdateProcess()
 {
     // - 2: updater.xml and versionInfo.txt
     qDebug() << "FtpManager::m_finishCount = " << FtpManager::m_finishCount;
@@ -311,12 +344,12 @@ int CAutoUpdater::GetUpdateProcess()
     return (FtpManager::m_finishCount - 2) * 100 / m_listFileName.size();
 }
 
-QStringList CAutoUpdater::GetCurrDownloadFileList()
+QStringList AutoUpdater::GetCurrDownloadFileList()
 {
     return FtpManager::m_currDownloadFileList;
 }
 
-QStringList CAutoUpdater::GetFinishDownloadFileList()
+QStringList AutoUpdater::GetFinishDownloadFileList()
 {
     return FtpManager::m_finishDownloadFileList;
 }

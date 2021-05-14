@@ -5,13 +5,15 @@
 #include <QObject>
 #include <QSlider>
 
-class CAutoUpdater : public QObject
+class FtpManager;
+
+class AutoUpdater : public QObject
 {
     Q_OBJECT
 
 public:
-    CAutoUpdater();
-    ~CAutoUpdater();
+    AutoUpdater();
+    ~AutoUpdater();
 
 public:
     void DownloadUpdateFiles();
@@ -29,18 +31,29 @@ public:
 
     QStringList GetCurrDownloadFileList();
     QStringList GetFinishDownloadFileList();
+    void DownloadUpdaterXmlFile();
+    void DownloadVersionInfoFile();
 public slots:
+
+    void slotDownloadUpdaterXmlOver();
+
+    void slotDownloadVersionInfoFileOver();
+signals:
+    void sigDownloadUpdaterXmlOver();
 
 private:
     QStringList m_listFileDir; //需要更新的文件路径
     QStringList m_listFileName; //需要更新的文件
     QString m_strTip;//下载过程提示信息
 
+    QList<FtpManager*> m_ftpList;
+
     //保存单个文件列表的本地拷贝路径
     QStringList m_strPlaceDirList;
 
     //拷贝结束的条件,同时也是全部更新完成的标志
     bool m_bCopyOver;
+
 
 };
 

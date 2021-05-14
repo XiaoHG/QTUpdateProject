@@ -1,15 +1,15 @@
-﻿#include "cxmlparser.h"
+﻿#include "xmlparser.h"
 
 #include <QDomDocument>
 #include <QFile>
 #include <QDebug>
 
-CXMLParser::CXMLParser()
+XMLParser::XMLParser()
 {
 
 }
 
-QDomNodeList CXMLParser::XMLParseElement(QString xml, QString element)
+QDomNodeList XMLParser::XMLParseElement(QString xml, QString element)
 {
     QDomNodeList nodeList;
     QFile file(xml);
@@ -47,7 +47,7 @@ QDomNodeList CXMLParser::XMLParseElement(QString xml, QString element)
     return nodeList;
 }
 
-void CXMLParser::XMLParse(QString xml)
+void XMLParser::XMLParse(QString xml)
 {
     QFile file(xml);
     if(!file.open(QIODevice::ReadOnly | QFile::Text))

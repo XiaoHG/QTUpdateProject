@@ -412,7 +412,7 @@ debug\main.obj: main.cpp mainwindow.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qinputmethod.h \
 		..\..\src\AutoUpdaterUI\autoupdaterui.h \
 		..\..\src\AutoUpdaterUI\autoupdaterui_global.h \
-		..\..\src\AutoUpdaterUI\cautoupdater.h \
+		..\..\src\AutoUpdaterUI\autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObject \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
@@ -446,6 +446,9 @@ debug\main.obj: main.cpp mainwindow.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtNetwork\qsslpresharedkeyauthenticator.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QMetaType \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTimer \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtimer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasictimer.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
@@ -461,9 +464,6 @@ debug\main.obj: main.cpp mainwindow.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpen.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QLabel \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlabel.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTimer \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtimer.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasictimer.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QDialog \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QList \
@@ -579,7 +579,7 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		ui_mainwindow.h \
 		..\..\src\AutoUpdaterUI\autoupdaterui.h \
 		..\..\src\AutoUpdaterUI\autoupdaterui_global.h \
-		..\..\src\AutoUpdaterUI\cautoupdater.h \
+		..\..\src\AutoUpdaterUI\autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObject \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
@@ -613,6 +613,9 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtNetwork\qsslpresharedkeyauthenticator.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QMetaType \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTimer \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtimer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasictimer.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
@@ -628,9 +631,6 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpen.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QLabel \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlabel.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTimer \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtimer.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qbasictimer.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QDialog \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QList \

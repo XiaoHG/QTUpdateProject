@@ -2,7 +2,7 @@
 #define AUTOUPDATERUI_H
 
 #include "autoupdaterui_global.h"
-#include "cautoupdater.h"
+#include "autoupdater.h"
 #include "ftpmanager.h"
 
 #include <QPushButton>
@@ -35,7 +35,11 @@ public:
     void CheckUpdater(bool isFirst);
 
 private:
+    void CheckUpdate();
+    void Update();
+    void Updating();
     void FinishUpdate();
+    void NotUpdate();
 
     void InitUI();
     void CheckUpdateUI();
@@ -50,14 +54,11 @@ private:
     void ShowFinishUpdateUI(bool b);
     void ShowNotUpdateUI(bool b);
 
-public slots:
-    void slotDownloadUpdaterXmlOver();
-    void slotDownloadVersionInfoFileOver();
-
 protected slots:
     void slotBtnUpdateClicked();
     void slotBtnOkClicked();
     void slotUpdateTimeOut();
+    void slotDownloadUpdaterXmlOver();
 
 protected:
     void mousePressEvent(QMouseEvent *event);
@@ -98,16 +99,28 @@ private:
     QPushButton *m_btnCansel;
 
     //界面部件集中处理
+    //check update widgets
     QList<QWidget*> m_checkUpdateWidgets;
+
+    //update widgets
     QList<QWidget*> m_updateWidgets;
+
+    //updating widgets
     QList<QWidget*> m_updatingWidgets;
+
+    //finish update widgets
     QList<QWidget*> m_finishWidgets;
+
+    //don't need update widgets
     QList<QWidget*> m_notUpdateWidgets;
 
-    //AutoUpdater 对象
-    CAutoUpdater m_updater;
+    //update manager model
+    AutoUpdater *m_updater;
 
-    FtpManager *m_ftp;
+    //download model
+    QList<FtpManager*> m_ftpList;
+
+    //first check
     bool m_first;
 };
 

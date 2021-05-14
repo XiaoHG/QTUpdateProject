@@ -4,10 +4,10 @@
 #include <QDomDocument>
 #include <QString>
 
-class CXMLParser
+class XMLParser
 {
 public:
-    CXMLParser();
+    XMLParser();
     static QDomNodeList XMLParseElement(QString xml, QString element);
     static void XMLParse(QString xml);
     static QString XMLParseVersion(QString xml);

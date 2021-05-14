@@ -13,6 +13,7 @@ FtpManager::FtpManager(QObject *parent) :
 {
     // 设置协议
     m_url.setScheme("ftp");
+    setHost("192.168.4.176");
 }
 
 QNetworkReply *FtpManager::put(const QString &localPath, const QString &uploadPath)

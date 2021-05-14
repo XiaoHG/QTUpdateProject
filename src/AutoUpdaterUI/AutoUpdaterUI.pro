@@ -33,16 +33,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         autoupdaterui.cpp \
-    cautoupdater.cpp \
-    cxmlparser.cpp \
-    ftpmanager.cpp
+    ftpmanager.cpp \
+    autoupdater.cpp \
+    xmlparser.cpp
 
 HEADERS += \
         autoupdaterui.h \
         autoupdaterui_global.h \ 
-    cautoupdater.h \
-    cxmlparser.h \
-    ftpmanager.h
+    ftpmanager.h \
+    autoupdater.h \
+    xmlparser.h
 
 unix {
     target.path = /usr/lib
