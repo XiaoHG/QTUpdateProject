@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_AutoUpdater_t {
     QByteArrayData data[5];
-    char stringdata0[98];
+    char stringdata0[115];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,13 +32,13 @@ struct qt_meta_stringdata_AutoUpdater_t {
 static const qt_meta_stringdata_AutoUpdater_t qt_meta_stringdata_AutoUpdater = {
     {
 QT_MOC_LITERAL(0, 0, 11), // "AutoUpdater"
-QT_MOC_LITERAL(1, 12, 25), // "sigDownloadUpdaterXmlOver"
-QT_MOC_LITERAL(2, 38, 0), // ""
-QT_MOC_LITERAL(3, 39, 26), // "slotDownloadUpdaterXmlOver"
-QT_MOC_LITERAL(4, 66, 31) // "slotDownloadVersionInfoFileOver"
+QT_MOC_LITERAL(1, 12, 42), // "sigDownloadUpdaterXmlAndVerio..."
+QT_MOC_LITERAL(2, 55, 0), // ""
+QT_MOC_LITERAL(3, 56, 26), // "slotDownloadUpdaterXmlOver"
+QT_MOC_LITERAL(4, 83, 31) // "slotDownloadVersionInfoFileOver"
 
     },
-    "AutoUpdater\0sigDownloadUpdaterXmlOver\0"
+    "AutoUpdater\0sigDownloadUpdaterXmlAndVerionInfoFileOver\0"
     "\0slotDownloadUpdaterXmlOver\0"
     "slotDownloadVersionInfoFileOver"
 };
@@ -80,7 +80,7 @@ void AutoUpdater::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         AutoUpdater *_t = static_cast<AutoUpdater *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->sigDownloadUpdaterXmlOver(); break;
+        case 0: _t->sigDownloadUpdaterXmlAndVerionInfoFileOver(); break;
         case 1: _t->slotDownloadUpdaterXmlOver(); break;
         case 2: _t->slotDownloadVersionInfoFileOver(); break;
         default: ;
@@ -89,7 +89,7 @@ void AutoUpdater::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             using _t = void (AutoUpdater::*)();
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&AutoUpdater::sigDownloadUpdaterXmlOver)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&AutoUpdater::sigDownloadUpdaterXmlAndVerionInfoFileOver)) {
                 *result = 0;
                 return;
             }
@@ -135,7 +135,7 @@ int AutoUpdater::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void AutoUpdater::sigDownloadUpdaterXmlOver()
+void AutoUpdater::sigDownloadUpdaterXmlAndVerionInfoFileOver()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }

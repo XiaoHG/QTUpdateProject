@@ -31,15 +31,14 @@ public:
 
     QStringList GetCurrDownloadFileList();
     QStringList GetFinishDownloadFileList();
-    void DownloadUpdaterXmlFile();
-    void DownloadVersionInfoFile();
+    void DownloadUpdaterFile();
 
 protected slots:
     void slotDownloadUpdaterXmlOver();
     void slotDownloadVersionInfoFileOver();
 
 signals:
-    void sigDownloadUpdaterXmlOver();
+    void sigDownloadUpdaterFileOver();
 
 private:
     QStringList m_listFileDir; //需要更新的文件路径

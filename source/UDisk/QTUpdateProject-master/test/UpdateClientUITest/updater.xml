@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AutoUpdate>
+    <Version>V1.0</Version>
+    <Url>http://localhost/updateClientVarsion/</Url>
+    <WindowIcon>:/AutoUpdate/Resources/RiskControlClient_24.png</WindowIcon>
+    <RunExe>\RiskClient\RiskClient.exe</RunExe>
+</AutoUpdate>

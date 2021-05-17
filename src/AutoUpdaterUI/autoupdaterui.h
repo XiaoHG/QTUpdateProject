@@ -58,8 +58,8 @@ protected slots:
     void slotBtnUpdateClicked();
     void slotBtnOkClicked();
     void slotUpdateProcess();
-    void slotDownloadUpdaterXmlOver();
     void slotCheckTimeOut();
+    void slotDownloadUpdaterFileOver();
 
 protected:
     void mousePressEvent(QMouseEvent *event);

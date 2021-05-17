@@ -27,7 +27,8 @@ AutoUpdaterUI::AutoUpdaterUI(QWidget *parent)
     qDebug() << "AutoUpdaterUI 100";
     m_updater = new AutoUpdater();
     qDebug() << "AutoUpdaterUI 200";
-    connect(m_updater, SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
+    connect(m_updater, SIGNAL(sigDownloadUpdaterFileOver()),
+            this, SLOT(slotDownloadUpdaterFileOver()));
 
     m_checkTimeOut = new QTimer(this);
     connect(m_checkTimeOut, SIGNAL(timeout()), this, SLOT(slotCheckTimeOut()));
@@ -306,7 +307,6 @@ void AutoUpdaterUI::NotUpdate()
     {
         return;
     }
-    this->exec();
 }
 
 void AutoUpdaterUI::ShowCheckUpdateUI(bool visible)
@@ -349,27 +349,26 @@ void AutoUpdaterUI::ShowNotUpdateUI(bool visible)
     }
 }
 
-void AutoUpdaterUI::CheckUpdater(bool isFirst)
-{
-    m_first = isFirst;
-    ShowFinishUpdateUI(false);
-    ShowNotUpdateUI(false);
-    CheckUpdate();
-    ShowCheckUpdateUI(true);
-    //m_updater->DownloadUpdaterXmlFile();
-    this->exec();
-}
-
 void AutoUpdaterUI::slotCheckTimeOut()
 {
     QString strTime = tr("PASS : %1s").arg(++m_checkupdateTimeOut);
     m_timeLabel->setText(strTime);
 }
 
-void AutoUpdaterUI::slotDownloadUpdaterXmlOver()
+void AutoUpdaterUI::CheckUpdater(bool isFirst)
+{
+    m_first = isFirst;
+//    ShowFinishUpdateUI(false);
+//    ShowNotUpdateUI(false);
+    //CheckUpdate();
+    //ShowCheckUpdateUI(true);
+    m_updater->DownloadUpdaterFile();
+}
+
+void AutoUpdaterUI::slotDownloadUpdaterFileOver()
 {
     //检查下载到了updater.xml和versionInfo.txt，说明检查更新结束了。
-    ShowCheckUpdateUI(false);
+    //ShowCheckUpdateUI(false);
 
     m_outputVersionInfoEdit->clear();
     QStringList strListVersionInfo = m_updater->GetVersionInfo();
@@ -384,6 +383,7 @@ void AutoUpdaterUI::slotDownloadUpdaterXmlOver()
     m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
 
     //更新则isUpdate = true,否则false
+    bool isUpdater = false;
     if(m_updater->CheckVersionForUpdate())
     {
         //此时需要更新，弹出对话框让客户端进行选择更新与否
@@ -398,6 +398,7 @@ void AutoUpdaterUI::slotDownloadUpdaterXmlOver()
         {
             Update();
             ShowUpdateUI(true);
+            isUpdater = true;
         }
     }
     else
@@ -407,6 +408,9 @@ void AutoUpdaterUI::slotDownloadUpdaterXmlOver()
         NotUpdate();
         ShowNotUpdateUI(true);
     }
+
+    if(isUpdater || (!m_first && !isUpdater))
+        this->exec();
 }
 
 /*update function*/
@@ -460,7 +464,7 @@ void AutoUpdaterUI::slotUpdateProcess()
 
 void AutoUpdaterUI::slotBtnOkClicked()
 {
-
+    qDebug() << "ok";
 }
 
 void AutoUpdaterUI::mousePressEvent(QMouseEvent *event)

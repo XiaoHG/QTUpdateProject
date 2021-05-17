@@ -24,7 +24,7 @@ AutoUpdater::~AutoUpdater()
     }
 }
 
-void AutoUpdater::DownloadUpdaterXmlFile()
+void AutoUpdater::DownloadUpdaterFile()
 {
     QDir downloadDir(QApplication::applicationDirPath() + "/download");
     if(!downloadDir.exists())
@@ -36,7 +36,7 @@ void AutoUpdater::DownloadUpdaterXmlFile()
     connect(ftp, SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
 }
 
-void AutoUpdater::DownloadVersionInfoFile()
+void AutoUpdater::slotDownloadUpdaterXmlOver()
 {
     FtpManager *ftp = new FtpManager();
     m_ftpList.push_back(ftp);
@@ -44,14 +44,9 @@ void AutoUpdater::DownloadVersionInfoFile()
     connect(ftp, SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
 }
 
-void AutoUpdater::slotDownloadUpdaterXmlOver()
-{
-    DownloadVersionInfoFile();
-}
-
 void AutoUpdater::slotDownloadVersionInfoFileOver()
 {
-    sigDownloadUpdaterXmlOver();
+    sigDownloadUpdaterFileOver();
 }
 
 /**

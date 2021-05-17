@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowFlags(Qt::FramelessWindowHint);
+    //this->setFixedSize(1024, 768);
 
     // 设置按钮样式及悬浮、按下时的状态
     //debug
@@ -115,38 +116,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::Read()
-{
-    qDebug() << "----------start----------";
-    QString UDiskPath = "";
-    foreach (const QStorageInfo &storage, QStorageInfo::mountedVolumes())
-    {
-        qDebug() << storage.rootPath();
-        if(storage.isValid() && storage.isReady())
-        {
-            UDiskPath = storage.rootPath();
-            if(UDiskPath.contains("media"))
-            {
-                qDebug() << "qstring path:" << UDiskPath;
-            }
-        }
-    }
-    ListFile(UDiskPath);
-}
-
-void MainWindow::ListFile(QString name)
-{
-    QDir dir(name);
-    QFileInfoList file_list = dir.entryInfoList(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
-    QFileInfoList folder_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-
-    for(int i = 0; i < folder_list.size(); ++i)
-        ListFile(folder_list.at(i).filePath());
-
-    for(int i = 0; i < file_list.size(); ++i)
-        qDebug() << file_list.at(i).fileName();
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
@@ -501,26 +470,22 @@ void MainWindow::MoveZUI()
     QPushButton *btn0_1mm = new QPushButton(tr("btn0_1mm"), this);
     btn0_1mm->setGeometry(40, 80, 125, 50);
     btn0_1mm->setCheckable(true);
-    connect(btn0_1mm, SIGNAL(clicked(bool)), this, SLOT(slotTestMM()));
     box->addButton(btn0_1mm);
 
     QPushButton *btn1mm = new QPushButton(tr("btn1mm"), this);
     btn1mm->setGeometry(btn0_1mm->x() + btn0_1mm->width() + 12, btn0_1mm->y(),
                          btn0_1mm->width(), btn0_1mm->height());
     btn1mm->setCheckable(true);
-    connect(btn1mm, SIGNAL(clicked(bool)), this, SLOT(slotTestMM()));
     box->addButton(btn1mm);
 
     QPushButton *btn10mm = new QPushButton(tr("btn10mm"), this);
     btn10mm->setGeometry(btn1mm->x() + btn1mm->width() + 12, btn1mm->y(),
                            btn1mm->width(), btn1mm->height());
     btn10mm->setCheckable(true);
-    connect(btn10mm, SIGNAL(clicked(bool)), this, SLOT(slotTestMM()));
     box->addButton(btn10mm);
 
     QPushButton *btnUp = new QPushButton(tr("btnUp"), this);
     btnUp->setGeometry(24, 161, 113, 65);
-    connect(btnUp, SIGNAL(clicked(bool)), this, SLOT(slotTest()));//test code
 
     QPushButton *btnDown = new QPushButton(tr("btnDown"), this);
     btnDown->setGeometry(btnUp->x() + btnUp->width() + 47, btnUp->y(),
@@ -774,17 +739,17 @@ void MainWindow::CameroTestUI()
 void MainWindow::ExecLightUI()
 {
     QWidget *widget = new QWidget(this);
-    widget->setGeometry(43, 84, 396, 115);
+    widget->setGeometry(38, 80, 406, 125);
     widget->setStyleSheet("QWidget{background-color:rgba(100, 100, 100, 50)}"
                           "QWidget{border-radius:8px}");
 
     QProgressBar *proess = new QProgressBar(this);
-    proess->setGeometry(92, widget->y() + widget->height() + 41, 296, 36);
+    proess->setGeometry(92, widget->y() + widget->height() + 35, 296, 36);
     proess->setOrientation(Qt::Horizontal);
     proess->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
     proess->setValue(100);
     proess->setFormat(tr("Current progress : %1%").arg(50));
-    proess->setStyleSheet("QProgressBar{background-color:rgba(0, 0, 0, 0); color:white}"
+    proess->setStyleSheet("QProgressBar{background-color:rgb(255, 0, 0); color:white}"
                           "QProgressBar::chunk{border-radius:3px;background:rgb(57, 97, 148)}");
 
 
@@ -1170,6 +1135,7 @@ void MainWindow::WhichUI(const EWHICHPAGE which)
     }
 }
 
+//debug code
 static QTimer *t;
 void MainWindow::ExecLight()
 {
@@ -1210,33 +1176,6 @@ void MainWindow::slotExecLightProcess()
         t->stop();
         m_btnBack->setVisible(true);
         //pbTmp->setValue(0);
-    }
-}
-
-void MainWindow::slotTestMM()
-{
-    QPushButton *tmp;
-    for(int i = 0; i < m_moveZUIList.size(); ++i)
-    {
-        tmp = static_cast<QPushButton*>(m_moveZUIList.at(i));
-        if(tmp->text() == "btn0_1mm" || tmp->text() == "btn1mm" || tmp->text() == "btn10mm")
-            qDebug() << tmp->text() << " :" << tmp->isChecked();
-    }
-
-}
-
-void MainWindow::slotTest()
-{
-    QPushButton *tmp;
-
-    for(int i = 0; i < m_detectLightUIList.size(); ++i)
-    {
-        if(m_detectLightUIList.at(i)->inherits("QPushButton")) //get class type
-        {
-            tmp = static_cast<QPushButton*>(m_detectLightUIList.at(i));
-            if(tmp->text() == "btn_1" || tmp->text() == "btn_2" || tmp->text() == "btn_3" || tmp->text() == "btn_4")
-                qDebug() << tmp->text() << " :" << tmp->isChecked();
-        }
     }
 }
 

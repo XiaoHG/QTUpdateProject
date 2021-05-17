@@ -65,7 +65,7 @@ void FtpManager::downloadFinished()
         return;
 
     // 如果有错误就不需要保存
-    if (pReply->error() != QNetworkReply::NoError)
+    if(pReply->error() != QNetworkReply::NoError)
         return;
 
     // 写入文件

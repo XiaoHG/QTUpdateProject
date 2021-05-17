@@ -47,9 +47,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void Read();
-    void ListFile(QString name);
-
     void MainUI();
     void FileListUI();
     void SystemUI();
@@ -97,10 +94,10 @@ public:
     void WhichUI(const EWHICHPAGE which);
 
     void ExecLight();
+
 public slots:
-    void slotTest();
-    void slotTestMM();
     void slotExecLightProcess();
+
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);

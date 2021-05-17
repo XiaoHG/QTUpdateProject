@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_AutoUpdaterUI_t {
     QByteArrayData data[7];
-    char stringdata0[115];
+    char stringdata0[132];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,13 +36,14 @@ QT_MOC_LITERAL(1, 14, 20), // "slotBtnUpdateClicked"
 QT_MOC_LITERAL(2, 35, 0), // ""
 QT_MOC_LITERAL(3, 36, 16), // "slotBtnOkClicked"
 QT_MOC_LITERAL(4, 53, 17), // "slotUpdateProcess"
-QT_MOC_LITERAL(5, 71, 26), // "slotDownloadUpdaterXmlOver"
-QT_MOC_LITERAL(6, 98, 16) // "slotCheckTimeOut"
+QT_MOC_LITERAL(5, 71, 16), // "slotCheckTimeOut"
+QT_MOC_LITERAL(6, 88, 43) // "slotDownloadUpdaterXmlAndVeri..."
 
     },
     "AutoUpdaterUI\0slotBtnUpdateClicked\0\0"
     "slotBtnOkClicked\0slotUpdateProcess\0"
-    "slotDownloadUpdaterXmlOver\0slotCheckTimeOut"
+    "slotCheckTimeOut\0"
+    "slotDownloadUpdaterXmlAndVerionInfoFileOver"
 };
 #undef QT_MOC_LITERAL
 
@@ -85,8 +86,8 @@ void AutoUpdaterUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 0: _t->slotBtnUpdateClicked(); break;
         case 1: _t->slotBtnOkClicked(); break;
         case 2: _t->slotUpdateProcess(); break;
-        case 3: _t->slotDownloadUpdaterXmlOver(); break;
-        case 4: _t->slotCheckTimeOut(); break;
+        case 3: _t->slotCheckTimeOut(); break;
+        case 4: _t->slotDownloadUpdaterXmlAndVerionInfoFileOver(); break;
         default: ;
         }
     }
