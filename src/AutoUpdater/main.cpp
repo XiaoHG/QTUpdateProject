@@ -1,21 +1,15 @@
-﻿#include "cautoupdater.h"
+﻿
 #include <QApplication>
 #include <QDir>
 #include <QDebug>
-#include "cupdateclientui.h"
-#include "cxmlparser.h"
+
+#include "autoupdaterui.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    CUpdateClientUI::getInstance()->CheckUpdate();
-
-//    CXMLParser parse;
-//    parse.XMLParse("./download/updater.xml");
-
-//    CAutoUpdater abc;
-//    abc.makeXML(QDir::currentPath() + "/123.xml");
+    AutoUpdaterUI::getInstance()->CheckUpdater(true);
 
     return a.exec();
 }

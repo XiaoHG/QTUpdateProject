@@ -46,7 +46,6 @@ AutoUpdaterUI::~AutoUpdaterUI()
 /*UI defined*/
 void AutoUpdaterUI::InitUI()
 {
-    qDebug() << "AutoUpdaterUI 0";
     m_updateFiles = new QStringList;
     this->setStyleSheet("background-color:rgb(100, 100, 100)");
     this->setWindowFlags(Qt::FramelessWindowHint);
@@ -88,10 +87,6 @@ void AutoUpdaterUI::InitUI()
     m_logTitleLabel->setScaledContents(true);
     m_logTitleLabel->setText(QStringLiteral("更新日志 : "));
     m_logTitleLabel->setStyleSheet("color:rgb(200, 200, 200)");
-
-    qDebug() << "AutoUpdaterUI 1";
-
-    qDebug() << "AutoUpdaterUI 2";
 
     m_btnClose = new QPushButton(this);
     m_btnClose->setIcon(QIcon(":/image/close.png"));

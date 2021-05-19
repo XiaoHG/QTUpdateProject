@@ -23,7 +23,6 @@ public:
     inline void setPassword(const QString &password) { m_url.setPassword(password); }
 
 public slots:
-    void uploadFinished();
     void downloadFinished();
     void error(QNetworkReply::NetworkError);
 

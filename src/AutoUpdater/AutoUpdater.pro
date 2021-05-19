@@ -25,16 +25,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    cupdateclientui.cpp \
-    cxmlparser.cpp \
-    chttpdownloadfile.cpp \
-    cautoupdater.cpp
+    autoupdater.cpp \
+    autoupdaterui.cpp \
+    ftpmanager.cpp \
+    xmlparser.cpp
 
 HEADERS += \
-    cupdateclientui.h \
-    cxmlparser.h \
-    chttpdownloadfile.h \
-    cautoupdater.h
+    autoupdater.h \
+    autoupdaterui.h \
+    ftpmanager.h \
+    xmlparser.h
 
 FORMS += \
         mainwindow.ui

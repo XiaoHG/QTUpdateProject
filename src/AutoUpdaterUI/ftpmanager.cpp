@@ -32,11 +32,6 @@ QNetworkReply *FtpManager::put(const QString &localPath, const QString &uploadPa
     return pReply;
 }
 
-void FtpManager::uploadFinished()
-{
-
-}
-
 QNetworkReply *FtpManager::get(const QString &downloadPath, const QString &localPath)
 {
     m_downloadCount++;
