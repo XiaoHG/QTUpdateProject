@@ -14,6 +14,9 @@ FtpManager::FtpManager(QObject *parent) :
     // 设置协议
     m_url.setScheme("ftp");
     setHost("192.168.4.176");
+    m_downloadTimeout = new QTimer(this);
+    connect(m_downloadTimeout, SIGNAL(timeout()), this, SLOT(slotDownloadTimeout()));
+    m_downloadTimeout->start(1000);
 }
 
 QNetworkReply *FtpManager::get(const QString &downloadPath, const QString &localPath)
@@ -93,6 +96,17 @@ QStringList FtpManager::GetCurDownloadFileList()
 QStringList FtpManager::GetFinishDownloadFileList()
 {
     return m_finishDownloadFileList;
+}
+
+void FtpManager::slotDownloadTimeout()
+{
+    static int t = 0;
+    t++;
+    if(t == 30)
+    {
+        qDebug() << "Call slotDownloadTimeout: download file " << m_url.path() << " time out";
+        sigDownloadTimeout(m_url.path());
+    }
 }
 
 

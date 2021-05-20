@@ -51,11 +51,12 @@ public:
     void ShowFinishUpdateUI(bool visible);
     void ShowNotUpdateUI(bool visible);
 
+    void ExistAndDeleteApp();
 protected slots:
     void slotBtnUpdateClicked();
     void slotBtnOkClicked();
     void slotUpdateProcess();
-    void slotDownloadUpdaterFileOver();
+    void slotDownloadInitFileOver();
 
     void slotCheckUpdateTimeOut();
 protected:
@@ -92,11 +93,11 @@ private:
     QPushButton *m_btnClose;
     //更新进度
     QProgressBar *m_updateProgressBar;
-    QPushButton *m_btnOk;
+    QPushButton *m_btnRestart;
     QPushButton *m_btnCansel;
 
     //show check update time out
-    QTimer *m_checkupdateTimeOutTimer;
+    QTimer *m_updatingTimer;
 
     //界面部件集中处理
     //check update widgets

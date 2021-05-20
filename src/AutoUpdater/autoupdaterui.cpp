@@ -16,6 +16,9 @@
 #include <QTextBlock>
 #include <QBitmap>
 #include <QPainter>
+#include <QScrollBar>
+#include <QStandardPaths>
+#include <QFile>
 
 //m_btnClose->setStyleSheet("QPushButton{background-color:rgba(150, 150, 150, 100%);\
 //color: white;   border-radius: 10px;  border: 2px groove gray; border-style: outset;}" // 按键本色
@@ -27,11 +30,11 @@ AutoUpdaterUI::AutoUpdaterUI(QWidget *parent)
 {
     InitUI();
     m_updater = new AutoUpdater();
-    connect(m_updater, SIGNAL(sigDownloadUpdaterFileOver()),
-            this, SLOT(slotDownloadUpdaterFileOver()));
+    connect(m_updater, SIGNAL(sigDownloadInitFileOver()),
+            this, SLOT(slotDownloadInitFileOver()));
 
-    m_checkupdateTimeOutTimer = new QTimer(this);
-    connect(m_checkupdateTimeOutTimer, SIGNAL(timeout()), this, SLOT(slotCheckUpdateTimeOut()));
+    m_updatingTimer = new QTimer(this);
+    connect(m_updatingTimer, SIGNAL(timeout()), this, SLOT(slotCheckUpdateTimeOut()));
 
 }
 
@@ -70,8 +73,58 @@ void AutoUpdaterUI::InitUI()
     m_outputVersionInfoEdit->setStyleSheet("background-color:rgb(100, 100, 100);"
                                            "color:rgb(200, 200, 200)");
     m_outputVersionInfoEdit->setTextColor(QColor(200, 200, 200, 255));
-
-
+    //m_outputVersionInfoEdit->setFrameShape(QTextEdit::NoFrame);
+    m_outputVersionInfoEdit->verticalScrollBar()->setStyleSheet("QScrollBar:vertical"
+                                                                "{"
+                                                                "width:8px;"
+                                                                "background:rgba(0,0,0,0%);"
+                                                                "margin:0px,0px,0px,0px;"
+                                                                "padding-top:9px;"
+                                                                "padding-bottom:9px;"
+                                                                "}"
+                                                                "QScrollBar::handle:vertical"
+                                                                "{"
+                                                                "width:8px;"
+                                                                "background:rgba(0,0,0,25%);"
+                                                                " border-radius:4px;"
+                                                                "min-height:20;"
+                                                                "}"
+                                                                "QScrollBar::handle:vertical:hover"
+                                                                "{"
+                                                                "width:8px;"
+                                                                "background:rgba(0,0,0,50%);"
+                                                                " border-radius:4px;"
+                                                                "min-height:20;"
+                                                                "}"
+                                                                "QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical"
+                                                                "{"
+                                                                "background:rgba(0,0,0,10%);"
+                                                                "border-radius:4px;"
+                                                                "}"
+                                                                "QScrollBar::add-line:vertical"
+                                                                "{"
+                                                                "height:9px;width:8px;"
+                                                                "border-image:url(:/image/down.png);"
+                                                                "subcontrol-position:bottom;"
+                                                                "}"
+                                                                "QScrollBar::sub-line:vertical"
+                                                                "{"
+                                                                "height:9px;width:8px;"
+                                                                "border-image:url(:/image/up.png);"
+                                                                "subcontrol-position:top;"
+                                                                "}"
+                                                                "QScrollBar::add-line:vertical:hover"
+                                                                "{"
+                                                                "height:10px;width:10px;"
+                                                                "border-image:url(:/image/press_down.png);"
+                                                                "subcontrol-position:bottom;"
+                                                                "}"
+                                                                "QScrollBar::sub-line:vertical:hover"
+                                                                "{"
+                                                                "height:10px;width:10px;"
+                                                                "border-image:url(:/image/press_up.png);"
+                                                                "subcontrol-position:top;"
+                                                                "}");
 
     QFont logTitleLabelFont( "Microsoft YaHei", 9, 75);
     m_logTitleLabel = new QLabel(this);
@@ -100,6 +153,10 @@ void AutoUpdaterUI::InitUI()
     FinishUpdateUI();
     NotUpdateUI();
 
+    m_logTitleLabel->setVisible(true);
+    m_outputVersionInfoEdit->setVisible(true);
+    m_btnClose->setVisible(true);
+
     this->show();
 }
 
@@ -121,7 +178,7 @@ void AutoUpdaterUI::UpdateUI()
     m_btnUpdate = new QPushButton(this);
     m_btnUpdate->setFont(btnUpdateFont);
     m_btnUpdate->setText(QStringLiteral("更 新"));
-    m_btnUpdate->setIcon(QIcon("://image/update.png"));
+    m_btnUpdate->setIcon(QIcon("://image/update2.png"));
     m_btnUpdate->setGeometry(20, m_outputVersionInfoEdit->height() + m_titleLabel->height() + 50, 70, 25);
     m_btnUpdate->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
                         "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
@@ -177,27 +234,18 @@ void AutoUpdaterUI::UpdatingUI()
 
 void AutoUpdaterUI::FinishUpdateUI()
 {
-    m_btnOk = new QPushButton(this);
-    m_btnOk->setText(QStringLiteral("重 启"));
-    m_btnOk->setGeometry(m_btnUpdate->x() + 200, m_btnUpdate->y(),
+    m_btnRestart = new QPushButton(this);
+    m_btnRestart->setText(QStringLiteral("重 启"));
+    m_btnRestart->setIcon(QIcon(":/image/restart.png"));
+    m_btnRestart->setGeometry(m_btnUpdate->x(), m_btnUpdate->y(),
                          m_btnUpdate->width(), m_btnUpdate->height());
-    m_btnOk->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
+    m_btnRestart->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
                         "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
                         "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
 
-    m_btnCansel = new QPushButton(this);
-    m_btnCansel->setText(QStringLiteral("取 消"));
-    m_btnCansel->setGeometry(m_btnUpdate->x() + m_btnOk->width() + 210, m_btnUpdate->y(),
-                             m_btnUpdate->width(), m_btnUpdate->height());
-    m_btnCansel->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
-                        "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
-                        "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
+    connect(m_btnRestart, SIGNAL(clicked(bool)), this, SLOT(slotBtnOkClicked()));
 
-    connect(m_btnOk, SIGNAL(clicked(bool)), this, SLOT(slotBtnOkClicked()));
-    connect(m_btnCansel, SIGNAL(clicked(bool)), this, SLOT(close()));
-
-    m_finishWidgets.push_back(m_btnOk);
-    m_finishWidgets.push_back(m_btnCansel);
+    m_finishWidgets.push_back(m_btnRestart);
 
     //init false
     ShowFinishUpdateUI(false);
@@ -225,7 +273,7 @@ void AutoUpdaterUI::Update()
     m_titleLabel->setText(QStringLiteral("检查更新！"));
     m_btnClose->setVisible(true);
 
-    m_versionServerInfo = m_updater->GetVersion(QApplication::applicationDirPath() + "/download/updater.xml");
+    m_versionServerInfo = m_updater->GetNewVersion();
     m_newVersionInfoLabel->setText(QStringLiteral("检查到新版本 ") + m_versionServerInfo +
                                    QStringLiteral(" 点击更新！"));
 }
@@ -244,14 +292,10 @@ void AutoUpdaterUI::FinishUpdate()
 
 void AutoUpdaterUI::NotUpdate()
 {
-    QString strCurrentVersion = m_updater->GetVersion(QApplication::applicationDirPath() + "/updater.xml");
+    m_labelLasterVersion->setStyleSheet("color:rgb(18, 237, 237)");
+    QString strCurrentVersion = m_updater->GetOldVersion();
     m_labelLasterVersion->setText(strCurrentVersion);
     m_titleLabel->setText(QStringLiteral("当前版本是最新版本！"));
-
-    if(m_first)
-    {
-        return;
-    }
 }
 
 void AutoUpdaterUI::ShowUpdateUI(bool visible)
@@ -289,7 +333,7 @@ void AutoUpdaterUI::ShowNotUpdateUI(bool visible)
 void AutoUpdaterUI::CheckUpdater(bool isFirst)
 {
     m_first = isFirst;
-    m_checkupdateTimeOutTimer->start(1000);
+    m_updatingTimer->start(1000);
     qDebug() << "start time out";
     m_updater->DownloadXMLFile();
 }
@@ -299,9 +343,9 @@ void AutoUpdaterUI::CheckUpdate()
     m_outputVersionInfoEdit->append(QStringLiteral("正在检查更新 ... "));
 }
 
-void AutoUpdaterUI::slotDownloadUpdaterFileOver()
+void AutoUpdaterUI::slotDownloadInitFileOver()
 {
-    m_checkupdateTimeOutTimer->stop();
+    m_updatingTimer->stop();
     m_outputVersionInfoEdit->clear();
     QString strVersionInfo = m_updater->GetVersionInfo();
     if(strVersionInfo.isEmpty())
@@ -311,23 +355,13 @@ void AutoUpdaterUI::slotDownloadUpdaterFileOver()
     m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
 
     //更新则isUpdate = true,否则false
-    bool isUpdater = false;
-    if(m_updater->CheckVersionForUpdate())
+    if(m_updater->IsUpdate())
     {
         //获取下载路径。
-        bool bUpdater = m_updater->CheckUpdateFiles(QApplication::applicationDirPath() + "/download/updater.xml",
-                                   QApplication::applicationDirPath() + "/updater.xml");
-        if(bUpdater)
-        {
-            Update();
-            ShowUpdateUI(true);
-            isUpdater = true;
-        }
-        else
-        {
-            NotUpdate();
-            ShowNotUpdateUI(true);
-        }
+        m_updater->LoadUpdateFiles();
+        Update();
+        ShowUpdateUI(true);
+        this->exec();
     }
     else
     {
@@ -335,22 +369,17 @@ void AutoUpdaterUI::slotDownloadUpdaterFileOver()
         //and show the laster notify message and ok button.
         NotUpdate();
         ShowNotUpdateUI(true);
-    }
-
-    if(isUpdater || (!m_first && !isUpdater))
+        if(m_first)
+            return;
         this->exec();
+    }
 }
 
-/**
- * @brief AutoUpdaterUI::slotCheckUpdateTimeOut
- * Need to test
- * 30s time out
- */
 void AutoUpdaterUI::slotCheckUpdateTimeOut()
 {
     static int timeOut = 0;
     timeOut++;
-    if(timeOut == 10)
+    if(timeOut == 30)
     {
         qDebug() << "time out = " << timeOut;
         m_outputVersionInfoEdit->clear();
@@ -362,11 +391,11 @@ void AutoUpdaterUI::slotCheckUpdateTimeOut()
             m_outputVersionInfoEdit->append(errorStack.at(i));
         }
         this->exec();
-        m_checkupdateTimeOutTimer->stop();
+        m_updatingTimer->stop();
     }
-    static QString tmpStr[5] = {".", "..", "...", "....", "....."};
+    static QString tmpStr[3] = {".", "..", "..."};
     static int i = 0;
-    if(i == 5)
+    if(i == 3)
         i = 0;
     m_outputVersionInfoEdit->setText(QStringLiteral("正在检查更新 ") + tr("%1").arg(tmpStr[i++]));
     qDebug() << "time : " << timeOut;
@@ -387,7 +416,7 @@ void AutoUpdaterUI::slotBtnUpdateClicked()
 
 void AutoUpdaterUI::slotUpdateProcess()
 {
-    QStringList strCurrDownloadFileList = m_updater->GetCurrDownloadFileList();
+    QStringList strCurrDownloadFileList = m_updater->GetCurDownloadFileList();
     qDebug() << "strCurrDownloadFileList.size() = " << strCurrDownloadFileList.size();
     static int i = 1;
     for(; i < strCurrDownloadFileList.size(); ++i)
@@ -409,10 +438,9 @@ void AutoUpdaterUI::slotUpdateProcess()
     qDebug() << "m_updateProgressBar->maximum() = " << m_updateProgressBar->maximum();
     if(m_updateProgressBar->value() == m_updateProgressBar->maximum())
     {
-        m_outputVersionInfoEdit->append(QStringLiteral("注意：所有文件已经更新完成，"
-                                          "点击重启客户端会启动最新版本，"
-                                          "点击取消保持当前版本运行，下次启动为最新版本！"));
-        m_titleLabel->setText(QStringLiteral("更新完成！"));
+        m_outputVersionInfoEdit->append(QStringLiteral("更新完成，请重启！"));
+        m_titleLabel->setText(QStringLiteral("更新完成，请重启！"));
+        m_btnClose->setVisible(false);
         FinishUpdate();
         ShowUpdatingUI(false);
         ShowFinishUpdateUI(true);
@@ -421,6 +449,7 @@ void AutoUpdaterUI::slotUpdateProcess()
 
 void AutoUpdaterUI::slotBtnOkClicked()
 {
+    m_updater->RestartApp();
     qDebug() << "ok";
 }
 
@@ -456,5 +485,6 @@ void AutoUpdaterUI::mouseReleaseEvent(QMouseEvent *event)
         m_bDrag = false;
     }
 }
+
 
 

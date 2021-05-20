@@ -21,9 +21,10 @@ public:
     inline void setUserName(const QString &userName) { m_url.setUserName(userName); }
     inline void setPassword(const QString &password) { m_url.setPassword(password); }
 
-public slots:
+protected slots:
     void downloadFinished();
     void error(QNetworkReply::NetworkError);
+    void slotDownloadTimeout();
 
 signals:
     void sigDownloadUpdaterXmlOver();
@@ -31,6 +32,7 @@ signals:
     void sigSingleFileDownloadFinish(QString);
     void sigAllFileDownFinish();
     void sigReplyError(QString);
+    void sigDownloadTimeout(QString);
 
 public:
     static int m_downloadCount;
@@ -48,6 +50,9 @@ private:
     QString m_path;
     QNetworkAccessManager m_manager;
     QNetworkReply *m_pReply;
+
+    //Download time out
+    QTimer *m_downloadTimeout;
 
 };
 

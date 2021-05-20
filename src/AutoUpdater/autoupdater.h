@@ -16,44 +16,182 @@ public:
     ~AutoUpdater();
 
 public:
+    /**
+     * @brief IsUpdate
+     * @return true is update, or not
+     * update is.
+     */
+    bool IsUpdate();
+
+    /**
+     * @brief CheckUpdateFiles
+     * Get All files path and name for update.
+     */
+    void LoadUpdateFiles();
+
+    /**
+     * @brief DownloadUpdateFiles
+     * Download all update files.
+     */
     void DownloadUpdateFiles();
-    bool CheckUpdateFiles(QString xml1, QString xml2);
-    bool CheckVersion(QString version, QString versionDownload);
-    bool CheckVersionForUpdate();
-    bool CheckXML(QString xml);
-    void makeInitXML(QString xml);
-    QString GetElementVersion(QString xml, QString name);
-    QString GetVersion(QString xml);
+
+    /**
+     * @brief makeInitXML
+     * @param xml
+     * If local xml file is not exist, make a init xml file
+     */
+    void makeInitXML();
+
+    /**
+     * @brief GetVersionInfo
+     * @return New version information
+     */
     QString GetVersionInfo();
-    QStringList GetUpdateFileDir();
-    QStringList GetUpdateFileName();
+
+    /**
+     * @brief GetUpdateFilesDir
+     * @return All update files path
+     */
+    QStringList GetUpdateFilesDir();
+
+    /**
+     * @brief GetUpdateFileName
+     * @return All update files
+     */
+    QStringList GetUpdateFilesName();
+
+    /**
+     * @brief GetUpdateProcessb
+     * @return Download process percentage.
+     * calculate all files that need to update and current
+     * finish download files.
+     */
     int GetUpdateProcess();
 
-    QStringList GetCurrDownloadFileList();
+    /**
+     * @brief GetCurrDownloadFileList
+     * @return The current of download files from Ftpmanager
+     */
+    QStringList GetCurDownloadFileList();
+
+    /**
+     * @brief GetFinishDownloadFileList
+     * @return The finish of download files from Ftpmanager
+     */
     QStringList GetFinishDownloadFileList();
+
+    /**
+     * @brief DownloadXMLFile
+     * Download xml file that is the update control file.
+     */
     void DownloadXMLFile();
 
+    /**
+     * @brief GetFtpErrorStack
+     * @return The laster five error string
+     *         storage in m_replyErrorStack argument.
+     */
     QStringList GetFtpErrorStack();
+
+    /**
+     * @brief GetDownloadTimeoutList
+     * @return Download time out files
+     * Get all download failure files that is time out download.
+     */
+    QStringList GetDownloadTimeoutList();
+
+    /**
+     * @brief GetNewVersion
+     * @return The new version
+     * Get new version string
+     */
+    QString GetNewVersion();
+
+    /**
+     * @brief CreateNewLink
+     * Create new version application link to desktop.
+     */
+    void CreateNewLink();
+
+    /**
+     * @brief GetNewVersionPath
+     * @return New version path
+     * Get the new version download path.
+     */
+    QString GetNewVersionPath();
+
+    /**
+     * @brief GetOldVersion
+     * @return Old version
+     */
+    QString GetOldVersion();
+
+    /**
+     * @brief RestartApp
+     * Update over, and restart application.
+     */
+    void RestartApp();
+
+    /**
+     * @brief MakeDeleteScript
+     * Make del.bat script file for delete all
+     * old version files.
+     */
+    void MakeDeleteScript();
+
 protected slots:
+    /**
+     * @brief slotDownloadUpdaterXmlOver
+     */
     void slotDownloadUpdaterXmlOver();
+
+    /**
+     * @brief slotDownloadVersionInfoFileOver
+     */
     void slotDownloadVersionInfoFileOver();
 
-    void slotReplyError(QString errStr);
+    /**
+     * @brief slotReplyError
+     * @param errStr error string
+     * Storage download error from Ftp
+     */
+    void slotStorageDownloadError(QString errStr);
+
+    /**
+     * @brief slotDownloadTimeout
+     * @param fileName current download file name
+     * 30s Time out
+     */
+    void slotDownloadTimeout(QString fileName);
+
 signals:
-    void sigDownloadUpdaterFileOver();
+    /**
+     * @brief sigDownloadUpdaterFileOver
+     * updater.xml and versionInfo.txt download finish,
+     * be emit to AutoUpdaterUI class for next step to check
+     * whether update or not.
+     */
+    void sigDownloadInitFileOver();
 
 private:
-    QStringList m_listFileDir; //需要更新的文件路径
-    QStringList m_listFileName; //需要更新的文件
-    QString m_strTip;//下载过程提示信息
+    QStringList m_listFileDir; //需要更新的文件路径列表
+    QStringList m_listFileName; //需要更新的文件列表
 
-    QList<FtpManager*> m_ftpList;
-
-    //保存单个文件列表的本地拷贝路径
-    QStringList m_strPlaceDirList;
+    QList<FtpManager*> m_ftpList; //调用下载类FTP
 
     //Ftp error stack
     QStringList m_replyErrorStack;
+
+    //Ftp download file time out list
+    QStringList m_downloadTimeoutList;
+
+    QString m_oldVersion;
+    QString m_newVersion;
+    QString m_newVersionPath;
+
+    QString m_localXmlPath;
+    QString m_downloadXmlPath;
+    QString m_downloadVersionInfoPath;
 };
 
 #endif // CAUTOUPDATER_H

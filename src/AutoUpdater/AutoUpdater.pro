@@ -8,7 +8,7 @@ QT       += core gui xml network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = AutoUpdater
+TARGET = AutoUpdater0.0
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -28,16 +28,21 @@ SOURCES += \
     autoupdater.cpp \
     autoupdaterui.cpp \
     ftpmanager.cpp \
-    xmlparser.cpp
+    xmlparser.cpp \
+    filemanager.cpp
 
 HEADERS += \
     autoupdater.h \
     autoupdaterui.h \
     ftpmanager.h \
-    xmlparser.h
+    xmlparser.h \
+    filemanager.h
 
 FORMS += \
         mainwindow.ui
 
 RESOURCES += \
     ../../source/icon.qrc
+
+DISTFILES += \
+    ../../source/scrollbar.qss
