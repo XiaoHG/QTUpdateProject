@@ -18,7 +18,7 @@
 #include <QThread>
 
 static const QString VERSION_PATH = "/version";
-static const QString APPLICATION_NAME = "AutoUpdater";
+static const QString APPLICATION_NAME = "AutoUpdateTest";
 static const QString DONWLOAD_PATH = "../";
 
 AutoUpdater::AutoUpdater()
@@ -33,6 +33,10 @@ AutoUpdater::~AutoUpdater()
     for(int i = 0; i < m_ftpList.size(); ++i)
     {
         m_ftpList.at(i)->deleteLater();
+    }
+    for(int i = 0; i < m_listProcess.size(); ++i)
+    {
+        m_listProcess.at(i)->deleteLater();
     }
 }
 
@@ -82,8 +86,6 @@ QString AutoUpdater::GetVersionInfo()
 
 bool AutoUpdater::IsUpdate()
 {
-    //这里需要一个函数检查本版版本控制文件是否存在，如果不存在则创建一个基本内容
-    //的版本文件
     QString localXML = QApplication::applicationDirPath() + "/updater.xml";
     QString downloadXML = QApplication::applicationDirPath() + "/download/updater.xml";
 
@@ -189,11 +191,6 @@ QStringList AutoUpdater::GetUpdateFilesName()
     return m_listFileName;
 }
 
-/**
- * 下载最新的版本的文件，并替换或者增加
- * 旧XML中有的文件，新XML没有的，此文件不做处理。（后期在考虑怎么处理）
- * 下载信息由m_listFileName和m_listFileDir提供
-**/
 void AutoUpdater::DownloadUpdateFiles()
 {
     if(m_listFileDir.isEmpty() || m_listFileName.isEmpty())
@@ -209,11 +206,11 @@ void AutoUpdater::DownloadUpdateFiles()
         qDebug() << QStringLiteral("download ...") + m_listFileName.at(i);
 
         /** Download path **/
-        QString strPlaceDir = m_newVersionPath + m_listFileDir.at(i);
-        QDir directory(strPlaceDir);
+        QString localFileDir = m_newVersionPath + m_listFileDir.at(i);
+        QDir directory(localFileDir);
         if(!directory.exists())
         {
-            directory.mkpath(strPlaceDir);
+            directory.mkpath(localFileDir);
         }
 
         QString strFileDirServer;
@@ -224,10 +221,10 @@ void AutoUpdater::DownloadUpdateFiles()
             strFileDirServer = VERSION_PATH + "/" + APPLICATION_NAME + m_newVersion +
                                         m_listFileDir.at(i) + "/" + m_listFileName.at(i);
 
-        strPlaceDir += "/" + m_listFileName.at(i);
+        localFileDir += "/" + m_listFileName.at(i);
         FtpManager *ftp = new FtpManager();
         m_ftpList.push_back(ftp);
-        ftp->get(strFileDirServer, strPlaceDir);
+        ftp->get(strFileDirServer, localFileDir);
         connect(ftp, SIGNAL(sigDownloadTimeout(QString)), this, SLOT(slotDownloadTimeout(QString)));
     }
 }
@@ -245,8 +242,35 @@ int AutoUpdater::GetUpdateProcess()
 void AutoUpdater::slotDownloadTimeout(QString fileName)
 {
     m_downloadTimeoutList.append(fileName);
-    FtpManager *tmp = static_cast<FtpManager*>(sender());
-    tmp->deleteLater();
+
+    //Stop all current download
+    for(int i = 0; i < m_ftpList.size(); i++)
+    {
+        if(m_ftpList.at(i))
+            m_ftpList.at(i)->deleteLater();
+    }
+
+    //Delete All already download files
+    QString scriptName = "timeoutDel.bat";
+    QString scriptPath = QApplication::applicationDirPath();
+    MakeDeletePathScript(scriptPath, m_newVersionPath, scriptName);
+
+    QString delScript = scriptPath + "/" + scriptName;
+    qDebug() << "scriptPath = " << delScript;
+    QFileInfo scriptInfo(delScript);
+    if(!scriptInfo.exists())
+    {
+        qDebug() << "The time out delete script is not exist!";
+    }
+    else
+    {
+        //Execute delete.
+        QProcess *p = new QProcess(this);
+        p->start(delScript);
+        m_listProcess.push_back(p);
+    }
+
+    sigDownloadTimeout();
 }
 
 QStringList AutoUpdater::GetDownloadTimeoutList()
@@ -278,7 +302,10 @@ QStringList AutoUpdater::GetFinishDownloadFileList()
 
 void AutoUpdater::RestartApp()
 {
-    MakeDeleteScript();
+    QString delScriptName = "del.bat";
+    MakeDeletePathScript(QApplication::applicationDirPath(),
+                         QApplication::applicationDirPath(),
+                         delScriptName);
     CreateNewLink();
 
     //Start new version application.
@@ -286,23 +313,29 @@ void AutoUpdater::RestartApp()
     qDebug() << "newApp = " << newApp;
     QProcess::startDetached(newApp);
 
+    //Execute delete script file
+    QProcess *p = new QProcess(this);
+    p->start(QApplication::applicationDirPath() + "/" + delScriptName);
+    m_listProcess.push_back(p);
+
     exit(0);
 }
 
-void AutoUpdater::MakeDeleteScript()
+void AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString delPath,
+                                       const QString scriptName)
 {
-    QString delPath = QApplication::applicationDirPath();
     delPath = delPath.replace(QRegExp("\\/"), "\\\\");
     QString content = "ping -n 1 127.0.0.1>nul\n"
                       "@echo off\n"
                       "rd /s/q " + delPath;
 
     //The delete script file storage in the new version path
-    QFile script(QApplication::applicationDirPath() + "/del.bat");
+    QFile script(saveScriptPath + "/" + scriptName);
     if(!script.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
     QTextStream in(&script);
     in << content;
+    script.close();
 }
 
 void AutoUpdater::CreateNewLink()

@@ -3,6 +3,7 @@
 #define CAUTOUPDATER_H
 
 #include <QObject>
+#include <QProcess>
 #include <QSlider>
 
 class FtpManager;
@@ -137,7 +138,9 @@ public:
      * Make del.bat script file for delete all
      * old version files.
      */
-    void MakeDeleteScript();
+    void MakeDeletePathScript(const QString saveScriptPath,
+                              QString delPath,
+                              const QString scriptName);
 
 protected slots:
     /**
@@ -161,6 +164,7 @@ protected slots:
      * @brief slotDownloadTimeout
      * @param fileName current download file name
      * 30s Time out
+     * and releace all ftp object to stop download.
      */
     void slotDownloadTimeout(QString fileName);
 
@@ -172,6 +176,13 @@ signals:
      * whether update or not.
      */
     void sigDownloadInitFileOver();
+
+    /**
+     * @brief sigDownloadTimeout
+     * The signal will emit if Ftp class download time out,
+     * and that updater class resive it.
+     */
+    void sigDownloadTimeout();
 
 private:
     QStringList m_listFileDir; //需要更新的文件路径列表
@@ -192,6 +203,9 @@ private:
     QString m_localXmlPath;
     QString m_downloadXmlPath;
     QString m_downloadVersionInfoPath;
+
+    //process
+    QList<QProcess*> m_listProcess;
 };
 
 #endif // CAUTOUPDATER_H

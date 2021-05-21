@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 
     bool bFirst;
     QString strArg1 = argv[1];
-    if(strArg1 == "1")
+    if(strArg1 != "0")
     {
         bFirst = true;
     }

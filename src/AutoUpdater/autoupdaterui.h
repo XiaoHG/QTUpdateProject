@@ -39,26 +39,31 @@ public:
     void Updating();
     void FinishUpdate();
     void NotUpdate();
+    void DownloadTimeout();
 
     void InitUI();
     void UpdateUI();
     void UpdatingUI();
     void FinishUpdateUI();
     void NotUpdateUI();
+    void DownloadTimeoutUI();
 
     void ShowUpdateUI(bool visible);
     void ShowUpdatingUI(bool visible);
     void ShowFinishUpdateUI(bool visible);
     void ShowNotUpdateUI(bool visible);
+    void ShowDownloadTimeoutUI(bool visible);
 
     void ExistAndDeleteApp();
 protected slots:
     void slotBtnUpdateClicked();
-    void slotBtnOkClicked();
+    void slotBtnRestartClicked();
     void slotUpdateProcess();
     void slotDownloadInitFileOver();
 
     void slotCheckUpdateTimeOut();
+    void slotDownloadTimeout();
+    void slotClickTimeoutOk();
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
@@ -114,6 +119,10 @@ private:
 
     //don't need update widgets
     QList<QWidget*> m_notUpdateWidgets;
+
+    //Time out widgets
+    QPushButton *m_btnDownloadTimeoutOK;
+    QList<QWidget*> m_downloadTimeoutWidgets;
 
     //update manager model
     AutoUpdater *m_updater;

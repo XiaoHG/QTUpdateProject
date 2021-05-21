@@ -9,7 +9,8 @@ QStringList FtpManager::m_currDownloadFileList = {Q_NULLPTR};
 QStringList FtpManager::m_finishDownloadFileList = {Q_NULLPTR};
 
 FtpManager::FtpManager(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    t(0)
 {
     // 设置协议
     m_url.setScheme("ftp");
@@ -41,6 +42,7 @@ void FtpManager::downloadFinished()
     m_finishCount++;
     m_currDownloadFileList.removeOne(m_url.path());
     m_finishDownloadFileList.push_back(m_url.path());
+    m_downloadTimeout->stop();
 
     if(m_pReply->error() != QNetworkReply::NoError)
     {
@@ -100,9 +102,8 @@ QStringList FtpManager::GetFinishDownloadFileList()
 
 void FtpManager::slotDownloadTimeout()
 {
-    static int t = 0;
-    t++;
-    if(t == 30)
+    qDebug () << "t = " << t;
+    if(t++ == 30)
     {
         qDebug() << "Call slotDownloadTimeout: download file " << m_url.path() << " time out";
         sigDownloadTimeout(m_url.path());

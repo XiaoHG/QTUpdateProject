@@ -4,11 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xml network
+QT  += core gui xml network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = AutoUpdater0.0
+TARGET = AutoUpdater
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use

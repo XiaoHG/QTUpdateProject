@@ -20,6 +20,8 @@
 #include <QStandardPaths>
 #include <QFile>
 
+#define CHECKUPDATE_TIMEOUT 15
+
 //m_btnClose->setStyleSheet("QPushButton{background-color:rgba(150, 150, 150, 100%);\
 //color: white;   border-radius: 10px;  border: 2px groove gray; border-style: outset;}" // 按键本色
 //"QPushButton:hover{background-color:white; color: black;}"  // 鼠标停放时的色彩
@@ -32,6 +34,9 @@ AutoUpdaterUI::AutoUpdaterUI(QWidget *parent)
     m_updater = new AutoUpdater();
     connect(m_updater, SIGNAL(sigDownloadInitFileOver()),
             this, SLOT(slotDownloadInitFileOver()));
+
+    connect(m_updater, SIGNAL(sigDownloadTimeout()),
+            this, SLOT(slotDownloadTimeout()));
 
     m_updatingTimer = new QTimer(this);
     connect(m_updatingTimer, SIGNAL(timeout()), this, SLOT(slotCheckUpdateTimeOut()));
@@ -85,20 +90,20 @@ void AutoUpdaterUI::InitUI()
                                                                 "QScrollBar::handle:vertical"
                                                                 "{"
                                                                 "width:8px;"
-                                                                "background:rgba(0,0,0,25%);"
+                                                                "background:rgba(18, 237, 237,50%);" //normol
                                                                 " border-radius:4px;"
                                                                 "min-height:20;"
                                                                 "}"
                                                                 "QScrollBar::handle:vertical:hover"
                                                                 "{"
                                                                 "width:8px;"
-                                                                "background:rgba(0,0,0,50%);"
+                                                                "background:rgba(18, 237, 237, 100%);" //hover
                                                                 " border-radius:4px;"
                                                                 "min-height:20;"
                                                                 "}"
                                                                 "QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical"
                                                                 "{"
-                                                                "background:rgba(0,0,0,10%);"
+                                                                "background:rgba(0, 0, 0, 10%);" //bottom
                                                                 "border-radius:4px;"
                                                                 "}"
                                                                 "QScrollBar::add-line:vertical"
@@ -152,12 +157,11 @@ void AutoUpdaterUI::InitUI()
     UpdatingUI();
     FinishUpdateUI();
     NotUpdateUI();
+    DownloadTimeoutUI();
 
     m_logTitleLabel->setVisible(true);
     m_outputVersionInfoEdit->setVisible(true);
     m_btnClose->setVisible(true);
-
-    this->show();
 }
 
 void AutoUpdaterUI::paintEvent(QPaintEvent *event)
@@ -243,7 +247,7 @@ void AutoUpdaterUI::FinishUpdateUI()
                         "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
                         "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
 
-    connect(m_btnRestart, SIGNAL(clicked(bool)), this, SLOT(slotBtnOkClicked()));
+    connect(m_btnRestart, SIGNAL(clicked(bool)), this, SLOT(slotBtnRestartClicked()));
 
     m_finishWidgets.push_back(m_btnRestart);
 
@@ -266,6 +270,22 @@ void AutoUpdaterUI::NotUpdateUI()
 
     //init false
     ShowNotUpdateUI(false);
+}
+
+void AutoUpdaterUI::DownloadTimeoutUI()
+{
+    m_btnDownloadTimeoutOK = new QPushButton(this);
+    m_btnDownloadTimeoutOK->setText(QStringLiteral("确 定"));
+    m_btnDownloadTimeoutOK->setGeometry(m_btnUpdate->x(), m_btnUpdate->y(),
+                                     m_btnUpdate->width(), m_btnUpdate->height());
+    m_btnDownloadTimeoutOK->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
+                                        "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
+                                        "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
+    connect(m_btnDownloadTimeoutOK, SIGNAL(clicked(bool)), this, SLOT(slotClickTimeoutOk()));
+
+    m_downloadTimeoutWidgets.push_back(m_btnDownloadTimeoutOK);
+
+    ShowDownloadTimeoutUI(false);
 }
 
 void AutoUpdaterUI::Update()
@@ -296,6 +316,22 @@ void AutoUpdaterUI::NotUpdate()
     QString strCurrentVersion = m_updater->GetOldVersion();
     m_labelLasterVersion->setText(strCurrentVersion);
     m_titleLabel->setText(QStringLiteral("当前版本是最新版本！"));
+}
+
+void AutoUpdaterUI::DownloadTimeout()
+{
+    m_titleLabel->setText(QStringLiteral("下载超时！"));
+    QStringList timeoutFileList = m_updater->GetDownloadTimeoutList();
+    QString timeoutMsg;
+    for(int i = 0; i < timeoutFileList.size(); i++)
+    {
+        timeoutMsg.append(QStringLiteral("文件: "));
+        timeoutMsg.append(timeoutFileList.at(i));
+        timeoutMsg.append(QStringLiteral(" 下载超时!"));
+        m_outputVersionInfoEdit->append(timeoutMsg);
+    }
+
+    m_outputVersionInfoEdit->append(QStringLiteral("下载失败，请检查网络连接状态！"));
 }
 
 void AutoUpdaterUI::ShowUpdateUI(bool visible)
@@ -330,9 +366,19 @@ void AutoUpdaterUI::ShowNotUpdateUI(bool visible)
     }
 }
 
+void AutoUpdaterUI::ShowDownloadTimeoutUI(bool visible)
+{
+    for(int i = 0; i < m_downloadTimeoutWidgets.size(); ++i)
+    {
+        m_downloadTimeoutWidgets.at(i)->setVisible(visible);
+    }
+}
+
 void AutoUpdaterUI::CheckUpdater(bool isFirst)
 {
     m_first = isFirst;
+    if(!m_first)
+        this->show();
     m_updatingTimer->start(1000);
     qDebug() << "start time out";
     m_updater->DownloadXMLFile();
@@ -370,7 +416,11 @@ void AutoUpdaterUI::slotDownloadInitFileOver()
         NotUpdate();
         ShowNotUpdateUI(true);
         if(m_first)
-            return;
+        {
+            //This is the main application call updater application from main function
+            //and this is not update version at that time, exit update process.
+            exit(0);
+        }
         this->exec();
     }
 }
@@ -379,7 +429,7 @@ void AutoUpdaterUI::slotCheckUpdateTimeOut()
 {
     static int timeOut = 0;
     timeOut++;
-    if(timeOut == 30)
+    if(timeOut == CHECKUPDATE_TIMEOUT)
     {
         qDebug() << "time out = " << timeOut;
         m_outputVersionInfoEdit->clear();
@@ -390,6 +440,10 @@ void AutoUpdaterUI::slotCheckUpdateTimeOut()
         {
             m_outputVersionInfoEdit->append(errorStack.at(i));
         }
+        if(m_first)
+        {
+            exit(0);
+        }
         this->exec();
         m_updatingTimer->stop();
     }
@@ -399,6 +453,21 @@ void AutoUpdaterUI::slotCheckUpdateTimeOut()
         i = 0;
     m_outputVersionInfoEdit->setText(QStringLiteral("正在检查更新 ") + tr("%1").arg(tmpStr[i++]));
     qDebug() << "time : " << timeOut;
+}
+
+void AutoUpdaterUI::slotDownloadTimeout()
+{
+    m_updateProsessTimer->stop();
+    m_btnClose->setVisible(false);
+    ShowUpdatingUI(false);
+    DownloadTimeout();
+    ShowDownloadTimeoutUI(true);
+}
+
+void AutoUpdaterUI::slotClickTimeoutOk()
+{
+    qDebug() << "close()";
+    exit(0);
 }
 
 /*update function*/
@@ -447,7 +516,7 @@ void AutoUpdaterUI::slotUpdateProcess()
     }
 }
 
-void AutoUpdaterUI::slotBtnOkClicked()
+void AutoUpdaterUI::slotBtnRestartClicked()
 {
     m_updater->RestartApp();
     qDebug() << "ok";

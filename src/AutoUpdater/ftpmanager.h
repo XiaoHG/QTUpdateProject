@@ -52,6 +52,7 @@ private:
     QNetworkReply *m_pReply;
 
     //Download time out
+    int t;
     QTimer *m_downloadTimeout;
 
 };
