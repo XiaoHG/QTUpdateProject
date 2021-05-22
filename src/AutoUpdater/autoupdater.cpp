@@ -326,10 +326,10 @@ void AutoUpdater::RestartApp()
 QString AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString delPath,
                                        const QString scriptName)
 {
-    //ping -n 1 127.0.0.1>nul -- wait one second to remove old version path
-    //One second is wait current process exit.
+    //ping -n 3 127.0.0.1>nul -- wait third second to remove old version path
+    //third second is wait current process exit.
     delPath = delPath.replace(QRegExp("\\/"), "\\\\");
-    QString content = "ping -n 1 127.0.0.1>nul\n"
+    QString content = "ping -n 3 127.0.0.1>nul\n"
                       "@echo off\n"
                       "rd /s/q " + delPath;
 
@@ -360,6 +360,7 @@ void AutoUpdater::CreateNewLink()
     QFile::link(newAppPath, desktopLink);
 }
 
+//Not use
 void AutoUpdater::DeleteEmptyVersionPath()
 {
     QDir appDir(QApplication::applicationDirPath() + "/../");
@@ -370,16 +371,20 @@ void AutoUpdater::DeleteEmptyVersionPath()
         path = folder_list.at(i).filePath();
         qDebug() << "removePath = " << path;
 
-        QDir versionPath(path);
-        versionPath.setFilter(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
-        QFileInfoList list = versionPath.entryInfoList();
-        int file_count = list.count();
-
-        if(file_count <= 0 && path.contains(APPLICATION_NAME))
+        if(path.contains(APPLICATION_NAME))
         {
-            qDebug() << "remove = " << path;
-            QDir removePath;
-            removePath.rmpath(path);
+            QDir versionPath(path);
+            versionPath.setFilter(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
+            QFileInfoList list = versionPath.entryInfoList();
+            int file_count = list.count();
+
+            if(file_count == 0)
+            {
+                qDebug() << "remove = " << path;
+                QDir removePath;
+                //Not use
+                //removePath.rmpath(path);
+            }
         }
     }
 }

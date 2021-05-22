@@ -8,6 +8,8 @@ QT  += core gui xml network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+TRANSLATIONS = english.ts chinese.ts
+
 TARGET = AutoUpdater
 TEMPLATE = app
 
@@ -41,8 +43,9 @@ HEADERS += \
 FORMS += \
         mainwindow.ui
 
-RESOURCES += \
-    ../../source/icon.qrc
+TRANSLATIONS += zh_en.ts
 
-DISTFILES += \
-    ../../source/scrollbar.qss
+RESOURCES += \
+    ../../source/icon.qrc \
+    qt_language.qrc
+

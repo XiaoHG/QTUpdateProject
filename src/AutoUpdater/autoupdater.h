@@ -5,9 +5,12 @@
 #include <QObject>
 #include <QProcess>
 #include <QSlider>
+#include <ftpmanager.h>
 
-class FtpManager;
-
+/**
+ * @brief The AutoUpdater class
+ * Update manager.
+ */
 class AutoUpdater : public QObject
 {
     Q_OBJECT
@@ -196,7 +199,7 @@ signals:
      */
     void sigDownloadTimeout();
 
-private:
+public:
     /**
      * @brief DeleteEmptyVersionPath
      * Remove all empty version path.
@@ -205,10 +208,10 @@ private:
     void DeleteEmptyVersionPath();
 
 private:
-    QStringList m_listFileDir; //需要更新的文件路径列表
-    QStringList m_listFileName; //需要更新的文件列表
+    QStringList m_listFileDir; //The list directory for update.
+    QStringList m_listFileName; //The list file for update.
 
-    QList<FtpManager*> m_ftpList; //调用下载类FTP
+    QList<FtpManager*> m_ftpList; //FTP class
 
     //Ftp error stack
     QStringList m_replyErrorStack;

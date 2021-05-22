@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    w.StartUpdateProcess("1");
+    w.StartUpdateProcess("1", "0");
 
     return a.exec();
 }

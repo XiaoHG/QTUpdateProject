@@ -24,13 +24,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    StartUpdateProcess("0");
+    StartUpdateProcess("0", "0");
 }
 
-void MainWindow::StartUpdateProcess(QString isFirst)
+void MainWindow::StartUpdateProcess(QString isFirst, QString isCh)
 {
     QStringList arguments;
     arguments << isFirst; //argv[1]
+    arguments << isCh; //argv[2]
     QString strExe = QApplication::applicationDirPath() + "/../../../src/AutoUpdater/debug/AutoUpdater.exe";
     qDebug() << strExe;
     m_updateProcess->start(strExe, arguments);

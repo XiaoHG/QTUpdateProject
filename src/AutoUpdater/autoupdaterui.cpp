@@ -22,9 +22,12 @@
 
 #define CHECKUPDATE_TIMEOUT 15
 
-AutoUpdaterUI::AutoUpdaterUI(QWidget *parent)
-    :QDialog(parent)
+AutoUpdaterUI::AutoUpdaterUI(bool bCh, QWidget *parent)
+    :QMainWindow(parent),
+      m_bTranslator(bCh)
 {
+    Language(bCh);
+
     InitUI();
 
     m_updater = new AutoUpdater();
@@ -51,6 +54,8 @@ AutoUpdaterUI::AutoUpdaterUI(QWidget *parent)
     m_updatingTimer = new QTimer(this);
     connect(m_updatingTimer, SIGNAL(timeout()), this, SLOT(slotCheckUpdateTimeOut()));
     m_updatingTimer->start(1000);
+
+    m_bTranslator = false;
 }
 
 AutoUpdaterUI::~AutoUpdaterUI()
@@ -74,7 +79,7 @@ void AutoUpdaterUI::InitUI()
     m_titleLabel->setFont(titleLabelFont);
     m_titleLabel->setAlignment(Qt::AlignCenter);
     m_titleLabel->setScaledContents(true);
-    m_titleLabel->setText(QStringLiteral("正在检查更新！"));
+    m_titleLabel->setText(QObject::tr("Checking for update"));
     m_titleLabel->setStyleSheet("background-color:rgb(50, 50, 50);"
                                 "color:rgb(200, 200, 200)");
 
@@ -147,10 +152,10 @@ void AutoUpdaterUI::InitUI()
     m_logTitleLabel->setStyleSheet("color:white");
     m_logTitleLabel->setGeometry(m_outputVersionInfoEdit->x(),
                                  m_outputVersionInfoEdit->y() - 25,
-                                 m_outputVersionInfoEdit->width(),
+                                 m_outputVersionInfoEdit->width() - 100,
                                  20);
     m_logTitleLabel->setScaledContents(true);
-    m_logTitleLabel->setText(QStringLiteral("更新日志 : "));
+    m_logTitleLabel->setText(QObject::tr("log :"));
     m_logTitleLabel->setStyleSheet("color:rgb(200, 200, 200)");
 
     m_btnClose = new QPushButton(this);
@@ -191,7 +196,7 @@ void AutoUpdaterUI::UpdateUI()
     QFont btnUpdateFont( "Microsoft YaHei", 9, 75);
     m_btnUpdate = new QPushButton(this);
     m_btnUpdate->setFont(btnUpdateFont);
-    m_btnUpdate->setText(QStringLiteral("更 新"));
+    m_btnUpdate->setText(QObject::tr("Update"));
     m_btnUpdate->setIcon(QIcon("://image/update2.png"));
     m_btnUpdate->setGeometry(20, m_outputVersionInfoEdit->height() + m_titleLabel->height() + 50, 70, 25);
     m_btnUpdate->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
@@ -249,7 +254,7 @@ void AutoUpdaterUI::UpdatingUI()
 void AutoUpdaterUI::FinishUpdateUI()
 {
     m_btnRestart = new QPushButton(this);
-    m_btnRestart->setText(QStringLiteral("重 启"));
+    m_btnRestart->setText(QObject::tr("Restart"));
     m_btnRestart->setIcon(QIcon(":/image/restart.png"));
     m_btnRestart->setGeometry(m_btnUpdate->x(), m_btnUpdate->y(),
                          m_btnUpdate->width(), m_btnUpdate->height());
@@ -285,7 +290,7 @@ void AutoUpdaterUI::NotUpdateUI()
 void AutoUpdaterUI::DownloadTimeoutUI()
 {
     m_btnDownloadTimeoutOK = new QPushButton(this);
-    m_btnDownloadTimeoutOK->setText(QStringLiteral("确 定"));
+    m_btnDownloadTimeoutOK->setText(QObject::tr("ok"));
     m_btnDownloadTimeoutOK->setGeometry(m_btnUpdate->x(), m_btnUpdate->y(),
                                      m_btnUpdate->width(), m_btnUpdate->height());
     m_btnDownloadTimeoutOK->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
@@ -300,47 +305,50 @@ void AutoUpdaterUI::DownloadTimeoutUI()
 
 void AutoUpdaterUI::Update()
 {
-    m_titleLabel->setText(QStringLiteral("检查更新！"));
+    m_titleLabel->setText(tr("Update dialog"));
     m_btnClose->setVisible(true);
 
     m_versionServerInfo = m_updater->GetNewVersion();
-    m_newHaveVersionLabel->setText(QStringLiteral("检查到新版本 ") + m_versionServerInfo +
-                                   QStringLiteral(" 点击更新！"));
+    m_newHaveVersionLabel->setText(QObject::tr("Find ") + m_versionServerInfo +
+                                   QObject::tr(" version, click update button to update!"));
 }
 
 void AutoUpdaterUI::Updating()
 {
     m_outputVersionInfoEdit->clear();
-    m_titleLabel->setText(QStringLiteral("正在更新 ..."));
+    m_titleLabel->setText(QObject::tr("Updating"));
 }
 
 void AutoUpdaterUI::FinishUpdate()
 {
     //UpdateFinishUI();
     m_updateProsessTimer->stop();
+    m_outputVersionInfoEdit->append(QObject::tr("The update is complete, please restart!"));
+    m_titleLabel->setText(QObject::tr("Finish"));
+    m_btnClose->setVisible(false);
 }
 
 void AutoUpdaterUI::NotUpdate()
 {
     QString strCurrentVersion = m_updater->GetOldVersion();
     m_curVersionLabel->setText(strCurrentVersion);
-    m_titleLabel->setText(QStringLiteral("当前版本是最新版本！"));
+    m_titleLabel->setText(QObject::tr("Laster"));
 }
 
 void AutoUpdaterUI::DownloadTimeout()
 {
-    m_titleLabel->setText(QStringLiteral("下载超时！"));
+    m_titleLabel->setText(QObject::tr("Timedout"));
     QStringList timeoutFileList = m_updater->GetDownloadTimeoutList();
     QString timeoutMsg;
     for(int i = 0; i < timeoutFileList.size(); i++)
     {
-        timeoutMsg.append(QStringLiteral("文件: "));
+        timeoutMsg.append(QObject::tr("File: "));
         timeoutMsg.append(timeoutFileList.at(i));
-        timeoutMsg.append(QStringLiteral(" 下载超时!"));
+        timeoutMsg.append(QObject::tr(" download timed out!"));
         m_outputVersionInfoEdit->append(timeoutMsg);
     }
 
-    m_outputVersionInfoEdit->append(QStringLiteral("下载失败，请检查网络连接状态！"));
+    m_outputVersionInfoEdit->append(QObject::tr("The download failed, please check the network connection status!"));
 }
 
 void AutoUpdaterUI::ShowUpdateUI(bool visible)
@@ -394,7 +402,7 @@ void AutoUpdaterUI::CheckUpdater(bool isFirst)
 
 void AutoUpdaterUI::CheckUpdate()
 {
-    m_outputVersionInfoEdit->append(QStringLiteral("正在检查更新 ... "));
+    m_outputVersionInfoEdit->append(QObject::tr("Checking for update "));
 }
 
 void AutoUpdaterUI::slotDownloadInitFileOver()
@@ -403,7 +411,7 @@ void AutoUpdaterUI::slotDownloadInitFileOver()
     m_outputVersionInfoEdit->clear();
     QString strVersionInfo = m_updater->GetVersionInfo();
     if(strVersionInfo.isEmpty())
-        m_outputVersionInfoEdit->setText(QStringLiteral("版本信息缺失！"));
+        m_outputVersionInfoEdit->setText(QObject::tr("Version information is missing"));
     else
         m_outputVersionInfoEdit->setText(strVersionInfo.toLocal8Bit());
     m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
@@ -415,7 +423,7 @@ void AutoUpdaterUI::slotDownloadInitFileOver()
         m_updater->LoadUpdateFiles();
         Update();
         ShowUpdateUI(true);
-        this->exec();
+        this->show();
     }
     else
     {
@@ -429,14 +437,14 @@ void AutoUpdaterUI::slotDownloadInitFileOver()
             //and this is not update version at that time, exit update process.
             exit(0);
         }
-        this->exec();
+        this->show();
     }
 }
 
 void AutoUpdaterUI::slotDownloadStartPerFile(QString fileName)
 {
     QString startDownload;
-    startDownload.append(QStringLiteral("正在更新文件："));
+    startDownload.append(QObject::tr("Updating "));
     startDownload.append(fileName);
     m_outputVersionInfoEdit->append(startDownload);
 }
@@ -445,7 +453,7 @@ void AutoUpdaterUI::slotDownloadFinishPerFile(QString fileName)
 {
     QString startDownload;
     startDownload.append(fileName);
-    startDownload.append(QStringLiteral(" 文件更新完成！"));
+    startDownload.append(QObject::tr(" update is complete!"));
     m_outputVersionInfoEdit->append(startDownload);
 }
 
@@ -457,8 +465,8 @@ void AutoUpdaterUI::slotCheckUpdateTimeOut()
     {
         qDebug() << "time out = " << timeOut;
         m_outputVersionInfoEdit->clear();
-        m_outputVersionInfoEdit->append(QStringLiteral("检查更新失败！"));
-        m_outputVersionInfoEdit->append(QStringLiteral("请检查网络链接状态！"));
+        m_outputVersionInfoEdit->append(QObject::tr("Check for update failed!"));
+        m_outputVersionInfoEdit->append(QObject::tr("Please check the network link status!"));
         QStringList errorStack = m_updater->GetFtpErrorStack();
         for(int i = 0 ; i < errorStack.size(); i++)
         {
@@ -468,14 +476,14 @@ void AutoUpdaterUI::slotCheckUpdateTimeOut()
         {
             exit(0);
         }
-        this->exec();
+        this->show();
         m_updatingTimer->stop();
     }
     static QString tmpStr[3] = {".", "..", "..."};
     static int i = 0;
     if(i == 3)
         i = 0;
-    m_outputVersionInfoEdit->setText(QStringLiteral("正在检查更新 ") + tr("%1").arg(tmpStr[i++]));
+    m_outputVersionInfoEdit->setText(QObject::tr("Checking for update ") + QString::asprintf("%1").arg(tmpStr[i++]));
     qDebug() << "time : " << timeOut;
 }
 
@@ -516,11 +524,8 @@ void AutoUpdaterUI::slotUpdateProcess()
     qDebug() << "m_updateProgressBar->maximum() = " << m_updateProgressBar->maximum();
     if(m_updateProgressBar->value() == m_updateProgressBar->maximum())
     {
-        m_outputVersionInfoEdit->append(QStringLiteral("更新完成，请重启！"));
-        m_titleLabel->setText(QStringLiteral("更新完成，请重启！"));
-        m_btnClose->setVisible(false);
-        FinishUpdate();
         ShowUpdatingUI(false);
+        FinishUpdate();
         ShowFinishUpdateUI(true);
     }
 }
@@ -536,10 +541,7 @@ void AutoUpdaterUI::mousePressEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton)
     {
         m_bDrag = true;
-        //获得鼠标的初始位置
         m_mouseStartPoint = event->globalPos();
-        //mouseStartPoint = event->pos();
-        //获得窗口的初始位置
         m_windowTopLeftPoint = this->frameGeometry().topLeft();
     }
 }
@@ -548,10 +550,7 @@ void AutoUpdaterUI::mouseMoveEvent(QMouseEvent *event)
 {
     if(m_bDrag)
     {
-        //获得鼠标移动的距离
         QPoint distance = event->globalPos() - m_mouseStartPoint;
-        //QPoint distance = event->pos() - mouseStartPoint;
-        //改变窗口的位置
         this->move(m_windowTopLeftPoint + distance);
     }
 }
@@ -564,5 +563,15 @@ void AutoUpdaterUI::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
+void AutoUpdaterUI::Language(bool ch)
+{
+    qDebug() << "onTranslation1";
+    if(ch)
+    {
+        //chinese
+        m_qtTranslator.load(":/zh_en.qm");
+        qApp->installTranslator(&m_qtTranslator);
+    }
+}
 
 

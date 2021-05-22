@@ -12,23 +12,25 @@
 #include <QTimer>
 #include <QDialog>
 #include <QList>
-#include <QDialog>
+#include <QMainWindow>
 #include <QProgressBar>
+#include <QTranslator>
+#include <QApplication>
 
-class AutoUpdaterUI : public QDialog
+class AutoUpdaterUI : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    static AutoUpdaterUI *getInstance()
+    static AutoUpdaterUI *getInstance(bool bCh)
     {
-        static AutoUpdaterUI instance;
+        static AutoUpdaterUI instance(bCh);
         return &instance;
     }
     ~AutoUpdaterUI();
 
 private:
-    AutoUpdaterUI(QWidget *parent = 0);
+    AutoUpdaterUI(bool bCh, QWidget *parent = 0);
 
 public:
     /**
@@ -38,7 +40,6 @@ public:
      */
     void CheckUpdater(bool isFirst);
 
-public:
     /**
      * @brief CheckUpdate
      * Check update situation
@@ -88,6 +89,14 @@ public:
     void ShowFinishUpdateUI(bool visible);
     void ShowNotUpdateUI(bool visible);
     void ShowDownloadTimeoutUI(bool visible);
+
+
+    /**
+     * @brief Language
+     * @param ch
+     * The default is english
+     */
+    void Language(bool ch);
 
 protected slots:
     /**
@@ -160,6 +169,10 @@ private:
     bool m_bDrag;
     QPoint m_mouseStartPoint;
     QPoint m_windowTopLeftPoint;
+
+    //Translation
+    QTranslator m_qtTranslator;
+    bool m_bTranslator; //and choose version information from chinese or english.
 
     //widgets
     QLabel *m_titleLabel;
