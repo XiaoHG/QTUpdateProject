@@ -30,3 +30,20 @@ void FileManager::DeleteAllPathFiles(QString path)
     }
 }
 
+void FileManager::DeleteEmptyVersionPath(QString path)
+{
+    QDir dir(path);
+    QString removePath;
+    QFileInfoList folder_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+    for(int i = 0; i < folder_list.size(); ++i)
+    {
+        removePath = folder_list.at(i).filePath();
+        qDebug() << "removePath = " << removePath;
+        if(removePath.isEmpty() && removePath.contains(""))
+        {
+            dir.remove(removePath);
+        }
+    }
+
+}
+

@@ -126,9 +126,11 @@ public:
      * Make del.bat script file for delete all
      * old version files.
      */
-    void MakeDeletePathScript(const QString saveScriptPath,
+    QString MakeDeletePathScript(const QString saveScriptPath,
                               QString delPath,
                               const QString scriptName);
+
+
 
 protected slots:
     /**
@@ -193,6 +195,14 @@ signals:
      * and that updater class resive it.
      */
     void sigDownloadTimeout();
+
+private:
+    /**
+     * @brief DeleteEmptyVersionPath
+     * Remove all empty version path.
+     * It is fix update restart can't remove top directory bug.
+     */
+    void DeleteEmptyVersionPath();
 
 private:
     QStringList m_listFileDir; //需要更新的文件路径列表

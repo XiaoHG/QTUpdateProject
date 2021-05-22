@@ -22,31 +22,35 @@
 
 #define CHECKUPDATE_TIMEOUT 15
 
-//m_btnClose->setStyleSheet("QPushButton{background-color:rgba(150, 150, 150, 100%);\
-//color: white;   border-radius: 10px;  border: 2px groove gray; border-style: outset;}" // 按键本色
-//"QPushButton:hover{background-color:white; color: black;}"  // 鼠标停放时的色彩
-//"QPushButton:pressed{background-color:rgb(85, 170, 255); border-style: inset; }");   // 鼠标按下的色彩
-
 AutoUpdaterUI::AutoUpdaterUI(QWidget *parent)
     :QDialog(parent)
 {
     InitUI();
+
     m_updater = new AutoUpdater();
+
+    //It is download files that updater.xml and versionInfo.txt,
+    //and is emit the signal of init files download over,
+    //and next step to check betweed download updater.xml and local xml file
+    //get whether update or not result.
     connect(m_updater, SIGNAL(sigDownloadInitFileOver()),
             this, SLOT(slotDownloadInitFileOver()));
 
+    //30s time out, exit the application.
     connect(m_updater, SIGNAL(sigDownloadTimeout()),
             this, SLOT(slotDownloadTimeout()));
 
+    //It is emited that each file download at start.
     connect(m_updater, SIGNAL(sigDownloadStartPerFile(QString)),
             this, SLOT(slotDownloadStartPerFile(QString)));
 
+    //It is emited that each file download finish.
     connect(m_updater, SIGNAL(sigDownloadFinishPerFile(QString)),
             this, SLOT(slotDownloadFinishPerFile(QString)));
 
     m_updatingTimer = new QTimer(this);
     connect(m_updatingTimer, SIGNAL(timeout()), this, SLOT(slotCheckUpdateTimeOut()));
-
+    m_updatingTimer->start(1000);
 }
 
 AutoUpdaterUI::~AutoUpdaterUI()
@@ -318,7 +322,6 @@ void AutoUpdaterUI::FinishUpdate()
 
 void AutoUpdaterUI::NotUpdate()
 {
-    m_curVersionLabel->setStyleSheet("color:rgb(18, 237, 237)");
     QString strCurrentVersion = m_updater->GetOldVersion();
     m_curVersionLabel->setText(strCurrentVersion);
     m_titleLabel->setText(QStringLiteral("当前版本是最新版本！"));
@@ -385,7 +388,6 @@ void AutoUpdaterUI::CheckUpdater(bool isFirst)
     m_first = isFirst;
     if(!m_first)
         this->show();
-    m_updatingTimer->start(1000);
     qDebug() << "start time out";
     m_updater->DownloadXMLFile();
 }
@@ -406,10 +408,10 @@ void AutoUpdaterUI::slotDownloadInitFileOver()
         m_outputVersionInfoEdit->setText(strVersionInfo.toLocal8Bit());
     m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
 
-    //更新则isUpdate = true,否则false
+    //isUpdate is true to update, or not.
     if(m_updater->IsUpdate())
     {
-        //获取下载路径。
+        //Load download files path from ftp server.
         m_updater->LoadUpdateFiles();
         Update();
         ShowUpdateUI(true);

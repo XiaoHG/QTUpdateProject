@@ -16,6 +16,7 @@ public:
      * Delete all files which in path.
      */
     static void DeleteAllPathFiles(QString path);
+    static void DeleteEmptyVersionPath(QString path);
 };
 
 #endif // FILEMANAGER_H

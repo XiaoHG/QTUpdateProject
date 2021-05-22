@@ -23,6 +23,7 @@ static const QString DONWLOAD_PATH = "../";
 
 AutoUpdater::AutoUpdater()
 {
+    DeleteEmptyVersionPath();
     m_localXmlPath = QApplication::applicationDirPath() + "/updater.xml";
     m_downloadXmlPath = QApplication::applicationDirPath() + "/download/updater.xml";
     m_downloadVersionInfoPath = QApplication::applicationDirPath() + "/download/versionInfo.txt";
@@ -294,10 +295,10 @@ QStringList AutoUpdater::GetFtpErrorStack()
 
 void AutoUpdater::RestartApp()
 {
-    QString delScriptName = "del.bat";
-    MakeDeletePathScript(QApplication::applicationDirPath(),
-                         QApplication::applicationDirPath(),
-                         delScriptName);
+    QString delScriptPath;
+    delScriptPath = MakeDeletePathScript(QApplication::applicationDirPath(),
+                                         QApplication::applicationDirPath(),
+                                         "del.bat");
     CreateNewLink();
 
     //It is not work
@@ -306,7 +307,7 @@ void AutoUpdater::RestartApp()
 //    p->start(QApplication::applicationDirPath() + "/" + delScriptName); //delete old version path
 
     //It is work
-    QProcess::startDetached(QApplication::applicationDirPath() + "/" + delScriptName);
+    QProcess::startDetached(delScriptPath);
 
     //Start new version application.
     QString newApp = m_newVersionPath + "/" + APPLICATION_NAME + m_newVersion + ".exe";
@@ -322,22 +323,27 @@ void AutoUpdater::RestartApp()
     exit(0);
 }
 
-void AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString delPath,
+QString AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString delPath,
                                        const QString scriptName)
 {
-    //ping -n 3 127.0.0.1>nul -- wait third second to remove old version path
+    //ping -n 1 127.0.0.1>nul -- wait one second to remove old version path
+    //One second is wait current process exit.
     delPath = delPath.replace(QRegExp("\\/"), "\\\\");
-    QString content = "ping -n 3 127.0.0.1>nul\n"
+    QString content = "ping -n 1 127.0.0.1>nul\n"
                       "@echo off\n"
                       "rd /s/q " + delPath;
+
+    qDebug() << "content = " << content;
 
     //The delete script file storage in the new version path
     QFile script(saveScriptPath + "/" + scriptName);
     if(!script.open(QIODevice::WriteOnly | QIODevice::Text))
-        return;
+        return "";
     QTextStream in(&script);
     in << content;
     script.close();
+
+    return saveScriptPath + "/" + scriptName;
 }
 
 void AutoUpdater::CreateNewLink()
@@ -346,11 +352,35 @@ void AutoUpdater::CreateNewLink()
     desktopLink.append(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation));
     desktopLink.append("/");
     desktopLink.append(APPLICATION_NAME);
-    desktopLink.append(m_newVersion + ".lnk");
+    desktopLink.append(".lnk");
 
     QString newAppPath = m_newVersionPath + "/" + APPLICATION_NAME + m_newVersion + ".exe";
     qDebug() << "newAppPath = " << newAppPath;
     qDebug() << "desktopLink = " << desktopLink;
     QFile::link(newAppPath, desktopLink);
+}
+
+void AutoUpdater::DeleteEmptyVersionPath()
+{
+    QDir appDir(QApplication::applicationDirPath() + "/../");
+    QString path;
+    QFileInfoList folder_list = appDir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+    for(int i = 0; i < folder_list.size(); ++i)
+    {
+        path = folder_list.at(i).filePath();
+        qDebug() << "removePath = " << path;
+
+        QDir versionPath(path);
+        versionPath.setFilter(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
+        QFileInfoList list = versionPath.entryInfoList();
+        int file_count = list.count();
+
+        if(file_count <= 0 && path.contains(APPLICATION_NAME))
+        {
+            qDebug() << "remove = " << path;
+            QDir removePath;
+            removePath.rmpath(path);
+        }
+    }
 }
 
