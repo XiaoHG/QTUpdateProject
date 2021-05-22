@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_AutoUpdaterUI_t {
-    QByteArrayData data[9];
-    char stringdata0[163];
+    QByteArrayData data[12];
+    char stringdata0[223];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,14 +39,18 @@ QT_MOC_LITERAL(4, 58, 17), // "slotUpdateProcess"
 QT_MOC_LITERAL(5, 76, 24), // "slotDownloadInitFileOver"
 QT_MOC_LITERAL(6, 101, 22), // "slotCheckUpdateTimeOut"
 QT_MOC_LITERAL(7, 124, 19), // "slotDownloadTimeout"
-QT_MOC_LITERAL(8, 144, 18) // "slotClickTimeoutOk"
+QT_MOC_LITERAL(8, 144, 18), // "slotClickTimeoutOk"
+QT_MOC_LITERAL(9, 163, 24), // "slotDownloadStartPerFile"
+QT_MOC_LITERAL(10, 188, 8), // "fileName"
+QT_MOC_LITERAL(11, 197, 25) // "slotDownloadFinishPerFile"
 
     },
     "AutoUpdaterUI\0slotBtnUpdateClicked\0\0"
     "slotBtnRestartClicked\0slotUpdateProcess\0"
     "slotDownloadInitFileOver\0"
     "slotCheckUpdateTimeOut\0slotDownloadTimeout\0"
-    "slotClickTimeoutOk"
+    "slotClickTimeoutOk\0slotDownloadStartPerFile\0"
+    "fileName\0slotDownloadFinishPerFile"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,7 +60,7 @@ static const uint qt_meta_data_AutoUpdaterUI[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -64,13 +68,15 @@ static const uint qt_meta_data_AutoUpdaterUI[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x09 /* Protected */,
-       3,    0,   50,    2, 0x09 /* Protected */,
-       4,    0,   51,    2, 0x09 /* Protected */,
-       5,    0,   52,    2, 0x09 /* Protected */,
-       6,    0,   53,    2, 0x09 /* Protected */,
-       7,    0,   54,    2, 0x09 /* Protected */,
-       8,    0,   55,    2, 0x09 /* Protected */,
+       1,    0,   59,    2, 0x09 /* Protected */,
+       3,    0,   60,    2, 0x09 /* Protected */,
+       4,    0,   61,    2, 0x09 /* Protected */,
+       5,    0,   62,    2, 0x09 /* Protected */,
+       6,    0,   63,    2, 0x09 /* Protected */,
+       7,    0,   64,    2, 0x09 /* Protected */,
+       8,    0,   65,    2, 0x09 /* Protected */,
+       9,    1,   66,    2, 0x09 /* Protected */,
+      11,    1,   69,    2, 0x09 /* Protected */,
 
  // slots: parameters
     QMetaType::Void,
@@ -80,6 +86,8 @@ static const uint qt_meta_data_AutoUpdaterUI[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void, QMetaType::QString,   10,
 
        0        // eod
 };
@@ -97,10 +105,11 @@ void AutoUpdaterUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 4: _t->slotCheckUpdateTimeOut(); break;
         case 5: _t->slotDownloadTimeout(); break;
         case 6: _t->slotClickTimeoutOk(); break;
+        case 7: _t->slotDownloadStartPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 8: _t->slotDownloadFinishPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject AutoUpdaterUI::staticMetaObject = {
@@ -128,13 +137,13 @@ int AutoUpdaterUI::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 9;
     }
     return _id;
 }

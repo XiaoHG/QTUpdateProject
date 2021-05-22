@@ -70,18 +70,6 @@ public:
     int GetUpdateProcess();
 
     /**
-     * @brief GetCurrDownloadFileList
-     * @return The current of download files from Ftpmanager
-     */
-    QStringList GetCurDownloadFileList();
-
-    /**
-     * @brief GetFinishDownloadFileList
-     * @return The finish of download files from Ftpmanager
-     */
-    QStringList GetFinishDownloadFileList();
-
-    /**
      * @brief DownloadXMLFile
      * Download xml file that is the update control file.
      */
@@ -168,6 +156,18 @@ protected slots:
      */
     void slotDownloadTimeout(QString fileName);
 
+    /**
+     * @brief slotDownloadStartPerFile
+     * @param fileName
+     */
+    void slotDownloadStartPerFile(QString fileName);
+
+    /**
+     * @brief slotDownloadFinishPerFile
+     * @param fileName
+     */
+    void slotDownloadFinishPerFile(QString fileName);
+
 signals:
     /**
      * @brief sigDownloadUpdaterFileOver
@@ -176,6 +176,16 @@ signals:
      * whether update or not.
      */
     void sigDownloadInitFileOver();
+
+    /**
+     * @brief sigDownloadStartPerFile
+     */
+    void sigDownloadStartPerFile(QString);
+
+    /**
+     * @brief sigDownloadFinishPerFile
+     */
+    void sigDownloadFinishPerFile(QString);
 
     /**
      * @brief sigDownloadTimeout

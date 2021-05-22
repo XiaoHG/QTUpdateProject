@@ -191,6 +191,16 @@ QStringList AutoUpdater::GetUpdateFilesName()
     return m_listFileName;
 }
 
+int AutoUpdater::GetUpdateProcess()
+{
+    // - 2: updater.xml and versionInfo.txt
+    //FtpManager::GetFinishCount() =  47
+    //m_listFileName.size() =  46
+    qDebug() <<"FtpManager::GetFinishCount() = " << FtpManager::GetFinishCount();
+    qDebug() << "m_listFileName.size() = " << m_listFileName.size();
+    return (FtpManager::GetFinishCount() - 2) * 100 / m_listFileName.size();
+}
+
 void AutoUpdater::DownloadUpdateFiles()
 {
     if(m_listFileDir.isEmpty() || m_listFileName.isEmpty())
@@ -223,20 +233,22 @@ void AutoUpdater::DownloadUpdateFiles()
 
         localFileDir += "/" + m_listFileName.at(i);
         FtpManager *ftp = new FtpManager();
+        connect(ftp, SIGNAL(sigDownloadStartPerFile(QString)), this, SLOT(slotDownloadStartPerFile(QString)));
+        connect(ftp, SIGNAL(sigDownloadFinishPerFile(QString)), this, SLOT(slotDownloadFinishPerFile(QString)));
+        connect(ftp, SIGNAL(sigDownloadTimeout(QString)), this, SLOT(slotDownloadTimeout(QString)));
         m_ftpList.push_back(ftp);
         ftp->get(strFileDirServer, localFileDir);
-        connect(ftp, SIGNAL(sigDownloadTimeout(QString)), this, SLOT(slotDownloadTimeout(QString)));
     }
 }
 
-int AutoUpdater::GetUpdateProcess()
+void AutoUpdater::slotDownloadStartPerFile(QString fileName)
 {
-    // - 2: updater.xml and versionInfo.txt
-    //FtpManager::GetFinishCount() =  47
-    //m_listFileName.size() =  46
-    qDebug() <<"FtpManager::GetFinishCount() = " << FtpManager::GetFinishCount();
-    qDebug() << "m_listFileName.size() = " << m_listFileName.size();
-    return (FtpManager::GetFinishCount() - 2) * 100 / m_listFileName.size();
+    sigDownloadStartPerFile(fileName);
+}
+
+void AutoUpdater::slotDownloadFinishPerFile(QString fileName)
+{
+    sigDownloadFinishPerFile(fileName);
 }
 
 void AutoUpdater::slotDownloadTimeout(QString fileName)
@@ -256,19 +268,9 @@ void AutoUpdater::slotDownloadTimeout(QString fileName)
     MakeDeletePathScript(scriptPath, m_newVersionPath, scriptName);
 
     QString delScript = scriptPath + "/" + scriptName;
-    qDebug() << "scriptPath = " << delScript;
-    QFileInfo scriptInfo(delScript);
-    if(!scriptInfo.exists())
-    {
-        qDebug() << "The time out delete script is not exist!";
-    }
-    else
-    {
-        //Execute delete.
-        QProcess *p = new QProcess(this);
-        p->start(delScript);
-        m_listProcess.push_back(p);
-    }
+    QProcess *p = new QProcess(this);
+    p->start(delScript);
+    m_listProcess.push_back(p);
 
     sigDownloadTimeout();
 }
@@ -290,16 +292,6 @@ QStringList AutoUpdater::GetFtpErrorStack()
     return m_replyErrorStack;
 }
 
-QStringList AutoUpdater::GetCurDownloadFileList()
-{
-    return FtpManager::GetCurDownloadFileList();
-}
-
-QStringList AutoUpdater::GetFinishDownloadFileList()
-{
-    return FtpManager::GetFinishDownloadFileList();
-}
-
 void AutoUpdater::RestartApp()
 {
     QString delScriptName = "del.bat";
@@ -308,15 +300,24 @@ void AutoUpdater::RestartApp()
                          delScriptName);
     CreateNewLink();
 
+    //It is not work
+//    QProcess *p = new QProcess(this);
+//    m_listProcess.push_back(p);
+//    p->start(QApplication::applicationDirPath() + "/" + delScriptName); //delete old version path
+
+    //It is work
+    QProcess::startDetached(QApplication::applicationDirPath() + "/" + delScriptName);
+
     //Start new version application.
     QString newApp = m_newVersionPath + "/" + APPLICATION_NAME + m_newVersion + ".exe";
     qDebug() << "newApp = " << newApp;
     QProcess::startDetached(newApp);
 
-    //Execute delete script file
-    QProcess *p = new QProcess(this);
-    p->start(QApplication::applicationDirPath() + "/" + delScriptName);
-    m_listProcess.push_back(p);
+    //Execute delete script file, and terminal old version appliction
+    //taskkill /f /t /im AutoUpdateTestV1.0.exe
+    QString oldApp = APPLICATION_NAME + m_oldVersion + ".exe";
+    QString killOldAppCommand = "taskkill /f /t /im " + oldApp;
+    QProcess::startDetached(killOldAppCommand);
 
     exit(0);
 }
@@ -324,8 +325,9 @@ void AutoUpdater::RestartApp()
 void AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString delPath,
                                        const QString scriptName)
 {
+    //ping -n 3 127.0.0.1>nul -- wait third second to remove old version path
     delPath = delPath.replace(QRegExp("\\/"), "\\\\");
-    QString content = "ping -n 1 127.0.0.1>nul\n"
+    QString content = "ping -n 3 127.0.0.1>nul\n"
                       "@echo off\n"
                       "rd /s/q " + delPath;
 

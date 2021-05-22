@@ -13,7 +13,13 @@ class FtpManager : public QObject
 public:
     explicit FtpManager(QObject *parent = 0);
 
-    QNetworkReply *get(const QString &downloadPath, const QString &localPath);
+    /**
+     * @brief get
+     * @param downloadPath
+     * @param localPath
+     * Download file from ftp server
+     */
+    void get(const QString &downloadPath, const QString &localPath);
 
     inline void setPort(int port) { m_url.setPort(port); }
     inline void setHost(const QString &host) { m_url.setHost(host); }
@@ -21,35 +27,88 @@ public:
     inline void setUserName(const QString &userName) { m_url.setUserName(userName); }
     inline void setPassword(const QString &password) { m_url.setPassword(password); }
 
+    /**
+     * @brief GetFinishCount
+     * @return All object download finish count.
+     * Process need this parameter.
+     */
+    static int GetFinishCount();
+
 protected slots:
+    /**
+     * @brief downloadFinished
+     * Download finish.
+     */
     void downloadFinished();
-    void error(QNetworkReply::NetworkError);
+
+    /**
+     * @brief slotDownloadTimeout
+     * 30s time out
+     */
     void slotDownloadTimeout();
 
+    /**
+     * @brief error
+     * Download error
+     */
+    void error(QNetworkReply::NetworkError);
+
 signals:
+    /**
+     * @brief sigDownloadUpdaterXmlOver
+     * Download updater.xml file finish.
+     * It is emited that updater.xml file download finish for AutoUpdater class.
+     */
     void sigDownloadUpdaterXmlOver();
+
+    /**
+     * @brief sigDownloadVersionInfoFileOver
+     * Download versionInfo.txt file finish.
+     * It is emited that versionInfo.txt file download finish for AutoUpdater class.
+     */
     void sigDownloadVersionInfoFileOver();
-    void sigSingleFileDownloadFinish(QString);
+
+    /**
+     * @brief sigDownloadStartPerFile
+     * start download.
+     */
+    void sigDownloadStartPerFile(QString);
+
+    /**
+     * @brief sigDownloadFinishPerFile
+     * finish download.
+     */
+    void sigDownloadFinishPerFile(QString);
+
+    /**
+     * @brief sigAllFileDownFinish
+     * It is finish download all file that need to update.
+     * It is emited for AutoUpdater class.
+     */
     void sigAllFileDownFinish();
-    void sigReplyError(QString);
+
+    /**
+     * @brief sigDownloadTimeout
+     * It is emited if a file download timeout.
+     */
     void sigDownloadTimeout(QString);
 
-public:
-    static int m_downloadCount;
-    static int m_finishCount;
-    static QStringList m_currDownloadFileList;
-    static QStringList m_finishDownloadFileList;
-
-    static int GetFinishCount();
-    static int GetDownloadCount();
-    static QStringList GetCurDownloadFileList();
-    static QStringList GetFinishDownloadFileList();
+    /**
+     * @brief sigReplyError
+     * Report an error to AutoUpdater class.
+     * Per error emit.
+     */
+    void sigReplyError(QString);
 
 private:
+    //Download process
+    static int m_finishCount;
+
+    //Download parameter
     QUrl m_url;
     QString m_path;
-    QNetworkAccessManager m_manager;
     QNetworkReply *m_pReply;
+    QNetworkAccessManager m_manager;
 
     //Download time out
     int t;

@@ -32,5 +32,8 @@ int main(int argc, char *argv[])
 
     AutoUpdaterUI::getInstance()->CheckUpdater(bFirst);
 
+    //taskkill /f /t /im AutoUpdateTestV1.0.exe
+
+
     return a.exec();
 }

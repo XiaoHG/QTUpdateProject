@@ -242,6 +242,11 @@ debug\moc_autoupdater.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObj
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QProcess \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qprocess.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
@@ -267,7 +272,6 @@ debug\moc_autoupdater.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObj
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpolygon.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qregion.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdatastream.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qline.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtransform.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpainterpath.h \
@@ -275,8 +279,6 @@ debug\moc_autoupdater.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObj
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixelformat.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixmap.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfont.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontmetrics.h \
@@ -353,6 +355,11 @@ debug\moc_autoupdaterui.cpp: autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QProcess \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qprocess.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
@@ -378,7 +385,6 @@ debug\moc_autoupdaterui.cpp: autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpolygon.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qregion.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdatastream.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qline.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtransform.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpainterpath.h \
@@ -386,8 +392,6 @@ debug\moc_autoupdaterui.cpp: autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixelformat.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixmap.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfont.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontmetrics.h \
@@ -817,6 +821,11 @@ debug\autoupdater.obj: autoupdater.cpp autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QProcess \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qprocess.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
@@ -842,7 +851,6 @@ debug\autoupdater.obj: autoupdater.cpp autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpolygon.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qregion.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdatastream.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qline.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtransform.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpainterpath.h \
@@ -850,8 +858,6 @@ debug\autoupdater.obj: autoupdater.cpp autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixelformat.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixmap.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfont.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontmetrics.h \
@@ -918,8 +924,6 @@ debug\autoupdater.obj: autoupdater.cpp autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QCoreApplication \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcoreapplication.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qeventloop.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QProcess \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qprocess.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMessageBox \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmessagebox.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qdialog.h \
@@ -986,6 +990,11 @@ debug\autoupdaterui.obj: autoupdaterui.cpp autoupdaterui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QProcess \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qprocess.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
@@ -1011,7 +1020,6 @@ debug\autoupdaterui.obj: autoupdaterui.cpp autoupdaterui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpolygon.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qregion.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdatastream.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qline.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtransform.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpainterpath.h \
@@ -1019,8 +1027,6 @@ debug\autoupdaterui.obj: autoupdaterui.cpp autoupdaterui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixelformat.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixmap.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfont.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontmetrics.h \
@@ -1127,8 +1133,6 @@ debug\autoupdaterui.obj: autoupdaterui.cpp autoupdaterui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonobject.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qjsonvalue.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfactoryinterface.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QProcess \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qprocess.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QTextCursor \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QTextBlock \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtextobject.h \
