@@ -1,4 +1,5 @@
-﻿#include "autoupdater.h"
+﻿
+#include "autoupdater.h"
 #include "xmlparser.h"
 #include "ftpmanager.h"
 #include "ftpmanager.h"
@@ -24,11 +25,13 @@ static const QString VERSION_PATH = "/version";
 static const QString APPLICATION_NAME = "AutoUpdateTest";
 static const QString DONWLOAD_PATH = "../";
 
-AutoUpdater::AutoUpdater()
+AutoUpdater::AutoUpdater(bool bCh)
+    :m_bCh(bCh)
 {
     m_localXmlPath = QApplication::applicationDirPath() + "/updater.xml";
     m_downloadXmlPath = QApplication::applicationDirPath() + "/download/updater.xml";
-    m_downloadVersionInfoPath = QApplication::applicationDirPath() + "/download/versionInfo.txt";
+    m_downloadVersionInfoPath = QApplication::applicationDirPath() + "/download/versionInfoCh.txt";
+    m_downloadVersionInfoEnPath = QApplication::applicationDirPath() + "/download/versionInfoEn.txt";
 }
 
 AutoUpdater::~AutoUpdater()
@@ -61,24 +64,40 @@ void AutoUpdater::slotDownloadUpdaterXmlOver()
 {
     FtpManager *ftp = new FtpManager();
     m_ftpList.push_back(ftp);
-    ftp->get(VERSION_PATH + "/versionInfo.txt", m_downloadVersionInfoPath);
+    ftp->get(VERSION_PATH + "/versionInfoCh.txt", m_downloadVersionInfoPath);
     connect(ftp, SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
 }
 
 void AutoUpdater::slotDownloadVersionInfoFileOver()
 {
+    FtpManager *ftp = new FtpManager();
+    m_ftpList.push_back(ftp);
+    ftp->get(VERSION_PATH + "/versionInfoEn.txt", m_downloadVersionInfoEnPath);
+    connect(ftp, SIGNAL(sigDownloadVersionInfoEnfileOver()), this, SLOT(slotDownloadVersionInfoEnfileOver()));
+}
 
+void AutoUpdater::slotDownloadVersionInfoEnfileOver()
+{
     sigDownloadInitFileOver();
 }
 
 QString AutoUpdater::GetVersionInfo()
 {
     QString strVersionInfo;
-    QFile file(QApplication::applicationDirPath() + "/download/versionInfo.txt");
+    QString versionInfoName;
+    if(m_bCh)
+    {
+        versionInfoName = "versionInfoCh.txt";
+    }
+    else
+    {
+        versionInfoName = "versionInfoEn.txt";
+    }
+    QFile file(QApplication::applicationDirPath() + "/download/" + versionInfoName);
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        qDebug() << "can't open file: " << QApplication::applicationDirPath() + "/download/versionInfo.txt";
-        g_log.log(UpdateLog::FATAL, "Can't open file: " + QApplication::applicationDirPath() + "/download/versionInfo.txt",
+        qDebug() << "can't open file: " << QApplication::applicationDirPath() + "/download/" + versionInfoName;
+        g_log.log(UpdateLog::FATAL, "Can't open file: " + QApplication::applicationDirPath() + "/download/" + versionInfoName,
                   __FILE__, __LINE__);
         return Q_NULLPTR;
     }
@@ -214,15 +233,13 @@ QStringList AutoUpdater::GetUpdateFilesName()
 
 int AutoUpdater::GetUpdateProcess()
 {
-    // - 2: updater.xml and versionInfo.txt
-    //FtpManager::GetFinishCount() =  47
-    //m_listFileName.size() =  46
+    // - 3: updater.xml/versionInfoCh.txt/versionInfoEn.txt
     qDebug() <<"FtpManager::GetFinishCount() = " << FtpManager::GetFinishCount();
     qDebug() << "m_listFileName.size() = " << m_listFileName.size();
 
-    g_log.log(UpdateLog::INFO, QString::asprintf("Download finish count: %1").arg(FtpManager::GetFinishCount() - 2), __FILE__, __LINE__);
+    g_log.log(UpdateLog::INFO, QString::asprintf("Download finish count: %1").arg(FtpManager::GetFinishCount() - 3), __FILE__, __LINE__);
     g_log.log(UpdateLog::INFO, QString::asprintf("Download total count: %1").arg(m_listFileName.size()), __FILE__, __LINE__);
-    int process = (FtpManager::GetFinishCount() - 2) * 100 / m_listFileName.size();
+    int process = (FtpManager::GetFinishCount() - 3) * 100 / m_listFileName.size();
     return process;
 }
 

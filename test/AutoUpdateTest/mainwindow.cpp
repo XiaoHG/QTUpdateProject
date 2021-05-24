@@ -8,7 +8,8 @@ static const QString VERSION = "V0.0";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    m_isCh(false)
 {
     ui->setupUi(this);
     this->resize(800, 500);
@@ -24,7 +25,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    StartUpdateProcess("0", "0");
+    QString strCh = m_isCh ? "1" : "0";
+    StartUpdateProcess("0", strCh);
 }
 
 void MainWindow::StartUpdateProcess(QString isFirst, QString isCh)
@@ -37,3 +39,13 @@ void MainWindow::StartUpdateProcess(QString isFirst, QString isCh)
     m_updateProcess->start(strExe, arguments);
 }
 
+
+void MainWindow::on_radioButton_clicked()
+{
+    m_isCh = true;
+}
+
+void MainWindow::on_radioButton_2_clicked()
+{
+    m_isCh = false;
+}

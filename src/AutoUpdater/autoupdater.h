@@ -16,7 +16,7 @@ class AutoUpdater : public QObject
     Q_OBJECT
 
 public:
-    AutoUpdater();
+    AutoUpdater(bool bCh);
     ~AutoUpdater();
 
 public:
@@ -147,6 +147,11 @@ protected slots:
     void slotDownloadVersionInfoFileOver();
 
     /**
+     * @brief slotDownloadVersionInfoEnfileOver
+     */
+    void slotDownloadVersionInfoEnfileOver();
+
+    /**
      * @brief slotReplyError
      * @param errStr error string
      * Storage download error from Ftp
@@ -218,9 +223,13 @@ private:
     QString m_localXmlPath;
     QString m_downloadXmlPath;
     QString m_downloadVersionInfoPath;
+    QString m_downloadVersionInfoEnPath;
 
     //process
     QList<QProcess*> m_listProcess;
+
+    //language
+    bool m_bCh;
 
 };
 

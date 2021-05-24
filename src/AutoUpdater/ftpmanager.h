@@ -69,6 +69,11 @@ signals:
     void sigDownloadVersionInfoFileOver();
 
     /**
+     * @brief sigDownloadVersionInfoEnfileOver
+     */
+    void sigDownloadVersionInfoEnfileOver();
+
+    /**
      * @brief sigDownloadStartPerFile
      * start download.
      */

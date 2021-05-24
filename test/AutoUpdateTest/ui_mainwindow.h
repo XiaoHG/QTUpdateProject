@@ -15,7 +15,9 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -26,6 +28,10 @@ public:
     QAction *actionactUpdate;
     QWidget *centralWidget;
     QPushButton *pushButton;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout;
+    QRadioButton *radioButton;
+    QRadioButton *radioButton_2;
     QMenuBar *menuBar;
     QStatusBar *statusBar;
 
@@ -41,6 +47,24 @@ public:
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(30, 30, 81, 51));
+        widget = new QWidget(centralWidget);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(30, 100, 91, 40));
+        verticalLayout = new QVBoxLayout(widget);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        radioButton = new QRadioButton(widget);
+        radioButton->setObjectName(QStringLiteral("radioButton"));
+
+        verticalLayout->addWidget(radioButton);
+
+        radioButton_2 = new QRadioButton(widget);
+        radioButton_2->setObjectName(QStringLiteral("radioButton_2"));
+
+        verticalLayout->addWidget(radioButton_2);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -60,6 +84,8 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
         actionactUpdate->setText(QApplication::translate("MainWindow", "actUpdate", nullptr));
         pushButton->setText(QApplication::translate("MainWindow", "update", nullptr));
+        radioButton->setText(QApplication::translate("MainWindow", "\344\270\255\346\226\207", nullptr));
+        radioButton_2->setText(QApplication::translate("MainWindow", "English", nullptr));
     } // retranslateUi
 
 };

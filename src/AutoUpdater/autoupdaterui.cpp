@@ -27,15 +27,18 @@ extern UpdateLog g_log;
 
 AutoUpdaterUI::AutoUpdaterUI(bool bCh, QWidget *parent)
     :QMainWindow(parent),
-      m_bTranslator(bCh)
+      m_bCh(bCh)
 {
+    //Language set from parent.
     Language(bCh);
 
+    //Init UI
     InitUI();
 
-    m_updater = new AutoUpdater();
+    //Init update manager
+    m_updater = new AutoUpdater(bCh);
 
-    //It is download files that updater.xml and versionInfo.txt,
+    //It is download files that updater.xml and versionInfoCh.txt,
     //and is emit the signal of init files download over,
     //and next step to check betweed download updater.xml and local xml file
     //get whether update or not result.
@@ -58,7 +61,7 @@ AutoUpdaterUI::AutoUpdaterUI(bool bCh, QWidget *parent)
     connect(m_updatingTimer, SIGNAL(timeout()), this, SLOT(slotCheckUpdateTimeOut()));
     m_updatingTimer->start(1000);
 
-    m_bTranslator = false;
+    m_bCh = false;
 }
 
 AutoUpdaterUI::~AutoUpdaterUI()
@@ -409,13 +412,13 @@ void AutoUpdaterUI::CheckUpdate()
 
 void AutoUpdaterUI::slotDownloadInitFileOver()
 {
-    g_log.log(UpdateLog::INFO, "It is success that download updater.xml and versionInfo.txt.", __FILE__, __LINE__);
+    g_log.log(UpdateLog::INFO, "It is success that download updater.xml and versionInfoCh.txt.", __FILE__, __LINE__);
     m_updatingTimer->stop();
     m_outputVersionInfoEdit->clear();
     QString strVersionInfo = m_updater->GetVersionInfo();
     if(strVersionInfo.isEmpty())
     {
-        g_log.log(UpdateLog::WARN, "Version information is missing, please check versionInfo.txt file wether is normal", __FILE__, __LINE__);
+        g_log.log(UpdateLog::WARN, "Version information is missing, please check versionInfoCh.txt file wether is normal", __FILE__, __LINE__);
         m_outputVersionInfoEdit->setText(QObject::tr("Version information is missing"));
     }
     else

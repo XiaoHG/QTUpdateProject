@@ -65,11 +65,18 @@ void FtpManager::downloadFinished()
         sigDownloadUpdaterXmlOver();
         return;
     }
-    if(m_path.contains("/download/versionInfo.txt"))
+    if(m_path.contains("/download/versionInfoCh.txt"))
     {
-        qDebug() << "Finish download versionInfo.txt file!";
-        g_log.log(UpdateLog::INFO, "Finish download versionInfo.txt file!", __FILE__, __LINE__);
+        qDebug() << "Finish download versionInfoCh.txt file!";
+        g_log.log(UpdateLog::INFO, "Finish download versionInfoCh.txt file!", __FILE__, __LINE__);
         sigDownloadVersionInfoFileOver();
+        return;
+    }
+    if(m_path.contains("/download/versionInfoEn.txt"))
+    {
+        qDebug() << "Finish download versionInfoEn.txt file!";
+        g_log.log(UpdateLog::INFO, "Finish download versionInfoEn.txt file!", __FILE__, __LINE__);
+        sigDownloadVersionInfoEnfileOver();
         return;
     }
 

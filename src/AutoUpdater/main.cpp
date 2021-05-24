@@ -31,18 +31,18 @@ int main(int argc, char *argv[])
         bFirst = false;
     }
 
-    bool bCh = false;
+    bool bCh = true;
     //parent process pass argv[1] parameter for choose language,
     //if parent language is english set 0, or others.
-//    QString strArg2 = argv[2];
-//    if(strArg2 != "0")
-//    {
-//        bCh = true;
-//    }
-//    else
-//    {
-//        bCh = false;
-//    }
+    QString strArg2 = argv[2];
+    if(strArg2 != "0")
+    {
+        bCh = true;
+    }
+    else
+    {
+        bCh = false;
+    }
 
     AutoUpdaterUI::getInstance(bCh)->CheckUpdater(bFirst);
 

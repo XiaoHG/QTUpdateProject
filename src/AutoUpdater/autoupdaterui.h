@@ -174,7 +174,7 @@ private:
 
     //Translation
     QTranslator m_qtTranslator;
-    bool m_bTranslator; //and choose version information from chinese or english.
+    bool m_bCh; //and choose version information from chinese or english.
 
     //widgets
     QLabel *m_titleLabel;
