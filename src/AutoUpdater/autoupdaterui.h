@@ -77,19 +77,17 @@ public:
      */
     void DownloadTimeout();
 
+    /**
+     * @brief CheckUpdateTimeout
+     */
+    void CheckUpdateTimeout();
+
     void InitUI();
     void UpdateUI();
     void UpdatingUI();
     void FinishUpdateUI();
     void NotUpdateUI();
     void DownloadTimeoutUI();
-
-    void ShowUpdateUI(bool visible);
-    void ShowUpdatingUI(bool visible);
-    void ShowFinishUpdateUI(bool visible);
-    void ShowNotUpdateUI(bool visible);
-    void ShowDownloadTimeoutUI(bool visible);
-
 
     /**
      * @brief Language
@@ -158,6 +156,10 @@ protected slots:
      */
     void slotDownloadFinishPerFile(QString fileName);
 
+private:
+
+    void ShowWhichUI(const QList<QWidget *> &widgets, bool visible);
+
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
@@ -202,6 +204,7 @@ private:
 
     AutoUpdater *m_updater;//update manager model
     bool m_first;//first check, true from parent call main function, other is false.
+
 };
 
 #endif // AUTOUPDATERUI_H

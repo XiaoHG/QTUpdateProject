@@ -8,12 +8,17 @@
 
 #include "autoupdaterui.h"
 #include "autoupdater.h"
+#include "updatelog.h"
+
+UpdateLog g_log;
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    bool bFirst;
+    g_log.Init();
+
+    bool bFirst = false;
     //parent process pass argv[1] parameter for from main function or not,
     //if not from main set 0, or others.
     QString strArg1 = argv[1];
@@ -26,9 +31,9 @@ int main(int argc, char *argv[])
         bFirst = false;
     }
 
-    bool bCh = true;
+    bool bCh = false;
     //parent process pass argv[1] parameter for choose language,
-    //if parent language is english set 0, or others.s
+    //if parent language is english set 0, or others.
 //    QString strArg2 = argv[2];
 //    if(strArg2 != "0")
 //    {
@@ -39,7 +44,6 @@ int main(int argc, char *argv[])
 //        bCh = false;
 //    }
 
-    //AutoUpdaterUI::getInstance()->Language(bCh);
     AutoUpdaterUI::getInstance(bCh)->CheckUpdater(bFirst);
 
 

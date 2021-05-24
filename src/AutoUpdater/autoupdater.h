@@ -199,14 +199,6 @@ signals:
      */
     void sigDownloadTimeout();
 
-public:
-    /**
-     * @brief DeleteEmptyVersionPath
-     * Remove all empty version path.
-     * It is fix update restart can't remove top directory bug.
-     */
-    void DeleteEmptyVersionPath();
-
 private:
     QStringList m_listFileDir; //The list directory for update.
     QStringList m_listFileName; //The list file for update.
@@ -229,6 +221,7 @@ private:
 
     //process
     QList<QProcess*> m_listProcess;
+
 };
 
 #endif // CAUTOUPDATER_H

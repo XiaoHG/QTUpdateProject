@@ -1,9 +1,12 @@
 ﻿#include "filemanager.h"
+#include "updatelog.h"
 
 #include <QDir>
 #include <QDebug>
 #include <QStorageInfo>
 #include <QApplication>
+
+extern UpdateLog g_log;
 
 FileManager::FileManager()
 {
@@ -41,6 +44,7 @@ void FileManager::DeleteEmptyVersionPath(QString path)
         qDebug() << "removePath = " << removePath;
         if(removePath.isEmpty() && removePath.contains(""))
         {
+            //g_log.log(UpdateLog::INFO, "Delete path " + removePath, __FILE__, __LINE__);
             dir.remove(removePath);
         }
     }

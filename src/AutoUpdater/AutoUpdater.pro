@@ -31,14 +31,16 @@ SOURCES += \
     autoupdaterui.cpp \
     ftpmanager.cpp \
     xmlparser.cpp \
-    filemanager.cpp
+    filemanager.cpp \
+    updatelog.cpp
 
 HEADERS += \
     autoupdater.h \
     autoupdaterui.h \
     ftpmanager.h \
     xmlparser.h \
-    filemanager.h
+    filemanager.h \
+    updatelog.h
 
 FORMS += \
         mainwindow.ui

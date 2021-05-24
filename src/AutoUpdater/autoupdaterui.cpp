@@ -1,4 +1,5 @@
 ﻿#include "autoupdaterui.h"
+#include "updatelog.h"
 
 #include <QHBoxLayout>
 #include <QLabel>
@@ -19,6 +20,8 @@
 #include <QScrollBar>
 #include <QStandardPaths>
 #include <QFile>
+
+extern UpdateLog g_log;
 
 #define CHECKUPDATE_TIMEOUT 15
 
@@ -219,7 +222,8 @@ void AutoUpdaterUI::UpdateUI()
     m_updateWidgets.push_back(m_newHaveVersionLabel);
 
     //init false
-    ShowUpdateUI(false);
+    //ShowUpdateUI(false);
+    ShowWhichUI(m_updateWidgets, false);
 }
 
 void AutoUpdaterUI::UpdatingUI()
@@ -248,7 +252,8 @@ void AutoUpdaterUI::UpdatingUI()
     m_updatingWidgets.push_back(m_updateProgressBar);
 
     //init false
-    ShowUpdatingUI(false);
+    //ShowUpdatingUI(false);
+    ShowWhichUI(m_updatingWidgets, false);
 }
 
 void AutoUpdaterUI::FinishUpdateUI()
@@ -267,7 +272,8 @@ void AutoUpdaterUI::FinishUpdateUI()
     m_finishWidgets.push_back(m_btnRestart);
 
     //init false
-    ShowFinishUpdateUI(false);
+    //ShowFinishUpdateUI(false);
+    ShowWhichUI(m_finishWidgets, false);
 }
 
 void AutoUpdaterUI::NotUpdateUI()
@@ -284,7 +290,8 @@ void AutoUpdaterUI::NotUpdateUI()
     m_notUpdateWidgets.push_back(m_curVersionLabel);
 
     //init false
-    ShowNotUpdateUI(false);
+    //ShowNotUpdateUI(false);
+    ShowWhichUI(m_notUpdateWidgets, false);
 }
 
 void AutoUpdaterUI::DownloadTimeoutUI()
@@ -300,11 +307,13 @@ void AutoUpdaterUI::DownloadTimeoutUI()
 
     m_downloadTimeoutWidgets.push_back(m_btnDownloadTimeoutOK);
 
-    ShowDownloadTimeoutUI(false);
+    //ShowDownloadTimeoutUI(false);
+    ShowWhichUI(m_downloadTimeoutWidgets, false);
 }
 
 void AutoUpdaterUI::Update()
 {
+    g_log.log(UpdateLog::INFO, "Update UI", __FILE__, __LINE__);
     m_titleLabel->setText(tr("Update dialog"));
     m_btnClose->setVisible(true);
 
@@ -315,13 +324,14 @@ void AutoUpdaterUI::Update()
 
 void AutoUpdaterUI::Updating()
 {
+    g_log.log(UpdateLog::INFO, "Updating UI", __FILE__, __LINE__);
     m_outputVersionInfoEdit->clear();
     m_titleLabel->setText(QObject::tr("Updating"));
 }
 
 void AutoUpdaterUI::FinishUpdate()
 {
-    //UpdateFinishUI();
+    g_log.log(UpdateLog::INFO, "FinishUpdate UI", __FILE__, __LINE__);
     m_updateProsessTimer->stop();
     m_outputVersionInfoEdit->append(QObject::tr("The update is complete, please restart!"));
     m_titleLabel->setText(QObject::tr("Finish"));
@@ -330,6 +340,7 @@ void AutoUpdaterUI::FinishUpdate()
 
 void AutoUpdaterUI::NotUpdate()
 {
+    g_log.log(UpdateLog::INFO, "NotUpdate UI", __FILE__, __LINE__);
     QString strCurrentVersion = m_updater->GetOldVersion();
     m_curVersionLabel->setText(strCurrentVersion);
     m_titleLabel->setText(QObject::tr("Laster"));
@@ -337,6 +348,7 @@ void AutoUpdaterUI::NotUpdate()
 
 void AutoUpdaterUI::DownloadTimeout()
 {
+    g_log.log(UpdateLog::INFO, "DownloadTimeout UI", __FILE__, __LINE__);
     m_titleLabel->setText(QObject::tr("Timedout"));
     QStringList timeoutFileList = m_updater->GetDownloadTimeoutList();
     QString timeoutMsg;
@@ -351,43 +363,33 @@ void AutoUpdaterUI::DownloadTimeout()
     m_outputVersionInfoEdit->append(QObject::tr("The download failed, please check the network connection status!"));
 }
 
-void AutoUpdaterUI::ShowUpdateUI(bool visible)
+void AutoUpdaterUI::CheckUpdateTimeout()
 {
-    for(int i = 0; i < m_updateWidgets.size(); ++i)
+    g_log.log(UpdateLog::INFO, "CheckUpdateTimeout UI", __FILE__, __LINE__);
+    //If the call come from parent's main function, do nothing,
+    //but exit the update process.
+    if(m_first)
     {
-        m_updateWidgets.at(i)->setVisible(visible);
+        exit(0);
     }
+
+    m_updatingTimer->stop();
+    m_outputVersionInfoEdit->clear();
+    m_outputVersionInfoEdit->append(QObject::tr("Check for update failed!"));
+    m_outputVersionInfoEdit->append(QObject::tr("Please check the network link status!"));
+    QStringList ftpErrorStack = m_updater->GetFtpErrorStack();
+    for(int i = 0 ; i < ftpErrorStack.size(); i++)
+    {
+        m_outputVersionInfoEdit->append(ftpErrorStack.at(i));
+    }
+    m_btnDownloadTimeoutOK->setVisible(true);
 }
 
-void AutoUpdaterUI::ShowUpdatingUI(bool visible)
+void AutoUpdaterUI::ShowWhichUI(const QList<QWidget *> &widgets, bool visible)
 {
-    for(int i = 0; i < m_updatingWidgets.size(); ++i)
+    for(int i = 0; i < widgets.size(); ++i)
     {
-        m_updatingWidgets.at(i)->setVisible(visible);
-    }
-}
-
-void AutoUpdaterUI::ShowFinishUpdateUI(bool visible)
-{
-    for(int i = 0; i < m_finishWidgets.size(); ++i)
-    {
-        m_finishWidgets.at(i)->setVisible(visible);
-    }
-}
-
-void AutoUpdaterUI::ShowNotUpdateUI(bool visible)
-{
-    for(int i = 0; i < m_notUpdateWidgets.size(); ++i)
-    {
-        m_notUpdateWidgets.at(i)->setVisible(visible);
-    }
-}
-
-void AutoUpdaterUI::ShowDownloadTimeoutUI(bool visible)
-{
-    for(int i = 0; i < m_downloadTimeoutWidgets.size(); ++i)
-    {
-        m_downloadTimeoutWidgets.at(i)->setVisible(visible);
+        widgets.at(i)->setVisible(visible);
     }
 }
 
@@ -396,7 +398,7 @@ void AutoUpdaterUI::CheckUpdater(bool isFirst)
     m_first = isFirst;
     if(!m_first)
         this->show();
-    qDebug() << "start time out";
+    g_log.log(UpdateLog::DEBUG, "Beging checking for update timer, It is time out at 30 second!", __FILE__, __LINE__);
     m_updater->DownloadXMLFile();
 }
 
@@ -407,11 +409,15 @@ void AutoUpdaterUI::CheckUpdate()
 
 void AutoUpdaterUI::slotDownloadInitFileOver()
 {
+    g_log.log(UpdateLog::INFO, "It is success that download updater.xml and versionInfo.txt.", __FILE__, __LINE__);
     m_updatingTimer->stop();
     m_outputVersionInfoEdit->clear();
     QString strVersionInfo = m_updater->GetVersionInfo();
     if(strVersionInfo.isEmpty())
+    {
+        g_log.log(UpdateLog::WARN, "Version information is missing, please check versionInfo.txt file wether is normal", __FILE__, __LINE__);
         m_outputVersionInfoEdit->setText(QObject::tr("Version information is missing"));
+    }
     else
         m_outputVersionInfoEdit->setText(strVersionInfo.toLocal8Bit());
     m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
@@ -422,27 +428,29 @@ void AutoUpdaterUI::slotDownloadInitFileOver()
         //Load download files path from ftp server.
         m_updater->LoadUpdateFiles();
         Update();
-        ShowUpdateUI(true);
-        this->show();
+        //ShowUpdateUI(true);
+        ShowWhichUI(m_updateWidgets, true);
     }
     else
     {
         //This is the laster version so hide update button and cansel button,
         //and show the laster notify message and ok button.
         NotUpdate();
-        ShowNotUpdateUI(true);
+        //ShowNotUpdateUI(true);
+        ShowWhichUI(m_notUpdateWidgets, true);
         if(m_first)
         {
             //This is the main application call updater application from main function
             //and this is not update version at that time, exit update process.
             exit(0);
         }
-        this->show();
     }
+    this->show();
 }
 
 void AutoUpdaterUI::slotDownloadStartPerFile(QString fileName)
 {
+    g_log.log(UpdateLog::DEBUG, "Start download file: " + fileName, __FILE__, __LINE__);
     QString startDownload;
     startDownload.append(QObject::tr("Updating "));
     startDownload.append(fileName);
@@ -451,6 +459,7 @@ void AutoUpdaterUI::slotDownloadStartPerFile(QString fileName)
 
 void AutoUpdaterUI::slotDownloadFinishPerFile(QString fileName)
 {
+    g_log.log(UpdateLog::DEBUG, fileName + " download successful.", __FILE__, __LINE__);
     QString startDownload;
     startDownload.append(fileName);
     startDownload.append(QObject::tr(" update is complete!"));
@@ -463,27 +472,18 @@ void AutoUpdaterUI::slotCheckUpdateTimeOut()
     timeOut++;
     if(timeOut == CHECKUPDATE_TIMEOUT)
     {
+        g_log.log(UpdateLog::WARN, "Check for update time out!", __FILE__, __LINE__);
         qDebug() << "time out = " << timeOut;
-        m_outputVersionInfoEdit->clear();
-        m_outputVersionInfoEdit->append(QObject::tr("Check for update failed!"));
-        m_outputVersionInfoEdit->append(QObject::tr("Please check the network link status!"));
-        QStringList errorStack = m_updater->GetFtpErrorStack();
-        for(int i = 0 ; i < errorStack.size(); i++)
-        {
-            m_outputVersionInfoEdit->append(errorStack.at(i));
-        }
-        if(m_first)
-        {
-            exit(0);
-        }
-        this->show();
-        m_updatingTimer->stop();
+        CheckUpdateTimeout();
+        return;
     }
     static QString tmpStr[3] = {".", "..", "..."};
     static int i = 0;
     if(i == 3)
         i = 0;
     m_outputVersionInfoEdit->setText(QObject::tr("Checking for update ") + QString::asprintf("%1").arg(tmpStr[i++]));
+    g_log.log(UpdateLog::DEBUG, QString::asprintf("Check for update time out left time : %1s").arg(CHECKUPDATE_TIMEOUT - timeOut),
+              __FILE__, __LINE__);
     qDebug() << "time : " << timeOut;
 }
 
@@ -491,13 +491,16 @@ void AutoUpdaterUI::slotDownloadTimeout()
 {
     m_updateProsessTimer->stop();
     m_btnClose->setVisible(false);
-    ShowUpdatingUI(false);
+    //ShowUpdatingUI(false);
+    ShowWhichUI(m_updateWidgets, false);
     DownloadTimeout();
-    ShowDownloadTimeoutUI(true);
+    ShowWhichUI(m_downloadTimeoutWidgets, true);
+    //ShowDownloadTimeoutUI(true);
 }
 
 void AutoUpdaterUI::slotClickTimeoutOk()
 {
+    g_log.log(UpdateLog::INFO, "Exit!", __FILE__, __LINE__);
     qDebug() << "close()";
     exit(0);
 }
@@ -506,34 +509,33 @@ void AutoUpdaterUI::slotClickTimeoutOk()
 void AutoUpdaterUI::slotBtnUpdateClicked()
 {
     Updating();
-    ShowUpdateUI(false);
-    ShowUpdatingUI(true);
+//    ShowUpdateUI(false);
+//    ShowUpdatingUI(true);
+    ShowWhichUI(m_updateWidgets, false);
+    ShowWhichUI(m_updatingWidgets, true);
     //update,and start updateProsessTimer
     m_updateProsessTimer->start(50);
-
+    g_log.log(UpdateLog::INFO, "Update process timer start at 50ms", __FILE__, __LINE__);
     //Download all files which check out update files.
     m_updater->DownloadUpdateFiles();
 }
 
 void AutoUpdaterUI::slotUpdateProcess()
 {
-
     m_updateProgressBar->setValue(m_updater->GetUpdateProcess());
-
-    qDebug() << "m_updateProgressBar->value() = " << m_updateProgressBar->value();
-    qDebug() << "m_updateProgressBar->maximum() = " << m_updateProgressBar->maximum();
     if(m_updateProgressBar->value() == m_updateProgressBar->maximum())
     {
-        ShowUpdatingUI(false);
+        //ShowUpdatingUI(false);
+        ShowWhichUI(m_updatingWidgets, false);
         FinishUpdate();
-        ShowFinishUpdateUI(true);
+        //ShowFinishUpdateUI(true);
+        ShowWhichUI(m_finishWidgets, true);
     }
 }
 
 void AutoUpdaterUI::slotBtnRestartClicked()
 {
     m_updater->RestartApp();
-    qDebug() << "ok";
 }
 
 void AutoUpdaterUI::mousePressEvent(QMouseEvent *event)

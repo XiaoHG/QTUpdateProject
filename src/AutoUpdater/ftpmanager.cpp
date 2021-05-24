@@ -1,7 +1,10 @@
 ﻿#include "ftpmanager.h"
+#include "updatelog.h"
 
 #include <QFile>
 #include <QNetworkRequest>
+
+extern UpdateLog g_log;
 
 int FtpManager::m_finishCount = 0;
 
@@ -9,9 +12,8 @@ FtpManager::FtpManager(QObject *parent) :
     QObject(parent),
     t(0)
 {
-    // 设置协议
     m_url.setScheme("ftp");
-    setHost("192.168.4.176");
+    setHost("192.168.4.132");
     m_downloadTimeout = new QTimer(this);
     connect(m_downloadTimeout, SIGNAL(timeout()), this, SLOT(slotDownloadTimeout()));
     m_downloadTimeout->start(1000);
@@ -19,10 +21,9 @@ FtpManager::FtpManager(QObject *parent) :
 
 void FtpManager::get(const QString &downloadPath, const QString &localPath)
 {
-    // 记录要保存的位置
+    g_log.log(UpdateLog::INFO, "Start download file: " + downloadPath, __FILE__, __LINE__);
     m_path = localPath;
 
-    // 设置下载路径
     m_url.setPath(downloadPath);
     sigDownloadStartPerFile(m_url.path());
 
@@ -40,6 +41,7 @@ void FtpManager::downloadFinished()
     {
         sigReplyError(m_pReply->errorString());
         qDebug() << "error = " << m_pReply->errorString();
+        g_log.log(UpdateLog::FATAL, "Download error: " + m_pReply->errorString(), __FILE__, __LINE__);
         return;
     }
 
@@ -48,6 +50,7 @@ void FtpManager::downloadFinished()
     if (!file.open(QIODevice::WriteOnly))
     {
         qDebug() << "Can't open local file : " << m_path;
+        g_log.log(UpdateLog::FATAL, "Can't open local file : " + m_path, __FILE__, __LINE__);
         return;
     }
 
@@ -58,21 +61,26 @@ void FtpManager::downloadFinished()
     if(m_path.contains("/download/updater.xml"))
     {
         qDebug() << "Finish download updater.xml file!";
+        g_log.log(UpdateLog::INFO, "Finish download updater.xml file!", __FILE__, __LINE__);
         sigDownloadUpdaterXmlOver();
         return;
     }
     if(m_path.contains("/download/versionInfo.txt"))
     {
         qDebug() << "Finish download versionInfo.txt file!";
+        g_log.log(UpdateLog::INFO, "Finish download versionInfo.txt file!", __FILE__, __LINE__);
         sigDownloadVersionInfoFileOver();
         return;
     }
+
+    g_log.log(UpdateLog::INFO, QString::asprintf("Finish download %1 file!").arg(m_url.path()), __FILE__, __LINE__);
     sigDownloadFinishPerFile(m_url.path());
 }
 
 void FtpManager::error(QNetworkReply::NetworkError)
 {
     qDebug() << "error = " << m_pReply->errorString();
+    g_log.log(UpdateLog::WARN, "Download error: " + m_pReply->errorString(), __FILE__, __LINE__);
     sigReplyError(m_pReply->errorString());
 }
 
@@ -87,6 +95,8 @@ void FtpManager::slotDownloadTimeout()
     if(t++ == 30)
     {
         qDebug() << "Call slotDownloadTimeout: download file " << m_url.path() << " time out";
+        g_log.log(UpdateLog::FATAL, "Download file " + m_url.path() + " time out", __FILE__, __LINE__);
+        m_downloadTimeout->stop();
         sigDownloadTimeout(m_url.path());
     }
 }

@@ -3,6 +3,7 @@
 #include "ftpmanager.h"
 #include "ftpmanager.h"
 #include "filemanager.h"
+#include "updatelog.h"
 
 #include <QDir>
 #include <QDomDocument>
@@ -17,13 +18,14 @@
 #include <QProcess>
 #include <QThread>
 
+extern UpdateLog g_log;
+
 static const QString VERSION_PATH = "/version";
 static const QString APPLICATION_NAME = "AutoUpdateTest";
 static const QString DONWLOAD_PATH = "../";
 
 AutoUpdater::AutoUpdater()
 {
-    DeleteEmptyVersionPath();
     m_localXmlPath = QApplication::applicationDirPath() + "/updater.xml";
     m_downloadXmlPath = QApplication::applicationDirPath() + "/download/updater.xml";
     m_downloadVersionInfoPath = QApplication::applicationDirPath() + "/download/versionInfo.txt";
@@ -65,6 +67,7 @@ void AutoUpdater::slotDownloadUpdaterXmlOver()
 
 void AutoUpdater::slotDownloadVersionInfoFileOver()
 {
+
     sigDownloadInitFileOver();
 }
 
@@ -75,6 +78,8 @@ QString AutoUpdater::GetVersionInfo()
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         qDebug() << "can't open file: " << QApplication::applicationDirPath() + "/download/versionInfo.txt";
+        g_log.log(UpdateLog::FATAL, "Can't open file: " + QApplication::applicationDirPath() + "/download/versionInfo.txt",
+                  __FILE__, __LINE__);
         return Q_NULLPTR;
     }
 
@@ -90,9 +95,13 @@ bool AutoUpdater::IsUpdate()
     QString localXML = QApplication::applicationDirPath() + "/updater.xml";
     QString downloadXML = QApplication::applicationDirPath() + "/download/updater.xml";
 
+    g_log.log(UpdateLog::INFO, "Local xml: " + localXML, __FILE__, __LINE__);
+    g_log.log(UpdateLog::INFO, "Download xml: " + downloadXML, __FILE__, __LINE__);
+
     QFile file(localXML);
     if(!file.exists())
     {
+        g_log.log(UpdateLog::FATAL, "Local xml is lost, make local xml file on init.", __FILE__, __LINE__);
         makeInitXML();
     }
 
@@ -108,6 +117,9 @@ bool AutoUpdater::IsUpdate()
     QString oldVersion = nodeOldList.at(0).toElement().text();
     m_oldVersion = oldVersion;
 
+    g_log.log(UpdateLog::INFO, QString::asprintf("Old version: %1, New version %2").arg(oldVersion).arg(newVersion),
+              __FILE__, __LINE__);
+
     QStringList newVersionList = newVersion.split('.');
     QStringList oldVersionList = oldVersion.split('.');
     for(int i = 0; i < newVersionList.size(); ++i)
@@ -117,10 +129,12 @@ bool AutoUpdater::IsUpdate()
         if(i >= oldVersionList.size() || newVersionList.at(i) > oldVersionList.at(i))
         {
             qDebug() << QStringLiteral("Server version is updater, need to update!");
+            g_log.log(UpdateLog::INFO, "Server version is updater, need to update!", __FILE__, __LINE__);
             return true;
         }
     }
     qDebug() << QStringLiteral("Local Version is the laster version, it is not need to update!");
+    g_log.log(UpdateLog::INFO, "Local Version is the laster version, it is not need to update!", __FILE__, __LINE__);
     return false;
 }
 
@@ -131,6 +145,7 @@ void AutoUpdater::makeInitXML()
     if(!file.open(QIODevice::WriteOnly))
     {
         qDebug() << "makeXML false, can not open " << xml << " file!";
+        g_log.log(UpdateLog::FATAL, "Make init xml false, can not open: " + xml + " file!", __FILE__, __LINE__);
         return;
     }
     QString str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
@@ -141,6 +156,7 @@ void AutoUpdater::makeInitXML()
                   "</autoupdate>";
     QTextStream txtStream(&file);
     txtStream << str;
+    g_log.log(UpdateLog::INFO, "Local init xml file content: " + str, __FILE__, __LINE__);
     file.close();
 }
 
@@ -167,6 +183,7 @@ void AutoUpdater::LoadUpdateFiles()
     QString xmlPath = QApplication::applicationDirPath() + "/download/updater.xml";
     if(!QFile::exists(xmlPath))
     {
+        g_log.log(UpdateLog::FATAL, "Download xml is not exist: " + xmlPath + " not exist!", __FILE__, __LINE__);
         qDebug() << QStringLiteral("Download xml is not exist!");
         return;
     }
@@ -176,6 +193,9 @@ void AutoUpdater::LoadUpdateFiles()
     {
         QString name = nodeList.at(i).toElement().attribute("name");
         QString dir = nodeList.at(i).toElement().attribute("dir");
+
+        QString logDir = dir.isEmpty() ? "./" : dir;
+        g_log.log(UpdateLog::INFO, "Load: " + name + " file, and directory is: " + logDir, __FILE__, __LINE__);
 
         m_listFileDir.append(dir);
         m_listFileName.append(name);
@@ -199,7 +219,11 @@ int AutoUpdater::GetUpdateProcess()
     //m_listFileName.size() =  46
     qDebug() <<"FtpManager::GetFinishCount() = " << FtpManager::GetFinishCount();
     qDebug() << "m_listFileName.size() = " << m_listFileName.size();
-    return (FtpManager::GetFinishCount() - 2) * 100 / m_listFileName.size();
+
+    g_log.log(UpdateLog::INFO, QString::asprintf("Download finish count: %1").arg(FtpManager::GetFinishCount() - 2), __FILE__, __LINE__);
+    g_log.log(UpdateLog::INFO, QString::asprintf("Download total count: %1").arg(m_listFileName.size()), __FILE__, __LINE__);
+    int process = (FtpManager::GetFinishCount() - 2) * 100 / m_listFileName.size();
+    return process;
 }
 
 void AutoUpdater::DownloadUpdateFiles()
@@ -211,16 +235,19 @@ void AutoUpdater::DownloadUpdateFiles()
     }
 
     qDebug() << "Start download...";
+    g_log.log(UpdateLog::DEBUG, "Start download ... ", __FILE__, __LINE__);
 
     for(int i = 0; i < m_listFileName.size(); ++i)
     {
         qDebug() << QStringLiteral("download ...") + m_listFileName.at(i);
+        g_log.log(UpdateLog::DEBUG, "Download file: " + m_listFileName.at(i), __FILE__, __LINE__);
 
         /** Download path **/
         QString localFileDir = m_newVersionPath + m_listFileDir.at(i);
         QDir directory(localFileDir);
         if(!directory.exists())
         {
+            g_log.log(UpdateLog::DEBUG, "mkdir " + localFileDir, __FILE__, __LINE__);
             directory.mkpath(localFileDir);
         }
 
@@ -254,6 +281,7 @@ void AutoUpdater::slotDownloadFinishPerFile(QString fileName)
 
 void AutoUpdater::slotDownloadTimeout(QString fileName)
 {
+    g_log.log(UpdateLog::INFO, "Download file: " + fileName + " time out!", __FILE__, __LINE__);
     m_downloadTimeoutList.append(fileName);
 
     //Stop all current download
@@ -264,6 +292,7 @@ void AutoUpdater::slotDownloadTimeout(QString fileName)
     }
 
     //Delete All already download files
+    g_log.log(UpdateLog::INFO, "Make script to delete already download file when time out!", __FILE__, __LINE__);
     QString scriptName = "timeoutDel.bat";
     QString scriptPath = QApplication::applicationDirPath();
     MakeDeletePathScript(scriptPath, m_newVersionPath, scriptName);
@@ -295,22 +324,21 @@ QStringList AutoUpdater::GetFtpErrorStack()
 
 void AutoUpdater::RestartApp()
 {
+    g_log.log(UpdateLog::INFO, "Restart application for run new version!", __FILE__, __LINE__);
     QString delScriptPath;
     delScriptPath = MakeDeletePathScript(QApplication::applicationDirPath(),
                                          QApplication::applicationDirPath(),
                                          "del.bat");
+    //Make desktop link for new version.
     CreateNewLink();
 
-    //It is not work
-//    QProcess *p = new QProcess(this);
-//    m_listProcess.push_back(p);
-//    p->start(QApplication::applicationDirPath() + "/" + delScriptName); //delete old version path
-
     //It is work
+    g_log.log(UpdateLog::INFO, "Run " + delScriptPath + " script to delete old script", __FILE__, __LINE__);
     QProcess::startDetached(delScriptPath);
 
     //Start new version application.
     QString newApp = m_newVersionPath + "/" + APPLICATION_NAME + m_newVersion + ".exe";
+    g_log.log(UpdateLog::INFO, "Start new version, path: " + newApp, __FILE__, __LINE__);
     qDebug() << "newApp = " << newApp;
     QProcess::startDetached(newApp);
 
@@ -318,6 +346,8 @@ void AutoUpdater::RestartApp()
     //taskkill /f /t /im AutoUpdateTestV1.0.exe
     QString oldApp = APPLICATION_NAME + m_oldVersion + ".exe";
     QString killOldAppCommand = "taskkill /f /t /im " + oldApp;
+    g_log.log(UpdateLog::INFO, QString::asprintf("Kill old version process, path : %1, command: %2").arg(oldApp).arg(killOldAppCommand),
+              __FILE__, __LINE__);
     QProcess::startDetached(killOldAppCommand);
 
     exit(0);
@@ -326,6 +356,7 @@ void AutoUpdater::RestartApp()
 QString AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString delPath,
                                        const QString scriptName)
 {
+    g_log.log(UpdateLog::INFO, "Make script of delete old version!", __FILE__, __LINE__);
     //ping -n 3 127.0.0.1>nul -- wait third second to remove old version path
     //third second is wait current process exit.
     delPath = delPath.replace(QRegExp("\\/"), "\\\\");
@@ -334,6 +365,7 @@ QString AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString 
                       "rd /s/q " + delPath;
 
     qDebug() << "content = " << content;
+    g_log.log(UpdateLog::INFO, delPath + " file content: " + content, __FILE__, __LINE__);
 
     //The delete script file storage in the new version path
     QFile script(saveScriptPath + "/" + scriptName);
@@ -348,6 +380,7 @@ QString AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString 
 
 void AutoUpdater::CreateNewLink()
 {
+    g_log.log(UpdateLog::INFO, "Create new link for new version to desktop.", __FILE__, __LINE__);
     QString desktopLink;
     desktopLink.append(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation));
     desktopLink.append("/");
@@ -357,35 +390,9 @@ void AutoUpdater::CreateNewLink()
     QString newAppPath = m_newVersionPath + "/" + APPLICATION_NAME + m_newVersion + ".exe";
     qDebug() << "newAppPath = " << newAppPath;
     qDebug() << "desktopLink = " << desktopLink;
+    g_log.log(UpdateLog::INFO, "New application path: " + newAppPath, __FILE__, __LINE__);
+    g_log.log(UpdateLog::INFO, "Desktop link: " + desktopLink, __FILE__, __LINE__);
     QFile::link(newAppPath, desktopLink);
 }
 
-//Not use
-void AutoUpdater::DeleteEmptyVersionPath()
-{
-    QDir appDir(QApplication::applicationDirPath() + "/../");
-    QString path;
-    QFileInfoList folder_list = appDir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-    for(int i = 0; i < folder_list.size(); ++i)
-    {
-        path = folder_list.at(i).filePath();
-        qDebug() << "removePath = " << path;
-
-        if(path.contains(APPLICATION_NAME))
-        {
-            QDir versionPath(path);
-            versionPath.setFilter(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
-            QFileInfoList list = versionPath.entryInfoList();
-            int file_count = list.count();
-
-            if(file_count == 0)
-            {
-                qDebug() << "remove = " << path;
-                QDir removePath;
-                //Not use
-                //removePath.rmpath(path);
-            }
-        }
-    }
-}
 
