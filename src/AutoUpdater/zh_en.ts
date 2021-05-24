@@ -125,5 +125,20 @@
         <source>Please check the network link status!</source>
         <translation type="unfinished">请检查网络连接状态！</translation>
     </message>
+	<message>
+        <location filename="autoupdaterui.cpp" line="550"/>
+        <source>Update error message: </source>
+        <translation type="unfinished">更新失败信息：</translation>
+    </message>
+	<message>
+        <location filename="autoupdaterui.cpp" line="550"/>
+        <source>Update result: failure!</source>
+        <translation type="unfinished">更新结果：失败！</translation>
+    </message>
+	<message>
+        <location filename="autoupdaterui.cpp" line="550"/>
+        <source>Pleasse check network, or contact us: www.anycubic.com</source>
+        <translation type="unfinished">请检查网络是否正常，或者联系我们：www.anycubic.com</translation>
+    </message>
 </context>
 </TS>

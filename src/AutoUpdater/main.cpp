@@ -10,6 +10,7 @@
 #include "autoupdater.h"
 #include "updatelog.h"
 
+//Global object of update log class.
 UpdateLog g_log;
 
 int main(int argc, char *argv[])
@@ -18,9 +19,10 @@ int main(int argc, char *argv[])
 
     g_log.Init();
 
-    bool bFirst = false;
+
     //parent process pass argv[1] parameter for from main function or not,
     //if not from main set 0, or others.
+    bool bFirst = false;
     QString strArg1 = argv[1];
     if(strArg1 != "0")
     {
@@ -31,9 +33,10 @@ int main(int argc, char *argv[])
         bFirst = false;
     }
 
-    bool bCh = true;
-    //parent process pass argv[1] parameter for choose language,
+
+    //parent process pass argv[2] parameter for choose language,
     //if parent language is english set 0, or others.
+    bool bCh = false;
     QString strArg2 = argv[2];
     if(strArg2 != "0")
     {
@@ -45,7 +48,6 @@ int main(int argc, char *argv[])
     }
 
     AutoUpdaterUI::getInstance(bCh)->CheckUpdater(bFirst);
-
 
     return a.exec();
 }

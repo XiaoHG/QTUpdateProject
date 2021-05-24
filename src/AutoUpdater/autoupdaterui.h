@@ -82,12 +82,18 @@ public:
      */
     void CheckUpdateTimeout();
 
+    /**
+     * @brief UpdateFailure
+     */
+    void UpdateFailure();
+
     void InitUI();
     void UpdateUI();
     void UpdatingUI();
     void FinishUpdateUI();
     void NotUpdateUI();
     void DownloadTimeoutUI();
+    void UpdateFailureUI();
 
     /**
      * @brief Language
@@ -200,6 +206,7 @@ private:
     QList<QWidget*> m_finishWidgets;//finish update widgets
     QList<QWidget*> m_notUpdateWidgets;//don't need update widgets
     QList<QWidget*> m_downloadTimeoutWidgets;//Time out widgets
+    QList<QWidget*> m_updateFailureWidgets;//Time out widgets
     QList<FtpManager*> m_ftpList;//ftp object list for download
 
     AutoUpdater *m_updater;//update manager model

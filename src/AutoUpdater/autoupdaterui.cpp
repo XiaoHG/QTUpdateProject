@@ -314,6 +314,11 @@ void AutoUpdaterUI::DownloadTimeoutUI()
     ShowWhichUI(m_downloadTimeoutWidgets, false);
 }
 
+void AutoUpdaterUI::UpdateFailureUI()
+{
+    ShowWhichUI(m_updateFailureWidgets, false);
+}
+
 void AutoUpdaterUI::Update()
 {
     g_log.log(UpdateLog::INFO, "Update UI", __FILE__, __LINE__);
@@ -385,6 +390,12 @@ void AutoUpdaterUI::CheckUpdateTimeout()
     {
         m_outputVersionInfoEdit->append(ftpErrorStack.at(i));
     }
+    m_btnDownloadTimeoutOK->setVisible(true);
+}
+
+void AutoUpdaterUI::UpdateFailure()
+{
+    g_log.log(UpdateLog::INFO, "UpdateFailure UI", __FILE__, __LINE__);
     m_btnDownloadTimeoutOK->setVisible(true);
 }
 
@@ -526,6 +537,26 @@ void AutoUpdaterUI::slotBtnUpdateClicked()
 void AutoUpdaterUI::slotUpdateProcess()
 {
     m_updateProgressBar->setValue(m_updater->GetUpdateProcess());
+    QStringList ftpErrorStack = m_updater->GetFtpErrorStack();
+    qDebug() << "ftpErrorStack.size() = " << ftpErrorStack.size();
+    if(!ftpErrorStack.isEmpty())
+    {
+        m_updateProsessTimer->stop();
+        ShowWhichUI(m_updatingWidgets, false);
+        UpdateFailure();
+        ShowWhichUI(m_updateFailureWidgets, true);
+
+        //delete all file of new version as a script.
+        m_updater->FailDeleteNewVersionDir();
+
+        for(int i = 0; i < ftpErrorStack.size(); i++)
+        {
+            m_outputVersionInfoEdit->append(QObject::tr("Update error message: "));
+            m_outputVersionInfoEdit->append(ftpErrorStack.at(i));
+        }
+        m_outputVersionInfoEdit->append(QObject::tr("Update result: failure!"));
+        m_outputVersionInfoEdit->append(QObject::tr("Pleasse check network, or contact us: www.anycubic.com"));
+    }
     if(m_updateProgressBar->value() == m_updateProgressBar->maximum())
     {
         //ShowUpdatingUI(false);

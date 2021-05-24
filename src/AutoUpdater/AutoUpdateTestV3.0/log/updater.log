@@ -1,0 +1,36 @@
+[2021.05.24 20:02:48.945][ftpmanager.cpp: 24][INFO]: Start download file: /version/updater.xml
+[2021.05.24 20:02:49.001][ftpmanager.cpp: 64][INFO]: Finish download updater.xml file!
+[2021.05.24 20:02:49.001][ftpmanager.cpp: 24][INFO]: Start download file: /version/versionInfoCh.txt
+[2021.05.24 20:02:49.017][ftpmanager.cpp: 71][INFO]: Finish download versionInfoCh.txt file!
+[2021.05.24 20:02:49.017][ftpmanager.cpp: 24][INFO]: Start download file: /version/versionInfoEn.txt
+[2021.05.24 20:02:49.038][ftpmanager.cpp: 78][INFO]: Finish download versionInfoEn.txt file!
+[2021.05.24 20:02:49.038][autoupdaterui.cpp: 415][INFO]: It is success that download updater.xml and versionInfoCh.txt.
+[2021.05.24 20:02:49.046][autoupdater.cpp: 117][INFO]: Local xml: E:/anycubic/anycubic/intern/update_client_UI/src/AutoUpdater/AutoUpdateTestV3.0/updater.xml
+[2021.05.24 20:02:49.047][autoupdater.cpp: 118][INFO]: Download xml: E:/anycubic/anycubic/intern/update_client_UI/src/AutoUpdater/AutoUpdateTestV3.0/download/updater.xml
+[2021.05.24 20:02:49.051][autoupdater.cpp: 140][INFO]: Old version: V3.0, New version V3.0
+[2021.05.24 20:02:49.052][autoupdater.cpp: 156][INFO]: Local Version is the laster version, it is not need to update!
+[2021.05.24 20:02:49.052][autoupdaterui.cpp: 346][INFO]: NotUpdate UI
+[2021.05.24 20:02:52.658][ftpmanager.cpp: 24][INFO]: Start download file: /version/updater.xml
+[2021.05.24 20:02:53.050][ftpmanager.cpp: 64][INFO]: Finish download updater.xml file!
+[2021.05.24 20:02:53.050][ftpmanager.cpp: 24][INFO]: Start download file: /version/versionInfoCh.txt
+[2021.05.24 20:02:53.070][ftpmanager.cpp: 71][INFO]: Finish download versionInfoCh.txt file!
+[2021.05.24 20:02:53.071][ftpmanager.cpp: 24][INFO]: Start download file: /version/versionInfoEn.txt
+[2021.05.24 20:02:53.088][ftpmanager.cpp: 78][INFO]: Finish download versionInfoEn.txt file!
+[2021.05.24 20:02:53.089][autoupdaterui.cpp: 415][INFO]: It is success that download updater.xml and versionInfoCh.txt.
+[2021.05.24 20:02:53.094][autoupdater.cpp: 117][INFO]: Local xml: E:/anycubic/anycubic/intern/update_client_UI/src/AutoUpdater/AutoUpdateTestV3.0/updater.xml
+[2021.05.24 20:02:53.095][autoupdater.cpp: 118][INFO]: Download xml: E:/anycubic/anycubic/intern/update_client_UI/src/AutoUpdater/AutoUpdateTestV3.0/download/updater.xml
+[2021.05.24 20:02:53.099][autoupdater.cpp: 140][INFO]: Old version: V3.0, New version V3.0
+[2021.05.24 20:02:53.100][autoupdater.cpp: 156][INFO]: Local Version is the laster version, it is not need to update!
+[2021.05.24 20:02:53.100][autoupdaterui.cpp: 346][INFO]: NotUpdate UI
+[2021.05.24 20:02:55.602][ftpmanager.cpp: 24][INFO]: Start download file: /version/updater.xml
+[2021.05.24 20:02:55.964][ftpmanager.cpp: 64][INFO]: Finish download updater.xml file!
+[2021.05.24 20:02:55.964][ftpmanager.cpp: 24][INFO]: Start download file: /version/versionInfoCh.txt
+[2021.05.24 20:02:55.984][ftpmanager.cpp: 71][INFO]: Finish download versionInfoCh.txt file!
+[2021.05.24 20:02:55.984][ftpmanager.cpp: 24][INFO]: Start download file: /version/versionInfoEn.txt
+[2021.05.24 20:02:56.000][ftpmanager.cpp: 78][INFO]: Finish download versionInfoEn.txt file!
+[2021.05.24 20:02:56.000][autoupdaterui.cpp: 415][INFO]: It is success that download updater.xml and versionInfoCh.txt.
+[2021.05.24 20:02:56.125][autoupdater.cpp: 117][INFO]: Local xml: E:/anycubic/anycubic/intern/update_client_UI/src/AutoUpdater/AutoUpdateTestV3.0/updater.xml
+[2021.05.24 20:02:56.125][autoupdater.cpp: 118][INFO]: Download xml: E:/anycubic/anycubic/intern/update_client_UI/src/AutoUpdater/AutoUpdateTestV3.0/download/updater.xml
+[2021.05.24 20:02:56.130][autoupdater.cpp: 140][INFO]: Old version: V3.0, New version V3.0
+[2021.05.24 20:02:56.131][autoupdater.cpp: 156][INFO]: Local Version is the laster version, it is not need to update!
+[2021.05.24 20:02:56.131][autoupdaterui.cpp: 346][INFO]: NotUpdate UI

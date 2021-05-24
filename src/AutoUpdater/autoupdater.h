@@ -135,6 +135,7 @@ public:
 
 
 
+    void FailDeleteNewVersionDir();
 protected slots:
     /**
      * @brief slotDownloadUpdaterXmlOver

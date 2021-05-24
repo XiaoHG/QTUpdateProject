@@ -34,16 +34,14 @@ void FtpManager::get(const QString &downloadPath, const QString &localPath)
 
 void FtpManager::downloadFinished()
 {
-    m_finishCount++;
     m_downloadTimeout->stop();
 
     if(m_pReply->error() != QNetworkReply::NoError)
     {
-        sigReplyError(m_pReply->errorString());
-        qDebug() << "error = " << m_pReply->errorString();
-        g_log.log(UpdateLog::FATAL, "Download error: " + m_pReply->errorString(), __FILE__, __LINE__);
         return;
     }
+
+    m_finishCount++;
 
     // 写入文件
     QFile file(m_path);

@@ -21,6 +21,22 @@
 
 extern UpdateLog g_log;
 
+#ifdef Q_OS_MAC
+    static const QString UPDATE_SYSTEM = "mac";
+#endif
+
+#ifdef Q_OS_LINUX
+// linux
+#endif
+
+#ifdef Q_OS_WIN32
+    static const QString UPDATE_SYSTEM = "win32";
+#endif
+
+//#ifdef Q_OS_WIN64
+//    static const QString UPDATE_SYSTEM = "win64";
+//#endif
+
 static const QString VERSION_PATH = "/version";
 static const QString APPLICATION_NAME = "AutoUpdateTest";
 static const QString DONWLOAD_PATH = "../";
@@ -66,6 +82,7 @@ void AutoUpdater::slotDownloadUpdaterXmlOver()
     m_ftpList.push_back(ftp);
     ftp->get(VERSION_PATH + "/versionInfoCh.txt", m_downloadVersionInfoPath);
     connect(ftp, SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
+    connect(ftp, SIGNAL(sigReplyError(QString)), this, SLOT(slotStorageDownloadError(QString)));
 }
 
 void AutoUpdater::slotDownloadVersionInfoFileOver()
@@ -74,6 +91,7 @@ void AutoUpdater::slotDownloadVersionInfoFileOver()
     m_ftpList.push_back(ftp);
     ftp->get(VERSION_PATH + "/versionInfoEn.txt", m_downloadVersionInfoEnPath);
     connect(ftp, SIGNAL(sigDownloadVersionInfoEnfileOver()), this, SLOT(slotDownloadVersionInfoEnfileOver()));
+    connect(ftp, SIGNAL(sigReplyError(QString)), this, SLOT(slotStorageDownloadError(QString)));
 }
 
 void AutoUpdater::slotDownloadVersionInfoEnfileOver()
@@ -270,17 +288,18 @@ void AutoUpdater::DownloadUpdateFiles()
 
         QString strFileDirServer;
         if(m_listFileDir.at(i) == "")
-            strFileDirServer = VERSION_PATH + "/" + APPLICATION_NAME +
-                    m_newVersion + "/" + m_listFileName.at(i);
+            strFileDirServer = VERSION_PATH + "/" + APPLICATION_NAME + m_newVersion +
+                               "/" + UPDATE_SYSTEM + "/" + m_listFileName.at(i);
         else
             strFileDirServer = VERSION_PATH + "/" + APPLICATION_NAME + m_newVersion +
-                                        m_listFileDir.at(i) + "/" + m_listFileName.at(i);
+                               "/" + UPDATE_SYSTEM + m_listFileDir.at(i) + "/"  + m_listFileName.at(i);
 
         localFileDir += "/" + m_listFileName.at(i);
         FtpManager *ftp = new FtpManager();
         connect(ftp, SIGNAL(sigDownloadStartPerFile(QString)), this, SLOT(slotDownloadStartPerFile(QString)));
         connect(ftp, SIGNAL(sigDownloadFinishPerFile(QString)), this, SLOT(slotDownloadFinishPerFile(QString)));
         connect(ftp, SIGNAL(sigDownloadTimeout(QString)), this, SLOT(slotDownloadTimeout(QString)));
+        connect(ftp, SIGNAL(sigReplyError(QString)), this, SLOT(slotStorageDownloadError(QString)));
         m_ftpList.push_back(ftp);
         ftp->get(strFileDirServer, localFileDir);
     }
@@ -308,9 +327,15 @@ void AutoUpdater::slotDownloadTimeout(QString fileName)
             m_ftpList.at(i)->deleteLater();
     }
 
+    FailDeleteNewVersionDir();
+    sigDownloadTimeout();
+}
+
+void AutoUpdater::FailDeleteNewVersionDir()
+{
     //Delete All already download files
     g_log.log(UpdateLog::INFO, "Make script to delete already download file when time out!", __FILE__, __LINE__);
-    QString scriptName = "timeoutDel.bat";
+    QString scriptName = "delNewVersion.bat";
     QString scriptPath = QApplication::applicationDirPath();
     MakeDeletePathScript(scriptPath, m_newVersionPath, scriptName);
 
@@ -318,8 +343,6 @@ void AutoUpdater::slotDownloadTimeout(QString fileName)
     QProcess *p = new QProcess(this);
     p->start(delScript);
     m_listProcess.push_back(p);
-
-    sigDownloadTimeout();
 }
 
 QStringList AutoUpdater::GetDownloadTimeoutList()
@@ -329,9 +352,7 @@ QStringList AutoUpdater::GetDownloadTimeoutList()
 
 void AutoUpdater::slotStorageDownloadError(QString errStr)
 {
-    if(m_replyErrorStack.size() >= 5)
-        m_replyErrorStack.pop_back();
-    m_replyErrorStack.push_front(errStr);
+    m_replyErrorStack.push_back(errStr);
 }
 
 QStringList AutoUpdater::GetFtpErrorStack()
@@ -353,12 +374,6 @@ void AutoUpdater::RestartApp()
     g_log.log(UpdateLog::INFO, "Run " + delScriptPath + " script to delete old script", __FILE__, __LINE__);
     QProcess::startDetached(delScriptPath);
 
-    //Start new version application.
-    QString newApp = m_newVersionPath + "/" + APPLICATION_NAME + m_newVersion + ".exe";
-    g_log.log(UpdateLog::INFO, "Start new version, path: " + newApp, __FILE__, __LINE__);
-    qDebug() << "newApp = " << newApp;
-    QProcess::startDetached(newApp);
-
     //Execute delete script file, and terminal old version appliction
     //taskkill /f /t /im AutoUpdateTestV1.0.exe
     QString oldApp = APPLICATION_NAME + m_oldVersion + ".exe";
@@ -366,6 +381,12 @@ void AutoUpdater::RestartApp()
     g_log.log(UpdateLog::INFO, QString::asprintf("Kill old version process, path : %1, command: %2").arg(oldApp).arg(killOldAppCommand),
               __FILE__, __LINE__);
     QProcess::startDetached(killOldAppCommand);
+
+    //Start new version application.
+    QString newApp = m_newVersionPath + "/" + APPLICATION_NAME + m_newVersion + ".exe";
+    g_log.log(UpdateLog::INFO, "Start new version, path: " + newApp, __FILE__, __LINE__);
+    qDebug() << "newApp = " << newApp;
+    QProcess::startDetached(newApp);
 
     exit(0);
 }
@@ -377,7 +398,7 @@ QString AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString 
     //ping -n 3 127.0.0.1>nul -- wait third second to remove old version path
     //third second is wait current process exit.
     delPath = delPath.replace(QRegExp("\\/"), "\\\\");
-    QString content = "ping -n 3 127.0.0.1>nul\n"
+    QString content = "ping -n 10 127.0.0.1>nul\n"
                       "@echo off\n"
                       "rd /s/q " + delPath;
 
