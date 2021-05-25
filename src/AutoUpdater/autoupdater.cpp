@@ -22,7 +22,7 @@
 extern UpdateLog g_log;
 
 #ifdef Q_OS_MAC
-    static const QString UPDATE_SYSTEM = "mac";
+    const QString UPDATE_SYSTEM = "mac";
 #endif
 
 #ifdef Q_OS_LINUX
@@ -30,23 +30,27 @@ extern UpdateLog g_log;
 #endif
 
 #ifdef Q_OS_WIN32
-    static const QString UPDATE_SYSTEM = "win32";
+    const QString UPDATE_SYSTEM = "win32";
 #endif
 
 //#ifdef Q_OS_WIN64
-//    static const QString UPDATE_SYSTEM = "win64";
+//    const QString UPDATE_SYSTEM = "win64";
 //#endif
 
-static const QString VERSION_PATH = "/version";
-static const QString APPLICATION_NAME = "AutoUpdateTest";
-static const QString DONWLOAD_PATH = "../";
+const QString VERSION_PATH = "/version";
+const QString APPLICATION_NAME = "AutoUpdateTest";
+const QString DONWLOAD_PATH = "../";
 
 AutoUpdater::AutoUpdater(bool bCh)
     :m_bCh(bCh)
 {
+    //The updater.xml file that in the local version path
     m_localXmlPath = QApplication::applicationDirPath() + "/updater.xml";
+    //The updater.xml file that download from server.
     m_downloadXmlPath = QApplication::applicationDirPath() + "/download/updater.xml";
-    m_downloadVersionInfoPath = QApplication::applicationDirPath() + "/download/versionInfoCh.txt";
+    //Chinese language of version information file.
+    m_downloadVersionInfoChPath = QApplication::applicationDirPath() + "/download/versionInfoCh.txt";
+    //English language of version information file.
     m_downloadVersionInfoEnPath = QApplication::applicationDirPath() + "/download/versionInfoEn.txt";
 }
 
@@ -80,7 +84,7 @@ void AutoUpdater::slotDownloadUpdaterXmlOver()
 {
     FtpManager *ftp = new FtpManager();
     m_ftpList.push_back(ftp);
-    ftp->get(VERSION_PATH + "/versionInfoCh.txt", m_downloadVersionInfoPath);
+    ftp->get(VERSION_PATH + "/versionInfoCh.txt", m_downloadVersionInfoChPath);
     connect(ftp, SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
     connect(ftp, SIGNAL(sigReplyError(QString)), this, SLOT(slotStorageDownloadError(QString)));
 }
@@ -96,13 +100,16 @@ void AutoUpdater::slotDownloadVersionInfoFileOver()
 
 void AutoUpdater::slotDownloadVersionInfoEnfileOver()
 {
+    //It is emited to AutoUpdaterUI class for a information that init file download
+    //over, and can do next step that check version for update.
     sigDownloadInitFileOver();
 }
 
 QString AutoUpdater::GetVersionInfo()
 {
-    QString strVersionInfo;
+    QString versionInfo;
     QString versionInfoName;
+    //Chinese or English from parent process language is.
     if(m_bCh)
     {
         versionInfoName = "versionInfoCh.txt";
@@ -111,24 +118,26 @@ QString AutoUpdater::GetVersionInfo()
     {
         versionInfoName = "versionInfoEn.txt";
     }
+
+    //Version information file that stroge at download directory from ftp server.
     QFile file(QApplication::applicationDirPath() + "/download/" + versionInfoName);
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        qDebug() << "can't open file: " << QApplication::applicationDirPath() + "/download/" + versionInfoName;
         g_log.log(UpdateLog::FATAL, "Can't open file: " + QApplication::applicationDirPath() + "/download/" + versionInfoName,
                   __FILE__, __LINE__);
         return Q_NULLPTR;
     }
 
     QTextStream in(&file);
-    strVersionInfo = in.readAll();
+    versionInfo = in.readAll();
     file.close();
 
-    return strVersionInfo;
+    return versionInfo;
 }
 
 bool AutoUpdater::IsUpdate()
 {
+    //Compare two files of local updater.xml and download from ftp server.
     QString localXML = QApplication::applicationDirPath() + "/updater.xml";
     QString downloadXML = QApplication::applicationDirPath() + "/download/updater.xml";
 
@@ -142,6 +151,7 @@ bool AutoUpdater::IsUpdate()
         makeInitXML();
     }
 
+    //Get the version string from down updater xml file.
     QDomNodeList nodeNewList;
     nodeNewList = XMLParser::XMLParseElement(downloadXML, "version");
     QString newVersion = nodeNewList.at(0).toElement().text();
@@ -149,6 +159,7 @@ bool AutoUpdater::IsUpdate()
     m_newVersionPath = QApplication::applicationDirPath() + "/" +
                         DONWLOAD_PATH + APPLICATION_NAME + m_newVersion;
 
+    //Get the version string from local updater xml file.
     QDomNodeList nodeOldList;
     nodeOldList = XMLParser::XMLParseElement(localXML, "version");
     QString oldVersion = nodeOldList.at(0).toElement().text();
@@ -157,34 +168,33 @@ bool AutoUpdater::IsUpdate()
     g_log.log(UpdateLog::INFO, QString::asprintf("Old version: %1, New version %2").arg(oldVersion).arg(newVersion),
               __FILE__, __LINE__);
 
+    //Compare.
     QStringList newVersionList = newVersion.split('.');
     QStringList oldVersionList = oldVersion.split('.');
     for(int i = 0; i < newVersionList.size(); ++i)
     {
-        qDebug() << newVersionList.at(i);
-        qDebug() << oldVersionList.at(i);
         if(i >= oldVersionList.size() || newVersionList.at(i) > oldVersionList.at(i))
         {
-            qDebug() << QStringLiteral("Server version is updater, need to update!");
             g_log.log(UpdateLog::INFO, "Server version is updater, need to update!", __FILE__, __LINE__);
             return true;
         }
     }
-    qDebug() << QStringLiteral("Local Version is the laster version, it is not need to update!");
     g_log.log(UpdateLog::INFO, "Local Version is the laster version, it is not need to update!", __FILE__, __LINE__);
     return false;
 }
 
 void AutoUpdater::makeInitXML()
 {
+    //Made in application path.
     QString xml = QApplication::applicationDirPath() + "/updater.xml";
     QFile file(xml);
     if(!file.open(QIODevice::WriteOnly))
     {
-        qDebug() << "makeXML false, can not open " << xml << " file!";
         g_log.log(UpdateLog::FATAL, "Make init xml false, can not open: " + xml + " file!", __FILE__, __LINE__);
         return;
     }
+
+    //Init content.
     QString str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
                   "<autoupdate>\n"
                   "    <version>V0.0</version>\n"
@@ -214,17 +224,20 @@ QString AutoUpdater::GetNewVersionPath()
 
 void AutoUpdater::LoadUpdateFiles()
 {
+    //Clear buffer first.
     m_listFileDir.clear();
     m_listFileName.clear();
 
+    //Load file that download from ftp server name updater.xml.
     QString xmlPath = QApplication::applicationDirPath() + "/download/updater.xml";
     if(!QFile::exists(xmlPath))
     {
         g_log.log(UpdateLog::FATAL, "Download xml is not exist: " + xmlPath + " not exist!", __FILE__, __LINE__);
-        qDebug() << QStringLiteral("Download xml is not exist!");
         return;
     }
 
+    //Read xml file, and storage at the buffer m_listFileDir and m_listFileName,
+    //for download use.
     QDomNodeList nodeList = XMLParser::XMLParseElement(xmlPath, "file");
     for(int i = 0; i < nodeList.size(); ++i)
     {
@@ -251,10 +264,7 @@ QStringList AutoUpdater::GetUpdateFilesName()
 
 int AutoUpdater::GetUpdateProcess()
 {
-    // - 3: updater.xml/versionInfoCh.txt/versionInfoEn.txt
-    qDebug() <<"FtpManager::GetFinishCount() = " << FtpManager::GetFinishCount();
-    qDebug() << "m_listFileName.size() = " << m_listFileName.size();
-
+    // -3: updater.xml/versionInfoCh.txt/versionInfoEn.txt
     g_log.log(UpdateLog::INFO, QString::asprintf("Download finish count: %1").arg(FtpManager::GetFinishCount() - 3), __FILE__, __LINE__);
     g_log.log(UpdateLog::INFO, QString::asprintf("Download total count: %1").arg(m_listFileName.size()), __FILE__, __LINE__);
     int process = (FtpManager::GetFinishCount() - 3) * 100 / m_listFileName.size();
@@ -263,21 +273,21 @@ int AutoUpdater::GetUpdateProcess()
 
 void AutoUpdater::DownloadUpdateFiles()
 {
+    //If download buffer is empty, do nothing.
     if(m_listFileDir.isEmpty() || m_listFileName.isEmpty())
     {
-        qDebug() << QStringLiteral("It is not file thit neet to update!");
+        g_log.log(UpdateLog::INFO, "It is not file thit neet to update!", __FILE__, __LINE__);
         return;
     }
 
-    qDebug() << "Start download...";
     g_log.log(UpdateLog::DEBUG, "Start download ... ", __FILE__, __LINE__);
 
+    //Download each file of ftp server.
     for(int i = 0; i < m_listFileName.size(); ++i)
     {
-        qDebug() << QStringLiteral("download ...") + m_listFileName.at(i);
         g_log.log(UpdateLog::DEBUG, "Download file: " + m_listFileName.at(i), __FILE__, __LINE__);
 
-        /** Download path **/
+        //localFileDir is download storage position.
         QString localFileDir = m_newVersionPath + m_listFileDir.at(i);
         QDir directory(localFileDir);
         if(!directory.exists())
@@ -285,7 +295,9 @@ void AutoUpdater::DownloadUpdateFiles()
             g_log.log(UpdateLog::DEBUG, "mkdir " + localFileDir, __FILE__, __LINE__);
             directory.mkpath(localFileDir);
         }
+        localFileDir += "/" + m_listFileName.at(i);
 
+        //strFileDirServer is ftp server position.
         QString strFileDirServer;
         if(m_listFileDir.at(i) == "")
             strFileDirServer = VERSION_PATH + "/" + APPLICATION_NAME + m_newVersion +
@@ -294,13 +306,13 @@ void AutoUpdater::DownloadUpdateFiles()
             strFileDirServer = VERSION_PATH + "/" + APPLICATION_NAME + m_newVersion +
                                "/" + UPDATE_SYSTEM + m_listFileDir.at(i) + "/"  + m_listFileName.at(i);
 
-        localFileDir += "/" + m_listFileName.at(i);
         FtpManager *ftp = new FtpManager();
+        m_ftpList.push_back(ftp);
         connect(ftp, SIGNAL(sigDownloadStartPerFile(QString)), this, SLOT(slotDownloadStartPerFile(QString)));
         connect(ftp, SIGNAL(sigDownloadFinishPerFile(QString)), this, SLOT(slotDownloadFinishPerFile(QString)));
         connect(ftp, SIGNAL(sigDownloadTimeout(QString)), this, SLOT(slotDownloadTimeout(QString)));
         connect(ftp, SIGNAL(sigReplyError(QString)), this, SLOT(slotStorageDownloadError(QString)));
-        m_ftpList.push_back(ftp);
+
         ftp->get(strFileDirServer, localFileDir);
     }
 }
@@ -327,7 +339,10 @@ void AutoUpdater::slotDownloadTimeout(QString fileName)
             m_ftpList.at(i)->deleteLater();
     }
 
+    //Delete all alreary download.
     FailDeleteNewVersionDir();
+
+    //It is emited for AutoUpdaterUI for download time out.
     sigDownloadTimeout();
 }
 
@@ -339,6 +354,7 @@ void AutoUpdater::FailDeleteNewVersionDir()
     QString scriptPath = QApplication::applicationDirPath();
     MakeDeletePathScript(scriptPath, m_newVersionPath, scriptName);
 
+    //The script position.
     QString delScript = scriptPath + "/" + scriptName;
     QProcess *p = new QProcess(this);
     p->start(delScript);
@@ -370,7 +386,6 @@ void AutoUpdater::RestartApp()
     //Make desktop link for new version.
     CreateNewLink();
 
-    //It is work
     g_log.log(UpdateLog::INFO, "Run " + delScriptPath + " script to delete old script", __FILE__, __LINE__);
     QProcess::startDetached(delScriptPath);
 
@@ -385,7 +400,6 @@ void AutoUpdater::RestartApp()
     //Start new version application.
     QString newApp = m_newVersionPath + "/" + APPLICATION_NAME + m_newVersion + ".exe";
     g_log.log(UpdateLog::INFO, "Start new version, path: " + newApp, __FILE__, __LINE__);
-    qDebug() << "newApp = " << newApp;
     QProcess::startDetached(newApp);
 
     exit(0);
@@ -398,11 +412,10 @@ QString AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString 
     //ping -n 3 127.0.0.1>nul -- wait third second to remove old version path
     //third second is wait current process exit.
     delPath = delPath.replace(QRegExp("\\/"), "\\\\");
-    QString content = "ping -n 10 127.0.0.1>nul\n"
+    QString content = "ping -n 3 127.0.0.1>nul\n"
                       "@echo off\n"
                       "rd /s/q " + delPath;
 
-    qDebug() << "content = " << content;
     g_log.log(UpdateLog::INFO, delPath + " file content: " + content, __FILE__, __LINE__);
 
     //The delete script file storage in the new version path
@@ -426,8 +439,6 @@ void AutoUpdater::CreateNewLink()
     desktopLink.append(".lnk");
 
     QString newAppPath = m_newVersionPath + "/" + APPLICATION_NAME + m_newVersion + ".exe";
-    qDebug() << "newAppPath = " << newAppPath;
-    qDebug() << "desktopLink = " << desktopLink;
     g_log.log(UpdateLog::INFO, "New application path: " + newAppPath, __FILE__, __LINE__);
     g_log.log(UpdateLog::INFO, "Desktop link: " + desktopLink, __FILE__, __LINE__);
     QFile::link(newAppPath, desktopLink);

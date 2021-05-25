@@ -2,7 +2,6 @@
 #include "updatelog.h"
 
 #include <QDir>
-#include <QDebug>
 #include <QStorageInfo>
 #include <QApplication>
 
@@ -35,16 +34,16 @@ void FileManager::DeleteAllPathFiles(QString path)
 
 void FileManager::DeleteEmptyVersionPath(QString path)
 {
+    //Remove path.
     QDir dir(path);
     QString removePath;
     QFileInfoList folder_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
     for(int i = 0; i < folder_list.size(); ++i)
     {
         removePath = folder_list.at(i).filePath();
-        qDebug() << "removePath = " << removePath;
         if(removePath.isEmpty() && removePath.contains(""))
         {
-            //g_log.log(UpdateLog::INFO, "Delete path " + removePath, __FILE__, __LINE__);
+            g_log.log(UpdateLog::INFO, "Delete path " + removePath, __FILE__, __LINE__);
             dir.remove(removePath);
         }
     }

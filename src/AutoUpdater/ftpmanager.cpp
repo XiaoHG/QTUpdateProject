@@ -36,18 +36,19 @@ void FtpManager::downloadFinished()
 {
     m_downloadTimeout->stop();
 
+    //Do nothing at any error.
     if(m_pReply->error() != QNetworkReply::NoError)
     {
         return;
     }
 
+    //Finish count.
     m_finishCount++;
 
-    // 写入文件
+    //Write to file.
     QFile file(m_path);
     if (!file.open(QIODevice::WriteOnly))
     {
-        qDebug() << "Can't open local file : " << m_path;
         g_log.log(UpdateLog::FATAL, "Can't open local file : " + m_path, __FILE__, __LINE__);
         return;
     }
@@ -58,21 +59,18 @@ void FtpManager::downloadFinished()
 
     if(m_path.contains("/download/updater.xml"))
     {
-        qDebug() << "Finish download updater.xml file!";
         g_log.log(UpdateLog::INFO, "Finish download updater.xml file!", __FILE__, __LINE__);
         sigDownloadUpdaterXmlOver();
         return;
     }
     if(m_path.contains("/download/versionInfoCh.txt"))
     {
-        qDebug() << "Finish download versionInfoCh.txt file!";
         g_log.log(UpdateLog::INFO, "Finish download versionInfoCh.txt file!", __FILE__, __LINE__);
         sigDownloadVersionInfoFileOver();
         return;
     }
     if(m_path.contains("/download/versionInfoEn.txt"))
     {
-        qDebug() << "Finish download versionInfoEn.txt file!";
         g_log.log(UpdateLog::INFO, "Finish download versionInfoEn.txt file!", __FILE__, __LINE__);
         sigDownloadVersionInfoEnfileOver();
         return;
@@ -84,8 +82,9 @@ void FtpManager::downloadFinished()
 
 void FtpManager::error(QNetworkReply::NetworkError)
 {
-    qDebug() << "error = " << m_pReply->errorString();
     g_log.log(UpdateLog::WARN, "Download error: " + m_pReply->errorString(), __FILE__, __LINE__);
+
+    //It is emited to AutoUpdater.
     sigReplyError(m_pReply->errorString());
 }
 
@@ -96,12 +95,12 @@ int FtpManager::GetFinishCount()
 
 void FtpManager::slotDownloadTimeout()
 {
-    qDebug () << "t = " << t;
     if(t++ == 30)
     {
-        qDebug() << "Call slotDownloadTimeout: download file " << m_url.path() << " time out";
         g_log.log(UpdateLog::FATAL, "Download file " + m_url.path() + " time out", __FILE__, __LINE__);
         m_downloadTimeout->stop();
+
+        //It is emited to AutoUpdater.
         sigDownloadTimeout(m_url.path());
     }
 }

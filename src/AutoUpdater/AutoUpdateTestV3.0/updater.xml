@@ -46,7 +46,6 @@
 		<file name="qt_cs.qm" dir="/translations" version="3.0"/>
 		<file name="qt_da.qm" dir="/translations" version="3.0"/>
 		<file name="qt_de.qm" dir="/translations" version="3.0"/>
-		<file name="qt_ec.qm" dir="/translations" version="3.0"/>
 		<file name="qt_es.qm" dir="/translations" version="3.0"/>
 		<file name="qt_fi.qm" dir="/translations" version="3.0"/>
 		<file name="qt_fr.qm" dir="/translations" version="3.0"/>
@@ -62,7 +61,6 @@
 		<file name="qt_sk.qm" dir="/translations" version="3.0"/>
 		<file name="qt_uk.qm" dir="/translations" version="3.0"/>
 		
-		<file name="test.txt" dir="/1/2/3" version="3.0"/>
 		
 		
 	</filelist>

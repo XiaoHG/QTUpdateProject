@@ -2,7 +2,6 @@
 
 #include <QApplication>
 #include <QDir>
-#include <QDebug>
 #include <QDateTime>
 
 UpdateLog::UpdateLog(QObject *parent)
@@ -33,23 +32,19 @@ void UpdateLog::Init()
     m_levelStringList.append("FATAL");
     m_levelStringList.append("OFF");
 
-    qDebug() << "UpdateLog struction";
-
     //open log file
     QString logPath = QApplication::applicationDirPath() + "/log";
     QDir logDir(logPath);
     if(!logDir.exists())
     {
-        qDebug() << "mkdir: " << logPath;
         logDir.mkdir(logPath);
     }
-    qDebug() << "Not mkdir: " << logPath;
     QString logName = "updater.log";
 
     m_logFile.setFileName(logPath + "/" + logName);
     if(!m_logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text))
     {
-        qDebug() << "open log file falure!";
+        return;
     }
 
     m_logTextStream.setDevice(&m_logFile);
@@ -67,8 +62,6 @@ void UpdateLog::log(ELOGLEVEL level, const QString msg, QString file, int line)
         return;
     }
 
-    //m_rwLock.lockForWrite();
-
     QString logMsg = "[";
     QDateTime current_date_time = QDateTime::currentDateTime();
     QString current_date = current_date_time.toString("yyyy.MM.dd hh:mm:ss.zzz");
@@ -82,10 +75,7 @@ void UpdateLog::log(ELOGLEVEL level, const QString msg, QString file, int line)
     logMsg.append("]: ");
     logMsg.append(msg);
     logMsg.append("\n");
-//    m_logFile.write(logMsg.toStdString().data());
-//    m_logFile.flush();
     m_logTextStream << logMsg;
     m_logTextStream << flush;
 
-    //gm_rwLock.unlock();
 }

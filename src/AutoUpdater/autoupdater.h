@@ -223,7 +223,7 @@ private:
 
     QString m_localXmlPath;
     QString m_downloadXmlPath;
-    QString m_downloadVersionInfoPath;
+    QString m_downloadVersionInfoChPath;
     QString m_downloadVersionInfoEnPath;
 
     //process

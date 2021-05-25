@@ -5,7 +5,6 @@
 #include <QObject>
 #include <QTextStream>
 #include <QWidget>
-#include <QReadWriteLock>
 
 class UpdateLog : public QObject
 {
@@ -44,8 +43,6 @@ private:
     ELOGLEVEL m_level;
     QStringList m_levelStringList;
 
-    //lock
-    QReadWriteLock m_rwLock;
 };
 
 #endif // UPDATELOG_H

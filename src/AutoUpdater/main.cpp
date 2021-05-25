@@ -1,7 +1,7 @@
 ﻿
 #include <QApplication>
+
 #include <QDir>
-#include <QDebug>
 #include <QTextCodec>
 #include <QProcess>
 #include <QTextCodec>
@@ -32,7 +32,6 @@ int main(int argc, char *argv[])
     {
         bFirst = false;
     }
-
 
     //parent process pass argv[2] parameter for choose language,
     //if parent language is english set 0, or others.

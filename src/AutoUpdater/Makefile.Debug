@@ -193,9 +193,7 @@ debug\qrc_icon.cpp: ..\..\source\icon.qrc \
 
 debug\qrc_qt_language.cpp: qt_language.qrc \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\rcc.exe \
-		chinese.qm \
-		zh_en.qm \
-		english.qm
+		zh_en.qm
 	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\rcc.exe -name qt_language qt_language.qrc -o debug\qrc_qt_language.cpp
 
 compiler_moc_predefs_make_all: debug\moc_predefs.h
@@ -735,8 +733,6 @@ debug\moc_updatelog.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QFile 
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurlquery.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QReadWriteLock \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qreadwritelock.h \
 		updatelog.h \
 		debug\moc_predefs.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
@@ -876,7 +872,6 @@ debug\main.obj: main.cpp D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QAp
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDir \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdir.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfileinfo.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDebug \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTextCodec \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextcodec.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QProcess \
@@ -947,9 +942,7 @@ debug\main.obj: main.cpp D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QAp
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtranslator.h \
 		updatelog.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QFile \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTextStream \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QReadWriteLock \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qreadwritelock.h
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTextStream
 
 debug\autoupdater.obj: autoupdater.cpp autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObject \
@@ -1102,8 +1095,6 @@ debug\autoupdater.obj: autoupdater.cpp autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QFile \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTextStream \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QReadWriteLock \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qreadwritelock.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDir \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdir.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfileinfo.h \
@@ -1301,8 +1292,6 @@ debug\autoupdaterui.obj: autoupdaterui.cpp autoupdaterui.h \
 		updatelog.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QFile \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTextStream \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QReadWriteLock \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qreadwritelock.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QHBoxLayout \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qboxlayout.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qlayout.h \
@@ -1315,7 +1304,6 @@ debug\autoupdaterui.obj: autoupdaterui.cpp autoupdaterui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdir.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfileinfo.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QMouseEvent \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDebug \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QMessageBox \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qmessagebox.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\QMovie \
@@ -1480,9 +1468,7 @@ debug\ftpmanager.obj: ftpmanager.cpp ftpmanager.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qkeysequence.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qevent.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QReadWriteLock \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qreadwritelock.h
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h
 
 debug\xmlparser.obj: xmlparser.cpp xmlparser.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\QDomDocument \
@@ -1520,6 +1506,7 @@ debug\xmlparser.obj: xmlparser.cpp xmlparser.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringview.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstringbuilder.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QString \
+		updatelog.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QFile \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfile.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfiledevice.h \
@@ -1542,20 +1529,59 @@ debug\xmlparser.obj: xmlparser.cpp xmlparser.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontainerfwd.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject_impl.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDebug \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdebug.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmap.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObject \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTextStream \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextstream.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlocale.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvariant.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmap.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdebug.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvector.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpoint.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qset.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qwidget.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtguiglobal.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtgui-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgets-config.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qwindowdefs_win.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmargins.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpaintdevice.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrect.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsize.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpalette.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcolor.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgb.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgba64.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qbrush.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qmatrix.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpolygon.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qregion.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdatastream.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qline.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtransform.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpainterpath.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimage.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixelformat.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixmap.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfont.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontmetrics.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontinfo.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qsizepolicy.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcursor.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qkeysequence.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qevent.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurl.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurlquery.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h
 
 debug\filemanager.obj: filemanager.cpp filemanager.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QString \
@@ -1666,12 +1692,9 @@ debug\filemanager.obj: filemanager.cpp filemanager.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurlquery.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QReadWriteLock \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qreadwritelock.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDir \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdir.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfileinfo.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDebug \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QStorageInfo \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstorageinfo.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QApplication \
@@ -1788,8 +1811,6 @@ debug\updatelog.obj: updatelog.cpp updatelog.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurlquery.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QReadWriteLock \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qreadwritelock.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QApplication \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qapplication.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcoreapplication.h \
@@ -1800,7 +1821,6 @@ debug\updatelog.obj: updatelog.cpp updatelog.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDir \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdir.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfileinfo.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDebug \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDateTime \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdatetime.h
 
