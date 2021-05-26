@@ -57,6 +57,7 @@ public:
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         radioButton = new QRadioButton(widget);
         radioButton->setObjectName(QStringLiteral("radioButton"));
+        radioButton->setChecked(true);
 
         verticalLayout->addWidget(radioButton);
 

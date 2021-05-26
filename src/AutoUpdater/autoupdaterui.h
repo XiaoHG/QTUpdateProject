@@ -38,13 +38,13 @@ public:
      * @param isFirst from parent process.
      * Process entrance, wether update or not.
      */
-    void CheckUpdater(bool isFirst);
+    void Updater(bool isFirst);
 
     /**
      * @brief CheckUpdate
      * Check update situation
      */
-    void CheckUpdate();
+    void CheckForUpdate();
 
     /**
      * @brief Update
@@ -71,21 +71,9 @@ public:
     void NotUpdate();
 
     /**
-     * @brief DownloadTimeout
-     * Update time out situation
-     * Delete already download file.
-     */
-    void DownloadTimeout();
-
-    /**
-     * @brief CheckUpdateTimeout
-     */
-    void CheckUpdateTimeout();
-
-    /**
      * @brief UpdateFailure
      */
-    void UpdateFailure();
+    void CheckForUpdateError();
 
     void InitUI();
     void UpdateUI();
@@ -102,6 +90,8 @@ public:
      */
     void Language(bool ch);
 
+    bool CheckFtpDownloadError();
+    void UpdatingError();
 protected slots:
     /**
      * @brief slotBtnUpdateClicked
@@ -121,7 +111,7 @@ protected slots:
      * m_updateProsessTimer time out is called
      * It is show the process of current update.
      */
-    void slotUpdateProcess();
+    void slotUpdatingTimerout();
 
     /**
      * @brief slotDownloadInitFileOver
@@ -135,20 +125,13 @@ protected slots:
      * m_updatingTimer time out is called
      * Download init files time out.
      */
-    void slotCheckUpdateTimeOut();
-
-    /**
-     * @brief slotDownloadTimeout
-     * Download time out.
-     * 30s time out.
-     */
-    void slotDownloadTimeout();
+    void slotCheckForUpdateTimeout();
 
     /**
      * @brief slotClickTimeoutOk
      * exit process.
      */
-    void slotClickTimeoutOk();
+    void slotClickOkExit();
 
     /**
      * @brief slotDownloadStartPerFile
@@ -193,11 +176,11 @@ private:
     QLabel *m_curVersionLabel;
     QProgressBar *m_updateProgressBar;
     QPushButton *m_btnRestart;
-    QPushButton *m_btnDownloadTimeoutOK;
+    QPushButton *m_btnOKExit;
 
     //Timer
-    QTimer *m_updateProsessTimer;
     QTimer *m_updatingTimer;
+    QTimer *m_checkForUpdateTimer;
 
     //Celect control widgets
     QList<QWidget*> m_checkUpdateWidgets; //check update widgets
@@ -211,6 +194,9 @@ private:
 
     AutoUpdater *m_updater;//update manager model
     bool m_first;//first check, true from parent call main function, other is false.
+
+    //Updating failure or not
+    bool m_isUpdatingError;
 
 };
 

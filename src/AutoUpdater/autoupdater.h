@@ -133,9 +133,20 @@ public:
                               QString delPath,
                               const QString scriptName);
 
-
-
+    /**
+     * @brief FailDeleteNewVersionDir
+     */
     void FailDeleteNewVersionDir();
+
+    /**
+     * @brief AbnormalExit
+     */
+    void AbnormalExit();
+
+    /**
+     * @brief StopDownload
+     */
+    void StopDownload();
 protected slots:
     /**
      * @brief slotDownloadUpdaterXmlOver
@@ -157,15 +168,7 @@ protected slots:
      * @param errStr error string
      * Storage download error from Ftp
      */
-    void slotStorageDownloadError(QString errStr);
-
-    /**
-     * @brief slotDownloadTimeout
-     * @param fileName current download file name
-     * 30s Time out
-     * and releace all ftp object to stop download.
-     */
-    void slotDownloadTimeout(QString fileName);
+    void slotSaveDownloadError(QString errStr);
 
     /**
      * @brief slotDownloadStartPerFile
@@ -198,12 +201,11 @@ signals:
      */
     void sigDownloadFinishPerFile(QString);
 
+private:
     /**
-     * @brief sigDownloadTimeout
-     * The signal will emit if Ftp class download time out,
-     * and that updater class resive it.
+     * @brief SaveLog
      */
-    void sigDownloadTimeout();
+    void SaveLog();
 
 private:
     QStringList m_listFileDir; //The list directory for update.
@@ -231,6 +233,12 @@ private:
 
     //language
     bool m_bCh;
+
+    //Download process
+    int m_finishDownloadCount;
+
+    //Download init files
+    bool m_isDownloadInitFiles;
 
 };
 

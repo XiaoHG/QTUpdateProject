@@ -12,6 +12,7 @@ class FtpManager : public QObject
     Q_OBJECT
 public:
     explicit FtpManager(QObject *parent = 0);
+    virtual ~FtpManager();
 
     /**
      * @brief get
@@ -26,13 +27,6 @@ public:
     inline void setPath(const QString &path) { m_url.setPath(path); }
     inline void setUserName(const QString &userName) { m_url.setUserName(userName); }
     inline void setPassword(const QString &password) { m_url.setPassword(password); }
-
-    /**
-     * @brief GetFinishCount
-     * @return All object download finish count.
-     * Process need this parameter.
-     */
-    static int GetFinishCount();
 
 protected slots:
     /**
@@ -51,7 +45,7 @@ protected slots:
      * @brief error
      * Download error
      */
-    void error(QNetworkReply::NetworkError);
+    void Error(QNetworkReply::NetworkError);
 
 signals:
     /**
@@ -106,9 +100,6 @@ signals:
     void sigReplyError(QString);
 
 private:
-    //Download process
-    static int m_finishCount;
-
     //Download parameter
     QUrl m_url;
     QString m_path;
@@ -116,7 +107,7 @@ private:
     QNetworkAccessManager m_manager;
 
     //Download time out
-    int t;
+    int m_timeout;
     QTimer *m_downloadTimeout;
 
 };

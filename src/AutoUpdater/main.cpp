@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
         bCh = false;
     }
 
-    AutoUpdaterUI::getInstance(bCh)->CheckUpdater(bFirst);
+    AutoUpdaterUI::getInstance(bCh)->Updater(bFirst);
 
     return a.exec();
 }

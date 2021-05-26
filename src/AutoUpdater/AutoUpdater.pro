@@ -48,6 +48,6 @@ FORMS += \
 TRANSLATIONS += zh_en.ts
 
 RESOURCES += \
-    ../../source/icon.qrc \
-    qt_language.qrc
+    qt_language.qrc \
+    icon.qrc
 

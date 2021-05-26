@@ -1,0 +1,13 @@
+[2021.05.26 18:32:40.918][autoupdaterui.cpp: 577][INFO]: Language is chinese
+[2021.05.26 18:32:41.136][ftpmanager.cpp: 27][INFO]: Start download file: /version/updater.xml
+[2021.05.26 18:32:41.223][ftpmanager.cpp: 62][INFO]: Finish download updater.xml file!
+[2021.05.26 18:32:41.223][ftpmanager.cpp: 27][INFO]: Start download file: /version/versionInfoCh.txt
+[2021.05.26 18:32:41.246][ftpmanager.cpp: 68][INFO]: Finish download versionInfoCh.txt file!
+[2021.05.26 18:32:41.246][ftpmanager.cpp: 27][INFO]: Start download file: /version/versionInfoEn.txt
+[2021.05.26 18:32:41.268][ftpmanager.cpp: 74][INFO]: Finish download versionInfoEn.txt file!
+[2021.05.26 18:32:41.268][autoupdaterui.cpp: 432][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.05.26 18:32:41.269][autoupdater.cpp: 148][INFO]: Local xml: E:/anycubic/anycubic/intern/update_client_UI/src/AutoUpdater/AutoUpdateTestV2.0/updater.xml
+[2021.05.26 18:32:41.269][autoupdater.cpp: 149][INFO]: Download xml: E:/anycubic/anycubic/intern/update_client_UI/src/AutoUpdater/AutoUpdateTestV2.0/download/updater.xml
+[2021.05.26 18:32:41.271][autoupdater.cpp: 173][INFO]: Old version: V2.0, New version V2.0
+[2021.05.26 18:32:41.271][autoupdater.cpp: 186][INFO]: Local Version is the laster version, it is not need to update!
+[2021.05.26 18:32:41.271][autoupdaterui.cpp: 358][INFO]: NotUpdate UI

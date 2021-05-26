@@ -1,0 +1,69 @@
+[2021.05.26 18:34:39.098][autoupdaterui.cpp: 577][INFO]: Language is chinese
+[2021.05.26 18:34:39.307][ftpmanager.cpp: 27][INFO]: Start download file: /version/updater.xml
+[2021.05.26 18:34:39.402][ftpmanager.cpp: 57][INFO]: Finish download updater.xml file!
+[2021.05.26 18:34:39.402][ftpmanager.cpp: 27][INFO]: Start download file: /version/versionInfoCh.txt
+[2021.05.26 18:34:39.421][ftpmanager.cpp: 63][INFO]: Finish download versionInfoCh.txt file!
+[2021.05.26 18:34:39.422][ftpmanager.cpp: 27][INFO]: Start download file: /version/versionInfoEn.txt
+[2021.05.26 18:34:39.465][ftpmanager.cpp: 69][INFO]: Finish download versionInfoEn.txt file!
+[2021.05.26 18:34:39.465][autoupdaterui.cpp: 432][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.05.26 18:34:39.466][autoupdater.cpp: 151][INFO]: Local xml: E:/anycubic/anycubic/intern/update_client_UI/src/AutoUpdater/release/updater.xml
+[2021.05.26 18:34:39.466][autoupdater.cpp: 152][INFO]: Download xml: E:/anycubic/anycubic/intern/update_client_UI/src/AutoUpdater/release/download/updater.xml
+[2021.05.26 18:34:39.466][autoupdater.cpp: 157][INFO]: Local xml is lost, make local xml file on init.
+[2021.05.26 18:34:39.467][autoupdater.cpp: 213][INFO]: Local init xml file content: <?xml version="1.0" encoding="utf-8"?>
+<autoupdate>
+    <version>V0.0</version>
+    <filelist>
+    </filelist>
+</autoupdate>
+[2021.05.26 18:34:39.468][autoupdater.cpp: 176][INFO]: Old version: V0.0, New version V2.0
+[2021.05.26 18:34:39.468][autoupdater.cpp: 185][INFO]: Server version is updater, need to update!
+[2021.05.26 18:34:39.468][autoupdaterui.cpp: 322][INFO]: Update UI
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: AutoUpdater.exe file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: AutoUpdateTestV2.0.exe file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: D3Dcompiler_47.dll file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: libEGL.dll file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: libGLESV2.dll file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: opengl32sw.dll file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: Qt5Core.dll file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: Qt5Gui.dll file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: Qt5Network.dll file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: Qt5Svg.dll file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: Qt5Widgets.dll file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: Qt5Xml.dll file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: updater.xml file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: versionInfoCh.txt file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: versionInfoEn.txt file, and directory is: ./
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qgenericbearer.dll file, and directory is: /bearer
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qsvgicon.dll file, and directory is: /iconengines
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qgif.dll file, and directory is: /imageformats
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qicns.dll file, and directory is: /imageformats
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qico.dll file, and directory is: /imageformats
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qjpeg.dll file, and directory is: /imageformats
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qsvg.dll file, and directory is: /imageformats
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qtga.dll file, and directory is: /imageformats
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qtiff.dll file, and directory is: /imageformats
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qwbmp.dll file, and directory is: /imageformats
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qwebp.dll file, and directory is: /imageformats
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qwindows.dll file, and directory is: /platforms
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qwindowsvistastyle.dll file, and directory is: /styles
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qt_ar.qm file, and directory is: /translations
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qt_bg.qm file, and directory is: /translations
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qt_ca.qm file, and directory is: /translations
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qt_cs.qm file, and directory is: /translations
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qt_da.qm file, and directory is: /translations
+[2021.05.26 18:34:39.469][autoupdater.cpp: 259][INFO]: Load: qt_de.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_es.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_fi.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_fr.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_gd.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_he.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_hu.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_it.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_ja.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_ko.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_lv.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_pl.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_ru.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_sk.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 259][INFO]: Load: qt_uk.qm file, and directory is: /translations
+[2021.05.26 18:34:39.470][autoupdater.cpp: 265][INFO]: Load update files over.
