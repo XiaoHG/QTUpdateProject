@@ -19,7 +19,6 @@ int main(int argc, char *argv[])
 
     g_log.Init();
 
-
     //parent process pass argv[1] parameter for from main function or not,
     //if not from main set 0, or others.
     bool bFirst = false;

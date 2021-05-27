@@ -412,7 +412,7 @@ void AutoUpdaterUI::UpdatingError()
 
     m_outputVersionInfoEdit->append(QObject::tr("Update failed!"));
     m_outputVersionInfoEdit->append(QObject::tr("Please check the network link status!"));
-    m_outputVersionInfoEdit->append(QObject::tr("Or contact us: www.ancubic.com"));
+    m_outputVersionInfoEdit->append(QObject::tr("Or contact us: www.anycubic.com"));
 
     //exit.
     m_updater->AbnormalExit();
@@ -439,7 +439,7 @@ void AutoUpdaterUI::slotDownloadInitFileOver()
     {
         g_log.log(UpdateLog::WARN, "Version information is missing, please check version information file whether is normal",
                   __FILE__, __LINE__);
-        m_outputVersionInfoEdit->setText(QObject::tr("Version information is missing"));
+        m_outputVersionInfoEdit->setText(QObject::tr("Version information is missing!"));
         m_outputVersionInfoEdit->append(QObject::tr("Pleasse check network, or contact us: www.anycubic.com"));
     }
     else

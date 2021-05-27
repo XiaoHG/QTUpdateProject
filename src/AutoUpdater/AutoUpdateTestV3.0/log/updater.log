@@ -1,0 +1,39 @@
+[2021.05.27 15:19:48.614][autoupdaterui.cpp: 577][INFO]: Language is chinese
+[2021.05.27 15:19:48.749][ftpmanager.cpp: 27][INFO]: Start download file: /version/updater.xml
+[2021.05.27 15:19:48.788][ftpmanager.cpp: 57][INFO]: Finish download updater.xml file!
+[2021.05.27 15:19:48.788][ftpmanager.cpp: 27][INFO]: Start download file: /version/versionInfoCh.txt
+[2021.05.27 15:19:48.796][ftpmanager.cpp: 63][INFO]: Finish download versionInfoCh.txt file!
+[2021.05.27 15:19:48.796][ftpmanager.cpp: 27][INFO]: Start download file: /version/versionInfoEn.txt
+[2021.05.27 15:19:48.803][ftpmanager.cpp: 69][INFO]: Finish download versionInfoEn.txt file!
+[2021.05.27 15:19:48.803][autoupdaterui.cpp: 432][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.05.27 15:19:48.804][autoupdater.cpp: 151][INFO]: Local xml: E:/anycubic/anycubic/Probation/project/src/AutoUpdater/AutoUpdateTestV3.0/updater.xml
+[2021.05.27 15:19:48.804][autoupdater.cpp: 152][INFO]: Download xml: E:/anycubic/anycubic/Probation/project/src/AutoUpdater/AutoUpdateTestV3.0/download/updater.xml
+[2021.05.27 15:19:48.805][autoupdater.cpp: 176][INFO]: Old version: V3.0, New version V3.0
+[2021.05.27 15:19:48.805][autoupdater.cpp: 189][INFO]: Local Version is the laster version, it is not need to update!
+[2021.05.27 15:19:48.805][autoupdaterui.cpp: 358][INFO]: NotUpdate UI
+[2021.05.27 15:21:19.209][autoupdaterui.cpp: 583][INFO]: Language is english
+[2021.05.27 15:21:19.374][ftpmanager.cpp: 27][INFO]: Start download file: /version/updater.xml
+[2021.05.27 15:21:19.672][ftpmanager.cpp: 57][INFO]: Finish download updater.xml file!
+[2021.05.27 15:21:19.672][ftpmanager.cpp: 27][INFO]: Start download file: /version/versionInfoCh.txt
+[2021.05.27 15:21:19.683][ftpmanager.cpp: 63][INFO]: Finish download versionInfoCh.txt file!
+[2021.05.27 15:21:19.684][ftpmanager.cpp: 27][INFO]: Start download file: /version/versionInfoEn.txt
+[2021.05.27 15:21:19.693][ftpmanager.cpp: 69][INFO]: Finish download versionInfoEn.txt file!
+[2021.05.27 15:21:19.693][autoupdaterui.cpp: 432][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.05.27 15:21:19.695][autoupdater.cpp: 151][INFO]: Local xml: E:/anycubic/anycubic/Probation/project/src/AutoUpdater/AutoUpdateTestV3.0/updater.xml
+[2021.05.27 15:21:19.695][autoupdater.cpp: 152][INFO]: Download xml: E:/anycubic/anycubic/Probation/project/src/AutoUpdater/AutoUpdateTestV3.0/download/updater.xml
+[2021.05.27 15:21:19.696][autoupdater.cpp: 176][INFO]: Old version: V3.0, New version V3.0
+[2021.05.27 15:21:19.696][autoupdater.cpp: 189][INFO]: Local Version is the laster version, it is not need to update!
+[2021.05.27 15:21:19.696][autoupdaterui.cpp: 358][INFO]: NotUpdate UI
+[2021.05.27 15:21:25.238][autoupdaterui.cpp: 577][INFO]: Language is chinese
+[2021.05.27 15:21:25.406][ftpmanager.cpp: 27][INFO]: Start download file: /version/updater.xml
+[2021.05.27 15:21:25.705][ftpmanager.cpp: 57][INFO]: Finish download updater.xml file!
+[2021.05.27 15:21:25.705][ftpmanager.cpp: 27][INFO]: Start download file: /version/versionInfoCh.txt
+[2021.05.27 15:21:25.715][ftpmanager.cpp: 63][INFO]: Finish download versionInfoCh.txt file!
+[2021.05.27 15:21:25.715][ftpmanager.cpp: 27][INFO]: Start download file: /version/versionInfoEn.txt
+[2021.05.27 15:21:25.727][ftpmanager.cpp: 69][INFO]: Finish download versionInfoEn.txt file!
+[2021.05.27 15:21:25.727][autoupdaterui.cpp: 432][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.05.27 15:21:25.729][autoupdater.cpp: 151][INFO]: Local xml: E:/anycubic/anycubic/Probation/project/src/AutoUpdater/AutoUpdateTestV3.0/updater.xml
+[2021.05.27 15:21:25.729][autoupdater.cpp: 152][INFO]: Download xml: E:/anycubic/anycubic/Probation/project/src/AutoUpdater/AutoUpdateTestV3.0/download/updater.xml
+[2021.05.27 15:21:25.730][autoupdater.cpp: 176][INFO]: Old version: V3.0, New version V3.0
+[2021.05.27 15:21:25.730][autoupdater.cpp: 189][INFO]: Local Version is the laster version, it is not need to update!
+[2021.05.27 15:21:25.731][autoupdaterui.cpp: 358][INFO]: NotUpdate UI
