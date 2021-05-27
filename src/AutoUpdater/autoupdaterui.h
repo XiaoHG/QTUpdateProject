@@ -29,16 +29,15 @@ public:
     }
     ~AutoUpdaterUI();
 
-private:
-    AutoUpdaterUI(bool bCh, QWidget *parent = 0);
-
-public:
     /**
      * @brief CheckUpdater
      * @param isFirst from parent process.
      * Process entrance, wether update or not.
      */
     void Updater(bool isFirst);
+
+private:
+    AutoUpdaterUI(bool bCh, QWidget *parent = 0);
 
     /**
      * @brief CheckUpdate
@@ -90,8 +89,17 @@ public:
      */
     void Language(bool ch);
 
+    /**
+     * @brief CheckFtpDownloadError
+     * @return
+     */
     bool CheckFtpDownloadError();
+
+    /**
+     * @brief UpdatingError
+     */
     void UpdatingError();
+
 protected slots:
     /**
      * @brief slotBtnUpdateClicked
@@ -145,11 +153,13 @@ protected slots:
      */
     void slotDownloadFinishPerFile(QString fileName);
 
-private:
-
+    /**
+     * @brief ShowWhichUI
+     * @param widgets
+     * @param visible
+     */
     void ShowWhichUI(const QList<QWidget *> &widgets, bool visible);
 
-protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);

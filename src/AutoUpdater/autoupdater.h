@@ -19,6 +19,13 @@ public:
     AutoUpdater(bool bCh);
     ~AutoUpdater();
 
+//    Q_PROPERTY(QStringList m_replyErrorStack READ getReplyErrorStack WRITE setReplyErrorStack NOTIFY slotReplyErrorStackChanged)
+
+//    QStringList getReplyErrorStack(){ return m_replyErrorStack; }
+//    void setReplyErrorStack(const QString &errorStr){ m_replyErrorStack.append(errorStr); }
+//protected slots:
+//    void slotReplyErrorStackChanged();
+
 public:
     /**
      * @brief IsUpdate
@@ -40,29 +47,10 @@ public:
     void DownloadUpdateFiles();
 
     /**
-     * @brief makeInitXML
-     * @param xml
-     * If local xml file is not exist, make a init xml file
-     */
-    void makeInitXML();
-
-    /**
      * @brief GetVersionInfo
      * @return New version information
      */
     QString GetVersionInfo();
-
-    /**
-     * @brief GetUpdateFilesDir
-     * @return All update files path
-     */
-    QStringList GetUpdateFilesDir();
-
-    /**
-     * @brief GetUpdateFileName
-     * @return All update files
-     */
-    QStringList GetUpdateFilesName();
 
     /**
      * @brief GetUpdateProcessb
@@ -86,31 +74,11 @@ public:
     QStringList GetFtpErrorStack();
 
     /**
-     * @brief GetDownloadTimeoutList
-     * @return Download time out files
-     * Get all download failure files that is time out download.
-     */
-    QStringList GetDownloadTimeoutList();
-
-    /**
      * @brief GetNewVersion
      * @return The new version
      * Get new version string
      */
     QString GetNewVersion();
-
-    /**
-     * @brief CreateNewLink
-     * Create new version application link to desktop.
-     */
-    void CreateNewLink();
-
-    /**
-     * @brief GetNewVersionPath
-     * @return New version path
-     * Get the new version download path.
-     */
-    QString GetNewVersionPath();
 
     /**
      * @brief GetOldVersion
@@ -123,6 +91,25 @@ public:
      * Update over, and restart application.
      */
     void RestartApp();
+
+    /**
+     * @brief AbnormalExit
+     */
+    void AbnormalExit();
+
+private:
+    /**
+     * @brief makeInitXML
+     * @param xml
+     * If local xml file is not exist, make a init xml file
+     */
+    void makeInitXML();
+
+    /**
+     * @brief CreateNewLink
+     * Create new version application link to desktop.
+     */
+    void CreateNewLink();
 
     /**
      * @brief MakeDeleteScript
@@ -139,14 +126,15 @@ public:
     void FailDeleteNewVersionDir();
 
     /**
-     * @brief AbnormalExit
-     */
-    void AbnormalExit();
-
-    /**
      * @brief StopDownload
      */
     void StopDownload();
+
+    /**
+     * @brief SaveLog
+     */
+    void SaveLog();
+
 protected slots:
     /**
      * @brief slotDownloadUpdaterXmlOver
@@ -202,12 +190,6 @@ signals:
     void sigDownloadFinishPerFile(QString);
 
 private:
-    /**
-     * @brief SaveLog
-     */
-    void SaveLog();
-
-private:
     QStringList m_listFileDir; //The list directory for update.
     QStringList m_listFileName; //The list file for update.
 
@@ -216,13 +198,12 @@ private:
     //Ftp error stack
     QStringList m_replyErrorStack;
 
-    //Ftp download file time out list
-    QStringList m_downloadTimeoutList;
-
+    //Version
     QString m_oldVersion;
     QString m_newVersion;
     QString m_newVersionPath;
 
+    //The init files
     QString m_localXmlPath;
     QString m_downloadXmlPath;
     QString m_downloadVersionInfoChPath;
@@ -238,7 +219,7 @@ private:
     int m_finishDownloadCount;
 
     //Download init files
-    bool m_isDownloadInitFiles;
+    bool m_isCheckForUpdate;
 
 };
 

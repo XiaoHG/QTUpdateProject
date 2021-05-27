@@ -44,7 +44,7 @@ const QString DONWLOAD_PATH = "../";
 AutoUpdater::AutoUpdater(bool bCh)
     :m_bCh(bCh),
       m_finishDownloadCount(0),
-      m_isDownloadInitFiles(true)
+      m_isCheckForUpdate(true)
 {
     //The updater.xml file that in the local version path
     m_localXmlPath = QApplication::applicationDirPath() + "/updater.xml";
@@ -58,14 +58,7 @@ AutoUpdater::AutoUpdater(bool bCh)
 
 AutoUpdater::~AutoUpdater()
 {
-    for(int i = 0; i < m_ftpList.size(); ++i)
-    {
-        m_ftpList.at(i)->deleteLater();
-    }
-    for(int i = 0; i < m_listProcess.size(); ++i)
-    {
-        m_listProcess.at(i)->deleteLater();
-    }
+
 }
 
 void AutoUpdater::DownloadXMLFile()
@@ -75,7 +68,7 @@ void AutoUpdater::DownloadXMLFile()
     if(!downloadDir.exists())
         downloadDir.mkdir(downloadXmlPath);
 
-    FtpManager *ftp = new FtpManager();
+    FtpManager *ftp = new FtpManager(this);
     m_ftpList.push_back(ftp);
     ftp->get(VERSION_PATH + "/updater.xml", m_downloadXmlPath);
     connect(ftp, SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
@@ -85,7 +78,7 @@ void AutoUpdater::DownloadXMLFile()
 
 void AutoUpdater::slotDownloadUpdaterXmlOver()
 {
-    FtpManager *ftp = new FtpManager();
+    FtpManager *ftp = new FtpManager(this);
     m_ftpList.push_back(ftp);
     ftp->get(VERSION_PATH + "/versionInfoCh.txt", m_downloadVersionInfoChPath);
     connect(ftp, SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
@@ -95,7 +88,7 @@ void AutoUpdater::slotDownloadUpdaterXmlOver()
 
 void AutoUpdater::slotDownloadVersionInfoFileOver()
 {
-    FtpManager *ftp = new FtpManager();
+    FtpManager *ftp = new FtpManager(this);
     m_ftpList.push_back(ftp);
     ftp->get(VERSION_PATH + "/versionInfoEn.txt", m_downloadVersionInfoEnPath);
     connect(ftp, SIGNAL(sigDownloadVersionInfoEnfileOver()), this, SLOT(slotDownloadVersionInfoEnfileOver()));
@@ -106,7 +99,7 @@ void AutoUpdater::slotDownloadVersionInfoFileOver()
 void AutoUpdater::slotDownloadVersionInfoEnfileOver()
 {
     //Download init files over.
-    m_isDownloadInitFiles = false;
+    m_isCheckForUpdate = false;
     //It is emited to AutoUpdaterUI class for a information that init file download
     //over, and can do next step that check version for update.
     sigDownloadInitFileOver();
@@ -224,11 +217,6 @@ QString AutoUpdater::GetNewVersion()
     return m_newVersion;
 }
 
-QString AutoUpdater::GetNewVersionPath()
-{
-    return m_newVersionPath;
-}
-
 void AutoUpdater::LoadUpdateFiles()
 {
     //Clear buffer first.
@@ -263,16 +251,6 @@ void AutoUpdater::LoadUpdateFiles()
     }
 
     g_log.log(UpdateLog::INFO, "Load update files over.", __FILE__, __LINE__);
-}
-
-QStringList AutoUpdater::GetUpdateFilesDir()
-{
-    return m_listFileDir;
-}
-
-QStringList AutoUpdater::GetUpdateFilesName()
-{
-    return m_listFileName;
 }
 
 int AutoUpdater::GetUpdateProcess()
@@ -319,7 +297,7 @@ void AutoUpdater::DownloadUpdateFiles()
             strFileDirServer = VERSION_PATH + "/" + APPLICATION_NAME + m_newVersion +
                                "/" + UPDATE_SYSTEM + m_listFileDir.at(i) + "/"  + m_listFileName.at(i);
 
-        FtpManager *ftp = new FtpManager();
+        FtpManager *ftp = new FtpManager(this);
         m_ftpList.push_back(ftp);
         connect(ftp, SIGNAL(sigDownloadStartPerFile(QString)), this, SLOT(slotDownloadStartPerFile(QString)));
         connect(ftp, SIGNAL(sigDownloadFinishPerFile(QString)), this, SLOT(slotDownloadFinishPerFile(QString)));
@@ -349,11 +327,6 @@ void AutoUpdater::StopDownload()
         if(m_ftpList.at(i))
             m_ftpList.at(i)->deleteLater();
     }
-}
-
-QStringList AutoUpdater::GetDownloadTimeoutList()
-{
-    return m_downloadTimeoutList;
 }
 
 void AutoUpdater::slotSaveDownloadError(QString errStr)
@@ -507,7 +480,7 @@ void AutoUpdater::FailDeleteNewVersionDir()
 void AutoUpdater::AbnormalExit()
 {
     //Stop
-    if(m_isDownloadInitFiles)
+    if(m_isCheckForUpdate)
     {
         StopDownload();
     }

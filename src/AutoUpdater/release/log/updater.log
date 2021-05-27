@@ -421,3 +421,181 @@
 [2021.05.27 10:26:41.893][autoupdater.cpp: 281][INFO]: Download finish count: 48
 [2021.05.27 10:26:41.895][autoupdaterui.cpp: 560][INFO]: Download update files over.
 [2021.05.27 10:26:41.895][autoupdaterui.cpp: 349][INFO]: FinishUpdate UI
+[2021.05.27 10:39:26.901][autoupdaterui.cpp: 577][INFO]: Language is chinese
+[2021.05.27 10:39:27.032][ftpmanager.cpp: 27][INFO]: Start download file: /version/updater.xml
+[2021.05.27 10:39:27.075][ftpmanager.cpp: 57][INFO]: Finish download updater.xml file!
+[2021.05.27 10:39:27.075][ftpmanager.cpp: 27][INFO]: Start download file: /version/versionInfoCh.txt
+[2021.05.27 10:39:27.085][ftpmanager.cpp: 63][INFO]: Finish download versionInfoCh.txt file!
+[2021.05.27 10:39:27.086][ftpmanager.cpp: 27][INFO]: Start download file: /version/versionInfoEn.txt
+[2021.05.27 10:39:27.095][ftpmanager.cpp: 69][INFO]: Finish download versionInfoEn.txt file!
+[2021.05.27 10:39:27.095][autoupdaterui.cpp: 432][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.05.27 10:39:27.095][autoupdater.cpp: 151][INFO]: Local xml: E:/anycubic/anycubic/Probation/project/src/AutoUpdater/release/updater.xml
+[2021.05.27 10:39:27.095][autoupdater.cpp: 152][INFO]: Download xml: E:/anycubic/anycubic/Probation/project/src/AutoUpdater/release/download/updater.xml
+[2021.05.27 10:39:27.096][autoupdater.cpp: 176][INFO]: Old version: V0.0, New version V3.0
+[2021.05.27 10:39:27.096][autoupdater.cpp: 185][INFO]: Server version is updater, need to update!
+[2021.05.27 10:39:27.096][autoupdaterui.cpp: 322][INFO]: Update UI
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: AutoUpdater.exe file, and directory is: ./
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: AutoUpdateTestV3.0.exe file, and directory is: ./
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: D3Dcompiler_47.dll file, and directory is: ./
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: libEGL.dll file, and directory is: ./
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: libGLESV2.dll file, and directory is: ./
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: opengl32sw.dll file, and directory is: ./
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: Qt5Core.dll file, and directory is: ./
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: Qt5Gui.dll file, and directory is: ./
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: Qt5Network.dll file, and directory is: ./
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: Qt5Svg.dll file, and directory is: ./
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: Qt5Widgets.dll file, and directory is: ./
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: Qt5Xml.dll file, and directory is: ./
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: updater.xml file, and directory is: ./
+[2021.05.27 10:39:27.096][autoupdater.cpp: 259][INFO]: Load: versionInfoCh.txt file, and directory is: ./
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: versionInfoEn.txt file, and directory is: ./
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qgenericbearer.dll file, and directory is: /bearer
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qsvgicon.dll file, and directory is: /iconengines
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qgif.dll file, and directory is: /imageformats
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qicns.dll file, and directory is: /imageformats
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qico.dll file, and directory is: /imageformats
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qjpeg.dll file, and directory is: /imageformats
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qsvg.dll file, and directory is: /imageformats
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qtga.dll file, and directory is: /imageformats
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qtiff.dll file, and directory is: /imageformats
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qwbmp.dll file, and directory is: /imageformats
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qwebp.dll file, and directory is: /imageformats
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qwindows.dll file, and directory is: /platforms
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qwindowsvistastyle.dll file, and directory is: /styles
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_ar.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_bg.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_ca.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_cs.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_da.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_de.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_es.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_fi.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_fr.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_gd.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_he.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_hu.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_it.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_ja.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_ko.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_lv.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_pl.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_ru.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_sk.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 259][INFO]: Load: qt_uk.qm file, and directory is: /translations
+[2021.05.27 10:39:27.097][autoupdater.cpp: 265][INFO]: Load update files over.
+[2021.05.27 10:39:29.305][autoupdaterui.cpp: 336][INFO]: Updating UI
+[2021.05.27 10:39:29.305][autoupdaterui.cpp: 337][INFO]: Update process timer start at 50ms
+[2021.05.27 10:39:29.305][autoupdater.cpp: 297][INFO]: Total download files: 48
+[2021.05.27 10:39:29.306][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/AutoUpdater.exe
+[2021.05.27 10:39:29.307][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/AutoUpdateTestV3.0.exe
+[2021.05.27 10:39:29.307][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/D3Dcompiler_47.dll
+[2021.05.27 10:39:29.307][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/libEGL.dll
+[2021.05.27 10:39:29.308][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/libGLESV2.dll
+[2021.05.27 10:39:29.308][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/opengl32sw.dll
+[2021.05.27 10:39:29.308][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/Qt5Core.dll
+[2021.05.27 10:39:29.308][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/Qt5Gui.dll
+[2021.05.27 10:39:29.309][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/Qt5Network.dll
+[2021.05.27 10:39:29.309][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/Qt5Svg.dll
+[2021.05.27 10:39:29.309][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/Qt5Widgets.dll
+[2021.05.27 10:39:29.309][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/Qt5Xml.dll
+[2021.05.27 10:39:29.310][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/updater.xml
+[2021.05.27 10:39:29.310][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/versionInfoCh.txt
+[2021.05.27 10:39:29.310][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/versionInfoEn.txt
+[2021.05.27 10:39:29.312][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/bearer/qgenericbearer.dll
+[2021.05.27 10:39:29.313][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/iconengines/qsvgicon.dll
+[2021.05.27 10:39:29.314][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/imageformats/qgif.dll
+[2021.05.27 10:39:29.315][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/imageformats/qicns.dll
+[2021.05.27 10:39:29.315][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/imageformats/qico.dll
+[2021.05.27 10:39:29.316][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/imageformats/qjpeg.dll
+[2021.05.27 10:39:29.317][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/imageformats/qsvg.dll
+[2021.05.27 10:39:29.317][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/imageformats/qtga.dll
+[2021.05.27 10:39:29.317][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/imageformats/qtiff.dll
+[2021.05.27 10:39:29.317][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/imageformats/qwbmp.dll
+[2021.05.27 10:39:29.318][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/imageformats/qwebp.dll
+[2021.05.27 10:39:29.319][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/platforms/qwindows.dll
+[2021.05.27 10:39:29.321][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/styles/qwindowsvistastyle.dll
+[2021.05.27 10:39:29.322][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_ar.qm
+[2021.05.27 10:39:29.322][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_bg.qm
+[2021.05.27 10:39:29.322][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_ca.qm
+[2021.05.27 10:39:29.323][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_cs.qm
+[2021.05.27 10:39:29.323][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_da.qm
+[2021.05.27 10:39:29.323][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_de.qm
+[2021.05.27 10:39:29.323][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_es.qm
+[2021.05.27 10:39:29.324][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_fi.qm
+[2021.05.27 10:39:29.324][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_fr.qm
+[2021.05.27 10:39:29.324][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_gd.qm
+[2021.05.27 10:39:29.325][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_he.qm
+[2021.05.27 10:39:29.325][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_hu.qm
+[2021.05.27 10:39:29.325][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_it.qm
+[2021.05.27 10:39:29.325][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_ja.qm
+[2021.05.27 10:39:29.326][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_ko.qm
+[2021.05.27 10:39:29.326][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_lv.qm
+[2021.05.27 10:39:29.326][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_pl.qm
+[2021.05.27 10:39:29.326][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_ru.qm
+[2021.05.27 10:39:29.327][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_sk.qm
+[2021.05.27 10:39:29.327][ftpmanager.cpp: 27][INFO]: Start download file: /version/AutoUpdateTestV3.0/win32/translations/qt_uk.qm
+[2021.05.27 10:39:29.378][autoupdater.cpp: 281][INFO]: Download finish count: 0
+[2021.05.27 10:39:29.430][autoupdater.cpp: 281][INFO]: Download finish count: 0
+[2021.05.27 10:39:29.530][autoupdater.cpp: 281][INFO]: Download finish count: 0
+[2021.05.27 10:39:29.602][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/imageformats/qsvg.dll file!
+[2021.05.27 10:39:29.628][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_ru.qm file!
+[2021.05.27 10:39:29.662][autoupdater.cpp: 281][INFO]: Download finish count: 2
+[2021.05.27 10:39:29.668][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/styles/qwindowsvistastyle.dll file!
+[2021.05.27 10:39:29.678][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_pl.qm file!
+[2021.05.27 10:39:29.684][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/imageformats/qico.dll file!
+[2021.05.27 10:39:29.687][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/versionInfoCh.txt file!
+[2021.05.27 10:39:29.697][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_fr.qm file!
+[2021.05.27 10:39:29.702][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/libEGL.dll file!
+[2021.05.27 10:39:29.712][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/bearer/qgenericbearer.dll file!
+[2021.05.27 10:39:29.717][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/imageformats/qjpeg.dll file!
+[2021.05.27 10:39:29.719][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_fi.qm file!
+[2021.05.27 10:39:29.721][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/Qt5Xml.dll file!
+[2021.05.27 10:39:29.726][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/imageformats/qgif.dll file!
+[2021.05.27 10:39:29.731][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_lv.qm file!
+[2021.05.27 10:39:29.738][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_gd.qm file!
+[2021.05.27 10:39:29.745][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_uk.qm file!
+[2021.05.27 10:39:29.747][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_bg.qm file!
+[2021.05.27 10:39:29.762][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_ja.qm file!
+[2021.05.27 10:39:29.764][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/updater.xml file!
+[2021.05.27 10:39:29.771][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_hu.qm file!
+[2021.05.27 10:39:29.779][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_cs.qm file!
+[2021.05.27 10:39:29.788][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/Qt5Svg.dll file!
+[2021.05.27 10:39:29.793][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/AutoUpdateTestV3.0.exe file!
+[2021.05.27 10:39:29.809][autoupdater.cpp: 281][INFO]: Download finish count: 23
+[2021.05.27 10:39:29.814][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/imageformats/qwbmp.dll file!
+[2021.05.27 10:39:29.819][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_de.qm file!
+[2021.05.27 10:39:29.826][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_ar.qm file!
+[2021.05.27 10:39:29.829][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/versionInfoEn.txt file!
+[2021.05.27 10:39:29.835][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_he.qm file!
+[2021.05.27 10:39:29.848][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/imageformats/qwebp.dll file!
+[2021.05.27 10:39:29.850][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/imageformats/qtga.dll file!
+[2021.05.27 10:39:29.853][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_da.qm file!
+[2021.05.27 10:39:29.857][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_sk.qm file!
+[2021.05.27 10:39:29.865][autoupdater.cpp: 281][INFO]: Download finish count: 32
+[2021.05.27 10:39:29.871][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_es.qm file!
+[2021.05.27 10:39:29.874][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/imageformats/qicns.dll file!
+[2021.05.27 10:39:29.877][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_ko.qm file!
+[2021.05.27 10:39:29.881][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/iconengines/qsvgicon.dll file!
+[2021.05.27 10:39:29.884][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/imageformats/qtiff.dll file!
+[2021.05.27 10:39:29.898][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_ca.qm file!
+[2021.05.27 10:39:29.902][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/translations/qt_it.qm file!
+[2021.05.27 10:39:29.948][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/AutoUpdater.exe file!
+[2021.05.27 10:39:29.988][autoupdater.cpp: 281][INFO]: Download finish count: 40
+[2021.05.27 10:39:30.093][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/platforms/qwindows.dll file!
+[2021.05.27 10:39:30.111][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/libGLESV2.dll file!
+[2021.05.27 10:39:30.118][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/Qt5Network.dll file!
+[2021.05.27 10:39:30.119][autoupdater.cpp: 281][INFO]: Download finish count: 43
+[2021.05.27 10:39:30.302][ftpmanager.cpp: 81][INFO]: Download file /version/AutoUpdateTestV3.0/win32/Qt5Widgets.dll time: 0
+[2021.05.27 10:39:30.303][ftpmanager.cpp: 81][INFO]: Download file /version/AutoUpdateTestV3.0/win32/Qt5Gui.dll time: 0
+[2021.05.27 10:39:30.303][ftpmanager.cpp: 81][INFO]: Download file /version/AutoUpdateTestV3.0/win32/Qt5Core.dll time: 0
+[2021.05.27 10:39:30.303][ftpmanager.cpp: 81][INFO]: Download file /version/AutoUpdateTestV3.0/win32/opengl32sw.dll time: 0
+[2021.05.27 10:39:30.304][ftpmanager.cpp: 81][INFO]: Download file /version/AutoUpdateTestV3.0/win32/D3Dcompiler_47.dll time: 0
+[2021.05.27 10:39:30.404][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/D3Dcompiler_47.dll file!
+[2021.05.27 10:39:30.430][autoupdater.cpp: 281][INFO]: Download finish count: 44
+[2021.05.27 10:39:30.454][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/Qt5Widgets.dll file!
+[2021.05.27 10:39:30.507][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/Qt5Gui.dll file!
+[2021.05.27 10:39:30.535][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/Qt5Core.dll file!
+[2021.05.27 10:39:30.596][ftpmanager.cpp: 74][INFO]: Finish download /version/AutoUpdateTestV3.0/win32/opengl32sw.dll file!
+[2021.05.27 10:39:30.613][autoupdater.cpp: 281][INFO]: Download finish count: 48
+[2021.05.27 10:39:30.614][autoupdaterui.cpp: 560][INFO]: Download update files over.
+[2021.05.27 10:39:30.614][autoupdaterui.cpp: 349][INFO]: FinishUpdate UI

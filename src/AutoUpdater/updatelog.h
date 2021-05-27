@@ -29,7 +29,9 @@ public:
     void log(ELOGLEVEL level, const QString msg, QString file = "test", int line = 0);
 
     void SetLoglevel(ELOGLEVEL level);
+
     void Init();
+
 signals:
 
 public slots:
