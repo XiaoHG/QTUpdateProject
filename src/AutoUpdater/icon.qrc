@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icon/close.png</file>
+        <file>icon/down.png</file>
+        <file>icon/press_down.png</file>
+        <file>icon/press_up.png</file>
+        <file>icon/restart.png</file>
+        <file>icon/restart1.png</file>
+        <file>icon/up.png</file>
+        <file>icon/update.png</file>
+        <file>icon/update1.png</file>
+        <file>icon/update2.png</file>
+        <file>icon/update3.png</file>
+    </qresource>
+</RCC>

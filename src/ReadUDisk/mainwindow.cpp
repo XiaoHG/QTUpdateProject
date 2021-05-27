@@ -1,0 +1,1182 @@
+﻿#include "mainwindow.h"
+#include "fileselectwidget.h"
+#include "ui_mainwindow.h"
+
+#include <QDebug>
+#include <QStorageInfo>
+#include <QPixmap>
+#include <QLabel>
+#include <QHBoxLayout>
+#include <QFileDialog>
+#include <QStyleOption>
+#include <QPainter>
+#include <QMouseEvent>
+#include <QPushButton>
+#include <QLineEdit>
+#include <QCheckBox>
+#include <QRadioButton>
+#include <QButtonGroup>
+#include <QProgressBar>
+#include <QTimer>
+#include <QTextEdit>
+#include <QBitmap>
+
+//info: 设置objectName用于遍历找到对应控件并设置对应值
+
+// 设置按钮样式及悬浮、按下时的状态
+//ui->pushButton->setStyleSheet("QPushButton{background-color: rgb(225, 225, 225);border:2px groove gray;border-radius:10px;padding:2px 4px;border-style: outset;}"
+//                                          "QPushButton:hover{background-color:rgb(229, 241, 251); color: black;}"
+//                                          "QPushButton:pressed{background-color:rgb(204, 228, 247);border-style: inset;}");
+
+typedef void (MainWindow::*pfShowUI)(bool);
+static QMap<EWHICHPAGE, pfShowUI> g_pfShowUIMap;
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    this->setWindowFlags(Qt::FramelessWindowHint);
+    //this->setFixedSize(1024, 768);
+
+    // 设置按钮样式及悬浮、按下时的状态
+    //debug
+//    this->setStyleSheet("QPushButton{border:2px groove gray;border-radius:10px;padding:2px 4px;border-style: outset;}"
+//                        "QPushButton:hover{background-color:rgba(229, 241, 251, 100); color: black;}"
+//                        "QPushButton:pressed{background-color:rgba(204, 228, 247, 200);border-style: inset;}");
+
+    //release
+    this->setStyleSheet("QPushButton{border-radius:10px;border-style: outset;}"
+                        "QPushButton:hover{background-color:rgba(229, 241, 251, 100); color: black;}"
+                        "QPushButton:pressed{background-color:rgba(204, 228, 247, 200);border-style: inset;}"
+                        "QLineEdit{background-color:transparent}"
+                        "QLineEdit{border-width:0;border-style:outset}");
+
+
+    //font
+    QFont f(tr("黑体"), 12);
+    this->setFont(f);
+
+
+    m_btnBack = new QPushButton(this);
+    m_btnBack->setGeometry(this->width() - m_btnBack->width() + 20, 0, 80, 45);
+    //connect(m_btnBack, SIGNAL(clicked(bool)), this, SLOT(slotMainUI()));
+    connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(MAIN);});
+    m_btnBack->setVisible(false);
+
+    MainUI();
+    FileListUI();
+    SystemUI();
+    ToolPage_1UI();
+    ToolPage_2UI();
+    LanguageUI();
+    NetInfoUI();
+    VersionInfoUI();
+    SystemSetUI();
+    MoveZUI();
+    DetectResinUI();
+    DetectLightUI();
+    ConnectCloudUI();
+    PowerTestUI();
+    InnTestUI();
+    CloudTestUI();
+    NetTestUI();
+    CameroTestUI();
+    ExecLightUI();
+    PrintTestUI();
+    PrintParameterUI();
+
+    QPalette palette;
+    palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/1.png")));
+    this->setPalette(palette);
+
+    g_pfShowUIMap.insert(MAIN, &MainWindow::ShowMainUI);
+    g_pfShowUIMap.insert(FILELIST, &MainWindow::ShowFileListUI);
+    g_pfShowUIMap.insert(SYSTEM, &MainWindow::ShowSystemUI);
+    g_pfShowUIMap.insert(TOOLPAGE_1, &MainWindow::ShowToolPage_1UI);
+    g_pfShowUIMap.insert(TOOLPAGE_2, &MainWindow::ShowToolPage_2UI);
+    g_pfShowUIMap.insert(LANGUAGE, &MainWindow::ShowLanguageUI);
+    g_pfShowUIMap.insert(NETINFO, &MainWindow::ShowNetInfoUI);
+    g_pfShowUIMap.insert(VERSIONINFO, &MainWindow::ShowVersionInfoUI);
+    g_pfShowUIMap.insert(SYSTEMSET, &MainWindow::ShowSystemSetUI);
+    g_pfShowUIMap.insert(MOVEZ, &MainWindow::ShowMoveZUI);
+    g_pfShowUIMap.insert(DETECTRESIN_1, &MainWindow::ShowDetectResinUI);
+    g_pfShowUIMap.insert(DETECTLIGHT, &MainWindow::ShowDetectLightUI);
+    g_pfShowUIMap.insert(CONNCLOUD, &MainWindow::ShowConnectCloudUI);
+    g_pfShowUIMap.insert(POWERSET, &MainWindow::ShowPowerTestUI);
+    g_pfShowUIMap.insert(INNTEST, &MainWindow::ShowInnTestUI);
+    g_pfShowUIMap.insert(CLOUDTEST, &MainWindow::ShowCloudTestUI);
+    g_pfShowUIMap.insert(NETTEST, &MainWindow::ShowNetTestUI);
+    g_pfShowUIMap.insert(CAMEROTEST, &MainWindow::ShowCameroTestUI);
+    g_pfShowUIMap.insert(EXECLIGHT, &MainWindow::ShowExecLightUI);
+    g_pfShowUIMap.insert(PRINTTEST, &MainWindow::ShowPrintTestUI);
+    g_pfShowUIMap.insert(PRINTPARAMETER, &MainWindow::ShowPrintParameterUI);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    if(event->button() == Qt::LeftButton)
+    {
+        m_bDrag = true;
+        //获得鼠标的初始位置
+        m_mouseStartPoint = event->globalPos();
+        //mouseStartPoint = event->pos();
+        //获得窗口的初始位置
+        m_windowTopLeftPoint = this->frameGeometry().topLeft();
+    }
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    if(m_bDrag)
+    {
+        //获得鼠标移动的距离
+        QPoint distance = event->globalPos() - m_mouseStartPoint;
+        //QPoint distance = event->pos() - mouseStartPoint;
+        //改变窗口的位置
+        this->move(m_windowTopLeftPoint + distance);
+    }
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+    if(event->button() == Qt::LeftButton)
+    {
+        m_bDrag = false;
+    }
+}
+
+void MainWindow::MainUI()
+{
+    m_btnPrint = new QPushButton(tr("m_btnPrint"), this);
+    m_btnPrint->setGeometry(29, 80, 120, 121);
+    //connect(m_btnPrint, SIGNAL(clicked(bool)), this, SLOT(slotFileListUI()));
+    connect(m_btnPrint, &QPushButton::clicked, this, [=](){WhichUI(FILELIST);});
+
+    m_btnSystem = new QPushButton(tr("m_btnSystem"), this);
+    m_btnSystem->setGeometry(m_btnPrint->x() + m_btnPrint->width() + 31, 80, 120, 121);
+    //connect(m_btnSystem, SIGNAL(clicked(bool)), this, SLOT(slotSystemUI()));
+    connect(m_btnSystem, &QPushButton::clicked, this, [=](){WhichUI(SYSTEM);});
+
+    m_btnTool = new QPushButton(tr("m_btnTool"), this);
+    m_btnTool->setGeometry(m_btnSystem->x() + m_btnSystem->width() + 31, 80, 120, 121);
+    //connect(m_btnTool, SIGNAL(clicked(bool)), this, SLOT(slotToolPage_1UI()));
+    connect(m_btnTool, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_1);});
+
+    m_mainUIList.push_back(m_btnPrint);
+    m_mainUIList.push_back(m_btnSystem);
+    m_mainUIList.push_back(m_btnTool);
+
+    //All main widget is visible
+    ShowMainUI(true);
+}
+
+void MainWindow::FileListUI()
+{
+    m_btnResFile = new QPushButton(tr("m_btnResFile"), this);
+    m_btnResFile->setGeometry(this->width() - m_btnResFile->width() - 16, 57, 93, 60);
+
+    m_btnUp = new QPushButton(tr("m_btnUp"), this);
+    m_btnUp->setGeometry(m_btnResFile->x(), m_btnResFile->y() + m_btnResFile->height() + 13,
+                         m_btnResFile->width(), m_btnResFile->height() - 13);
+
+    m_btnDown = new QPushButton(tr("m_btnDown"), this);
+    m_btnDown->setGeometry(m_btnUp->x(), m_btnUp->y() + m_btnUp->height() + 13,
+                           m_btnUp->width(), m_btnUp->height());
+
+    m_btnUDiskFile = new QPushButton(tr("m_btnUDiskFile"), this);
+    m_btnUDiskFile->setGeometry(m_btnDown->x(), m_btnDown->y() + m_btnDown->height() + 12,
+                           m_btnResFile->width(), m_btnResFile->height());
+
+    QLabel *showFileLabel[4];
+    QLineEdit *printFileNameLE[4];
+    QVBoxLayout *vbLayout[4];
+
+    FileSelectWidget *FileSelectWidgets[4];
+    for(int i = 0; i < 4; ++i)
+    {
+        FileSelectWidgets[i] = new FileSelectWidget(this);
+        connect(FileSelectWidgets[i], &FileSelectWidget::clicked, this, [=](){WhichUI(PRINTTEST);});
+
+        showFileLabel[i] = new QLabel(FileSelectWidgets[i]);
+        showFileLabel[i]->setScaledContents(true);
+
+        printFileNameLE[i] = new QLineEdit(FileSelectWidgets[i]);
+        printFileNameLE[i]->setAlignment(Qt::AlignCenter);
+
+        vbLayout[i] = new QVBoxLayout(FileSelectWidgets[i]);
+        vbLayout[i]->addWidget(showFileLabel[i]);
+        vbLayout[i]->addWidget(printFileNameLE[i]);
+        vbLayout[i]->setSpacing(20);
+
+        FileSelectWidgets[i]->setLayout(vbLayout[i]);
+
+    }
+
+    FileSelectWidgets[0]->setGeometry(24, 57, 158, 120);
+    FileSelectWidgets[1]->setGeometry(FileSelectWidgets[0]->x() + FileSelectWidgets[1]->width() + 70, FileSelectWidgets[0]->y(),
+                                FileSelectWidgets[0]->width(), FileSelectWidgets[0]->height());
+    FileSelectWidgets[2]->setGeometry(FileSelectWidgets[0]->x(), FileSelectWidgets[0]->y() + FileSelectWidgets[0]->height() + 12,
+                                FileSelectWidgets[0]->width(), FileSelectWidgets[0]->height());
+    FileSelectWidgets[3]->setGeometry(FileSelectWidgets[1]->x(), FileSelectWidgets[2]->y(),
+                                FileSelectWidgets[0]->width(), FileSelectWidgets[0]->height());
+
+
+
+    for(int j = 0; j < 4; ++j)
+    {
+        QList<QLineEdit*> lineEdList = FileSelectWidgets[j]->findChildren<QLineEdit*>();
+        lineEdList[0]->setText(tr("file 1"));
+
+        QList<QLabel*> labelList = FileSelectWidgets[j]->findChildren<QLabel*>();
+        labelList[0]->setStyleSheet("border-radius:5px");
+
+        //debug
+        QPixmap pixmap(":/anycubic_UI_png/printTest.jpeg");
+        // 画成圆形图片
+        int width = labelList[0]->width();
+        int height = labelList[0]->height();
+        QSize size(width, height);
+        QBitmap mask(size);
+        QPainter painter(&mask);
+        painter.setRenderHint(QPainter::Antialiasing);
+        painter.setRenderHint(QPainter::SmoothPixmapTransform);
+        painter.fillRect(0, 0, size.width(), size.height(), Qt::white);
+        painter.setBrush(QColor(0, 0, 0));
+        painter.drawRoundedRect(0, 0, size.width(), size.height(), 5, 5);//修改这个值，可以改弧度，和直径相等就是圆形
+        QPixmap image = pixmap.scaled(size);
+        image.setMask(mask);
+
+        labelList[0]->setPixmap(image);
+    }
+
+    m_fileUIList.push_back(m_btnResFile);
+    m_fileUIList.push_back(m_btnUp);
+    m_fileUIList.push_back(m_btnDown);
+    m_fileUIList.push_back(m_btnUDiskFile);
+    for(int i = 0; i < 4; ++i)
+    {
+        m_fileUIList.push_back(FileSelectWidgets[i]);
+    }
+
+    //Init set false
+    ShowFileListUI(false);
+}
+
+void MainWindow::SystemUI()
+{
+    m_btnLanguage = new QPushButton(tr("m_btnLanguage"), this);
+    m_btnLanguage->setGeometry(24, 61, 209, 90);
+    connect(m_btnLanguage, &QPushButton::clicked, this, [=](){WhichUI(LANGUAGE);});
+
+    m_btnNetInfo = new QPushButton(tr("m_btnNetInfo"), this);
+    m_btnNetInfo->setGeometry(m_btnLanguage->x() + m_btnLanguage->width() + 14, m_btnLanguage->y(),
+                         m_btnLanguage->width(), m_btnLanguage->height());
+    connect(m_btnNetInfo, &QPushButton::clicked, this, [=](){WhichUI(NETINFO);});
+
+    m_btnVersion = new QPushButton(tr("m_btnVersion"), this);
+    m_btnVersion->setGeometry(m_btnLanguage->x(), m_btnLanguage->y() + m_btnLanguage->height() + 10,
+                           m_btnLanguage->width(), m_btnLanguage->height());
+    connect(m_btnVersion, &QPushButton::clicked, this, [=](){WhichUI(VERSIONINFO);});
+
+    m_btnSet = new QPushButton(tr("m_btnSet"), this);
+    m_btnSet->setGeometry(m_btnNetInfo->x(), m_btnVersion->y(),
+                           m_btnLanguage->width(), m_btnLanguage->height());
+    connect(m_btnSet, &QPushButton::clicked, this, [=](){WhichUI(SYSTEMSET);});
+
+    m_btnPrePage = new QPushButton(tr("m_btnPrePage"), this);
+    m_btnPrePage->setGeometry(m_btnLanguage->x(), m_btnVersion->y() + m_btnVersion->height() + 16,
+                          m_btnLanguage->width() - 63, m_btnLanguage->height() / 2 - 5);
+
+    m_btnNextPage = new QPushButton(tr("m_btnPrePage"), this);
+    m_btnNextPage->setGeometry(m_btnLanguage->x() + m_btnPrePage->width() + 140, m_btnPrePage->y(),
+                              m_btnPrePage->width(), m_btnPrePage->height());
+
+    m_systemUIList.push_back(m_btnLanguage);
+    m_systemUIList.push_back(m_btnNetInfo);
+    m_systemUIList.push_back(m_btnVersion);
+    m_systemUIList.push_back(m_btnSet);
+    m_systemUIList.push_back(m_btnPrePage);
+    m_systemUIList.push_back(m_btnNextPage);
+
+    //Init set false
+    ShowSystemUI(false);
+}
+
+void MainWindow::ToolPage_1UI()
+{
+    QPushButton *btnMoveZ = new QPushButton(tr("btnMoveZ"), this);
+    btnMoveZ->setGeometry(24, 61, 209, 90);
+    connect(btnMoveZ, &QPushButton::clicked, this, [=](){WhichUI(MOVEZ);});
+
+    QPushButton *btnDetectResin = new QPushButton(tr("btnDetectResin"), this);
+    btnDetectResin->setGeometry(btnMoveZ->x() + btnMoveZ->width() + 14, btnMoveZ->y(),
+                         btnMoveZ->width(), btnMoveZ->height());
+    connect(btnDetectResin, &QPushButton::clicked, this, [=](){WhichUI(DETECTRESIN_1);});
+
+    QPushButton *btnDetectLight = new QPushButton(tr("btnDetectLight"), this);
+    btnDetectLight->setGeometry(btnMoveZ->x(), btnMoveZ->y() + btnMoveZ->height() + 10,
+                           btnMoveZ->width(), btnMoveZ->height());
+    connect(btnDetectLight, &QPushButton::clicked, this, [=](){WhichUI(DETECTLIGHT);});
+
+    QPushButton *btnConWeb = new QPushButton(tr("btnConWeb"), this);
+    btnConWeb->setGeometry(btnDetectResin->x(), btnDetectLight->y(),
+                           btnMoveZ->width(), btnMoveZ->height());
+    connect(btnConWeb, &QPushButton::clicked, this, [=](){WhichUI(CONNCLOUD);});
+
+    QPushButton *btnNextPage = new QPushButton(tr("btnNextPage"), this);
+    btnNextPage->setGeometry(m_btnLanguage->x() + m_btnPrePage->width() + 140, m_btnPrePage->y(),
+                              m_btnPrePage->width(), m_btnPrePage->height());
+    //connect(btnNextPage, SIGNAL(clicked(bool)), this, SLOT(slotToolPage_2UI()));
+    connect(btnNextPage, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_2);});
+
+    m_toolPage_1UIList.push_back(btnMoveZ);
+    m_toolPage_1UIList.push_back(btnDetectResin);
+    m_toolPage_1UIList.push_back(btnDetectLight);
+    m_toolPage_1UIList.push_back(btnConWeb);
+    m_toolPage_1UIList.push_back(btnNextPage);
+
+    //Init set false
+    ShowToolPage_1UI(false);
+}
+
+void MainWindow::ToolPage_2UI()
+{
+    QPushButton *btnPowerSet = new QPushButton(tr("btnPowerSet"), this);
+    btnPowerSet->setGeometry(24, 61, 209, 90);
+    connect(btnPowerSet, &QPushButton::clicked, this, [=](){WhichUI(POWERSET);});
+
+    QPushButton *btnInnTest = new QPushButton(tr("btnInnTest"), this);
+    btnInnTest->setGeometry(btnPowerSet->x() + btnPowerSet->width() + 14, btnPowerSet->y(),
+                         btnPowerSet->width(), btnPowerSet->height());
+    connect(btnInnTest, &QPushButton::clicked, this, [=](){WhichUI(INNTEST);});
+
+    QPushButton *btnUnused_2 = new QPushButton(tr("btnUnused_2"), this);
+    btnUnused_2->setGeometry(btnPowerSet->x(), btnPowerSet->y() + btnPowerSet->height() + 10,
+                           btnPowerSet->width(), btnPowerSet->height());
+
+    QPushButton *btnUnused_1 = new QPushButton(tr("btnUnused_1"), this);
+    btnUnused_1->setGeometry(btnInnTest->x(), btnUnused_2->y(),
+                           btnPowerSet->width(), btnPowerSet->height());
+
+    QPushButton *btnPrePage = new QPushButton(tr("btnPrePage"), this);
+    btnPrePage->setGeometry(m_btnPrePage->x(), m_btnPrePage->y(),
+                              m_btnPrePage->width(), m_btnPrePage->height());
+    //connect(btnPrePage, SIGNAL(clicked(bool)), this, SLOT(slotToolPage_1UI()));
+    connect(btnPrePage, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_1);});
+
+    m_toolPage_2UIList.push_back(btnPowerSet);
+    m_toolPage_2UIList.push_back(btnInnTest);
+    m_toolPage_2UIList.push_back(btnUnused_2);
+    m_toolPage_2UIList.push_back(btnUnused_1);
+    m_toolPage_2UIList.push_back(btnPrePage);
+
+    //Init set false
+    ShowToolPage_2UI(false);
+}
+
+void MainWindow::LanguageUI()
+{
+    QRadioButton *radioChiese = new QRadioButton(tr("Check"), this);
+    radioChiese->setGeometry(this->width() - 110, 66, 100, 30);
+
+    QRadioButton *radioEnglish = new QRadioButton(tr("Check"), this);
+    radioEnglish->setGeometry(radioChiese->x(), radioChiese->y() + radioChiese->height() + 20,
+                           radioChiese->width(), radioChiese->height());
+
+    m_languageUIList.push_back(radioChiese);
+    m_languageUIList.push_back(radioEnglish);
+
+    //Init set false
+    ShowLanguageUI(false);
+}
+
+void MainWindow::NetInfoUI()
+{
+    QLineEdit *leSSID = new QLineEdit(tr("leSSID"), this);
+    leSSID->setGeometry(140, 66, 310, 30);
+
+    QLineEdit *leIP = new QLineEdit(tr("leIP"), this);
+    leIP->setGeometry(leSSID->x(), leSSID->y() + leSSID->height() + 20,
+                           leSSID->width(), leSSID->height());
+
+    QLineEdit *leNetStatus = new QLineEdit(tr("leNetStatus"), this);
+    leNetStatus->setGeometry(leSSID->x() + 110, leIP->y() + leIP->height() + 20,
+                                leSSID->width() - 110, leSSID->height());
+
+
+    m_netInfoUIList.push_back(leSSID);
+    m_netInfoUIList.push_back(leIP);
+    m_netInfoUIList.push_back(leNetStatus);
+
+    //Init set false
+    ShowNetInfoUI(false);
+}
+
+void MainWindow::VersionInfoUI()
+{
+    QLineEdit *leDevName = new QLineEdit(tr("leDevName"), this);
+    leDevName->setObjectName("DevName");//set object name for used in choose widget
+    leDevName->setGeometry(187, 66, 263, 30);
+
+    QLineEdit *leSliderVersion = new QLineEdit(tr("leSliderVersion"), this);
+    leSliderVersion->setGeometry(leDevName->x(), leDevName->y() + leDevName->height() + 20,
+                                    leDevName->width(), leDevName->height());
+
+    QLineEdit *leUIVersion = new QLineEdit(tr("leUIVersion"), this);
+    leUIVersion->setGeometry(leSliderVersion->x(), leSliderVersion->y() + leSliderVersion->height() + 20,
+                                    leSliderVersion->width(), leSliderVersion->height());
+
+    QLineEdit *leCN = new QLineEdit(tr("leCN"), this);
+    leCN->setGeometry(leUIVersion->x() - 68, leUIVersion->y() + leUIVersion->height() + 20,
+                                leUIVersion->width() + 68, leUIVersion->height());
+
+
+    m_versionInfoUIList.push_back(leDevName);
+    m_versionInfoUIList.push_back(leSliderVersion);
+    m_versionInfoUIList.push_back(leUIVersion);
+    m_versionInfoUIList.push_back(leCN);
+
+    //Init set false
+    ShowVersionInfoUI(false);
+}
+
+void MainWindow::SystemSetUI()
+{
+    QCheckBox *chbSound = new QCheckBox(tr("Check"), this);
+    chbSound->setGeometry(this->width() - 110, 66, 100, 30);
+
+    QCheckBox *chkDetectGate = new QCheckBox(tr("Check"), this);
+    chkDetectGate->setGeometry(chbSound->x(), chbSound->y() + chbSound->height() + 20,
+                                chbSound->width(), chbSound->height());
+
+    m_systemSetUIList.push_back(chbSound);
+    m_systemSetUIList.push_back(chkDetectGate);
+
+    //Init set false
+    ShowSystemSetUI(false);
+}
+
+void MainWindow::MoveZUI()
+{
+    //pushbutton 的按下效果没有显示
+    QButtonGroup *box = new QButtonGroup;
+    box->setExclusive(true);
+    QPushButton *btn0_1mm = new QPushButton(tr("btn0_1mm"), this);
+    btn0_1mm->setGeometry(40, 80, 125, 50);
+    btn0_1mm->setCheckable(true);
+    box->addButton(btn0_1mm);
+
+    QPushButton *btn1mm = new QPushButton(tr("btn1mm"), this);
+    btn1mm->setGeometry(btn0_1mm->x() + btn0_1mm->width() + 12, btn0_1mm->y(),
+                         btn0_1mm->width(), btn0_1mm->height());
+    btn1mm->setCheckable(true);
+    box->addButton(btn1mm);
+
+    QPushButton *btn10mm = new QPushButton(tr("btn10mm"), this);
+    btn10mm->setGeometry(btn1mm->x() + btn1mm->width() + 12, btn1mm->y(),
+                           btn1mm->width(), btn1mm->height());
+    btn10mm->setCheckable(true);
+    box->addButton(btn10mm);
+
+    QPushButton *btnUp = new QPushButton(tr("btnUp"), this);
+    btnUp->setGeometry(24, 161, 113, 65);
+
+    QPushButton *btnDown = new QPushButton(tr("btnDown"), this);
+    btnDown->setGeometry(btnUp->x() + btnUp->width() + 47, btnUp->y(),
+                         btnUp->width(), btnUp->height());
+
+    QPushButton *btnNon = new QPushButton(tr("btnNon"), this);
+    btnNon->setGeometry(btnUp->x(), btnUp->y() + btnUp->height() + 14,
+                         btnUp->width(), btnUp->height());
+
+    QPushButton *btnZ0 = new QPushButton(tr("btnZ0"), this);
+    btnZ0->setGeometry(btnDown->x(), btnNon->y(),
+                         btnUp->width(), btnUp->height());
+
+    QPushButton *btnHome = new QPushButton(tr("btnHome"), this);
+    btnHome->setGeometry(btnDown->x() + btnDown->width() + 47, btnDown->y(),
+                         btnUp->width(), btnUp->height() * 2 + 14);
+    connect(btnHome, &QPushButton::clicked, this, [=](){WhichUI(MAIN);});
+
+    m_moveZUIList.push_back(btn0_1mm);
+    m_moveZUIList.push_back(btn1mm);
+    m_moveZUIList.push_back(btn10mm);
+    m_moveZUIList.push_back(btnUp);
+    m_moveZUIList.push_back(btnDown);
+    m_moveZUIList.push_back(btnNon);
+    m_moveZUIList.push_back(btnZ0);
+    m_moveZUIList.push_back(btnHome);
+
+    //Init set false
+    ShowMoveZUI(false);
+}
+
+void MainWindow::DetectResinUI()
+{
+    QRadioButton *radioChiese = new QRadioButton(tr("Check"), this);
+    radioChiese->setGeometry(this->width() - 110, 66, 100, 30);
+
+    QRadioButton *radioEnglish = new QRadioButton(tr("Check"), this);
+    radioEnglish->setGeometry(radioChiese->x(), radioChiese->y() + radioChiese->height() + 20,
+                           radioChiese->width(), radioChiese->height());
+
+    QPushButton *btnDetect = new QPushButton(tr("btnDetect"), this);
+    btnDetect->setGeometry(m_btnLanguage->x() + m_btnPrePage->width() + 140, m_btnPrePage->y(),
+                              m_btnPrePage->width(), m_btnPrePage->height());
+
+    m_detectResinUIList.push_back(radioChiese);
+    m_detectResinUIList.push_back(radioEnglish);
+    m_detectResinUIList.push_back(btnDetect);
+
+    //Init set false
+    ShowDetectResinUI(false);
+}
+
+void MainWindow::DetectLightUI()
+{
+    QButtonGroup *box = new QButtonGroup;
+    box->setExclusive(true);
+
+    QPushButton *btn_1 = new QPushButton(tr("btn_1"), this);
+    btn_1->setGeometry(25, 58, 158, 120);
+    btn_1->setCheckable(true);
+    box->addButton(btn_1);
+
+    QPushButton *btn_2 = new QPushButton(tr("btn_2"), this);
+    btn_2->setGeometry(25 + btn_2->width() + 70, 58, 158, 120);
+    btn_2->setCheckable(true);
+    box->addButton(btn_2);
+
+    QPushButton *btn_3 = new QPushButton(tr("btn_3"), this);
+    btn_3->setGeometry(25, 58 + btn_2->height() + 12, 158, 120);
+    btn_3->setCheckable(true);
+    box->addButton(btn_3);
+
+    QPushButton *btn_4 = new QPushButton(tr("btn_4"), this);
+    btn_4->setGeometry(btn_2->x(), btn_3->y(), 158, 120);
+    btn_4->setCheckable(true);
+    box->addButton(btn_4);
+
+    QLineEdit *leSec = new QLineEdit(tr("leSec"), this);
+    leSec->setGeometry(this->width() - leSec->width() - 10, 72, 60, 30);
+    leSec->setAlignment(Qt::AlignRight);
+
+    QPushButton *btnUp = new QPushButton(tr("btnUp"), this);
+    btnUp->setGeometry(this->width() - btnUp->width() - 15, 130, 92, 46);
+
+
+    QPushButton *btnDown = new QPushButton(tr("btnDown"), this);
+    btnDown->setGeometry(btnUp->x(), btnUp->y() + btnUp->height() + 14,
+                           btnUp->width(), btnUp->height());
+
+    QPushButton *btnNext = new QPushButton(tr("btnNext"), this);
+    btnNext->setGeometry(btnUp->x(), btnDown->y() + btnDown->height() + 12,
+                           btnUp->width(), btnUp->height() + 15);
+
+
+    m_detectLightUIList.push_back(btn_1);
+    m_detectLightUIList.push_back(btn_2);
+    m_detectLightUIList.push_back(btn_3);
+    m_detectLightUIList.push_back(btn_4);
+    m_detectLightUIList.push_back(leSec);
+    m_detectLightUIList.push_back(btnUp);
+    m_detectLightUIList.push_back(btnDown);
+    m_detectLightUIList.push_back(btnNext);
+
+    for(int i = 0; i < 4; ++i)
+    {
+        QPushButton *btnTmp = static_cast<QPushButton*>(m_detectLightUIList.at(i));
+        connect(btnTmp, &QPushButton::clicked, this, [=](){WhichUI(EXECLIGHT);});
+    }
+
+    //Init set false
+    ShowDetectLightUI(false);
+}
+
+void MainWindow::ConnectCloudUI()
+{
+    QLineEdit *leDevCN = new QLineEdit(tr("leDevCN"), this);
+    leDevCN->setGeometry(140, 66, 310, 30);
+
+    QCheckBox *chbCloudCtl = new QCheckBox(tr("CloudCtl"), this);
+    chbCloudCtl->setGeometry(this->width() - 110, 117, 100, 30);
+
+    QCheckBox *chbCloudCamero = new QCheckBox(tr("CloudCamero"), this);
+    chbCloudCamero->setGeometry(this->width() - 110, chbCloudCtl->y() + chbCloudCtl->height() + 20,
+                                chbCloudCtl->width(), chbCloudCtl->height());
+
+    QCheckBox *chbWIFI = new QCheckBox(tr("WIFI"), this);
+    chbWIFI->setGeometry(this->width() - 110, chbCloudCamero->y() + chbCloudCamero->height() + 20,
+                         chbCloudCtl->width(), chbCloudCtl->height());
+
+    m_connectCloudUIList.push_back(leDevCN);
+    m_connectCloudUIList.push_back(chbCloudCtl);
+    m_connectCloudUIList.push_back(chbCloudCamero);
+    m_connectCloudUIList.push_back(chbWIFI);
+
+    ShowConnectCloudUI(false);
+}
+
+void MainWindow::PowerTestUI()
+{
+
+    QLineEdit *lePercentage = new QLineEdit(tr("100"), this);
+    lePercentage->setGeometry(130, 135, 160, 50);
+    lePercentage->setAlignment(Qt::AlignHCenter);
+    lePercentage->setFont(QFont(tr("黑体"), 28, QFont::Bold));
+
+    QPushButton *btnConFirm = new QPushButton(tr("btnConFirm"), this);
+    btnConFirm->setGeometry(m_btnLanguage->x() + m_btnPrePage->width() + 140, m_btnPrePage->y(),
+                              m_btnPrePage->width(), m_btnPrePage->height());
+
+    m_powerTestUIList.push_back(lePercentage);
+    m_powerTestUIList.push_back(btnConFirm);
+
+    //Init set false
+    ShowPowerTestUI(false);
+}
+
+void MainWindow::InnTestUI()
+{
+    QPushButton *btnCloudTest = new QPushButton(tr("btnCloudTest"), this);
+    btnCloudTest->setGeometry(24, 61, 209, 90);
+    connect(btnCloudTest, &QPushButton::clicked, this, [=](){WhichUI(CLOUDTEST);});
+
+    QPushButton *btnNetTest = new QPushButton(tr("btnNetTest"), this);
+    btnNetTest->setGeometry(btnCloudTest->x() + btnCloudTest->width() + 14, btnCloudTest->y(),
+                         btnCloudTest->width(), btnCloudTest->height());
+    connect(btnNetTest, &QPushButton::clicked, this, [=](){WhichUI(NETTEST);});
+
+    QPushButton *btnCameroTest = new QPushButton(tr("btnCameroTest"), this);
+    btnCameroTest->setGeometry(btnCloudTest->x(), btnCloudTest->y() + btnCloudTest->height() + 10,
+                           btnCloudTest->width(), btnCloudTest->height());
+    connect(btnCameroTest, &QPushButton::clicked, this, [=](){WhichUI(CAMEROTEST);});
+
+    QPushButton *btnNon = new QPushButton(tr("btnNon"), this);
+    btnNon->setGeometry(btnNetTest->x(), btnCameroTest->y(),
+                           btnCloudTest->width(), btnCloudTest->height());
+
+    QPushButton *btnPrePage = new QPushButton(tr("btnPrePage"), this);
+    btnPrePage->setGeometry(btnCloudTest->x(), btnCameroTest->y() + btnCameroTest->height() + 16,
+                          btnCloudTest->width() - 63, btnCloudTest->height() / 2 - 5);
+
+    QPushButton *btnNextPage = new QPushButton(tr("m_btnPrePage"), this);
+    btnNextPage->setGeometry(btnCloudTest->x() + btnPrePage->width() + 140, btnPrePage->y(),
+                              btnPrePage->width(), btnPrePage->height());
+
+    m_innTestUIList.push_back(btnCloudTest);
+    m_innTestUIList.push_back(btnNetTest);
+    m_innTestUIList.push_back(btnCameroTest);
+    m_innTestUIList.push_back(btnNon);
+    m_innTestUIList.push_back(btnPrePage);
+    m_innTestUIList.push_back(btnNextPage);
+
+    //Init set false
+    ShowInnTestUI(false);
+}
+
+void MainWindow::CloudTestUI()
+{
+    QLineEdit *leDevCN = new QLineEdit(tr("leDevCN"), this);
+    leDevCN->setGeometry(140, 66, 310, 30);
+
+    QPushButton *btnGet = new QPushButton(tr("btnGet"), this);
+    btnGet->setGeometry(m_btnLanguage->x() + m_btnPrePage->width() + 140, m_btnPrePage->y(),
+                              m_btnPrePage->width(), m_btnPrePage->height());
+
+    m_cloudTestUIList.push_back(leDevCN);
+    m_cloudTestUIList.push_back(btnGet);
+
+    ShowCloudTestUI(false);
+}
+
+void MainWindow::NetTestUI()
+{
+    QLineEdit *leConnStyle = new QLineEdit(tr("leConnStyle"), this);
+    leConnStyle->setGeometry(this->width() - 114, 66, 85, 30);
+
+    QLineEdit *leConnStatus = new QLineEdit(tr("leConnStatus"), this);
+    leConnStatus->setGeometry(leConnStyle->x(), leConnStyle->y() + leConnStyle->height() + 20,
+                                leConnStyle->width(), leConnStyle->height());
+
+    QLineEdit *leSpeed = new QLineEdit(tr("leSpeed"), this);
+    leSpeed->setGeometry(155, leConnStatus->y() + leConnStatus->height() + 20, 280, 30);
+
+    QLineEdit *leProgram = new QLineEdit(tr("leProgram"), this);
+    leProgram->setGeometry(leSpeed->x(), leSpeed->y() + leSpeed->height() + 20,
+                           leSpeed->width(), leSpeed->height());
+
+    QPushButton *btnDownload = new QPushButton(tr("btnDownload"), this);
+    btnDownload->setGeometry(m_btnLanguage->x() + m_btnPrePage->width() + 140, m_btnPrePage->y(),
+                              m_btnPrePage->width(), m_btnPrePage->height());
+
+    m_netTestUIList.push_back(leConnStyle);
+    m_netTestUIList.push_back(leConnStatus);
+    m_netTestUIList.push_back(leSpeed);
+    m_netTestUIList.push_back(leProgram);
+    m_netTestUIList.push_back(btnDownload);
+
+    //Init set false
+    ShowNetTestUI(false);
+}
+
+void MainWindow::CameroTestUI()
+{
+    QLineEdit *leCameroStatus = new QLineEdit(tr("leCameroStatus"), this);
+    leCameroStatus->setGeometry(this->width() - 114, 66, 85, 30);
+
+    m_cameroTestUIList.push_back(leCameroStatus);
+
+    ShowCameroTestUI(false);
+}
+
+void MainWindow::ExecLightUI()
+{
+    QWidget *widget = new QWidget(this);
+    widget->setGeometry(38, 80, 406, 125);
+    widget->setStyleSheet("QWidget{background-color:rgba(100, 100, 100, 50)}"
+                          "QWidget{border-radius:8px}");
+
+    QProgressBar *proess = new QProgressBar(this);
+    proess->setGeometry(92, widget->y() + widget->height() + 35, 296, 36);
+    proess->setOrientation(Qt::Horizontal);
+    proess->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
+    proess->setValue(100);
+    proess->setFormat(tr("Current progress : %1%").arg(50));
+    proess->setStyleSheet("QProgressBar{background-color:rgb(255, 0, 0); color:white}"
+                          "QProgressBar::chunk{border-radius:3px;background:rgb(57, 97, 148)}");
+
+
+    m_execLightUIList.push_back(widget);
+    m_execLightUIList.push_back(proess);
+
+    ShowExecLightUI(false);
+}
+
+void MainWindow::PrintTestUI()
+{
+    QLabel *labelView = new QLabel(this);
+    labelView->setScaledContents(true);
+    labelView->setGeometry(30, 61, 319, 155);
+    //labelView->setStyleSheet("border:2px groove gray;border-radius:10px;padding:2px 4px;");
+    QPixmap pixmap(":/anycubic_UI_png/printTest.jpeg");
+
+    // 画成圆形图片
+    int width = labelView->width();
+    int height = labelView->height();
+    QSize size(width, height);
+    QBitmap mask(size);
+    QPainter painter(&mask);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
+    painter.fillRect(0, 0, size.width(), size.height(), Qt::white);
+    painter.setBrush(QColor(0, 0, 0));
+    painter.drawRoundedRect(0, 0, size.width(), size.height(), 10, 10);//修改这个值，可以改弧度，和直径相等就是圆形
+    QPixmap image = pixmap.scaled(size);
+    image.setMask(mask);
+
+    labelView->setPixmap(image);
+
+    QPushButton *btnSet = new QPushButton(tr("btnSet"), this);
+    btnSet->setGeometry(this->width() - btnSet->width() - 10, 56, 86, 76);
+    connect(btnSet, &QPushButton::clicked, this, [=](){WhichUI(PRINTPARAMETER);});
+
+    QPushButton *btnStart = new QPushButton(tr("btnStart"), this);
+    btnStart->setGeometry(btnSet->x(), btnSet->y() + btnSet->height() + 13,
+                         btnSet->width(), btnSet->height());
+
+    QPushButton *btnCansel = new QPushButton(tr("btnCansel"), this);
+    btnCansel->setGeometry(btnStart->x(), btnStart->y() + btnStart->height() + 13,
+                           btnStart->width(), btnStart->height());
+    connect(btnCansel, &QPushButton::clicked, this, [=](){WhichUI(FILELIST);});
+
+    QLineEdit *lePass = new QLineEdit(this);
+    lePass->setGeometry(70, this->height() - 50, 80, 27);
+    lePass->setText(tr("12:01:30"));
+
+    QLineEdit *leTotal = new QLineEdit(this);
+    leTotal->setGeometry(lePass->x() + lePass->width() + 43, lePass->y(),
+                            lePass->width(), lePass->height());
+    leTotal->setText(tr("24:01:30"));
+
+    QPushButton *btnMore = new QPushButton(this);
+    btnMore->setGeometry(leTotal->x() + leTotal->width() + 20, leTotal->y(), 28, 28);
+
+    m_printTestUIList.push_back(labelView);
+    m_printTestUIList.push_back(btnSet);
+    m_printTestUIList.push_back(btnStart);
+    m_printTestUIList.push_back(btnCansel);
+    m_printTestUIList.push_back(lePass);
+    m_printTestUIList.push_back(leTotal);
+    m_printTestUIList.push_back(btnMore);
+
+    ShowPrintTestUI(false);
+}
+
+void MainWindow::PrintParameterUI()
+{
+    QLineEdit *leFileName = new QLineEdit(tr("leFileName"), this);
+    leFileName->setGeometry(175, 61, 275, 30);
+
+    QLineEdit *lePrintTime = new QLineEdit(tr("lePrintTime"), this);
+    lePrintTime->setGeometry(leFileName->x(), leFileName->y() + leFileName->height() + 13,
+                             leFileName->width(), leFileName->height());
+
+    QLineEdit *leLeftTime = new QLineEdit(tr("leLeftTime"), this);
+    leLeftTime->setGeometry(lePrintTime->x(), lePrintTime->y() + lePrintTime->height() + 13,
+                             leFileName->width(), leFileName->height());
+
+    QLineEdit *leLeftWork = new QLineEdit(tr("leLeftWork"), this);
+    leLeftWork->setGeometry(leLeftTime->x(), leLeftTime->y() + leLeftTime->height() + 13,
+                             leFileName->width(), leFileName->height());
+
+    QLineEdit *leNeedResin = new QLineEdit(tr("leNeedResin"), this);
+    leNeedResin->setGeometry(leLeftWork->x(), leLeftWork->y() + leLeftWork->height() + 13,
+                             leFileName->width(), leFileName->height());
+
+    QLineEdit *lePrintProcess = new QLineEdit(tr("lePrintProcess"), this);
+    lePrintProcess->setGeometry(leNeedResin->x(), leNeedResin->y() + leNeedResin->height() + 13,
+                             leFileName->width(), leFileName->height());
+
+    m_printParameterUIList.push_back(leFileName);
+    m_printParameterUIList.push_back(lePrintTime);
+    m_printParameterUIList.push_back(leLeftTime);
+    m_printParameterUIList.push_back(leLeftWork);
+    m_printParameterUIList.push_back(leNeedResin);
+    m_printParameterUIList.push_back(lePrintProcess);
+
+    ShowPrintParameterUI(false);
+}
+
+void MainWindow::ShowMainUI(bool visible)
+{
+    for(int i = 0; i < m_mainUIList.size(); ++i)
+    {
+        m_mainUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowFileListUI(bool visible)
+{
+    for(int i = 0; i < m_fileUIList.size(); ++i)
+    {
+        m_fileUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowSystemUI(bool visible)
+{
+    for(int i = 0; i < m_systemUIList.size(); ++i)
+    {
+        m_systemUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowToolPage_1UI(bool visible)
+{
+    for(int i = 0; i < m_toolPage_1UIList.size(); ++i)
+    {
+        m_toolPage_1UIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowToolPage_2UI(bool visible)
+{
+    for(int i = 0; i < m_toolPage_2UIList.size(); ++i)
+    {
+        m_toolPage_2UIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowLanguageUI(bool visible)
+{
+    for(int i = 0; i < m_languageUIList.size(); ++i)
+    {
+        m_languageUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowNetInfoUI(bool visible)
+{
+    for(int i = 0; i < m_netInfoUIList.size(); ++i)
+    {
+        m_netInfoUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowVersionInfoUI(bool visible)
+{
+    for(int i = 0; i < m_versionInfoUIList.size(); ++i)
+    {
+        m_versionInfoUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowSystemSetUI(bool visible)
+{
+    for(int i = 0; i < m_systemSetUIList.size(); ++i)
+    {
+        m_systemSetUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowMoveZUI(bool visible)
+{
+    for(int i = 0; i < m_moveZUIList.size(); ++i)
+    {
+        m_moveZUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowDetectResinUI(bool visible)
+{
+    for(int i = 0; i < m_detectResinUIList.size(); ++i)
+    {
+        m_detectResinUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowDetectLightUI(bool visible)
+{
+    for(int i = 0; i < m_detectLightUIList.size(); ++i)
+    {
+        m_detectLightUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowConnectCloudUI(bool visible)
+{
+    for(int i = 0; i < m_connectCloudUIList.size(); ++i)
+    {
+        m_connectCloudUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowPowerTestUI(bool visible)
+{
+    for(int i = 0; i < m_powerTestUIList.size(); ++i)
+    {
+        m_powerTestUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowInnTestUI(bool visible)
+{
+    for(int i = 0; i < m_innTestUIList.size(); ++i)
+    {
+        m_innTestUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowCloudTestUI(bool visible)
+{
+    for(int i = 0; i < m_cloudTestUIList.size(); ++i)
+    {
+        m_cloudTestUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowNetTestUI(bool visible)
+{
+    for(int i = 0; i < m_netTestUIList.size(); ++i)
+    {
+        m_netTestUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowCameroTestUI(bool visible)
+{
+    for(int i = 0; i < m_cameroTestUIList.size(); ++i)
+    {
+        m_cameroTestUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowExecLightUI(bool visible)
+{
+    for(int i = 0; i < m_execLightUIList.size(); ++i)
+    {
+        m_execLightUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowPrintTestUI(bool visible)
+{
+    for(int i = 0; i < m_printTestUIList.size(); ++i)
+    {
+        m_printTestUIList.at(i)->setVisible(visible);
+    }
+}
+
+void MainWindow::ShowPrintParameterUI(bool visible)
+{
+    for(int i = 0; i < m_printParameterUIList.size(); ++i)
+    {
+        m_printParameterUIList.at(i)->setVisible(visible);
+    }
+}
+
+
+void MainWindow::WhichUI(const EWHICHPAGE which)
+{
+    QPalette palette;
+    m_btnBack->setVisible(true);
+    m_btnBack->disconnect();
+    qDebug() << "which = " << which;
+    switch (which) {
+    case MAIN:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/1.png")));
+        m_btnBack->setVisible(false);
+        break;
+    case FILELIST:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/2.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(MAIN);});
+        break;
+    case SYSTEM:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/3.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(MAIN);});
+        break;
+    case TOOLPAGE_1:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/4.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(MAIN);});
+        break;
+    case TOOLPAGE_2:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/5.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(MAIN);});
+        break;
+    case LANGUAGE:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/7.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(SYSTEM);});
+        break;
+    case NETINFO:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/8.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(SYSTEM);});
+        break;
+    case VERSIONINFO:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/9.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(SYSTEM);});
+        break;
+    case SYSTEMSET:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/10.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(SYSTEM);});
+        break;
+    case MOVEZ:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/11.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_1);});
+        break;
+    case DETECTRESIN_1:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/12.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_1);});
+        break;
+    case DETECTLIGHT:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/13.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_1);});
+        break;
+    case CONNCLOUD:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/14.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_1);});
+        break;
+    case POWERSET:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/15.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_2);});
+        break;
+    case INNTEST:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/16.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(TOOLPAGE_2);});
+        break;
+    case CLOUDTEST:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/23.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(INNTEST);});
+        break;
+    case NETTEST:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/22.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(INNTEST);});
+        break;
+    case CAMEROTEST:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/24.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(INNTEST);});
+        break;
+    case EXECLIGHT:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/21.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(DETECTLIGHT);});
+        m_btnBack->setVisible(false);
+        ExecLight();//debug
+        break;
+    case PRINTTEST:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/19.png")));
+        m_btnBack->setVisible(false);
+        break;
+    case PRINTPARAMETER:
+        palette.setBrush(QPalette::Background, QBrush(QPixmap(":/anycubic_UI_png/26.png")));
+        connect(m_btnBack, &QPushButton::clicked, this, [=](){WhichUI(PRINTTEST);});
+        break;
+    default:
+        break;
+    }
+
+    this->setPalette(palette);
+    QMap<EWHICHPAGE, pfShowUI>::iterator itr = g_pfShowUIMap.begin();
+    for(; itr != g_pfShowUIMap.end(); ++itr)
+    {
+        if(itr.key() == which)
+        {
+            (this->*(itr.value()))(true);
+        }
+        else
+        {
+            (this->*(itr.value()))(false);
+        }
+    }
+}
+
+//debug code
+static QTimer *t;
+void MainWindow::ExecLight()
+{
+    QProgressBar *pbTmp;
+    for(int i = 0; i < m_execLightUIList.size(); ++i)
+    {
+        if(m_execLightUIList.at(i)->inherits("QProgressBar"))
+        {
+            pbTmp = static_cast<QProgressBar*>(m_execLightUIList.at(i));
+        }
+    }
+    pbTmp->setValue(0);
+    pbTmp->setFormat(tr("Current progress : %1%").arg(0));
+    qDebug() << "maximum = " << pbTmp->maximum();
+    t = new QTimer(this);
+    connect(t, SIGNAL(timeout()), this, SLOT(slotExecLightProcess()));
+    t->start(100);
+}
+
+void MainWindow::slotExecLightProcess()
+{
+    static int j = 0;
+    static QProgressBar *pbTmp;
+    for(int i = 0; i < m_execLightUIList.size(); ++i)
+    {
+        if(m_execLightUIList.at(i)->inherits("QProgressBar"))
+        {
+            pbTmp = static_cast<QProgressBar*>(m_execLightUIList.at(i));
+        }
+    }
+    j = pbTmp->value() + 1;
+    pbTmp->setValue(j);
+    pbTmp->setFormat(tr("Current progress : %1%").arg(j));
+    qDebug() << "j = " << j;
+    qDebug() << "maximum = " << pbTmp->maximum();
+    if(j == pbTmp->maximum())
+    {
+        t->stop();
+        m_btnBack->setVisible(true);
+        //pbTmp->setValue(0);
+    }
+}
+
+

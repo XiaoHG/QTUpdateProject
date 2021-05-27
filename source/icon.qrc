@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/close.png</file>
+        <file>image/update.png</file>
+        <file>image/updating.gif</file>
+        <file>image/cansel.png</file>
+        <file>image/restart.png</file>
+        <file>image/cansel1.png</file>
+        <file>image/down.png</file>
+        <file>image/up.png</file>
+        <file>image/press_down.png</file>
+        <file>image/press_up.png</file>
+        <file>image/update1.png</file>
+        <file>image/update2.png</file>
+        <file>image/update3.png</file>
+        <file>image/restart1.png</file>
+    </qresource>
+</RCC>
