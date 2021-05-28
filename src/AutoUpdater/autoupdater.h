@@ -121,9 +121,10 @@ private:
      * Make del.bat script file for delete all
      * old version files.
      */
-    QString MakeDeletePathScript(const QString saveScriptPath,
+    void MakeDeletePathScript(const QString saveScriptPath,
                               QString delPath,
-                              const QString scriptName);
+                              const QString scriptName,
+                              const int delay = 0);
 
     /**
      * @brief FailDeleteNewVersionDir

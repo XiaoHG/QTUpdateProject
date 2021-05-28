@@ -11,7 +11,7 @@ static const QString VERSION = "V0.0";
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    m_isCh(false)
+    m_isCh(true)
 {
     ui->setupUi(this);
     this->resize(800, 500);
@@ -39,7 +39,7 @@ void MainWindow::StartUpdateProcess(QString isFirst, QString isCh)
     arguments << isCh; //argv[2]
     arguments << pid; //argv[2]
 	qDebug() << arguments;
-    QString strExe = QApplication::applicationDirPath() + "/../../../src/AutoUpdater/debug/AutoUpdater.exe";
+    QString strExe = QApplication::applicationDirPath() + "/../../../src/AutoUpdater/release/AutoUpdater.exe";
     qDebug() << strExe;
     m_updateProcess->start(strExe, arguments);
 }
