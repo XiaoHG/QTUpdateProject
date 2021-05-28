@@ -34,7 +34,7 @@ public:
      * @param isFirst from parent process.
      * Process entrance, wether update or not.
      */
-    void Updater(bool isFirst);
+    void Updater(bool isFirst, QString parentPid);
 
 private:
     AutoUpdaterUI(bool bCh, QWidget *parent = 0);

@@ -3,6 +3,8 @@
 #include <QDir>
 #include <QDebug>
 
+#include <process.h>
+
 static const QString APPNAME = "AutoUpdateTest";
 static const QString VERSION = "V0.0";
 
@@ -32,9 +34,12 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::StartUpdateProcess(QString isFirst, QString isCh)
 {
     QStringList arguments;
+    QString pid = QString::asprintf("%1").arg(_getpid());
     arguments << isFirst; //argv[1]
     arguments << isCh; //argv[2]
-    QString strExe = QApplication::applicationDirPath() + "/../../../src/AutoUpdater/release/AutoUpdater.exe";
+    arguments << pid; //argv[2]
+	qDebug() << arguments;
+    QString strExe = QApplication::applicationDirPath() + "/../../../src/AutoUpdater/debug/AutoUpdater.exe";
     qDebug() << strExe;
     m_updateProcess->start(strExe, arguments);
 }

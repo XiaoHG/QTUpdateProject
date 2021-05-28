@@ -29,7 +29,7 @@ extern UpdateLog g_log;
 // linux
 #endif
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     const QString UPDATE_SYSTEM = "win32";
 #endif
 
@@ -358,9 +358,9 @@ QString AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString 
                       "rm -rf " + delPath;
 #endif
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     delPath = delPath.replace(QRegExp("\\/"), "\\\\");
-    QString content = "ping -n 3 127.0.0.1>nul\n"
+    QString content = "ping -n 3 0.0.0.0>nul\n"
                       "@echo off\n"
                       "rd /s/q " + delPath;
 #endif
@@ -393,6 +393,11 @@ void AutoUpdater::SaveLog()
     QFile::copy(sourceLogPath, logPath);
 }
 
+void AutoUpdater::SetParentPid(QString parentPid)
+{
+    m_parentPid = parentPid;
+}
+
 void AutoUpdater::RestartApp()
 {
     g_log.log(UpdateLog::INFO, "Restart application for run new version!", __FILE__, __LINE__);
@@ -403,15 +408,15 @@ void AutoUpdater::RestartApp()
     //Make desktop link for new version.
     CreateNewLink();
 
-    //Save log to new version path.
-    SaveLog();
 
     g_log.log(UpdateLog::INFO, "Run " + delScriptPath + " script to delete old script", __FILE__, __LINE__);
     QProcess::startDetached(delScriptPath);
 
     //Execute delete script file, and terminal old version appliction
     //taskkill /f /t /im AutoUpdateTestV1.0.exe
-    QString oldApp = APPLICATION_NAME + m_oldVersion + ".exe";
+    QString applicationName = APPLICATION_NAME + ".exe";
+
+    QProcess curPrecess;
 
 #ifdef Q_OS_MAC
     QString killOldAppCommand = "kill -9 " + oldApp;
@@ -421,18 +426,22 @@ void AutoUpdater::RestartApp()
     QString killOldAppCommand = "kill -9 " + oldApp;
 #endif
 
-#ifdef Q_OS_WIN32
-    QString killOldAppCommand = "taskkill /f /t /im " + oldApp;
+#ifdef Q_OS_WIN
+    QString killOldAppCommand = "taskkill /f /t /pid " + m_parentPid;
 #endif
 
-    g_log.log(UpdateLog::INFO, QString::asprintf("Kill old version process, path : %1, command: %2").arg(oldApp).arg(killOldAppCommand),
+	//kill the old
+    g_log.log(UpdateLog::INFO, QString::asprintf("Kill old version process, name : %1, command: %2").arg(applicationName).arg(killOldAppCommand),
               __FILE__, __LINE__);
     QProcess::startDetached(killOldAppCommand);
 
-    //Start new version application.
-    QString newApp = m_newVersionPath + "/" + APPLICATION_NAME + m_newVersion + ".exe";
-    g_log.log(UpdateLog::INFO, "Start new version, path: " + newApp, __FILE__, __LINE__);
-    QProcess::startDetached(newApp);
+	//Start new version application.
+	QString newApp = m_newVersionPath + "/" + applicationName;
+	g_log.log(UpdateLog::INFO, "Start new version, path: " + newApp, __FILE__, __LINE__);
+	QProcess::startDetached(newApp);
+
+    //Save log to new version path.
+    SaveLog();
 
     exit(0);
 }
@@ -446,7 +455,7 @@ void AutoUpdater::CreateNewLink()
     desktopLink.append(APPLICATION_NAME);
     desktopLink.append(".lnk");
 
-    QString newAppPath = m_newVersionPath + "/" + APPLICATION_NAME + m_newVersion + ".exe";
+    QString newAppPath = m_newVersionPath + "/" + APPLICATION_NAME + ".exe";
     g_log.log(UpdateLog::INFO, "New application path: " + newAppPath, __FILE__, __LINE__);
     g_log.log(UpdateLog::INFO, "Desktop link: " + desktopLink, __FILE__, __LINE__);
     QFile::link(newAppPath, desktopLink);

@@ -45,7 +45,9 @@ int main(int argc, char *argv[])
         bCh = false;
     }
 
-    AutoUpdaterUI::getInstance(bCh)->Updater(bFirst);
+    QString parentPid = argv[3];
+
+    AutoUpdaterUI::getInstance(bCh)->Updater(bFirst, parentPid);
 
     return a.exec();
 }

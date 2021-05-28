@@ -132,5 +132,15 @@
         <source> file download time out!</source>
         <translation type="unfinished"> 文件下载超时！</translation>
     </message>
+  <message>
+    <location filename="autoupdaterui.cpp" line="451"/>
+    <source>Current version is </source>
+    <translation type="unfinished">当前版本为 </translation>
+  </message>
+  <message>
+    <location filename="autoupdaterui.cpp" line="452"/>
+    <source>Changed log of history: </source>
+    <translation type="unfinished">版本历史记录：</translation>
+  </message>
 </context>
 </TS>

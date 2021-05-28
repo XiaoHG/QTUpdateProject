@@ -299,7 +299,7 @@ void AutoUpdaterUI::UpdateFailureUI()
     ShowWhichUI(m_updateFailureWidgets, false);
 }
 
-void AutoUpdaterUI::Updater(bool isFirst)
+void AutoUpdaterUI::Updater(bool isFirst, QString parentPid)
 {
     m_first = isFirst;
 
@@ -308,6 +308,8 @@ void AutoUpdaterUI::Updater(bool isFirst)
         this->show();
     g_log.log(UpdateLog::DEBUG, "Beging checking for update timer, It is time out at 30 second!", __FILE__, __LINE__);
 
+    //set parent pid
+    m_updater->SetParentPid(parentPid);
     //start to check for update.
     m_updater->DownloadXMLFile();
 }
@@ -431,23 +433,6 @@ void AutoUpdaterUI::slotDownloadInitFileOver()
     g_log.log(UpdateLog::INFO, "It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt",
               __FILE__, __LINE__);
     m_checkForUpdateTimer->stop();
-    m_outputVersionInfoEdit->clear();
-
-    //Get the version information from download file.
-    QString strVersionInfo = m_updater->GetVersionInfo();
-    if(strVersionInfo.isEmpty())
-    {
-        g_log.log(UpdateLog::WARN, "Version information is missing, please check version information file whether is normal",
-                  __FILE__, __LINE__);
-        m_outputVersionInfoEdit->setText(QObject::tr("Version information is missing!"));
-        m_outputVersionInfoEdit->append(QObject::tr("Pleasse check network, or contact us: www.anycubic.com"));
-    }
-    else
-    {
-        m_outputVersionInfoEdit->setText(strVersionInfo.toLocal8Bit());
-    }
-
-    m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
 
     //isUpdate is true to update, or not.
     if(m_updater->IsUpdate())
@@ -463,6 +448,28 @@ void AutoUpdaterUI::slotDownloadInitFileOver()
         ShowWhichUI(m_notUpdateWidgets, true);
 
     }
+
+	m_outputVersionInfoEdit->clear();
+	m_outputVersionInfoEdit->append(QObject::tr("Current version is ") + m_updater->GetOldVersion());
+    m_outputVersionInfoEdit->append(QObject::tr(" "));
+	m_outputVersionInfoEdit->append(QObject::tr("Changed log of history: "));
+
+	//Get the version information from download file.
+	QString strVersionInfo = m_updater->GetVersionInfo();
+	if (strVersionInfo.isEmpty())
+	{
+		g_log.log(UpdateLog::WARN, "Version information is missing, please check version information file whether is normal",
+			__FILE__, __LINE__);
+		m_outputVersionInfoEdit->setText(QObject::tr("Version information is missing!"));
+		m_outputVersionInfoEdit->append(QObject::tr("Pleasse check network, or contact us: www.anycubic.com"));
+	}
+	else
+	{
+        m_outputVersionInfoEdit->append(strVersionInfo.toLocal8Bit());
+	}
+
+	m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
+
     this->show();
 }
 
@@ -622,8 +629,4 @@ void AutoUpdaterUI::mouseReleaseEvent(QMouseEvent *event)
         m_bDrag = false;
     }
 }
-
-
-
-
 

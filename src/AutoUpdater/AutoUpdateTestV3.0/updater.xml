@@ -3,7 +3,7 @@
 	<version>V3.0</version>
 	<filelist>
 		<file name="AutoUpdater.exe" dir="" version="3.0"/>
-		<file name="AutoUpdateTestV3.0.exe" dir="" version="3.0"/>
+		<file name="AutoUpdateTest.exe" dir="" version="2.0"/>
 		<file name="D3Dcompiler_47.dll" dir="" version="3.0"/>
 		<file name="libEGL.dll" dir="" version="3.0"/>
 		<file name="libGLESV2.dll" dir="" version="3.0"/>

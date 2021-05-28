@@ -6,9 +6,12 @@
 
 extern UpdateLog g_log;
 
+bool FtpManager::m_isDownloadError = false;
+
 FtpManager::FtpManager(QObject *parent) :
     QObject(parent),
-    m_timeout(0)
+    m_timeout(0),
+    m_retryDownloadTimes(1)
 {
     m_url.setScheme("ftp");
     setHost("192.168.4.132");
@@ -25,26 +28,32 @@ FtpManager::~FtpManager()
 void FtpManager::get(const QString &downloadPath, const QString &localPath)
 {
     g_log.log(UpdateLog::INFO, "Start download file: " + downloadPath, __FILE__, __LINE__);
-    m_path = localPath;
+    m_timeout = 0;
+
+    m_localPath = localPath;
+    m_downloadPath = downloadPath;
+    sigDownloadStartPerFile(m_downloadPath);
 
     m_url.setPath(downloadPath);
-    sigDownloadStartPerFile(m_url.path());
-
     m_pReply = m_manager.get(QNetworkRequest(m_url));
-    connect(m_pReply, SIGNAL(finished()), SLOT(downloadFinished()));
-    connect(m_pReply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(Error(QNetworkReply::NetworkError)));
+    connect(m_pReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
+    connect(m_pReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(Error(QNetworkReply::NetworkError)));
 }
 
 void FtpManager::downloadFinished()
 {
     m_downloadTimeout->stop();
+    if(m_isDownloadError)
+    {
+        return;
+    }
 
     //Write to file.
-    QFile file(m_path);
+    QFile file(m_localPath);
     if (!file.open(QIODevice::WriteOnly))
     {
-        g_log.log(UpdateLog::FATAL, "Can't open local file : " + m_path, __FILE__, __LINE__);
-        sigReplyError("Can't open local file : " + m_path);
+        g_log.log(UpdateLog::FATAL, "Can't open local file : " + m_localPath, __FILE__, __LINE__);
+        sigReplyError("Can't open local file : " + m_localPath);
         return;
     }
 
@@ -52,19 +61,19 @@ void FtpManager::downloadFinished()
     file.flush();
     file.close();
 
-    if(m_path.contains("/download/updater.xml"))
+    if(m_localPath.contains("/download/updater.xml"))
     {
         g_log.log(UpdateLog::INFO, "Finish download updater.xml file!", __FILE__, __LINE__);
         sigDownloadUpdaterXmlOver();
         return;
     }
-    if(m_path.contains("/download/versionInfoCh.txt"))
+    if(m_localPath.contains("/download/versionInfoCh.txt"))
     {
         g_log.log(UpdateLog::INFO, "Finish download versionInfoCh.txt file!", __FILE__, __LINE__);
         sigDownloadVersionInfoFileOver();
         return;
     }
-    if(m_path.contains("/download/versionInfoEn.txt"))
+    if(m_localPath.contains("/download/versionInfoEn.txt"))
     {
         g_log.log(UpdateLog::INFO, "Finish download versionInfoEn.txt file!", __FILE__, __LINE__);
         sigDownloadVersionInfoEnfileOver();
@@ -77,6 +86,10 @@ void FtpManager::downloadFinished()
 
 void FtpManager::slotDownloadTimeout()
 {
+    if(m_isDownloadError)
+    {
+        m_downloadTimeout->stop();
+    }
     g_log.log(UpdateLog::FATAL, "Download file " + m_url.path() + " time: " + QString::asprintf("%1").arg(m_timeout),
               __FILE__, __LINE__);
     if(m_timeout++ == 30)
@@ -89,15 +102,56 @@ void FtpManager::slotDownloadTimeout()
         timeoutMsg.append(m_url.path());
         timeoutMsg.append(QObject::tr(" file download time out!"));
         sigDownloadTimeout(timeoutMsg);
+
+        m_isDownloadError = true;
     }
 }
 
-void FtpManager::Error(QNetworkReply::NetworkError)
+void FtpManager::Error(QNetworkReply::NetworkError errorCode)
 {
-    g_log.log(UpdateLog::WARN, "Download error: " + m_pReply->errorString(), __FILE__, __LINE__);
+    switch (errorCode) {
+    case QNetworkReply::ContentAccessDenied:
+        RetryDownload();
+        return;
+    default:
+        break;
+    }
 
+	QString errorMsg = "Download error: code = ";
+    errorMsg.append(QString::asprintf("%1").arg(errorCode));
+	errorMsg.append(". error string = ");
+	errorMsg.append(m_pReply->errorString());
+    g_log.log(UpdateLog::FATAL, errorMsg, __FILE__, __LINE__);
+
+    ErrorReport();
+}
+
+void FtpManager::RetryDownload()
+{
+    //Log
+    QString errorMsg = QString::asprintf("Try time = %1, Download error: code = ").arg(m_retryDownloadTimes);
+    errorMsg.append(QString::asprintf("%1").arg(m_pReply->error()));
+    errorMsg.append(". error string = ");
+    errorMsg.append(m_pReply->errorString());
+    g_log.log(UpdateLog::WARN, errorMsg, __FILE__, __LINE__);
+
+    m_retryDownloadTimes++;
+    if(m_retryDownloadTimes > 3)
+    {
+        //download over with fail.
+        ErrorReport();
+    }
+
+    //Download retry
+    m_pReply->disconnect(this);
+    get(m_downloadPath, m_localPath);
+}
+
+void FtpManager::ErrorReport()
+{
     //It is emited to AutoUpdater.
     sigReplyError(m_pReply->errorString());
+    m_isDownloadError = true;
 }
 
 

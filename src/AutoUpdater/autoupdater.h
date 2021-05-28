@@ -97,6 +97,11 @@ public:
      */
     void AbnormalExit();
 
+    /**
+     * @brief SetParentPid
+     */
+    void SetParentPid(QString parentPid);
+
 private:
     /**
      * @brief makeInitXML
@@ -134,6 +139,7 @@ private:
      * @brief SaveLog
      */
     void SaveLog();
+
 
 protected slots:
     /**
@@ -220,6 +226,9 @@ private:
 
     //Download init files
     bool m_isCheckForUpdate;
+
+    //parent pid
+    QString m_parentPid;
 
 };
 

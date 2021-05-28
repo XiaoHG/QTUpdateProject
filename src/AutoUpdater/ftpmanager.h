@@ -28,6 +28,19 @@ public:
     inline void setUserName(const QString &userName) { m_url.setUserName(userName); }
     inline void setPassword(const QString &password) { m_url.setPassword(password); }
 
+private:
+    /**
+     * @brief RetryDownload
+     * It is will retry 3th.
+     */
+    void RetryDownload();
+
+    /**
+     * @brief ErrorReport
+     * It is mean download error of the result.
+     */
+    void ErrorReport();
+
 protected slots:
     /**
      * @brief downloadFinished
@@ -45,7 +58,7 @@ protected slots:
      * @brief error
      * Download error
      */
-    void Error(QNetworkReply::NetworkError);
+    void Error(QNetworkReply::NetworkError errorCode);
 
 signals:
     /**
@@ -102,13 +115,20 @@ signals:
 private:
     //Download parameter
     QUrl m_url;
-    QString m_path;
+    QString m_localPath;
+    QString m_downloadPath;
     QNetworkReply *m_pReply;
     QNetworkAccessManager m_manager;
 
     //Download time out
     int m_timeout;
     QTimer *m_downloadTimeout;
+
+    //error if
+    static bool m_isDownloadError;
+
+    //retry 3th
+    int m_retryDownloadTimes;
 
 };
 

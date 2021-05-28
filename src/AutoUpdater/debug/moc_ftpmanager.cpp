@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_FtpManager_t {
-    QByteArrayData data[14];
-    char stringdata0[276];
+    QByteArrayData data[15];
+    char stringdata0[286];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -44,7 +44,8 @@ QT_MOC_LITERAL(9, 191, 13), // "sigReplyError"
 QT_MOC_LITERAL(10, 205, 16), // "downloadFinished"
 QT_MOC_LITERAL(11, 222, 19), // "slotDownloadTimeout"
 QT_MOC_LITERAL(12, 242, 5), // "Error"
-QT_MOC_LITERAL(13, 248, 27) // "QNetworkReply::NetworkError"
+QT_MOC_LITERAL(13, 248, 27), // "QNetworkReply::NetworkError"
+QT_MOC_LITERAL(14, 276, 9) // "errorCode"
 
     },
     "FtpManager\0sigDownloadUpdaterXmlOver\0"
@@ -54,7 +55,8 @@ QT_MOC_LITERAL(13, 248, 27) // "QNetworkReply::NetworkError"
     "sigDownloadFinishPerFile\0sigAllFileDownFinish\0"
     "sigDownloadTimeout\0sigReplyError\0"
     "downloadFinished\0slotDownloadTimeout\0"
-    "Error\0QNetworkReply::NetworkError"
+    "Error\0QNetworkReply::NetworkError\0"
+    "errorCode"
 };
 #undef QT_MOC_LITERAL
 
@@ -99,7 +101,7 @@ static const uint qt_meta_data_FtpManager[] = {
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 13,    2,
+    QMetaType::Void, 0x80000000 | 13,   14,
 
        0        // eod
 };
