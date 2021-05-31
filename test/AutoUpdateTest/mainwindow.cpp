@@ -39,7 +39,7 @@ void MainWindow::StartUpdateProcess(QString isFirst, QString isCh)
     arguments << isCh; //argv[2]
     arguments << pid; //argv[2]
 	qDebug() << arguments;
-    QString strExe = QApplication::applicationDirPath() + "/../../../src/AutoUpdater/release/AutoUpdater.exe";
+    QString strExe = QApplication::applicationDirPath() + "/../../../src/AutoUpdater/debug/AutoUpdater.exe";
     qDebug() << strExe;
     m_updateProcess->start(strExe, arguments);
 }

@@ -299,19 +299,22 @@ void AutoUpdaterUI::UpdateFailureUI()
     ShowWhichUI(m_updateFailureWidgets, false);
 }
 
-void AutoUpdaterUI::Updater(bool isFirst, QString parentPid)
+void AutoUpdaterUI::Updater(bool isFromParentMain, QString parentPid)
 {
-    m_first = isFirst;
+    m_isFromParentMain = isFromParentMain;
 
     //If enter is from parent main function, and show the checking UI.
-    if(!m_first)
+    if(!m_isFromParentMain)
         this->show();
     g_log.log(UpdateLog::DEBUG, "Beging checking for update timer, It is time out at 30 second!", __FILE__, __LINE__);
 
     //set parent pid
     m_updater->SetParentPid(parentPid);
+
+    m_updater->ExecDeleteOldScript();
+
     //start to check for update.
-    m_updater->DownloadXMLFile();
+    m_updater->DownloadInitFile();
 }
 
 void AutoUpdaterUI::CheckForUpdate()
@@ -361,7 +364,7 @@ void AutoUpdaterUI::NotUpdate()
     m_curVersionLabel->setText(m_updater->GetOldVersion());
     m_titleLabel->setText(QObject::tr("Laster"));
 
-    if(m_first)
+    if(m_isFromParentMain)
     {
         //This is the main application call updater application from main function
         //and this is not update version at that time, exit update process.
@@ -373,7 +376,7 @@ void AutoUpdaterUI::CheckForUpdateError()
 {
     g_log.log(UpdateLog::INFO, "Check for update error", __FILE__, __LINE__);
 
-    if(m_first)
+    if(m_isFromParentMain)
     {
         exit(0);
     }

@@ -20,4 +20,4 @@
   qrc_icon.cpp
   qrc_qt_language.cpp
   正在生成代码...
-  AutoUpdater.vcxproj -> E:\anycubic\anycubic\Probation\project\src\AutoUpdater\release\AutoUpdater.exe
+  AutoUpdater.vcxproj -> E:\anycubic\anycubic_project\updater\src\AutoUpdater\release\AutoUpdater.exe

@@ -4,6 +4,7 @@
 
 #include <QObject>
 #include <QProcess>
+#include <QSettings>
 #include <QSlider>
 #include <ftpmanager.h>
 
@@ -64,7 +65,7 @@ public:
      * @brief DownloadXMLFile
      * Download xml file that is the update control file.
      */
-    void DownloadXMLFile();
+    void DownloadInitFile();
 
     /**
      * @brief GetFtpErrorStack
@@ -102,6 +103,10 @@ public:
      */
     void SetParentPid(QString parentPid);
 
+    /**
+     * @brief ExecDeleteOldScript
+     */
+    void ExecDeleteOldScript();
 private:
     /**
      * @brief makeInitXML
@@ -140,6 +145,11 @@ private:
      * @brief SaveLog
      */
     void SaveLog();
+
+    /**
+     * @brief SaveOldVersionPata
+     */
+    void SaveOldVersionPara();
 
 
 protected slots:
@@ -209,6 +219,7 @@ private:
     QString m_oldVersion;
     QString m_newVersion;
     QString m_newVersionPath;
+    QString m_oldVersionPath;
 
     //The init files
     QString m_localXmlPath;
@@ -230,6 +241,10 @@ private:
 
     //parent pid
     QString m_parentPid;
+
+    //updater ini file
+    QSettings *m_updaterIni;
+    QString m_updaterIniPath;
 
 };
 

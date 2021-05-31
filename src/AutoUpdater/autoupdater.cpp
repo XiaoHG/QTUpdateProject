@@ -46,25 +46,41 @@ AutoUpdater::AutoUpdater(bool bCh)
       m_finishDownloadCount(0),
       m_isCheckForUpdate(true)
 {
-    //The updater.xml file that in the local version path
+    //The updater.xml file is in the local version path
     m_localXmlPath = QApplication::applicationDirPath() + "/updater.xml";
-    //The updater.xml file that download from server.
+
+    //The updater.xml file is download from server.
     m_downloadXmlPath = QApplication::applicationDirPath() + "/download/updater.xml";
+
     //Chinese language of version information file.
     m_downloadVersionInfoChPath = QApplication::applicationDirPath() + "/download/versionInfoCh.txt";
+
     //English language of version information file.
     m_downloadVersionInfoEnPath = QApplication::applicationDirPath() + "/download/versionInfoEn.txt";
 
-	//excute the empty path of old version path.
-	QProcess::startDetached(QApplication::applicationDirPath() + "/" + "deloldpath.bat");
+    //made ini file for updater process.
+    m_updaterIniPath = QApplication::applicationDirPath() + "/updater.ini";
+    m_updaterIni = new QSettings(m_updaterIniPath, QSettings::IniFormat);
+
 }
 
 AutoUpdater::~AutoUpdater()
 {
-
+	for (int i = 0; i < m_ftpList.size(); i++)
+	{
+        m_ftpList.at(i)->deleteLater();
+	}
 }
 
-void AutoUpdater::DownloadXMLFile()
+void AutoUpdater::ExecDeleteOldScript()
+{
+    //execute old version path, and delete script path self.
+    QString scriptPath = QApplication::applicationDirPath() + "/deloldpath.bat";
+    g_log.log(UpdateLog::FATAL, "Exec delete old path script: " + scriptPath, __FILE__, __LINE__);
+    QProcess::startDetached(scriptPath);
+}
+
+void AutoUpdater::DownloadInitFile()
 {
     QString downloadXmlPath = QApplication::applicationDirPath() + "/download";
     QDir downloadDir(downloadXmlPath);
@@ -167,6 +183,16 @@ bool AutoUpdater::IsUpdate()
     nodeOldList = XMLParser::XMLParseElement(localXML, "version");
     QString oldVersion = nodeOldList.at(0).toElement().text();
     m_oldVersion = oldVersion;
+    m_oldVersionPath = QApplication::applicationDirPath();
+
+    //set ini file old version path.
+    QString oldVersionPath = QApplication::applicationDirPath();
+    m_updaterIni->setValue("version/old_version_path", oldVersionPath);
+	g_log.log(UpdateLog::INFO, QString::asprintf("Old version path: %1").arg(oldVersionPath),
+				__FILE__, __LINE__);
+
+    //set ini file old version string
+    m_updaterIni->setValue("version/old_version", m_oldVersion);
 
     g_log.log(UpdateLog::INFO, QString::asprintf("Old version: %1, New version %2").arg(oldVersion).arg(newVersion),
               __FILE__, __LINE__);
@@ -365,19 +391,21 @@ void AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString del
 #ifdef Q_OS_WIN
     delPath = delPath.replace(QRegExp("\\/"), "\\\\");
     QString content;
+    QString self = saveScriptPath + "/" + scriptName;
+    self = self.replace(QRegExp("\\/"), "\\");
     if(delay == 0)
     {
-        content = "rd /s/q " + delPath; //+ "\n" + "del /s/q " + self;
+        content = "rd /s/q " + delPath;// + "\n" + "del /s/q " + self;
     }
     else
     {
         content = "ping -n " + delayTime + " 0.0.0.0>nul\n" +
                 "@echo off\n"
-                "rd /s/q " + delPath; //+ "\n" + "del /s/q " + self;
+                "rd /s/q " + delPath;// + "\n" + "del /s/q " + self;
     }
 #endif
 
-    g_log.log(UpdateLog::INFO, delPath + "/" + scriptName + " file content: " + content, __FILE__, __LINE__);
+    g_log.log(UpdateLog::INFO, delPath + "\\\\" + scriptName + " file content: " + content, __FILE__, __LINE__);
 
     //The delete script file storage in the new version path
 	QString fileName = saveScriptPath + "/" + scriptName;
@@ -432,45 +460,46 @@ void AutoUpdater::RestartApp()
     //taskkill /f /t /im AutoUpdateTestV1.0.exe
     QString applicationName = APPLICATION_NAME + ".exe";
 
-    QProcess curPrecess;
-
 #ifdef Q_OS_MAC
-    QString killOldAppCommand = "kill -9 " + oldApp;
+    QString killOld = "kill -9 " + m_parentPid;
 #endif
 
 #ifdef Q_OS_LINUX
-    QString killOldAppCommand = "kill -9 " + oldApp;
+    QString killOld = "kill -9 " + m_parentPid;
 #endif
 
 #ifdef Q_OS_WIN
-    QString killOldAppCommand = "taskkill /f /t /pid " + m_parentPid;
+    QString killOld = "taskkill /f /t /pid " + m_parentPid;
 #endif
 
 	//Start new version application.
-	QString newApp = m_newVersionPath + "/" + applicationName;
-	g_log.log(UpdateLog::INFO, "Start new version, path: " + newApp, __FILE__, __LINE__);
-	QProcess::startDetached(newApp);
-
+    QStringList arguments;
+    QString startNew = m_newVersionPath + "/" + applicationName;
+    g_log.log(UpdateLog::INFO, "Start new version, path: " + startNew, __FILE__, __LINE__);
+    QProcess::startDetached(startNew, arguments, m_newVersionPath);
 	
-
-	//Made the delete empty path that old version.
-	//Save to new version path, new delete old verion empty path.
-	MakeDeletePathScript(m_newVersionPath,
-		QApplication::applicationDirPath(),
-		"deloldpath.bat", 0);
-
-	
-	g_log.log(UpdateLog::INFO, QString::asprintf("Kill old version process, name : %1, command: %2").arg(applicationName).arg(killOldAppCommand),
-		__FILE__, __LINE__);
+    g_log.log(UpdateLog::INFO, QString::asprintf("Kill old version process, name : %1, command: %2")
+              .arg(applicationName).arg(killOld), __FILE__, __LINE__);
 
 	//Save log to new version path.
 	SaveLog();
 
-	//kill the old
-	QProcess::startDetached(killOldAppCommand);
-    
+	//save old version parameter.
+    SaveOldVersionPara();
 
+    //delete old version path.
+    MakeDeletePathScript(m_newVersionPath, m_oldVersionPath, "deloldpath.bat");
+
+	//kill the old
+    QProcess::startDetached(killOld);
+    
     exit(0);
+}
+
+void AutoUpdater::SaveOldVersionPara()
+{
+    QString targeIniPath = m_newVersionPath + "/updater.ini";
+    QFile::copy(m_updaterIniPath, targeIniPath);
 }
 
 void AutoUpdater::CreateNewLink()

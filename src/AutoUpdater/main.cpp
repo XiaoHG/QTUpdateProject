@@ -46,6 +46,7 @@ int main(int argc, char *argv[])
     }
 
     QString parentPid = argv[3];
+	//QString parentPid = "1";
 
     AutoUpdaterUI::getInstance(bCh)->Updater(bFirst, parentPid);
 

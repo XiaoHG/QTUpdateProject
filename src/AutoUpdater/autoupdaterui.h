@@ -34,7 +34,7 @@ public:
      * @param isFirst from parent process.
      * Process entrance, wether update or not.
      */
-    void Updater(bool isFirst, QString parentPid);
+    void Updater(bool isFromParentMain, QString parentPid);
 
 private:
     AutoUpdaterUI(bool bCh, QWidget *parent = 0);
@@ -203,7 +203,7 @@ private:
     QList<FtpManager*> m_ftpList;//ftp object list for download
 
     AutoUpdater *m_updater;//update manager model
-    bool m_first;//first check, true from parent call main function, other is false.
+    bool m_isFromParentMain;//first check, true from parent call main function, other is false.
 
     //Updating failure or not
     bool m_isUpdatingError;
