@@ -1,1 +1,0 @@
-rd /s/q E:\\anycubic\\anycubic\\Probation\\project\\src\\AutoUpdater\\release
