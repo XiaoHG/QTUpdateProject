@@ -11,7 +11,7 @@ class FtpManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit FtpManager(QObject *parent = 0);
+    explicit FtpManager(QString md5 = "0", QObject *parent = 0);
     virtual ~FtpManager();
 
     /**
@@ -39,7 +39,9 @@ private:
      * @brief ErrorReport
      * It is mean download error of the result.
      */
-    void ErrorReport();
+    void ErrorReport(QString error);
+
+    bool checkMd5();
 
 protected slots:
     /**
@@ -100,12 +102,6 @@ signals:
     void sigAllFileDownFinish();
 
     /**
-     * @brief sigDownloadTimeout
-     * It is emited if a file download timeout.
-     */
-    void sigDownloadTimeout(QString);
-
-    /**
      * @brief sigReplyError
      * Report an error to AutoUpdater class.
      * Per error emit.
@@ -129,6 +125,9 @@ private:
 
     //retry 3th
     int m_retryDownloadTimes;
+
+    //download file md5
+    QString m_md5;
 
 };
 

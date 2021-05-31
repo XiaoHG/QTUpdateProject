@@ -151,7 +151,6 @@ private:
      */
     void SaveOldVersionPara();
 
-
 protected slots:
     /**
      * @brief slotDownloadUpdaterXmlOver
@@ -209,6 +208,7 @@ signals:
 private:
     QStringList m_listFileDir; //The list directory for update.
     QStringList m_listFileName; //The list file for update.
+    QStringList m_listFileMd5; //The file md5.
 
     QList<FtpManager*> m_ftpList; //FTP class
 
