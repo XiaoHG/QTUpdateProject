@@ -12,25 +12,25 @@ UpdateLog::UpdateLog(QObject *parent)
 
 UpdateLog::~UpdateLog()
 {
-    if(m_logFile.isOpen())
+    if(m_fLog.isOpen())
     {
-        m_logFile.close();
+        m_fLog.close();
     }
 }
 
-void UpdateLog::Init()
+void UpdateLog::init()
 {
     //Default log level is INFO
     m_level = INFO;
 
-    m_levelStringList.append("ALL");
-    m_levelStringList.append("TRACE");
-    m_levelStringList.append("DEBUG");
-    m_levelStringList.append("INFO");
-    m_levelStringList.append("WARN");
-    m_levelStringList.append("ERROR");
-    m_levelStringList.append("FATAL");
-    m_levelStringList.append("OFF");
+    m_listlevel.append("ALL");
+    m_listlevel.append("TRACE");
+    m_listlevel.append("DEBUG");
+    m_listlevel.append("INFO");
+    m_listlevel.append("WARN");
+    m_listlevel.append("ERROR");
+    m_listlevel.append("FATAL");
+    m_listlevel.append("OFF");
 
     //open log file
     QString logPath = QApplication::applicationDirPath() + "/log";
@@ -41,21 +41,22 @@ void UpdateLog::Init()
     }
     QString logName = "updater.log";
 
-    m_logFile.setFileName(logPath + "/" + logName);
-    if(!m_logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text))
+    m_fLog.setFileName(logPath + "/" + logName);
+    if(!m_fLog.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text))
     {
         return;
     }
 
-    m_logTextStream.setDevice(&m_logFile);
+    m_tsLogFile.setDevice(&m_fLog);
 }
 
-void UpdateLog::SetLoglevel(ELOGLEVEL level)
+void UpdateLog::setLoglevel(ELOGLEVEL level)
 {
     m_level = level;
 }
 
-void UpdateLog::log(ELOGLEVEL level, const QString msg, QString file, int line)
+void UpdateLog::log(const ELOGLEVEL level, const QString &msg,
+                    const QString &file, const int line)
 {
     if(level < m_level)
     {
@@ -71,11 +72,11 @@ void UpdateLog::log(ELOGLEVEL level, const QString msg, QString file, int line)
     logMsg.append(file + ": " + QString::number(line));
     logMsg.append("]");
     logMsg.append("[");
-    logMsg.append(m_levelStringList.at(m_level));
+    logMsg.append(m_listlevel.at(m_level));
     logMsg.append("]: ");
     logMsg.append(msg);
     logMsg.append("\n");
-    m_logTextStream << logMsg;
-    m_logTextStream << flush;
+    m_tsLogFile << logMsg;
+    m_tsLogFile << flush;
 
 }

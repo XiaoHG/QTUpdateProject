@@ -11,7 +11,7 @@ XMLParser::XMLParser()
 
 }
 
-QDomNodeList XMLParser::XMLParseElement(QString xml, QString element)
+QDomNodeList XMLParser::parseElement(QString xml, QString element)
 {
     QDomNodeList nodeList;
     QFile file(xml);
@@ -47,7 +47,7 @@ QDomNodeList XMLParser::XMLParseElement(QString xml, QString element)
     return nodeList;
 }
 
-void XMLParser::XMLParse(QString xml)
+void XMLParser::parse(QString xml)
 {
     QFile file(xml);
     if(!file.open(QIODevice::ReadOnly | QFile::Text))

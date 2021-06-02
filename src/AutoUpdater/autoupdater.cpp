@@ -43,36 +43,36 @@ const QString DONWLOAD_PATH = "../";
 
 AutoUpdater::AutoUpdater(bool bCh)
     :m_bCh(bCh),
-      m_finishDownloadCount(0),
-      m_isCheckForUpdate(true)
+      m_iFinishDownloadCount(0),
+      m_bCheckForUpdateError(true)
 {
     //The updater.xml file is in the local version path
-    m_localXmlPath = QApplication::applicationDirPath() + "/updater.xml";
+    m_strLocalXmlPath = QApplication::applicationDirPath() + "/updater.xml";
 
     //The updater.xml file is download from server.
-    m_downloadXmlPath = QApplication::applicationDirPath() + "/download/updater.xml";
+    m_strDownloadXmlPath = QApplication::applicationDirPath() + "/download/updater.xml";
 
     //Chinese language of version information file.
-    m_downloadVersionInfoChPath = QApplication::applicationDirPath() + "/download/versionInfoCh.txt";
+    m_strDownloadVersionInfoChPath = QApplication::applicationDirPath() + "/download/versionInfoCh.txt";
 
     //English language of version information file.
-    m_downloadVersionInfoEnPath = QApplication::applicationDirPath() + "/download/versionInfoEn.txt";
+    m_strDownloadVersionInfoEnPath = QApplication::applicationDirPath() + "/download/versionInfoEn.txt";
 
     //made ini file for updater process.
-    m_updaterIniPath = QApplication::applicationDirPath() + "/updater.ini";
-    m_updaterIni = new QSettings(m_updaterIniPath, QSettings::IniFormat);
+    m_strUpdaterIniPath = QApplication::applicationDirPath() + "/updater.ini";
+    m_settingsUpdaterIni = new QSettings(m_strUpdaterIniPath, QSettings::IniFormat);
 
 }
 
 AutoUpdater::~AutoUpdater()
 {
-	for (int i = 0; i < m_ftpList.size(); i++)
+    for (int i = 0; i < m_listFtp.size(); i++)
 	{
-        m_ftpList.at(i)->deleteLater();
+        m_listFtp.at(i)->deleteLater();
 	}
 }
 
-void AutoUpdater::ExecDeleteOldScript()
+void AutoUpdater::execDeleteOldScript()
 {
     //execute old version path, and delete script path self.
     QString scriptPath = QApplication::applicationDirPath() + "/deloldpath.bat";
@@ -80,7 +80,7 @@ void AutoUpdater::ExecDeleteOldScript()
     QProcess::startDetached(scriptPath);
 }
 
-void AutoUpdater::DownloadInitFile()
+void AutoUpdater::downloadInitFile()
 {
     QString downloadXmlPath = QApplication::applicationDirPath() + "/download";
     QDir downloadDir(downloadXmlPath);
@@ -88,40 +88,40 @@ void AutoUpdater::DownloadInitFile()
         downloadDir.mkdir(downloadXmlPath);
 
     FtpManager *ftp = new FtpManager("0", this);
-    m_ftpList.push_back(ftp);
-    ftp->get(VERSION_PATH + "/updater.xml", m_downloadXmlPath);
-    connect(ftp, SIGNAL(sigDownloadUpdaterXmlOver()), this, SLOT(slotDownloadUpdaterXmlOver()));
-    connect(ftp, SIGNAL(sigReplyError(QString)), this, SLOT(slotSaveDownloadError(QString)));
+    m_listFtp.push_back(ftp);
+    ftp->get(VERSION_PATH + "/updater.xml", m_strDownloadXmlPath);
+    connect(ftp, SIGNAL(signal_downloadXmlFinish()), this, SLOT(on_ftp_downloadXmlFinish()));
+    connect(ftp, SIGNAL(signal_replyError(QString)), this, SLOT(on_ftp_storageDownloadErrStr(QString)));
 }
 
-void AutoUpdater::slotDownloadUpdaterXmlOver()
+void AutoUpdater::on_ftp_downloadXmlFinish()
 {
     FtpManager *ftp = new FtpManager("0", this);
-    m_ftpList.push_back(ftp);
-    ftp->get(VERSION_PATH + "/versionInfoCh.txt", m_downloadVersionInfoChPath);
-    connect(ftp, SIGNAL(sigDownloadVersionInfoFileOver()), this, SLOT(slotDownloadVersionInfoFileOver()));
-    connect(ftp, SIGNAL(sigReplyError(QString)), this, SLOT(slotSaveDownloadError(QString)));
+    m_listFtp.push_back(ftp);
+    ftp->get(VERSION_PATH + "/versionInfoCh.txt", m_strDownloadVersionInfoChPath);
+    connect(ftp, SIGNAL(signal_downloadChFinish()), this, SLOT(on_ftp_downloadChFinish()));
+    connect(ftp, SIGNAL(signal_replyError(QString)), this, SLOT(on_ftp_storageDownloadErrStr(QString)));
 }
 
-void AutoUpdater::slotDownloadVersionInfoFileOver()
+void AutoUpdater::on_ftp_downloadChFinish()
 {
     FtpManager *ftp = new FtpManager("0", this);
-    m_ftpList.push_back(ftp);
-    ftp->get(VERSION_PATH + "/versionInfoEn.txt", m_downloadVersionInfoEnPath);
-    connect(ftp, SIGNAL(sigDownloadVersionInfoEnfileOver()), this, SLOT(slotDownloadVersionInfoEnfileOver()));
-    connect(ftp, SIGNAL(sigReplyError(QString)), this, SLOT(slotSaveDownloadError(QString)));
+    m_listFtp.push_back(ftp);
+    ftp->get(VERSION_PATH + "/versionInfoEn.txt", m_strDownloadVersionInfoEnPath);
+    connect(ftp, SIGNAL(signal_downloadEnFinish()), this, SLOT(on_ftp_downloadEnFinish()));
+    connect(ftp, SIGNAL(signal_replyError(QString)), this, SLOT(on_ftp_storageDownloadErrStr(QString)));
 }
 
-void AutoUpdater::slotDownloadVersionInfoEnfileOver()
+void AutoUpdater::on_ftp_downloadEnFinish()
 {
     //Download init files over.
-    m_isCheckForUpdate = false;
+    m_bCheckForUpdateError = false;
     //It is emited to AutoUpdaterUI class for a information that init file download
     //over, and can do next step that check version for update.
-    sigDownloadInitFileOver();
+    signal_initFileDownloadFinish();
 }
 
-QString AutoUpdater::GetVersionInfo()
+QString AutoUpdater::getVersionInfo()
 {
     QString versionInfo;
     QString versionInfoName;
@@ -151,7 +151,7 @@ QString AutoUpdater::GetVersionInfo()
     return versionInfo;
 }
 
-bool AutoUpdater::IsUpdate()
+bool AutoUpdater::isUpdate()
 {
     //Compare two files of local updater.xml and download from ftp server.
     QString localXML = QApplication::applicationDirPath() + "/updater.xml";
@@ -169,18 +169,18 @@ bool AutoUpdater::IsUpdate()
 
     //Get the version string from down updater xml file.
     QDomNodeList nodeNewList;
-    nodeNewList = XMLParser::XMLParseElement(downloadXML, "version");
+    nodeNewList = XMLParser::parseElement(downloadXML, "version");
     QString newVersion = nodeNewList.at(0).toElement().text();
-    m_newVersion = newVersion;
-    m_newVersionPath = QApplication::applicationDirPath() + "/" +
-                        DONWLOAD_PATH + APPLICATION_NAME + m_newVersion;
+    m_strNewVersion = newVersion;
+    m_strNewVersionPath = QApplication::applicationDirPath() + "/" +
+                        DONWLOAD_PATH + APPLICATION_NAME + m_strNewVersion;
 
     //Get the version string from local updater xml file.
     QDomNodeList nodeOldList;
-    nodeOldList = XMLParser::XMLParseElement(localXML, "version");
+    nodeOldList = XMLParser::parseElement(localXML, "version");
     QString oldVersion = nodeOldList.at(0).toElement().text();
-    m_oldVersion = oldVersion;
-    m_oldVersionPath = QApplication::applicationDirPath();
+    m_strOldVersion = oldVersion;
+    m_strOldVersionPath = QApplication::applicationDirPath();
 
     //set ini file old version path.
     QString oldVersionPath = QApplication::applicationDirPath();
@@ -229,17 +229,17 @@ void AutoUpdater::makeInitXML()
     file.close();
 }
 
-QString AutoUpdater::GetOldVersion()
+QString AutoUpdater::getOldVersion()
 {
-    return m_oldVersion;
+    return m_strOldVersion;
 }
 
-QString AutoUpdater::GetNewVersion()
+QString AutoUpdater::getNewVersion()
 {
-    return m_newVersion;
+    return m_strNewVersion;
 }
 
-void AutoUpdater::LoadUpdateFiles()
+void AutoUpdater::loadUpdateFiles()
 {
     //Clear buffer first.
     m_listFileDir.clear();
@@ -258,7 +258,7 @@ void AutoUpdater::LoadUpdateFiles()
     QString name;
     QString dir;
     QString md5;
-    QDomNodeList nodeList = XMLParser::XMLParseElement(xmlPath, "file");
+    QDomNodeList nodeList = XMLParser::parseElement(xmlPath, "file");
     for(int i = 0; i < nodeList.size(); ++i)
     {
         name = nodeList.at(i).toElement().attribute("name");
@@ -276,15 +276,15 @@ void AutoUpdater::LoadUpdateFiles()
     g_log.log(UpdateLog::INFO, "Load update files over.", __FILE__, __LINE__);
 }
 
-int AutoUpdater::GetUpdateProcess()
+int AutoUpdater::getUpdateProcess()
 {
-    g_log.log(UpdateLog::INFO, QString::asprintf("Download finish count: %1").arg(m_finishDownloadCount),
+    g_log.log(UpdateLog::INFO, QString::asprintf("Download finish count: %1").arg(m_iFinishDownloadCount),
               __FILE__, __LINE__);
-    int process = m_finishDownloadCount * 100 / m_listFileName.size();
+    int process = m_iFinishDownloadCount * 100 / m_listFileName.size();
     return process;
 }
 
-void AutoUpdater::DownloadUpdateFiles()
+void AutoUpdater::downloadUpdateFiles()
 {
     //If download buffer is empty, do nothing.
     if(m_listFileDir.isEmpty() || m_listFileName.isEmpty())
@@ -302,7 +302,7 @@ void AutoUpdater::DownloadUpdateFiles()
         g_log.log(UpdateLog::DEBUG, "Download file: " + m_listFileName.at(i), __FILE__, __LINE__);
 
         //localFileDir is download storage position.
-        QString localFileDir = m_newVersionPath + m_listFileDir.at(i);
+        QString localFileDir = m_strNewVersionPath + m_listFileDir.at(i);
         QDir directory(localFileDir);
         if(!directory.exists())
         {
@@ -314,54 +314,54 @@ void AutoUpdater::DownloadUpdateFiles()
         //strFileDirServer is ftp server position.
         QString strFileDirServer;
         if(m_listFileDir.at(i) == "")
-            strFileDirServer = VERSION_PATH + "/" + APPLICATION_NAME + m_newVersion +
+            strFileDirServer = VERSION_PATH + "/" + APPLICATION_NAME + m_strNewVersion +
                                "/" + UPDATE_SYSTEM + "/" + m_listFileName.at(i);
         else
-            strFileDirServer = VERSION_PATH + "/" + APPLICATION_NAME + m_newVersion +
+            strFileDirServer = VERSION_PATH + "/" + APPLICATION_NAME + m_strNewVersion +
                                "/" + UPDATE_SYSTEM + m_listFileDir.at(i) + "/"  + m_listFileName.at(i);
 
         FtpManager *ftp = new FtpManager(m_listFileMd5.at(i), this);
-        m_ftpList.push_back(ftp);
-        connect(ftp, SIGNAL(sigDownloadStartPerFile(QString)), this, SLOT(slotDownloadStartPerFile(QString)));
-        connect(ftp, SIGNAL(sigDownloadFinishPerFile(QString)), this, SLOT(slotDownloadFinishPerFile(QString)));
-        connect(ftp, SIGNAL(sigReplyError(QString)), this, SLOT(slotSaveDownloadError(QString)));
+        m_listFtp.push_back(ftp);
+        connect(ftp, SIGNAL(signal_startDownloadPerFile(QString)), this, SLOT(on_ftp_startDownloadPerFile(QString)));
+        connect(ftp, SIGNAL(signal_finishDownloadPerFile(QString)), this, SLOT(on_ftp_finishDownloadPerFile(QString)));
+        connect(ftp, SIGNAL(signal_replyError(QString)), this, SLOT(on_ftp_storageDownloadErrStr(QString)));
 
         ftp->get(strFileDirServer, localFileDir);
     }
 }
 
-void AutoUpdater::slotDownloadStartPerFile(QString fileName)
+void AutoUpdater::on_ftp_startDownloadPerFile(QString fileName)
 {
-    sigDownloadStartPerFile(fileName);
+    signal_startDownloadPerFile(fileName);
 }
 
-void AutoUpdater::slotDownloadFinishPerFile(QString fileName)
+void AutoUpdater::on_ftp_finishDownloadPerFile(QString fileName)
 {
-    m_finishDownloadCount++;
-    sigDownloadFinishPerFile(fileName);
+    m_iFinishDownloadCount++;
+    signal_finishDownloadPerFile(fileName);
 }
 
-void AutoUpdater::StopDownload()
+void AutoUpdater::stopDownload()
 {
     //Stop all current download
-    for(int i = 0; i < m_ftpList.size(); i++)
+    for(int i = 0; i < m_listFtp.size(); i++)
     {
-        if(m_ftpList.at(i))
-            m_ftpList.at(i)->deleteLater();
+        if(m_listFtp.at(i))
+            m_listFtp.at(i)->deleteLater();
     }
 }
 
-void AutoUpdater::slotSaveDownloadError(QString errStr)
+void AutoUpdater::on_ftp_storageDownloadErrStr(QString errStr)
 {
-    m_replyErrorStack.push_back(errStr);
+    m_listFtpReplyErrorStack.push_back(errStr);
 }
 
-QStringList AutoUpdater::GetFtpErrorStack()
+QStringList AutoUpdater::getFtpErrorStack()
 {
-    return m_replyErrorStack;
+    return m_listFtpReplyErrorStack;
 }
 
-void AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString delPath,
+void AutoUpdater::makeDeletePathScript(const QString saveScriptPath, QString delPath,
                                        const QString scriptName, const int delay)
 {
     g_log.log(UpdateLog::INFO, "Make script for delete old version!", __FILE__, __LINE__);
@@ -415,9 +415,9 @@ void AutoUpdater::MakeDeletePathScript(const QString saveScriptPath, QString del
 
 }
 
-void AutoUpdater::SaveLog()
+void AutoUpdater::saveLog()
 {
-    QString logPath = m_newVersionPath + "/log";
+    QString logPath = m_strNewVersionPath + "/log";
     QDir logDir(logPath);
     if(!logDir.exists())
     {
@@ -430,20 +430,20 @@ void AutoUpdater::SaveLog()
     QFile::copy(sourceLogPath, logPath);
 }
 
-void AutoUpdater::SetParentPid(QString parentPid)
+void AutoUpdater::setParentPid(QString parentPid)
 {
-    m_parentPid = parentPid;
+    m_strParentPid = parentPid;
 }
 
-void AutoUpdater::RestartApp()
+void AutoUpdater::restartApp()
 {
     g_log.log(UpdateLog::INFO, "Restart application for run new version!", __FILE__, __LINE__);
 
     QString delPath = QApplication::applicationDirPath();
-    MakeDeletePathScript(QApplication::applicationDirPath(), delPath, "del.bat", 3);
+    makeDeletePathScript(QApplication::applicationDirPath(), delPath, "del.bat", 3);
 
     //Make desktop link for new version.
-    CreateNewLink();
+    createNewLink();
 
     QString delScriptPath = QApplication::applicationDirPath() + "/del.bat";
     g_log.log(UpdateLog::INFO, "Run " + delScriptPath + " script to delete old script", __FILE__, __LINE__);
@@ -462,30 +462,30 @@ void AutoUpdater::RestartApp()
 #endif
 
 #ifdef Q_OS_WIN
-    QString killOld = "taskkill /f /t /pid " + m_parentPid;
+    QString killOld = "taskkill /f /t /pid " + m_strParentPid;
 #endif
 
 	//Start new version application.
     QStringList arguments;
-    QString startNew = m_newVersionPath + "/" + applicationName;
+    QString startNew = m_strNewVersionPath + "/" + applicationName;
     g_log.log(UpdateLog::INFO, "Start new version, path: " + startNew, __FILE__, __LINE__);
-    QProcess::startDetached(startNew, arguments, m_newVersionPath);
+    QProcess::startDetached(startNew, arguments, m_strNewVersionPath);
 	
     g_log.log(UpdateLog::INFO, QString::asprintf("Kill old version process, name : %1, command: %2")
               .arg(applicationName).arg(killOld), __FILE__, __LINE__);
 
 	//Save log to new version path.
-	SaveLog();
+	saveLog();
 
 	//save old version parameter.
-    SaveOldVersionPara();
+    saveOldVersionPara();
 
     //delete old version path, delay 3s is work.
-    MakeDeletePathScript(m_newVersionPath, m_oldVersionPath, "deloldpath.bat", 3);
+    makeDeletePathScript(m_strNewVersionPath, m_strOldVersionPath, "deloldpath.bat", 3);
 
     //set ini file old version string
-    m_updaterIni->setValue("version/old_version_path", m_oldVersionPath);
-    m_updaterIni->setValue("version/old_version", m_oldVersion);
+    m_settingsUpdaterIni->setValue("version/old_version_path", m_strOldVersionPath);
+    m_settingsUpdaterIni->setValue("version/old_version", m_strOldVersion);
 
 	//kill the old
     QProcess::startDetached(killOld);
@@ -493,13 +493,13 @@ void AutoUpdater::RestartApp()
     exit(0);
 }
 
-void AutoUpdater::SaveOldVersionPara()
+void AutoUpdater::saveOldVersionPara()
 {
-    QString targeIniPath = m_newVersionPath + "/updater.ini";
-    QFile::copy(m_updaterIniPath, targeIniPath);
+    QString targeIniPath = m_strNewVersionPath + "/updater.ini";
+    QFile::copy(m_strUpdaterIniPath, targeIniPath);
 }
 
-void AutoUpdater::CreateNewLink()
+void AutoUpdater::createNewLink()
 {
     g_log.log(UpdateLog::INFO, "Create new link for new version to desktop.", __FILE__, __LINE__);
     QString desktopLink;
@@ -508,19 +508,19 @@ void AutoUpdater::CreateNewLink()
     desktopLink.append(APPLICATION_NAME);
     desktopLink.append(".lnk");
 
-    QString newAppPath = m_newVersionPath + "/" + APPLICATION_NAME + ".exe";
+    QString newAppPath = m_strNewVersionPath + "/" + APPLICATION_NAME + ".exe";
     g_log.log(UpdateLog::INFO, "New application path: " + newAppPath, __FILE__, __LINE__);
     g_log.log(UpdateLog::INFO, "Desktop link: " + desktopLink, __FILE__, __LINE__);
     QFile::link(newAppPath, desktopLink);
 }
 
-void AutoUpdater::FailDeleteNewVersionDir()
+void AutoUpdater::failDeleteNewVersionDir()
 {
     QDir newVersionDir;
-    if(m_newVersionPath.isEmpty())
+    if(m_strNewVersionPath.isEmpty())
         newVersionDir.setPath("nothing");
     else
-        newVersionDir.setPath(m_newVersionPath);
+        newVersionDir.setPath(m_strNewVersionPath);
     if(!newVersionDir.exists())
     {
         return;
@@ -530,25 +530,25 @@ void AutoUpdater::FailDeleteNewVersionDir()
     g_log.log(UpdateLog::INFO, "Make script to delete already download file!", __FILE__, __LINE__);
     QString scriptName = "delNewVersion.bat";
     QString scriptPath = QApplication::applicationDirPath();
-    MakeDeletePathScript(scriptPath, m_newVersionPath, scriptName, 0);
+    makeDeletePathScript(scriptPath, m_strNewVersionPath, scriptName, 0);
 
     //The script position.
     g_log.log(UpdateLog::INFO, "Execete script to delete already download file!", __FILE__, __LINE__);
     QString delScript = scriptPath + "/" + scriptName;
-    QProcess *p = new QProcess(this);
-    p->start(delScript);
-    m_listProcess.push_back(p);
+//    QProcess *p = new QProcess(this);
+//    p->start(delScript);
+    QProcess::startDetached(delScript);
 }
 
-void AutoUpdater::AbnormalExit()
+void AutoUpdater::abnormalExit()
 {
     //Stop
-    if(m_isCheckForUpdate)
+    if(m_bCheckForUpdateError)
     {
-        StopDownload();
+        stopDownload();
     }
 
     //Delete all alreary download.
-    FailDeleteNewVersionDir();
+    //failDeleteNewVersionDir();
 }
 

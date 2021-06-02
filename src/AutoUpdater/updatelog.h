@@ -26,11 +26,12 @@ public:
     explicit UpdateLog(QObject *parent = nullptr);
     virtual ~UpdateLog();
 
-    void log(ELOGLEVEL level, const QString msg, QString file = "test", int line = 0);
+    void log(const ELOGLEVEL level, const QString &msg,
+             const QString &file = "test", const int line = 0);
 
-    void SetLoglevel(ELOGLEVEL level);
+    void setLoglevel(ELOGLEVEL level);
 
-    void Init();
+    void init();
 
 signals:
 
@@ -38,12 +39,12 @@ public slots:
 
 private:
     //handle
-    QFile m_logFile;
-    QTextStream m_logTextStream;
+    QFile       m_fLog;
+    QTextStream m_tsLogFile;
 
     //level
-    ELOGLEVEL m_level;
-    QStringList m_levelStringList;
+    ELOGLEVEL   m_level;
+    QStringList m_listlevel;
 
 };
 

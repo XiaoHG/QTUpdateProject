@@ -10,6 +10,17 @@
 class FtpManager : public QObject
 {
     Q_OBJECT
+
+public:
+    /**
+     * @brief The ERR_CODE enum
+     * It is explient that ftp download error type.
+     */
+    enum ERR_CODE{
+        MDERROR,
+        TIMEOUT
+    };
+
 public:
     explicit FtpManager(QString md5 = "0", QObject *parent = 0);
     virtual ~FtpManager();
@@ -30,104 +41,104 @@ public:
 
 private:
     /**
-     * @brief RetryDownload
+     * @brief retryDownload
      * It is will retry 3th.
      */
-    void RetryDownload();
+    void retryDownload();
 
     /**
-     * @brief ErrorReport
+     * @brief errorReport
      * It is mean download error of the result.
      */
-    void ErrorReport(QString error);
+    void reportError(QString on_reply_error);
 
-    bool checkMd5();
+    /**
+     * @brief checkMd5
+     * @return
+     * Check download file.
+     */
+    bool isMatchMd5();
 
 protected slots:
     /**
-     * @brief downloadFinished
+     * @brief on_reply_downloadFinish
      * Download finish.
      */
-    void downloadFinished();
+    void on_reply_downloadFinish();
 
     /**
-     * @brief slotDownloadTimeout
+     * @brief on_timer_downloading
      * 30s time out
      */
-    void slotDownloadTimeout();
+    void on_timer_downloading();
 
     /**
-     * @brief error
+     * @brief on_reply_error
      * Download error
      */
-    void Error(QNetworkReply::NetworkError errorCode);
+    void on_reply_error(QNetworkReply::NetworkError errorCode);
 
 signals:
     /**
-     * @brief sigDownloadUpdaterXmlOver
+     * @brief signal_downloadXmlFinish
      * Download updater.xml file finish.
      * It is emited that updater.xml file download finish for AutoUpdater class.
      */
-    void sigDownloadUpdaterXmlOver();
+    void signal_downloadXmlFinish();
 
     /**
-     * @brief sigDownloadVersionInfoFileOver
+     * @brief signal_downloadChFinish
      * Download versionInfo.txt file finish.
      * It is emited that versionInfo.txt file download finish for AutoUpdater class.
      */
-    void sigDownloadVersionInfoFileOver();
+    void signal_downloadChFinish();
 
     /**
-     * @brief sigDownloadVersionInfoEnfileOver
+     * @brief signal_downloadEnFinish
      */
-    void sigDownloadVersionInfoEnfileOver();
+    void signal_downloadEnFinish();
 
     /**
-     * @brief sigDownloadStartPerFile
+     * @brief signal_startDownloadPerFile
      * start download.
      */
-    void sigDownloadStartPerFile(QString);
+    void signal_startDownloadPerFile(QString);
 
     /**
-     * @brief sigDownloadFinishPerFile
+     * @brief signal_finishDownloadPerFile
      * finish download.
      */
-    void sigDownloadFinishPerFile(QString);
+    void signal_finishDownloadPerFile(QString);
 
     /**
-     * @brief sigAllFileDownFinish
-     * It is finish download all file that need to update.
-     * It is emited for AutoUpdater class.
-     */
-    void sigAllFileDownFinish();
-
-    /**
-     * @brief sigReplyError
+     * @brief signal_replyError
      * Report an error to AutoUpdater class.
      * Per error emit.
      */
-    void sigReplyError(QString);
+    void signal_replyError(QString);
 
 private:
     //Download parameter
-    QUrl m_url;
-    QString m_localPath;
-    QString m_downloadPath;
-    QNetworkReply *m_pReply;
-    QNetworkAccessManager m_manager;
+    QUrl                    m_url;
+    QString                 m_strLocalPath;
+    QString                 m_strDownloadPath;
+    QNetworkReply           *m_pReply;
+    QNetworkAccessManager   m_networkManager;
 
     //Download time out
-    int m_timeout;
-    QTimer *m_downloadTimeout;
+    int     m_iDownloadTimeSec;
+    int     m_timeout;
+    QTimer  *m_timerDownloading;
+
 
     //error if
-    static bool m_isDownloadError;
+    static bool m_bDownloadError;
 
     //retry 3th
-    int m_retryDownloadTimes;
+    int     m_iRetryDownloadTimes;
 
     //download file md5
-    QString m_md5;
+    QString m_strMd5;
 
 };
 

@@ -11,12 +11,12 @@ public:
     ~FileManager();
 
     /**
-     * @brief DeleteAllPathFiles
+     * @brief deleteAllPathFiles
      * @param path
      * Delete all files which in path.
      */
-    static void DeleteAllPathFiles(QString path);
-    static void DeleteEmptyVersionPath(QString path);
+    static void deleteAllPathFiles(QString path);
+    static void deleteEmptyVersionPath(QString path);
 
 private:
 };

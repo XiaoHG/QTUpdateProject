@@ -8,9 +8,9 @@ class XMLParser
 {
 public:
     XMLParser();
-    static QDomNodeList XMLParseElement(QString xml, QString element);
-    static void XMLParse(QString xml);
-    static QString XMLParseVersion(QString xml);
+    static QDomNodeList parseElement(QString xml, QString element);
+    static void parse(QString xml);
+    static QString parseVersion(QString xml);
 };
 
 #endif // CXMLPARSER_H

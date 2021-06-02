@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_AutoUpdater_t {
     QByteArrayData data[13];
-    char stringdata0[268];
+    char stringdata0[275];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,29 +32,28 @@ struct qt_meta_stringdata_AutoUpdater_t {
 static const qt_meta_stringdata_AutoUpdater_t qt_meta_stringdata_AutoUpdater = {
     {
 QT_MOC_LITERAL(0, 0, 11), // "AutoUpdater"
-QT_MOC_LITERAL(1, 12, 23), // "sigDownloadInitFileOver"
-QT_MOC_LITERAL(2, 36, 0), // ""
-QT_MOC_LITERAL(3, 37, 23), // "sigDownloadStartPerFile"
-QT_MOC_LITERAL(4, 61, 24), // "sigDownloadFinishPerFile"
-QT_MOC_LITERAL(5, 86, 26), // "slotDownloadUpdaterXmlOver"
-QT_MOC_LITERAL(6, 113, 31), // "slotDownloadVersionInfoFileOver"
-QT_MOC_LITERAL(7, 145, 33), // "slotDownloadVersionInfoEnfile..."
-QT_MOC_LITERAL(8, 179, 21), // "slotSaveDownloadError"
-QT_MOC_LITERAL(9, 201, 6), // "errStr"
-QT_MOC_LITERAL(10, 208, 24), // "slotDownloadStartPerFile"
-QT_MOC_LITERAL(11, 233, 8), // "fileName"
-QT_MOC_LITERAL(12, 242, 25) // "slotDownloadFinishPerFile"
+QT_MOC_LITERAL(1, 12, 29), // "signal_initFileDownloadFinish"
+QT_MOC_LITERAL(2, 42, 0), // ""
+QT_MOC_LITERAL(3, 43, 27), // "signal_startDownloadPerFile"
+QT_MOC_LITERAL(4, 71, 28), // "signal_finishDownloadPerFile"
+QT_MOC_LITERAL(5, 100, 24), // "on_ftp_downloadXmlFinish"
+QT_MOC_LITERAL(6, 125, 23), // "on_ftp_downloadChFinish"
+QT_MOC_LITERAL(7, 149, 23), // "on_ftp_downloadEnFinish"
+QT_MOC_LITERAL(8, 173, 28), // "on_ftp_storageDownloadErrStr"
+QT_MOC_LITERAL(9, 202, 6), // "errStr"
+QT_MOC_LITERAL(10, 209, 27), // "on_ftp_startDownloadPerFile"
+QT_MOC_LITERAL(11, 237, 8), // "fileName"
+QT_MOC_LITERAL(12, 246, 28) // "on_ftp_finishDownloadPerFile"
 
     },
-    "AutoUpdater\0sigDownloadInitFileOver\0"
-    "\0sigDownloadStartPerFile\0"
-    "sigDownloadFinishPerFile\0"
-    "slotDownloadUpdaterXmlOver\0"
-    "slotDownloadVersionInfoFileOver\0"
-    "slotDownloadVersionInfoEnfileOver\0"
-    "slotSaveDownloadError\0errStr\0"
-    "slotDownloadStartPerFile\0fileName\0"
-    "slotDownloadFinishPerFile"
+    "AutoUpdater\0signal_initFileDownloadFinish\0"
+    "\0signal_startDownloadPerFile\0"
+    "signal_finishDownloadPerFile\0"
+    "on_ftp_downloadXmlFinish\0"
+    "on_ftp_downloadChFinish\0on_ftp_downloadEnFinish\0"
+    "on_ftp_storageDownloadErrStr\0errStr\0"
+    "on_ftp_startDownloadPerFile\0fileName\0"
+    "on_ftp_finishDownloadPerFile"
 };
 #undef QT_MOC_LITERAL
 
@@ -106,36 +105,36 @@ void AutoUpdater::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         AutoUpdater *_t = static_cast<AutoUpdater *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->sigDownloadInitFileOver(); break;
-        case 1: _t->sigDownloadStartPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 2: _t->sigDownloadFinishPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 3: _t->slotDownloadUpdaterXmlOver(); break;
-        case 4: _t->slotDownloadVersionInfoFileOver(); break;
-        case 5: _t->slotDownloadVersionInfoEnfileOver(); break;
-        case 6: _t->slotSaveDownloadError((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 7: _t->slotDownloadStartPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 8: _t->slotDownloadFinishPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 0: _t->signal_initFileDownloadFinish(); break;
+        case 1: _t->signal_startDownloadPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 2: _t->signal_finishDownloadPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 3: _t->on_ftp_downloadXmlFinish(); break;
+        case 4: _t->on_ftp_downloadChFinish(); break;
+        case 5: _t->on_ftp_downloadEnFinish(); break;
+        case 6: _t->on_ftp_storageDownloadErrStr((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 7: _t->on_ftp_startDownloadPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 8: _t->on_ftp_finishDownloadPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             using _t = void (AutoUpdater::*)();
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&AutoUpdater::sigDownloadInitFileOver)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&AutoUpdater::signal_initFileDownloadFinish)) {
                 *result = 0;
                 return;
             }
         }
         {
             using _t = void (AutoUpdater::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&AutoUpdater::sigDownloadStartPerFile)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&AutoUpdater::signal_startDownloadPerFile)) {
                 *result = 1;
                 return;
             }
         }
         {
             using _t = void (AutoUpdater::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&AutoUpdater::sigDownloadFinishPerFile)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&AutoUpdater::signal_finishDownloadPerFile)) {
                 *result = 2;
                 return;
             }
@@ -180,20 +179,20 @@ int AutoUpdater::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void AutoUpdater::sigDownloadInitFileOver()
+void AutoUpdater::signal_initFileDownloadFinish()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 
 // SIGNAL 1
-void AutoUpdater::sigDownloadStartPerFile(QString _t1)
+void AutoUpdater::signal_startDownloadPerFile(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
-void AutoUpdater::sigDownloadFinishPerFile(QString _t1)
+void AutoUpdater::signal_finishDownloadPerFile(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);

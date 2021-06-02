@@ -17,14 +17,14 @@ FileManager::~FileManager()
 
 }
 
-void FileManager::DeleteAllPathFiles(QString path)
+void FileManager::deleteAllPathFiles(QString path)
 {
     QDir dir(path);
     QFileInfoList file_list = dir.entryInfoList(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
     QFileInfoList folder_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
 
     for(int i = 0; i < folder_list.size(); ++i)
-        DeleteAllPathFiles(folder_list.at(i).filePath());
+        deleteAllPathFiles(folder_list.at(i).filePath());
 
     for(int i = 0; i < file_list.size(); ++i)
     {
@@ -32,7 +32,7 @@ void FileManager::DeleteAllPathFiles(QString path)
     }
 }
 
-void FileManager::DeleteEmptyVersionPath(QString path)
+void FileManager::deleteEmptyVersionPath(QString path)
 {
     //Remove path.
     QDir dir(path);

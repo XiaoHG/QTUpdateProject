@@ -29,84 +29,85 @@ public:
 
 public:
     /**
-     * @brief IsUpdate
+     * @brief isUpdate
      * @return true is update, or not
      * update is.
      */
-    bool IsUpdate();
+    bool isUpdate();
 
     /**
-     * @brief CheckUpdateFiles
+     * @brief loadUpdateFiles
      * Get All files path and name for update.
      */
-    void LoadUpdateFiles();
+    void loadUpdateFiles();
 
     /**
-     * @brief DownloadUpdateFiles
+     * @brief downloadUpdateFiles
      * Download all update files.
      */
-    void DownloadUpdateFiles();
+    void downloadUpdateFiles();
 
     /**
-     * @brief GetVersionInfo
+     * @brief getVersionInfo
      * @return New version information
      */
-    QString GetVersionInfo();
+    QString getVersionInfo();
 
     /**
-     * @brief GetUpdateProcessb
+     * @brief getUpdateProcess
      * @return Download process percentage.
      * calculate all files that need to update and current
      * finish download files.
      */
-    int GetUpdateProcess();
+    int getUpdateProcess();
 
     /**
-     * @brief DownloadXMLFile
+     * @brief downloadInitFile
      * Download xml file that is the update control file.
      */
-    void DownloadInitFile();
+    void downloadInitFile();
 
     /**
-     * @brief GetFtpErrorStack
+     * @brief getFtpErrorStack
      * @return The laster five error string
      *         storage in m_replyErrorStack argument.
      */
-    QStringList GetFtpErrorStack();
+    QStringList getFtpErrorStack();
 
     /**
-     * @brief GetNewVersion
+     * @brief getNewVersion
      * @return The new version
      * Get new version string
      */
-    QString GetNewVersion();
+    QString getNewVersion();
 
     /**
-     * @brief GetOldVersion
+     * @brief getOldVersion
      * @return Old version
      */
-    QString GetOldVersion();
+    QString getOldVersion();
 
     /**
-     * @brief RestartApp
+     * @brief restartApp
      * Update over, and restart application.
      */
-    void RestartApp();
+    void restartApp();
 
     /**
-     * @brief AbnormalExit
+     * @brief abnormalExit
      */
-    void AbnormalExit();
+    void abnormalExit();
 
     /**
-     * @brief SetParentPid
+     * @brief setParentPid
      */
-    void SetParentPid(QString parentPid);
+    void setParentPid(QString parentPid);
 
     /**
-     * @brief ExecDeleteOldScript
+     * @brief execDeleteOldScript
      */
-    void ExecDeleteOldScript();
+    void execDeleteOldScript();
+
 private:
     /**
      * @brief makeInitXML
@@ -116,135 +117,132 @@ private:
     void makeInitXML();
 
     /**
-     * @brief CreateNewLink
+     * @brief createNewLink
      * Create new version application link to desktop.
      */
-    void CreateNewLink();
+    void createNewLink();
 
     /**
-     * @brief MakeDeleteScript
+     * @brief makeDeletePathScript
      * Make del.bat script file for delete all
      * old version files.
      */
-    void MakeDeletePathScript(const QString saveScriptPath,
+    void makeDeletePathScript(const QString saveScriptPath,
                               QString delPath,
                               const QString scriptName,
                               const int delay = 0);
 
     /**
-     * @brief FailDeleteNewVersionDir
+     * @brief failDeleteNewVersionDir
      */
-    void FailDeleteNewVersionDir();
+    void failDeleteNewVersionDir();
 
     /**
-     * @brief StopDownload
+     * @brief stopDownload
      */
-    void StopDownload();
+    void stopDownload();
 
     /**
-     * @brief SaveLog
+     * @brief saveLog
      */
-    void SaveLog();
+    void saveLog();
 
     /**
-     * @brief SaveOldVersionPata
+     * @brief saveOldVersionPara
      */
-    void SaveOldVersionPara();
+    void saveOldVersionPara();
 
 protected slots:
     /**
-     * @brief slotDownloadUpdaterXmlOver
+     * @brief on_ftp_downloadXmlFinish
      */
-    void slotDownloadUpdaterXmlOver();
+    void on_ftp_downloadXmlFinish();
 
     /**
-     * @brief slotDownloadVersionInfoFileOver
+     * @brief on_ftp_downloadChFinish
      */
-    void slotDownloadVersionInfoFileOver();
+    void on_ftp_downloadChFinish();
 
     /**
-     * @brief slotDownloadVersionInfoEnfileOver
+     * @brief on_ftp_downloadEnFinish
      */
-    void slotDownloadVersionInfoEnfileOver();
+    void on_ftp_downloadEnFinish();
 
     /**
-     * @brief slotReplyError
+     * @brief on_ftp_storageDownloadErrStr
      * @param errStr error string
      * Storage download error from Ftp
      */
-    void slotSaveDownloadError(QString errStr);
+    void on_ftp_storageDownloadErrStr(QString errStr);
 
     /**
-     * @brief slotDownloadStartPerFile
+     * @brief on_ftp_startDownloadPerFile
      * @param fileName
      */
-    void slotDownloadStartPerFile(QString fileName);
+    void on_ftp_startDownloadPerFile(QString fileName);
 
     /**
-     * @brief slotDownloadFinishPerFile
+     * @brief on_ftp_finishDownloadPerFile
      * @param fileName
      */
-    void slotDownloadFinishPerFile(QString fileName);
+    void on_ftp_finishDownloadPerFile(QString fileName);
 
 signals:
     /**
-     * @brief sigDownloadUpdaterFileOver
+     * @brief signal_initFileDownloadFinish
      * updater.xml and versionInfo.txt download finish,
      * be emit to AutoUpdaterUI class for next step to check
      * whether update or not.
      */
-    void sigDownloadInitFileOver();
+    void signal_initFileDownloadFinish();
 
     /**
-     * @brief sigDownloadStartPerFile
+     * @brief signal_startDownloadPerFile
      */
-    void sigDownloadStartPerFile(QString);
+    void signal_startDownloadPerFile(QString);
 
     /**
-     * @brief sigDownloadFinishPerFile
+     * @brief signal_finishDownloadPerFile
      */
-    void sigDownloadFinishPerFile(QString);
+    void signal_finishDownloadPerFile(QString);
 
 private:
     QStringList m_listFileDir; //The list directory for update.
     QStringList m_listFileName; //The list file for update.
     QStringList m_listFileMd5; //The file md5.
 
-    QList<FtpManager*> m_ftpList; //FTP class
+    QList<FtpManager*> m_listFtp; //FTP class
 
     //Ftp error stack
-    QStringList m_replyErrorStack;
+    QStringList m_listFtpReplyErrorStack;
 
     //Version
-    QString m_oldVersion;
-    QString m_newVersion;
-    QString m_newVersionPath;
-    QString m_oldVersionPath;
+    QString m_strOldVersion;
+    QString m_strNewVersion;
+    QString m_strNewVersionPath;
+    QString m_strOldVersionPath;
 
     //The init files
-    QString m_localXmlPath;
-    QString m_downloadXmlPath;
-    QString m_downloadVersionInfoChPath;
-    QString m_downloadVersionInfoEnPath;
-
-    //process
-    QList<QProcess*> m_listProcess;
+    QString m_strLocalXmlPath;
+    QString m_strDownloadXmlPath;
+    QString m_strDownloadVersionInfoChPath;
+    QString m_strDownloadVersionInfoEnPath;
 
     //language
     bool m_bCh;
 
     //Download process
-    int m_finishDownloadCount;
+    int m_iFinishDownloadCount;
 
     //Download init files
-    bool m_isCheckForUpdate;
+    bool m_bCheckForUpdateError;
 
     //parent pid
-    QString m_parentPid;
+    QString m_strParentPid;
 
-    //updater ini file
-    QSettings *m_updaterIni;
-    QString m_updaterIniPath;
+    //updater ini file, not use
+    QSettings *m_settingsUpdaterIni;
+    QString m_strUpdaterIniPath;
 
 };
 

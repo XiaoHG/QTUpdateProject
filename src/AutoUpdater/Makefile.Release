@@ -17,13 +17,13 @@ CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStri
 INCPATH       = -I. -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtANGLE -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtNetwork -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore -Irelease -I. -I\include -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\mkspecs\win32-msvc 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /INCREMENTAL:NO /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\qtmain.lib /LIBPATH:C:\openssl\lib /LIBPATH:C:\Utils\my_sql\my_sql\lib /LIBPATH:C:\Utils\postgresql\pgsql\lib shell32.lib D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Widgets.lib D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Gui.lib D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Xml.lib D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Network.lib D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Core.lib 
+LIBS          = /LIBPATH:D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\qtmain.lib /LIBPATH:C:\openssl\lib /LIBPATH:C:\Utils\my_sql\my_sql\lib /LIBPATH:C:\Utils\postgresql\pgsql\lib shell32.lib D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Widgets.lib D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Gui.lib D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Xml.lib D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Network.lib D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\lib\Qt5Core.lib release\logo.res 
 QMAKE         = D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl /NOLOGO
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = release\logo.res
 COPY          = copy /y
 SED           = $(QMAKE) -install sed
 COPY_FILE     = copy /y
@@ -137,11 +137,14 @@ DESTDIR_TARGET = release\AutoUpdater.exe
 first: all
 all: Makefile.Release  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h $(OBJECTS) 
+$(DESTDIR_TARGET): ui_mainwindow.h $(OBJECTS) release\logo.res
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
 release\main.obj release\autoupdater.obj release\autoupdaterui.obj release\ftpmanager.obj release\xmlparser.obj release\filemanager.obj release\updatelog.obj release\qrc_qt_language.obj release\qrc_icon.obj release\moc_autoupdater.obj release\moc_autoupdaterui.obj release\moc_ftpmanager.obj release\moc_updatelog.obj
 $(LIBS)
 <<
+
+release\logo.res: logo.rc
+	rc /NOLOGO $(DEFINES) -fo release\logo.res logo.rc
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Release AutoUpdater.pro -spec win32-msvc
@@ -154,6 +157,7 @@ dist:
 clean: compiler_clean 
 	-$(DEL_FILE) release\main.obj release\autoupdater.obj release\autoupdaterui.obj release\ftpmanager.obj release\xmlparser.obj release\filemanager.obj release\updatelog.obj release\qrc_qt_language.obj release\qrc_icon.obj release\moc_autoupdater.obj release\moc_autoupdaterui.obj release\moc_ftpmanager.obj release\moc_updatelog.obj
 	-$(DEL_FILE) release\AutoUpdater.exp
+	-$(DEL_FILE) release\logo.res
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash release\AutoUpdater.lib
@@ -256,6 +260,19 @@ release\moc_autoupdater.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QO
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QSettings \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsettings.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvariant.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmap.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdebug.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextstream.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlocale.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvector.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpoint.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qset.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
@@ -270,13 +287,11 @@ release\moc_autoupdater.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QO
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpaintdevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrect.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsize.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpoint.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpalette.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcolor.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgb.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgba64.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qbrush.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvector.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qmatrix.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpolygon.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qregion.h \
@@ -287,8 +302,6 @@ release\moc_autoupdater.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QO
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimage.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixelformat.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixmap.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfont.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontmetrics.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontinfo.h \
@@ -296,13 +309,6 @@ release\moc_autoupdater.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QO
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcursor.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qkeysequence.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qevent.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvariant.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmap.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdebug.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextstream.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlocale.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qset.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurlquery.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfile.h \
@@ -401,6 +407,19 @@ release\moc_autoupdaterui.cpp: autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QSettings \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsettings.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvariant.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmap.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdebug.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextstream.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlocale.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvector.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpoint.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qset.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
@@ -415,13 +434,11 @@ release\moc_autoupdaterui.cpp: autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpaintdevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrect.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsize.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpoint.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpalette.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcolor.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgb.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgba64.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qbrush.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvector.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qmatrix.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpolygon.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qregion.h \
@@ -432,8 +449,6 @@ release\moc_autoupdaterui.cpp: autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimage.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixelformat.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixmap.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfont.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontmetrics.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontinfo.h \
@@ -441,13 +456,6 @@ release\moc_autoupdaterui.cpp: autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcursor.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qkeysequence.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qevent.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvariant.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmap.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdebug.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextstream.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlocale.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qset.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurlquery.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfile.h \
@@ -876,6 +884,8 @@ release\main.obj: main.cpp D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\Q
 		autoupdaterui.h \
 		autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObject \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QSettings \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsettings.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qabstractslider.h \
@@ -996,6 +1006,19 @@ release\autoupdater.obj: autoupdater.cpp autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QSettings \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsettings.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvariant.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmap.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdebug.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextstream.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlocale.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvector.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpoint.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qset.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
@@ -1010,13 +1033,11 @@ release\autoupdater.obj: autoupdater.cpp autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpaintdevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrect.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsize.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpoint.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpalette.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcolor.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgb.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgba64.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qbrush.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvector.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qmatrix.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpolygon.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qregion.h \
@@ -1027,8 +1048,6 @@ release\autoupdater.obj: autoupdater.cpp autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimage.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixelformat.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixmap.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfont.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontmetrics.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontinfo.h \
@@ -1036,13 +1055,6 @@ release\autoupdater.obj: autoupdater.cpp autoupdater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcursor.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qkeysequence.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qevent.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvariant.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmap.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdebug.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextstream.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlocale.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qset.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurlquery.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfile.h \
@@ -1168,6 +1180,19 @@ release\autoupdaterui.obj: autoupdaterui.cpp autoupdaterui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qiodevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qshareddata.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qhash.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QSettings \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsettings.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvariant.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmap.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdebug.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextstream.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlocale.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvector.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpoint.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qset.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
+		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QSlider \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qslider.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qtwidgetsglobal.h \
@@ -1182,13 +1207,11 @@ release\autoupdaterui.obj: autoupdaterui.cpp autoupdaterui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpaintdevice.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qrect.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsize.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qpoint.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpalette.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcolor.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgb.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qrgba64.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qbrush.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvector.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qmatrix.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpolygon.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qregion.h \
@@ -1199,8 +1222,6 @@ release\autoupdaterui.obj: autoupdaterui.cpp autoupdaterui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qimage.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixelformat.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qpixmap.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfont.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontmetrics.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qfontinfo.h \
@@ -1208,13 +1229,6 @@ release\autoupdaterui.obj: autoupdaterui.cpp autoupdaterui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qcursor.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qkeysequence.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qevent.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qvariant.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qmap.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdebug.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qtextstream.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qlocale.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qset.h \
-		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qcontiguouscache.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurl.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurlquery.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfile.h \

@@ -8,7 +8,6 @@
 #include <QFileDialog>
 #include <QApplication>
 #include <QMouseEvent>
-
 #include <QMessageBox>
 #include <QTextStream>
 #include <QMovie>
@@ -20,6 +19,7 @@
 #include <QScrollBar>
 #include <QStandardPaths>
 #include <QFile>
+#include <QDesktopWidget>
 
 extern UpdateLog g_log;
 
@@ -27,14 +27,13 @@ extern UpdateLog g_log;
 
 AutoUpdaterUI::AutoUpdaterUI(bool bCh, QWidget *parent)
     :QMainWindow(parent),
-      m_bCh(bCh),
-      m_isUpdatingError(false)
+      m_bUpdatingError(false)
 {
     //Language set from parent.
-    Language(bCh);
+    language(bCh);
 
     //Init UI
-    InitUI();
+    initUI();
 
     //Init update manager
     m_updater = new AutoUpdater(bCh);
@@ -43,26 +42,26 @@ AutoUpdaterUI::AutoUpdaterUI(bool bCh, QWidget *parent)
     //and is emit the signal of init files download over,
     //and next step to check betweed download updater.xml and local xml file
     //get whether update or not result.
-    connect(m_updater, SIGNAL(sigDownloadInitFileOver()),
-            this, SLOT(slotDownloadInitFileOver()));
+    connect(m_updater, SIGNAL(signal_initFileDownloadFinish()),
+            this, SLOT(on_updater_initFileDownloadFinish()));
 
     //It is emited that each file download at start.
-    connect(m_updater, SIGNAL(sigDownloadStartPerFile(QString)),
-            this, SLOT(slotDownloadStartPerFile(QString)));
+    connect(m_updater, SIGNAL(signal_startDownloadPerFile(QString)),
+            this, SLOT(on_updater_startDownloadPerFile(QString)));
 
     //It is emited that each file download finish.
-    connect(m_updater, SIGNAL(sigDownloadFinishPerFile(QString)),
-            this, SLOT(slotDownloadFinishPerFile(QString)));
+    connect(m_updater, SIGNAL(signal_finishDownloadPerFile(QString)),
+            this, SLOT(on_updater_finishDownloadPerFile(QString)));
 
     //This timer monitor the init file download error if.
     //check per 100ms.
-    m_checkForUpdateTimer = new QTimer(this);
-    connect(m_checkForUpdateTimer, SIGNAL(timeout()), this, SLOT(slotCheckForUpdateTimeout()));
-    m_checkForUpdateTimer->start(100);
+    m_timerCheckForUpdate = new QTimer(this);
+    connect(m_timerCheckForUpdate, SIGNAL(timeout()), this, SLOT(on_timer_checkForUpdate()));
+    m_timerCheckForUpdate->start(100);
 
     //update prosess timer
-    m_updatingTimer = new QTimer(this);
-    connect(m_updatingTimer, &QTimer::timeout, this, &AutoUpdaterUI::slotUpdatingTimerout);
+    m_timerUpdating = new QTimer(this);
+    connect(m_timerUpdating, &QTimer::timeout, this, &AutoUpdaterUI::on_timer_updating);
 }
 
 AutoUpdaterUI::~AutoUpdaterUI()
@@ -73,33 +72,49 @@ AutoUpdaterUI::~AutoUpdaterUI()
     }
 }
 
-/*UI defined*/
-void AutoUpdaterUI::InitUI()
+void AutoUpdaterUI::resetGrid(QWidget *widget, double factorx, double factory)
 {
-    this->resize(450, 450);
+    int widgetX = widget->x();
+    int widgetY = widget->y();
+    int widgetWid = widget->width();
+    int widgetHei = widget->height();
+    int nWidgetX = (int)(widgetX*factorx);
+    int nWidgetY = (int)(widgetY*factory);
+    int nWidgetWid = (int)(widgetWid*factorx);
+    int nWidgetHei = (int)(widgetHei*factory);
+    widget->setGeometry(nWidgetX,nWidgetY,nWidgetWid,nWidgetHei);
+}
+
+/*UI defined*/
+void AutoUpdaterUI::initUI()
+{
     this->setStyleSheet("background-color:rgb(100, 100, 100);");
+    //setWindowIcon("");
+    int currentScreenWidth = QApplication::desktop()->width();
+    int currentScreenHeiht = QApplication::desktop()->height();
+    this->resize(currentScreenWidth / 5, currentScreenHeiht / 3);
 
     //line edit widget to version notify
     QFont titleLabelFont( "Microsoft YaHei", 11, 75);
-    m_titleLabel = new QLabel(this);
-    m_titleLabel->setGeometry(0 , 0, this->width(), this->height() / 10);
-    m_titleLabel->setFont(titleLabelFont);
-    m_titleLabel->setAlignment(Qt::AlignCenter);
-    m_titleLabel->setScaledContents(true);
-    m_titleLabel->setText(QObject::tr("Checking for update"));
-    m_titleLabel->setStyleSheet("background-color:rgb(50, 50, 50);"
+    m_labelTitle = new QLabel(this);
+    m_labelTitle->setGeometry(0 , 0, this->width(), this->height() / 10);
+    m_labelTitle->setFont(titleLabelFont);
+    m_labelTitle->setAlignment(Qt::AlignCenter);
+    m_labelTitle->setScaledContents(true);
+    m_labelTitle->setText(QObject::tr("Checking for update"));
+    m_labelTitle->setStyleSheet("background-color:rgb(50, 50, 50);"
                                 "color:rgb(200, 200, 200)");
 
     //add a Text edit widget for output file that need to update
-    m_outputVersionInfoEdit = new QTextEdit(this);
-    m_outputVersionInfoEdit->setFocusPolicy(Qt::NoFocus);
-    m_outputVersionInfoEdit->setWindowFlags(Qt::FramelessWindowHint);
-    m_outputVersionInfoEdit->setGeometry(20, m_titleLabel->height() + 40, this->width() - 40,
-                            this->height() - m_titleLabel->height() - 100);
-    m_outputVersionInfoEdit->setStyleSheet("background-color:rgb(100, 100, 100);"
+    m_teOutputVersionInfo = new QTextEdit(this);
+    m_teOutputVersionInfo->setFocusPolicy(Qt::NoFocus);
+    m_teOutputVersionInfo->setWindowFlags(Qt::FramelessWindowHint);
+    m_teOutputVersionInfo->setGeometry(20, m_labelTitle->height() + 40, this->width() - 40,
+                            this->height() - m_labelTitle->height() - 100);
+    m_teOutputVersionInfo->setStyleSheet("background-color:rgb(100, 100, 100);"
                                            "color:rgb(200, 200, 200)");
-    m_outputVersionInfoEdit->setTextColor(QColor(200, 200, 200, 255));
-    m_outputVersionInfoEdit->verticalScrollBar()->setStyleSheet("QScrollBar:vertical"
+    m_teOutputVersionInfo->setTextColor(QColor(200, 200, 200, 255));
+    m_teOutputVersionInfo->verticalScrollBar()->setStyleSheet("QScrollBar:vertical"
                                                                 "{"
                                                                 "width:8px;"
                                                                 "background:rgba(0,0,0,0%);"
@@ -152,76 +167,76 @@ void AutoUpdaterUI::InitUI()
                                                                 "}");
 
     QFont logTitleLabelFont( "Microsoft YaHei", 9, 75);
-    m_logTitleLabel = new QLabel(this);
-    m_logTitleLabel->setFont(logTitleLabelFont);
-    m_logTitleLabel->setStyleSheet("color:white");
-    m_logTitleLabel->setGeometry(m_outputVersionInfoEdit->x(),
-                                 m_outputVersionInfoEdit->y() - 25,
-                                 m_outputVersionInfoEdit->width() - 100,
+    m_labelLogTitle = new QLabel(this);
+    m_labelLogTitle->setFont(logTitleLabelFont);
+    m_labelLogTitle->setStyleSheet("color:white");
+    m_labelLogTitle->setGeometry(m_teOutputVersionInfo->x(),
+                                 m_teOutputVersionInfo->y() - 25,
+                                 m_teOutputVersionInfo->width() - 100,
                                  20);
-    m_logTitleLabel->setScaledContents(true);
-    m_logTitleLabel->setText(QObject::tr("log :"));
-    m_logTitleLabel->setStyleSheet("color:rgb(200, 200, 200)");
+    m_labelLogTitle->setScaledContents(true);
+    m_labelLogTitle->setText(QObject::tr("log :"));
+    m_labelLogTitle->setStyleSheet("color:rgb(200, 200, 200)");
 
     m_btnClose = new QPushButton(this);
     m_btnClose->setIcon(QIcon(":/icon/close.png"));
-    m_btnClose->setGeometry(this->width() - m_titleLabel->height() - 10, 5,
-                          m_titleLabel->height() + 5, m_titleLabel->height() - 10);
+    m_btnClose->setGeometry(this->width() - m_labelTitle->height() - 10, 5,
+                          m_labelTitle->height() + 5, m_labelTitle->height() - 10);
     m_btnClose->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
                               "QPushButton:hover{background-color:rgb(18, 237, 237);}"
                               "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
     m_btnClose->setFlat(true);
     connect(m_btnClose, SIGNAL(clicked(bool)), this, SLOT(close()));
 
-    UpdateUI();
-    UpdatingUI();
-    FinishUpdateUI();
-    NotUpdateUI();
-    DownloadTimeoutUI();
+    updateUI();
+    updatingUI();
+    finishUpdateUI();
+    notUpdateUI();
+    downloadErrorUI();
 
-    m_logTitleLabel->setVisible(true);
-    m_outputVersionInfoEdit->setVisible(true);
+    m_labelLogTitle->setVisible(true);
+    m_teOutputVersionInfo->setVisible(true);
     m_btnClose->setVisible(true);
 }
 
-void AutoUpdaterUI::UpdateUI()
+void AutoUpdaterUI::updateUI()
 {
     QFont btnUpdateFont( "Microsoft YaHei", 9, 75);
     m_btnUpdate = new QPushButton(this);
     m_btnUpdate->setFont(btnUpdateFont);
     m_btnUpdate->setText(QObject::tr("Update"));
     m_btnUpdate->setIcon(QIcon(":/icon/update2.png"));
-    m_btnUpdate->setGeometry(20, m_outputVersionInfoEdit->height() + m_titleLabel->height() + 50, 70, 25);
+    m_btnUpdate->setGeometry(20, m_teOutputVersionInfo->height() + m_labelTitle->height() + 50, 70, 25);
     m_btnUpdate->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
                         "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
                         "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
 
     //new version info
-    m_newHaveVersionLabel = new QLabel(this);
-    m_newHaveVersionLabel->setGeometry(m_btnUpdate->x() + m_btnUpdate->width() + 10,
+    m_labelHaveNewVersionNotise = new QLabel(this);
+    m_labelHaveNewVersionNotise->setGeometry(m_btnUpdate->x() + m_btnUpdate->width() + 10,
                                        m_btnUpdate->y(),
-                                       m_outputVersionInfoEdit->width() - m_btnUpdate->width() - 10,
+                                       m_teOutputVersionInfo->width() - m_btnUpdate->width() - 10,
                                        m_btnUpdate->height());
-    m_newHaveVersionLabel->setScaledContents(true);
-    m_newHaveVersionLabel->setWordWrap(true);
-    m_newHaveVersionLabel->setStyleSheet("color:rgb(200, 200, 200)");
+    m_labelHaveNewVersionNotise->setScaledContents(true);
+    m_labelHaveNewVersionNotise->setWordWrap(true);
+    m_labelHaveNewVersionNotise->setStyleSheet("color:rgb(200, 200, 200)");
 
-    connect(m_btnUpdate, SIGNAL(clicked(bool)), this, SLOT(slotBtnUpdateClicked()));
+    connect(m_btnUpdate, SIGNAL(clicked(bool)), this, SLOT(on_btn_update_clicked()));
 
-    m_updateWidgets.push_back(m_btnUpdate);
-    m_updateWidgets.push_back(m_newHaveVersionLabel);
+    m_listUpdateWidgets.push_back(m_btnUpdate);
+    m_listUpdateWidgets.push_back(m_labelHaveNewVersionNotise);
 
     //init false
     //ShowUpdateUI(false);
-    ShowWhichUI(m_updateWidgets, false);
+    showWhichUI(m_listUpdateWidgets, false);
 }
 
-void AutoUpdaterUI::UpdatingUI()
+void AutoUpdaterUI::updatingUI()
 {
-    m_updateProgressBar = new QProgressBar(this);
-    m_updateProgressBar->setGeometry(m_outputVersionInfoEdit->x(), this->height() - 50,
-                                       m_outputVersionInfoEdit->width(), 20);
-    m_updateProgressBar->setStyleSheet("QProgressBar{"
+    m_pbUpdating = new QProgressBar(this);
+    m_pbUpdating->setGeometry(m_teOutputVersionInfo->x(), this->height() - 50,
+                                       m_teOutputVersionInfo->width(), 20);
+    m_pbUpdating->setStyleSheet("QProgressBar{"
                                            "font:9pt;"
                                            "border-radius:5px;"
                                            "text-align:center;"
@@ -234,13 +249,13 @@ void AutoUpdaterUI::UpdatingUI()
                                            "background-color:#1ABC9C;"
                                        "}");
 
-    m_updatingWidgets.push_back(m_updateProgressBar);
+    m_listUpdatingWidgets.push_back(m_pbUpdating);
 
     //init false
-    ShowWhichUI(m_updatingWidgets, false);
+    showWhichUI(m_listUpdatingWidgets, false);
 }
 
-void AutoUpdaterUI::FinishUpdateUI()
+void AutoUpdaterUI::finishUpdateUI()
 {
     m_btnRestart = new QPushButton(this);
     m_btnRestart->setText(QObject::tr("Restart"));
@@ -251,120 +266,115 @@ void AutoUpdaterUI::FinishUpdateUI()
                         "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
                         "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
 
-    connect(m_btnRestart, SIGNAL(clicked(bool)), this, SLOT(slotBtnRestartClicked()));
+    connect(m_btnRestart, SIGNAL(clicked(bool)), this, SLOT(on_btn_restart_clicked()));
 
-    m_finishWidgets.push_back(m_btnRestart);
+    m_listFinishWidgets.push_back(m_btnRestart);
 
     //init false
     //ShowFinishUpdateUI(false);
-    ShowWhichUI(m_finishWidgets, false);
+    showWhichUI(m_listFinishWidgets, false);
 }
 
-void AutoUpdaterUI::NotUpdateUI()
+void AutoUpdaterUI::notUpdateUI()
 {
     QFont labelLasterVersionFont( "Microsoft YaHei", 10, 75);
-    m_curVersionLabel = new QLabel(this);
-    m_curVersionLabel->setFont(labelLasterVersionFont);
-    m_curVersionLabel->setGeometry(m_btnUpdate->x() + 5,
+    m_labelCurrentVersion = new QLabel(this);
+    m_labelCurrentVersion->setFont(labelLasterVersionFont);
+    m_labelCurrentVersion->setGeometry(m_btnUpdate->x() + 5,
                                       m_btnUpdate->y() - 10,
-                                      m_outputVersionInfoEdit->width(),
+                                      m_teOutputVersionInfo->width(),
                                       30);
-    m_curVersionLabel->setStyleSheet("color:rgb(150, 150, 150)");
+    m_labelCurrentVersion->setStyleSheet("color:rgb(150, 150, 150)");
 
-    m_notUpdateWidgets.push_back(m_curVersionLabel);
+    m_listNotUpdateWidgets.push_back(m_labelCurrentVersion);
 
     //init false
     //ShowNotUpdateUI(false);
-    ShowWhichUI(m_notUpdateWidgets, false);
+    showWhichUI(m_listNotUpdateWidgets, false);
 }
 
-void AutoUpdaterUI::DownloadTimeoutUI()
+void AutoUpdaterUI::downloadErrorUI()
 {
-    m_btnOKExit = new QPushButton(this);
-    m_btnOKExit->setText(QObject::tr("ok"));
-    m_btnOKExit->setGeometry(m_btnUpdate->x(), m_btnUpdate->y(),
+    m_btnExit = new QPushButton(this);
+    m_btnExit->setText(QObject::tr("ok"));
+    m_btnExit->setGeometry(m_btnUpdate->x(), m_btnUpdate->y(),
                                      m_btnUpdate->width(), m_btnUpdate->height());
-    m_btnOKExit->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
+    m_btnExit->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
                                         "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
                                         "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
-    connect(m_btnOKExit, SIGNAL(clicked(bool)), this, SLOT(slotClickOkExit()));
+    connect(m_btnExit, SIGNAL(clicked(bool)), this, SLOT(on_btn_exit_clicked()));
 
-    m_downloadTimeoutWidgets.push_back(m_btnOKExit);
+    m_listDownloadErrorWidgets.push_back(m_btnExit);
 
-    ShowWhichUI(m_downloadTimeoutWidgets, false);
+    showWhichUI(m_listDownloadErrorWidgets, false);
 }
 
-void AutoUpdaterUI::UpdateFailureUI()
+void AutoUpdaterUI::updater(bool isFromParentMain, QString parentPid)
 {
-    ShowWhichUI(m_updateFailureWidgets, false);
-}
-
-void AutoUpdaterUI::Updater(bool isFromParentMain, QString parentPid)
-{
-    m_isFromParentMain = isFromParentMain;
+    m_bFromParentMain = isFromParentMain;
 
     //If enter is from parent main function, and show the checking UI.
-    if(!m_isFromParentMain)
+    if(!m_bFromParentMain)
         this->show();
     g_log.log(UpdateLog::DEBUG, "Beging checking for update timer, It is time out at 30 second!", __FILE__, __LINE__);
 
     //set parent pid
-    m_updater->SetParentPid(parentPid);
+    m_updater->setParentPid(parentPid);
 
-    m_updater->ExecDeleteOldScript();
+    m_updater->execDeleteOldScript();
 
     //start to check for update.
-    m_updater->DownloadInitFile();
+    m_updater->downloadInitFile();
 }
 
-void AutoUpdaterUI::CheckForUpdate()
+void AutoUpdaterUI::checkForUpdate()
 {
-    m_outputVersionInfoEdit->append(QObject::tr("Checking for update "));
+    m_teOutputVersionInfo->append(QObject::tr("Checking for update "));
 }
 
-void AutoUpdaterUI::Update()
+void AutoUpdaterUI::update()
 {
     g_log.log(UpdateLog::INFO, "Update UI", __FILE__, __LINE__);
-    m_titleLabel->setText(tr("Update dialog"));
+    m_labelTitle->setText(tr("Update dialog"));
     m_btnClose->setVisible(true);
 
-    m_versionServerInfo = m_updater->GetNewVersion();
-    m_newHaveVersionLabel->setText(QObject::tr("Find ") + m_versionServerInfo +
+    m_strVersionServerInfo = m_updater->getNewVersion();
+    m_labelHaveNewVersionNotise->setText(QObject::tr("Find ") + m_strVersionServerInfo +
                                    QObject::tr(" version, click update button to update!"));
 
     //Load download files path from ftp server.
-    m_updater->LoadUpdateFiles();
+    m_updater->loadUpdateFiles();
 }
 
-void AutoUpdaterUI::Updating()
+void AutoUpdaterUI::updating()
 {
     g_log.log(UpdateLog::INFO, "Updating UI", __FILE__, __LINE__);
     g_log.log(UpdateLog::INFO, "Update process timer start at 50ms", __FILE__, __LINE__);
     //update,and start updateProsessTimer
-    m_updatingTimer->start(50);
-    m_outputVersionInfoEdit->clear();
-    m_titleLabel->setText(QObject::tr("Updating"));
+    m_timerUpdating->start(100);
+    m_teOutputVersionInfo->clear();
+    m_labelTitle->setText(QObject::tr("Updating"));
 
     //Download all files which check out update files.
-    m_updater->DownloadUpdateFiles();
+    m_updater->downloadUpdateFiles();
 }
 
-void AutoUpdaterUI::FinishUpdate()
+void AutoUpdaterUI::finishUpdate()
 {
     g_log.log(UpdateLog::INFO, "FinishUpdate UI", __FILE__, __LINE__);
-    m_updatingTimer->stop();
-    m_outputVersionInfoEdit->append(QObject::tr("The update is complete, please restart!"));
-    m_titleLabel->setText(QObject::tr("Finish"));
+    m_timerUpdating->stop();
+    m_teOutputVersionInfo->append(QObject::tr("The update is complete, please restart!"));
+    m_labelTitle->setText(QObject::tr("Finish"));
     m_btnClose->setVisible(false);
 }
 
-void AutoUpdaterUI::NotUpdate()
+void AutoUpdaterUI::notUpdate()
 {
     g_log.log(UpdateLog::INFO, "NotUpdate UI", __FILE__, __LINE__);
-    m_curVersionLabel->setText(m_updater->GetOldVersion());
-    m_titleLabel->setText(QObject::tr("Laster"));
+    m_labelCurrentVersion->setText(m_updater->getOldVersion());
+    m_labelTitle->setText(QObject::tr("Laster"));
 
-    if(m_isFromParentMain)
+    if(m_bFromParentMain)
     {
         //This is the main application call updater application from main function
         //and this is not update version at that time, exit update process.
@@ -372,58 +382,59 @@ void AutoUpdaterUI::NotUpdate()
     }
 }
 
-void AutoUpdaterUI::CheckForUpdateError()
+void AutoUpdaterUI::checkForUpdateError()
 {
     g_log.log(UpdateLog::INFO, "Check for update error", __FILE__, __LINE__);
 
-    if(m_isFromParentMain)
+    if(m_bFromParentMain)
     {
         exit(0);
     }
 
-    m_checkForUpdateTimer->stop();
-    m_btnOKExit->setVisible(true);
+    m_timerCheckForUpdate->stop();
+    m_btnExit->setVisible(true);
 
-    m_outputVersionInfoEdit->clear();
-    m_outputVersionInfoEdit->append(QObject::tr("Error message: "));
-    QStringList ftpErrorStack = m_updater->GetFtpErrorStack();
+    m_teOutputVersionInfo->clear();
+    m_teOutputVersionInfo->append(QObject::tr("Error message: "));
+    QStringList ftpErrorStack = m_updater->getFtpErrorStack();
     for(int i = 0 ; i < ftpErrorStack.size(); i++)
     {
         g_log.log(UpdateLog::WARN, "Check for update error: " + ftpErrorStack.at(i), __FILE__, __LINE__);
-        m_outputVersionInfoEdit->append(ftpErrorStack.at(i));
+        m_teOutputVersionInfo->append(ftpErrorStack.at(i));
     }
 
-    m_outputVersionInfoEdit->append(QObject::tr("Check for update failed!"));
-    m_outputVersionInfoEdit->append(QObject::tr("Please check the network link status!"));
+    m_teOutputVersionInfo->append(QObject::tr("Check for update failed!"));
+    m_teOutputVersionInfo->append(QObject::tr("Please check the network link status!"));
+    m_teOutputVersionInfo->append(QObject::tr("Or contact us: www.anycubic.com"));
 
     //exit.
-    m_updater->AbnormalExit();
+    m_updater->abnormalExit();
 }
 
-void AutoUpdaterUI::UpdatingError()
+void AutoUpdaterUI::updatingError()
 {
-    m_isUpdatingError = true;
-    m_updatingTimer->stop();
-    m_updateProgressBar->setVisible(false);
-    m_btnOKExit->setVisible(true);
+    m_bUpdatingError = true;
+    m_timerUpdating->stop();
+    m_pbUpdating->setVisible(false);
+    m_btnExit->setVisible(true);
 
-    m_outputVersionInfoEdit->append(QObject::tr("Error message: "));
-    QStringList ftpErrorStack = m_updater->GetFtpErrorStack();
+    m_teOutputVersionInfo->append(QObject::tr("Error message: "));
+    QStringList ftpErrorStack = m_updater->getFtpErrorStack();
     for(int i = 0 ; i < ftpErrorStack.size(); i++)
     {
         g_log.log(UpdateLog::WARN, "Update error: " + ftpErrorStack.at(i), __FILE__, __LINE__);
-        m_outputVersionInfoEdit->append(ftpErrorStack.at(i));
+        m_teOutputVersionInfo->append(ftpErrorStack.at(i));
     }
 
-    m_outputVersionInfoEdit->append(QObject::tr("Update failed!"));
-    m_outputVersionInfoEdit->append(QObject::tr("Please check the network link status!"));
-    m_outputVersionInfoEdit->append(QObject::tr("Or contact us: www.anycubic.com"));
+    m_teOutputVersionInfo->append(QObject::tr("Update failed!"));
+    m_teOutputVersionInfo->append(QObject::tr("Please check the network link status!"));
+    m_teOutputVersionInfo->append(QObject::tr("Or contact us: www.anycubic.com"));
 
     //exit.
-    m_updater->AbnormalExit();
+    m_updater->abnormalExit();
 }
 
-void AutoUpdaterUI::ShowWhichUI(const QList<QWidget *> &widgets, bool visible)
+void AutoUpdaterUI::showWhichUI(const QList<QWidget *> &widgets, bool visible)
 {
     for(int i = 0; i < widgets.size(); ++i)
     {
@@ -431,54 +442,54 @@ void AutoUpdaterUI::ShowWhichUI(const QList<QWidget *> &widgets, bool visible)
     }
 }
 
-void AutoUpdaterUI::slotDownloadInitFileOver()
+void AutoUpdaterUI::on_updater_initFileDownloadFinish()
 {
     g_log.log(UpdateLog::INFO, "It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt",
               __FILE__, __LINE__);
-    m_checkForUpdateTimer->stop();
+    m_timerCheckForUpdate->stop();
 
     //isUpdate is true to update, or not.
-    if(m_updater->IsUpdate())
+    if(m_updater->isUpdate())
     {
-        Update();
-        ShowWhichUI(m_updateWidgets, true);
+        update();
+        showWhichUI(m_listUpdateWidgets, true);
     }
     else
     {
         //This is the laster version so hide update button and cansel button,
         //and show the laster notify message and ok button.
-        NotUpdate();
-        ShowWhichUI(m_notUpdateWidgets, true);
+        notUpdate();
+        showWhichUI(m_listNotUpdateWidgets, true);
 
     }
 
-	m_outputVersionInfoEdit->clear();
-	m_outputVersionInfoEdit->append(QObject::tr("Current version is ") + m_updater->GetOldVersion());
-    m_outputVersionInfoEdit->append(QObject::tr(" "));
-	m_outputVersionInfoEdit->append(QObject::tr("Changed log of history: "));
+    m_teOutputVersionInfo->clear();
+    m_teOutputVersionInfo->append(QObject::tr("Current version is ") + m_updater->getOldVersion());
+    m_teOutputVersionInfo->append(QObject::tr(" "));
+    m_teOutputVersionInfo->append(QObject::tr("Changed log of history: "));
 
 	//Get the version information from download file.
-	QString strVersionInfo = m_updater->GetVersionInfo();
+    QString strVersionInfo = m_updater->getVersionInfo();
 	if (strVersionInfo.isEmpty())
 	{
 		g_log.log(UpdateLog::WARN, "Version information is missing, please check version information file whether is normal",
 			__FILE__, __LINE__);
-		m_outputVersionInfoEdit->setText(QObject::tr("Version information is missing!"));
-		m_outputVersionInfoEdit->append(QObject::tr("Pleasse check network, or contact us: www.anycubic.com"));
+        m_teOutputVersionInfo->setText(QObject::tr("Version information is missing!"));
+        m_teOutputVersionInfo->append(QObject::tr("Pleasse check network, or contact us: www.anycubic.com"));
 	}
 	else
 	{
-        m_outputVersionInfoEdit->append(strVersionInfo.toLocal8Bit());
+        m_teOutputVersionInfo->append(strVersionInfo.toLocal8Bit());
 	}
 
-	m_outputVersionInfoEdit->moveCursor(QTextCursor::Start);
+    m_teOutputVersionInfo->moveCursor(QTextCursor::Start);
 
     this->show();
 }
 
-void AutoUpdaterUI::slotDownloadStartPerFile(QString fileName)
+void AutoUpdaterUI::on_updater_startDownloadPerFile(QString fileName)
 {
-    if(m_isUpdatingError)
+    if(m_bUpdatingError)
     {
         g_log.log(UpdateLog::WARN, "Download update file failure!",
                   __FILE__, __LINE__);
@@ -488,12 +499,12 @@ void AutoUpdaterUI::slotDownloadStartPerFile(QString fileName)
     QString startDownload;
     startDownload.append(QObject::tr("Updating "));
     startDownload.append(fileName);
-    m_outputVersionInfoEdit->append(startDownload);
+    m_teOutputVersionInfo->append(startDownload);
 }
 
-void AutoUpdaterUI::slotDownloadFinishPerFile(QString fileName)
+void AutoUpdaterUI::on_updater_finishDownloadPerFile(QString fileName)
 {
-    if(m_isUpdatingError)
+    if(m_bUpdatingError)
     {
         g_log.log(UpdateLog::WARN, "Download update file failure!",
                   __FILE__, __LINE__);
@@ -503,20 +514,20 @@ void AutoUpdaterUI::slotDownloadFinishPerFile(QString fileName)
     QString startDownload;
     startDownload.append(fileName);
     startDownload.append(QObject::tr(" update is complete!"));
-    m_outputVersionInfoEdit->append(startDownload);
+    m_teOutputVersionInfo->append(startDownload);
 }
 
-void AutoUpdaterUI::slotCheckForUpdateTimeout()
+void AutoUpdaterUI::on_timer_checkForUpdate()
 {
     //Timer check ftp download error, if a error find, stop update.
-    if(CheckFtpDownloadError())
+    if(isFtpDownloadError())
     {
-        g_log.log(UpdateLog::INFO, "CheckUpdateTimeout UI", __FILE__, __LINE__);
+        //g_log.log(UpdateLog::FATAL, "Check for update error!", __FILE__, __LINE__);
         //If the call come from parent's main function, do nothing,
         //but exit the update process.
 
         //Release all ftp resource.
-        CheckForUpdateError();
+        checkForUpdateError();
 
         return;
     }
@@ -525,68 +536,68 @@ void AutoUpdaterUI::slotCheckForUpdateTimeout()
     static int i = 0;
     if(i == 3)
         i = 0;
-    m_outputVersionInfoEdit->setText(QObject::tr("Checking for update ") + QString::asprintf("%1").arg(tmpStr[i++]));
+    m_teOutputVersionInfo->setText(QObject::tr("Checking for update ") + QString::asprintf("%1").arg(tmpStr[i++]));
 }
 
-void AutoUpdaterUI::slotClickOkExit()
+void AutoUpdaterUI::on_btn_exit_clicked()
 {
     g_log.log(UpdateLog::INFO, "Exit!", __FILE__, __LINE__);
     exit(0);
 }
 
-void AutoUpdaterUI::slotBtnUpdateClicked()
+void AutoUpdaterUI::on_btn_update_clicked()
 {
-    Updating();
-    ShowWhichUI(m_updateWidgets, false);
-    ShowWhichUI(m_updatingWidgets, true);
+    updating();
+    showWhichUI(m_listUpdateWidgets, false);
+    showWhichUI(m_listUpdatingWidgets, true);
 }
 
-bool AutoUpdaterUI::CheckFtpDownloadError()
+bool AutoUpdaterUI::isFtpDownloadError()
 {
     //Get error that download update files from ftp, that is if have
     //any error stop download and exit the application.
-    if(!m_updater->GetFtpErrorStack().isEmpty())
+    if(!m_updater->getFtpErrorStack().isEmpty())
     {
         return true;
     }
     return false;
 }
 
-void AutoUpdaterUI::slotUpdatingTimerout()
+void AutoUpdaterUI::on_timer_updating()
 {
     //Timer check ftp download error, if a error find, stop update.
-    if(CheckFtpDownloadError())
+    if(isFtpDownloadError())
     {
         g_log.log(UpdateLog::INFO, "Updating error", __FILE__, __LINE__);
-        UpdatingError();
+        updatingError();
         return;
     }
 
     //Updating process.
-    m_updateProgressBar->setValue(m_updater->GetUpdateProcess());
+    m_pbUpdating->setValue(m_updater->getUpdateProcess());
     //It is not any error, and finish update.
-    if(m_updateProgressBar->value() == m_updateProgressBar->maximum())
+    if(m_pbUpdating->value() == m_pbUpdating->maximum())
     {
         g_log.log(UpdateLog::INFO, "Download update files over.", __FILE__, __LINE__);
-        FinishUpdate();
-        ShowWhichUI(m_updatingWidgets, false);
-        ShowWhichUI(m_finishWidgets, true);
+        finishUpdate();
+        showWhichUI(m_listUpdatingWidgets, false);
+        showWhichUI(m_listFinishWidgets, true);
     }
 }
 
-void AutoUpdaterUI::slotBtnRestartClicked()
+void AutoUpdaterUI::on_btn_restart_clicked()
 {
-    m_updater->RestartApp();
+    m_updater->restartApp();
 }
 
-void AutoUpdaterUI::Language(bool ch)
+void AutoUpdaterUI::language(bool ch)
 {
     if(ch)
     {
         //chinese
         g_log.log(UpdateLog::INFO, "Language is chinese", __FILE__, __LINE__);
-        m_qtTranslator.load(":/zh_en.qm");
-        qApp->installTranslator(&m_qtTranslator);
+        m_translator.load(":/zh_en.qm");
+        qApp->installTranslator(&m_translator);
     }
     else
     {
@@ -611,8 +622,8 @@ void AutoUpdaterUI::mousePressEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton)
     {
         m_bDrag = true;
-        m_mouseStartPoint = event->globalPos();
-        m_windowTopLeftPoint = this->frameGeometry().topLeft();
+        m_pointMouseStart = event->globalPos();
+        m_pointWindowTopLeft = this->frameGeometry().topLeft();
     }
 }
 
@@ -620,8 +631,8 @@ void AutoUpdaterUI::mouseMoveEvent(QMouseEvent *event)
 {
     if(m_bDrag)
     {
-        QPoint distance = event->globalPos() - m_mouseStartPoint;
-        this->move(m_windowTopLeftPoint + distance);
+        QPoint distance = event->globalPos() - m_pointMouseStart;
+        this->move(m_pointWindowTopLeft + distance);
     }
 }
 

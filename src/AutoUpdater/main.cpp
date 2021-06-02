@@ -17,19 +17,19 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    g_log.Init();
+    g_log.init();
 
     //parent process pass argv[1] parameter for from main function or not,
     //if not from main set 0, or others.
-    bool bFirst = false;
+    bool isFromParentMain = false;
     QString strArg1 = argv[1];
     if(strArg1 != "0")
     {
-        bFirst = true;
+        isFromParentMain = true;
     }
     else
     {
-        bFirst = false;
+        isFromParentMain = false;
     }
 
     //parent process pass argv[2] parameter for choose language,
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     QString parentPid = argv[3];
 	//QString parentPid = "1";
 
-    AutoUpdaterUI::getInstance(bCh)->Updater(bFirst, parentPid);
+    AutoUpdaterUI::getInstance(bCh)->updater(isFromParentMain, parentPid);
 
     return a.exec();
 }
