@@ -1,7 +1,8 @@
-﻿#include "autoupdaterui.h"
+﻿
+#include "autoupdaterui.h"
 #include "updatelog.h"
 
-#include <QHBoxLayout>
+
 #include <QLabel>
 #include <QPushButton>
 #include <QSplitter>
@@ -24,6 +25,8 @@
 extern UpdateLog g_log;
 
 #define CHECKUPDATE_TIMEOUT 15
+static const float DEVELOPMENT_DESTOP_WIDTH = 1920.0;
+static const float DEVELOPMENT_DESTOP_HEIGHT = 1080.0;
 
 AutoUpdaterUI::AutoUpdaterUI(bool bCh, QWidget *parent)
     :QMainWindow(parent),
@@ -72,33 +75,18 @@ AutoUpdaterUI::~AutoUpdaterUI()
     }
 }
 
-void AutoUpdaterUI::resetGrid(QWidget *widget, double factorx, double factory)
-{
-    int widgetX = widget->x();
-    int widgetY = widget->y();
-    int widgetWid = widget->width();
-    int widgetHei = widget->height();
-    int nWidgetX = (int)(widgetX*factorx);
-    int nWidgetY = (int)(widgetY*factory);
-    int nWidgetWid = (int)(widgetWid*factorx);
-    int nWidgetHei = (int)(widgetHei*factory);
-    widget->setGeometry(nWidgetX,nWidgetY,nWidgetWid,nWidgetHei);
-}
-
 /*UI defined*/
 void AutoUpdaterUI::initUI()
 {
-    this->setStyleSheet("background-color:rgb(100, 100, 100);");
-    //setWindowIcon("");
-    int currentScreenWidth = QApplication::desktop()->width();
-    int currentScreenHeiht = QApplication::desktop()->height();
-    this->resize(currentScreenWidth / 5, currentScreenHeiht / 3);
+    setStyleSheet("background-color:rgb(100, 100, 100);");
+    setWindowFlags(Qt::FramelessWindowHint);
+    resize(500, 500);
 
     //line edit widget to version notify
-    QFont titleLabelFont( "Microsoft YaHei", 11, 75);
+    QFont _fontTitleLabel( "Microsoft YaHei", 11, 75);
     m_labelTitle = new QLabel(this);
-    m_labelTitle->setGeometry(0 , 0, this->width(), this->height() / 10);
-    m_labelTitle->setFont(titleLabelFont);
+    m_labelTitle->setGeometry(0, 0, this->width(), this->height() / 10);
+    m_labelTitle->setFont(_fontTitleLabel);
     m_labelTitle->setAlignment(Qt::AlignCenter);
     m_labelTitle->setScaledContents(true);
     m_labelTitle->setText(QObject::tr("Checking for update"));
@@ -166,9 +154,9 @@ void AutoUpdaterUI::initUI()
                                                                 "subcontrol-position:top;"
                                                                 "}");
 
-    QFont logTitleLabelFont( "Microsoft YaHei", 9, 75);
+    QFont _fontLogTitleLabel( "Microsoft YaHei", 9, 75);
     m_labelLogTitle = new QLabel(this);
-    m_labelLogTitle->setFont(logTitleLabelFont);
+    m_labelLogTitle->setFont(_fontLogTitleLabel);
     m_labelLogTitle->setStyleSheet("color:white");
     m_labelLogTitle->setGeometry(m_teOutputVersionInfo->x(),
                                  m_teOutputVersionInfo->y() - 25,
@@ -194,6 +182,21 @@ void AutoUpdaterUI::initUI()
     notUpdateUI();
     downloadErrorUI();
 
+    m_autoResizeHandler = new AutoResize(this, this->rect().width(), this->rect().height());
+    m_autoResizeHandler->pushAllResizeItem();
+
+    if(QApplication::desktop()->width() > DEVELOPMENT_DESTOP_WIDTH && QApplication::desktop()->height() > DEVELOPMENT_DESTOP_HEIGHT)
+    {
+        float widthRatio = QApplication::desktop()->width() / DEVELOPMENT_DESTOP_WIDTH;
+        float heightRatio = QApplication::desktop()->height() / DEVELOPMENT_DESTOP_HEIGHT;
+        float ratio = widthRatio > heightRatio ? widthRatio : heightRatio;
+        g_log.log(UpdateLog::INFO, QString::asprintf("Main window width ratio = %1, height ratio = %2")
+                  .arg(widthRatio).arg(heightRatio), __FILE__, __LINE__);
+        int windowWidth = this->width() * ratio;
+        int windowHeight = this->height() * ratio;
+        resize(windowWidth, windowHeight);
+    }
+
     m_labelLogTitle->setVisible(true);
     m_teOutputVersionInfo->setVisible(true);
     m_btnClose->setVisible(true);
@@ -201,9 +204,9 @@ void AutoUpdaterUI::initUI()
 
 void AutoUpdaterUI::updateUI()
 {
-    QFont btnUpdateFont( "Microsoft YaHei", 9, 75);
+    QFont _fontBtnUpdate( "Microsoft YaHei", 9, 75);
     m_btnUpdate = new QPushButton(this);
-    m_btnUpdate->setFont(btnUpdateFont);
+    m_btnUpdate->setFont(_fontBtnUpdate);
     m_btnUpdate->setText(QObject::tr("Update"));
     m_btnUpdate->setIcon(QIcon(":/icon/update2.png"));
     m_btnUpdate->setGeometry(20, m_teOutputVersionInfo->height() + m_labelTitle->height() + 50, 70, 25);
@@ -237,7 +240,6 @@ void AutoUpdaterUI::updatingUI()
     m_pbUpdating->setGeometry(m_teOutputVersionInfo->x(), this->height() - 50,
                                        m_teOutputVersionInfo->width(), 20);
     m_pbUpdating->setStyleSheet("QProgressBar{"
-                                           "font:9pt;"
                                            "border-radius:5px;"
                                            "text-align:center;"
                                            "border:1px solid #E8EDF2;"
@@ -277,9 +279,9 @@ void AutoUpdaterUI::finishUpdateUI()
 
 void AutoUpdaterUI::notUpdateUI()
 {
-    QFont labelLasterVersionFont( "Microsoft YaHei", 10, 75);
+    QFont _fontLabelLasterVersion( "Microsoft YaHei", 10, 75);
     m_labelCurrentVersion = new QLabel(this);
-    m_labelCurrentVersion->setFont(labelLasterVersionFont);
+    m_labelCurrentVersion->setFont(_fontLabelLasterVersion);
     m_labelCurrentVersion->setGeometry(m_btnUpdate->x() + 5,
                                       m_btnUpdate->y() - 10,
                                       m_teOutputVersionInfo->width(),
@@ -396,15 +398,16 @@ void AutoUpdaterUI::checkForUpdateError()
 
     m_teOutputVersionInfo->clear();
     m_teOutputVersionInfo->append(QObject::tr("Error message: "));
-    QStringList ftpErrorStack = m_updater->getFtpErrorStack();
-    for(int i = 0 ; i < ftpErrorStack.size(); i++)
+    QStringList _listFtpErrorStack = m_updater->getFtpErrorStack();
+    for(int i = 0 ; i < _listFtpErrorStack.size(); i++)
     {
-        g_log.log(UpdateLog::WARN, "Check for update error: " + ftpErrorStack.at(i), __FILE__, __LINE__);
-        m_teOutputVersionInfo->append(ftpErrorStack.at(i));
+        g_log.log(UpdateLog::WARN, "Check for update error: " + _listFtpErrorStack.at(i), __FILE__, __LINE__);
+        m_teOutputVersionInfo->append(_listFtpErrorStack.at(i));
     }
 
     m_teOutputVersionInfo->append(QObject::tr("Check for update failed!"));
     m_teOutputVersionInfo->append(QObject::tr("Please check the network link status!"));
+    m_teOutputVersionInfo->append(QObject::tr("Retrying may solve."));
     m_teOutputVersionInfo->append(QObject::tr("Or contact us: www.anycubic.com"));
 
     //exit.
@@ -428,6 +431,7 @@ void AutoUpdaterUI::updatingError()
 
     m_teOutputVersionInfo->append(QObject::tr("Update failed!"));
     m_teOutputVersionInfo->append(QObject::tr("Please check the network link status!"));
+    m_teOutputVersionInfo->append(QObject::tr("Retrying may solve."));
     m_teOutputVersionInfo->append(QObject::tr("Or contact us: www.anycubic.com"));
 
     //exit.
@@ -469,8 +473,8 @@ void AutoUpdaterUI::on_updater_initFileDownloadFinish()
     m_teOutputVersionInfo->append(QObject::tr("Changed log of history: "));
 
 	//Get the version information from download file.
-    QString strVersionInfo = m_updater->getVersionInfo();
-	if (strVersionInfo.isEmpty())
+    QString _strVersionInfo = m_updater->getVersionInfo();
+    if (_strVersionInfo.isEmpty())
 	{
 		g_log.log(UpdateLog::WARN, "Version information is missing, please check version information file whether is normal",
 			__FILE__, __LINE__);
@@ -479,7 +483,7 @@ void AutoUpdaterUI::on_updater_initFileDownloadFinish()
 	}
 	else
 	{
-        m_teOutputVersionInfo->append(strVersionInfo.toLocal8Bit());
+        m_teOutputVersionInfo->append(_strVersionInfo.toLocal8Bit());
 	}
 
     m_teOutputVersionInfo->moveCursor(QTextCursor::Start);
@@ -496,10 +500,10 @@ void AutoUpdaterUI::on_updater_startDownloadPerFile(QString fileName)
         return;
     }
     g_log.log(UpdateLog::DEBUG, "Start download file: " + fileName, __FILE__, __LINE__);
-    QString startDownload;
-    startDownload.append(QObject::tr("Updating "));
-    startDownload.append(fileName);
-    m_teOutputVersionInfo->append(startDownload);
+    QString _strStartDownload;
+    _strStartDownload.append(QObject::tr("Updating "));
+    _strStartDownload.append(fileName);
+    m_teOutputVersionInfo->append(_strStartDownload);
 }
 
 void AutoUpdaterUI::on_updater_finishDownloadPerFile(QString fileName)
@@ -511,10 +515,10 @@ void AutoUpdaterUI::on_updater_finishDownloadPerFile(QString fileName)
         return;
     }
     g_log.log(UpdateLog::DEBUG, fileName + " download successful.", __FILE__, __LINE__);
-    QString startDownload;
-    startDownload.append(fileName);
-    startDownload.append(QObject::tr(" update is complete!"));
-    m_teOutputVersionInfo->append(startDownload);
+    QString _strStartDownload;
+    _strStartDownload.append(fileName);
+    _strStartDownload.append(QObject::tr(" update is complete!"));
+    m_teOutputVersionInfo->append(_strStartDownload);
 }
 
 void AutoUpdaterUI::on_timer_checkForUpdate()
@@ -522,21 +526,17 @@ void AutoUpdaterUI::on_timer_checkForUpdate()
     //Timer check ftp download error, if a error find, stop update.
     if(isFtpDownloadError())
     {
-        //g_log.log(UpdateLog::FATAL, "Check for update error!", __FILE__, __LINE__);
-        //If the call come from parent's main function, do nothing,
-        //but exit the update process.
 
-        //Release all ftp resource.
         checkForUpdateError();
 
         return;
     }
 
-    static QString tmpStr[3] = {".", "..", "..."};
-    static int i = 0;
-    if(i == 3)
-        i = 0;
-    m_teOutputVersionInfo->setText(QObject::tr("Checking for update ") + QString::asprintf("%1").arg(tmpStr[i++]));
+    static QString _s_strTmp[3] = {".", "..", "..."};
+    static int _s_iDoct = 0;
+    if(_s_iDoct == 3)
+        _s_iDoct = 0;
+    m_teOutputVersionInfo->setText(QObject::tr("Checking for update ") + QString::asprintf("%1").arg(_s_strTmp[_s_iDoct++]));
 }
 
 void AutoUpdaterUI::on_btn_exit_clicked()
@@ -608,13 +608,19 @@ void AutoUpdaterUI::language(bool ch)
 void AutoUpdaterUI::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
-    QBitmap bmp(this->size());
-    bmp.fill();
-    QPainter p(&bmp);
-    p.setPen(Qt::NoPen);
-    p.setBrush(Qt::black);
-    p.drawRoundedRect(bmp.rect(), 10, 10);
-    setMask(bmp);
+    QBitmap _bmp(this->size());
+    _bmp.fill();
+    QPainter _p(&_bmp);
+    _p.setPen(Qt::NoPen);
+    _p.setBrush(Qt::black);
+    _p.drawRoundedRect(_bmp.rect(), 10, 10);
+    setMask(_bmp);
+}
+
+void AutoUpdaterUI::resizeEvent(QResizeEvent *event)
+{
+	Q_UNUSED(event);
+    m_autoResizeHandler->doAutoResize();
 }
 
 void AutoUpdaterUI::mousePressEvent(QMouseEvent *event)

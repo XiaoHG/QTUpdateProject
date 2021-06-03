@@ -66,28 +66,29 @@ void FtpManager::on_reply_downloadFinish()
     }
 
     //Write to file.
-    QFile file(m_strLocalPath);
-    if (!file.open(QIODevice::ReadWrite))
+    QFile _file(m_strLocalPath);
+    if (!_file.open(QIODevice::ReadWrite))
     {
-        g_log.log(UpdateLog::FATAL, "Can't open local file : " + m_strLocalPath, __FILE__, __LINE__);
-        reportError("Can't open local file : " + m_strLocalPath);
+        QString _strError = "Can't open local file : " + m_strLocalPath;
+        g_log.log(UpdateLog::FATAL, _strError, __FILE__, __LINE__);
+        reportError(_strError);
         return;
     }
 
-    qint64 writeLen = file.write(m_pReply->readAll());
+    qint64 writeLen = _file.write(m_pReply->readAll());
     if(writeLen <= 0)
     {
-        QString strError = "Download file : " + m_strLocalPath + " finish, but content is empty!";
-        g_log.log(UpdateLog::FATAL, strError, __FILE__, __LINE__);
-        reportError(strError);
-        file.close();
+        QString _strError = "Download file : " + m_strLocalPath + " finish, but content is empty!";
+        g_log.log(UpdateLog::FATAL, _strError, __FILE__, __LINE__);
+        reportError(_strError);
+        _file.close();
         return;
     }
 
     g_log.log(UpdateLog::FATAL, "Finish download : " + m_strLocalPath + QString::asprintf(", file lenght = %1").arg(writeLen) , __FILE__, __LINE__);
 
-    file.flush();
-    file.close();
+    _file.flush();
+    _file.close();
 
     if(m_strLocalPath.contains("/download/updater.xml"))
     {
@@ -127,20 +128,20 @@ bool FtpManager::isMatchMd5()
 
     g_log.log(UpdateLog::INFO, "Check MD5, file: " + m_strLocalPath, __FILE__, __LINE__);
 
-    QFile theFile(m_strLocalPath);
-    theFile.open(QIODevice::ReadOnly);
-    QByteArray baMd5 = QCryptographicHash::hash(theFile.readAll(), QCryptographicHash::Md5);
-    theFile.close();
+    QFile _file(m_strLocalPath);
+    _file.open(QIODevice::ReadOnly);
+    QByteArray _baMd5 = QCryptographicHash::hash(_file.readAll(), QCryptographicHash::Md5);
+    _file.close();
 
-    QString downloadMd5 = baMd5.toHex();
+    QString _strDownloadMd5 = _baMd5.toHex();
 
-    g_log.log(UpdateLog::INFO, "Check MD5, xml file md5 = " + m_strMd5 + ", download file md5 = " + downloadMd5, __FILE__, __LINE__);
+    g_log.log(UpdateLog::INFO, "Check MD5, xml file md5 = " + m_strMd5 + ", download file md5 = " + _strDownloadMd5, __FILE__, __LINE__);
 
     //check
-    if(downloadMd5 != m_strMd5)
+    if(_strDownloadMd5 != m_strMd5)
     {
-        QString errStr = m_strDownloadPath + " md5 compare error! download md5 = " + downloadMd5 + ", xml file md5 = " + m_strMd5;
-        reportError(errStr);
+        QString _strErrStr = m_strDownloadPath + " md5 compare error! download md5 = " + _strDownloadMd5 + ", xml file md5 = " + m_strMd5;
+        reportError(_strErrStr);
         return false;
     }
 
@@ -162,10 +163,10 @@ void FtpManager::on_timer_downloading()
         m_timerDownloading->stop();
 
         //It is emited to AutoUpdater.
-        QString timeoutMsg;
-        timeoutMsg.append(m_url.path());
-        timeoutMsg.append(QObject::tr(" file download time out!"));
-        reportError(timeoutMsg);
+        QString _strTimeoutMsg;
+        _strTimeoutMsg.append(m_url.path());
+        _strTimeoutMsg.append(QObject::tr(" file download time out!"));
+        reportError(_strTimeoutMsg);
     }
 }
 
@@ -179,11 +180,11 @@ void FtpManager::on_reply_error(QNetworkReply::NetworkError errorCode)
         break;
     }
 
-	QString errorMsg = "Download error: code = ";
-    errorMsg.append(QString::asprintf("%1").arg(errorCode));
-	errorMsg.append(". error string = ");
-	errorMsg.append(m_pReply->errorString());
-    g_log.log(UpdateLog::FATAL, errorMsg, __FILE__, __LINE__);
+    QString _strErrorMsg = "Download error: code = ";
+    _strErrorMsg.append(QString::asprintf("%1").arg(errorCode));
+    _strErrorMsg.append(". error string = ");
+    _strErrorMsg.append(m_pReply->errorString());
+    g_log.log(UpdateLog::FATAL, _strErrorMsg, __FILE__, __LINE__);
 
     reportError(m_pReply->errorString());
 }
@@ -191,11 +192,11 @@ void FtpManager::on_reply_error(QNetworkReply::NetworkError errorCode)
 void FtpManager::retryDownload()
 {
     //Log
-    QString errorMsg = QString::asprintf("Try time = %1, Download error: code = ").arg(m_iRetryDownloadTimes);
-    errorMsg.append(QString::asprintf("%1").arg(m_pReply->error()));
-    errorMsg.append(". error string = ");
-    errorMsg.append(m_pReply->errorString());
-    g_log.log(UpdateLog::WARN, errorMsg, __FILE__, __LINE__);
+    QString _strErrorMsg = QString::asprintf("Try time = %1, Download error: code = ").arg(m_iRetryDownloadTimes);
+    _strErrorMsg.append(QString::asprintf("%1").arg(m_pReply->error()));
+    _strErrorMsg.append(". error string = ");
+    _strErrorMsg.append(m_pReply->errorString());
+    g_log.log(UpdateLog::WARN, _strErrorMsg, __FILE__, __LINE__);
 
     m_iRetryDownloadTimes++;
     if(m_iRetryDownloadTimes > 3)

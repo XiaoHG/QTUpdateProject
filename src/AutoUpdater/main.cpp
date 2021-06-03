@@ -21,34 +21,34 @@ int main(int argc, char *argv[])
 
     //parent process pass argv[1] parameter for from main function or not,
     //if not from main set 0, or others.
-    bool isFromParentMain = false;
-    QString strArg1 = argv[1];
-    if(strArg1 != "0")
+    bool _bFromParentMain = false;
+    QString _strArg1 = argv[1];
+    if(_strArg1 != "0")
     {
-        isFromParentMain = true;
+        _bFromParentMain = true;
     }
     else
     {
-        isFromParentMain = false;
+        _bFromParentMain = false;
     }
 
     //parent process pass argv[2] parameter for choose language,
     //if parent language is english set 0, or others.
-    bool bCh = false;
-    QString strArg2 = argv[2];
-    if(strArg2 != "0")
+    bool _bCh = false;
+    QString _strArg2 = argv[2];
+    if(_strArg2 != "0")
     {
-        bCh = true;
+        _bCh = true;
     }
     else
     {
-        bCh = false;
+        _bCh = false;
     }
 
-    QString parentPid = argv[3];
+    QString _parentPid = argv[3];
 	//QString parentPid = "1";
 
-    AutoUpdaterUI::getInstance(bCh)->updater(isFromParentMain, parentPid);
+    AutoUpdaterUI::getInstance(_bCh)->updater(_bFromParentMain, _parentPid);
 
     return a.exec();
 }

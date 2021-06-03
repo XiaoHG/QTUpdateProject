@@ -19,32 +19,32 @@ FileManager::~FileManager()
 
 void FileManager::deleteAllPathFiles(QString path)
 {
-    QDir dir(path);
-    QFileInfoList file_list = dir.entryInfoList(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
-    QFileInfoList folder_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+    QDir _dir(path);
+    QFileInfoList _listFile = _dir.entryInfoList(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+    QFileInfoList _listFolder = _dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
 
-    for(int i = 0; i < folder_list.size(); ++i)
-        deleteAllPathFiles(folder_list.at(i).filePath());
+    for(int i = 0; i < _listFolder.size(); ++i)
+        deleteAllPathFiles(_listFolder.at(i).filePath());
 
-    for(int i = 0; i < file_list.size(); ++i)
+    for(int i = 0; i < _listFile.size(); ++i)
     {
-        QFile::remove(file_list.at(i).filePath());
+        QFile::remove(_listFile.at(i).filePath());
     }
 }
 
 void FileManager::deleteEmptyVersionPath(QString path)
 {
     //Remove path.
-    QDir dir(path);
-    QString removePath;
-    QFileInfoList folder_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-    for(int i = 0; i < folder_list.size(); ++i)
+    QDir _dir(path);
+    QString _strRemovePath;
+    QFileInfoList _listFolder = _dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+    for(int i = 0; i < _listFolder.size(); ++i)
     {
-        removePath = folder_list.at(i).filePath();
-        if(removePath.isEmpty() && removePath.contains(""))
+        _strRemovePath = _listFolder.at(i).filePath();
+        if(_strRemovePath.isEmpty() && _strRemovePath.contains(""))
         {
-            g_log.log(UpdateLog::INFO, "Delete path " + removePath, __FILE__, __LINE__);
-            dir.remove(removePath);
+            g_log.log(UpdateLog::INFO, "Delete path " + _strRemovePath, __FILE__, __LINE__);
+            _dir.remove(_strRemovePath);
         }
     }
 

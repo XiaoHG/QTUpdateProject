@@ -6,6 +6,7 @@
   MOC autoupdaterui.h
   MOC ftpmanager.h
   MOC updatelog.h
+  autoresize.cpp
   autoupdater.cpp
   autoupdaterui.cpp
   filemanager.cpp

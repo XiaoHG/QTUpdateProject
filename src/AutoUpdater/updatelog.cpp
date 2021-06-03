@@ -33,15 +33,15 @@ void UpdateLog::init()
     m_listlevel.append("OFF");
 
     //open log file
-    QString logPath = QApplication::applicationDirPath() + "/log";
-    QDir logDir(logPath);
-    if(!logDir.exists())
+    QString _strLogPath = QApplication::applicationDirPath() + "/log";
+    QDir _dir(_strLogPath);
+    if(!_dir.exists())
     {
-        logDir.mkdir(logPath);
+        _dir.mkdir(_strLogPath);
     }
-    QString logName = "updater.log";
+    QString _strFileName = "updater.log";
 
-    m_fLog.setFileName(logPath + "/" + logName);
+    m_fLog.setFileName(_strLogPath + "/" + _strFileName);
     if(!m_fLog.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text))
     {
         return;
@@ -63,20 +63,20 @@ void UpdateLog::log(const ELOGLEVEL level, const QString &msg,
         return;
     }
 
-    QString logMsg = "[";
-    QDateTime current_date_time = QDateTime::currentDateTime();
-    QString current_date = current_date_time.toString("yyyy.MM.dd hh:mm:ss.zzz");
-    logMsg.append(current_date);
-    logMsg.append("]");
-    logMsg.append("[");
-    logMsg.append(file + ": " + QString::number(line));
-    logMsg.append("]");
-    logMsg.append("[");
-    logMsg.append(m_listlevel.at(m_level));
-    logMsg.append("]: ");
-    logMsg.append(msg);
-    logMsg.append("\n");
-    m_tsLogFile << logMsg;
-    m_tsLogFile << flush;
+    QString _strLogMsg = "[";
+    QDateTime _dtCurrent = QDateTime::currentDateTime();
+    QString _strCurrentData = _dtCurrent.toString("yyyy.MM.dd hh:mm:ss.zzz");
+    _strLogMsg.append(_strCurrentData);
+    _strLogMsg.append("]");
+    _strLogMsg.append("[");
+    _strLogMsg.append(file + ": " + QString::number(line));
+    _strLogMsg.append("]");
+    _strLogMsg.append("[");
+    _strLogMsg.append(m_listlevel.at(m_level));
+    _strLogMsg.append("]: ");
+    _strLogMsg.append(msg);
+    _strLogMsg.append("\n");
+    m_tsLogFile << _strLogMsg;
+    m_tsLogFile << flush; //flush new
 
 }

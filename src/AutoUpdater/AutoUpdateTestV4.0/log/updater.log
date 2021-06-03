@@ -1,0 +1,215 @@
+[2021.06.03 12:06:28.136][autoupdaterui.cpp: 587][INFO]: Language is chinese
+[2021.06.03 12:06:28.269][autoupdater.cpp: 79][INFO]: Exec delete old path script: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/deloldpath.bat
+[2021.06.03 12:06:28.412][ftpmanager.cpp: 31][INFO]: Start download file: /version/updater.xml
+[2021.06.03 12:06:28.493][ftpmanager.cpp: 67][INFO]: Finish download updater.xml file!
+[2021.06.03 12:06:28.494][ftpmanager.cpp: 31][INFO]: Start download file: /version/versionInfoCh.txt
+[2021.06.03 12:06:28.536][ftpmanager.cpp: 73][INFO]: Finish download versionInfoCh.txt file!
+[2021.06.03 12:06:28.536][ftpmanager.cpp: 31][INFO]: Start download file: /version/versionInfoEn.txt
+[2021.06.03 12:06:28.572][ftpmanager.cpp: 79][INFO]: Finish download versionInfoEn.txt file!
+[2021.06.03 12:06:28.572][autoupdaterui.cpp: 437][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.03 12:06:28.572][autoupdater.cpp: 160][INFO]: Local xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/updater.xml
+[2021.06.03 12:06:28.573][autoupdater.cpp: 161][INFO]: Download xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 12:06:28.574][autoupdater.cpp: 188][INFO]: Old version path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0
+[2021.06.03 12:06:28.574][autoupdater.cpp: 191][INFO]: Old version: V4.0, New version V4.0
+[2021.06.03 12:06:28.574][autoupdater.cpp: 204][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.03 12:06:28.574][autoupdaterui.cpp: 363][INFO]: NotUpdate UI
+[2021.06.03 16:11:18.293][autoupdaterui.cpp: 587][INFO]: Language is chinese
+[2021.06.03 16:11:18.424][autoupdater.cpp: 79][INFO]: Exec delete old path script: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/deloldpath.bat
+[2021.06.03 16:11:18.490][ftpmanager.cpp: 31][INFO]: Start download file: /version/updater.xml
+[2021.06.03 16:11:18.536][ftpmanager.cpp: 67][INFO]: Finish download updater.xml file!
+[2021.06.03 16:11:18.536][ftpmanager.cpp: 31][INFO]: Start download file: /version/versionInfoCh.txt
+[2021.06.03 16:11:18.555][ftpmanager.cpp: 73][INFO]: Finish download versionInfoCh.txt file!
+[2021.06.03 16:11:18.555][ftpmanager.cpp: 31][INFO]: Start download file: /version/versionInfoEn.txt
+[2021.06.03 16:11:18.571][ftpmanager.cpp: 79][INFO]: Finish download versionInfoEn.txt file!
+[2021.06.03 16:11:18.571][autoupdaterui.cpp: 437][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.03 16:11:18.571][autoupdater.cpp: 160][INFO]: Local xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/updater.xml
+[2021.06.03 16:11:18.571][autoupdater.cpp: 161][INFO]: Download xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 16:11:18.572][autoupdater.cpp: 188][INFO]: Old version path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0
+[2021.06.03 16:11:18.572][autoupdater.cpp: 191][INFO]: Old version: V4.0, New version V4.0
+[2021.06.03 16:11:18.572][autoupdater.cpp: 204][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.03 16:11:18.572][autoupdaterui.cpp: 363][INFO]: NotUpdate UI
+[2021.06.03 16:11:22.028][autoupdaterui.cpp: 587][INFO]: Language is chinese
+[2021.06.03 16:11:22.332][autoupdater.cpp: 79][INFO]: Exec delete old path script: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/deloldpath.bat
+[2021.06.03 16:11:22.359][ftpmanager.cpp: 31][INFO]: Start download file: /version/updater.xml
+[2021.06.03 16:11:22.689][ftpmanager.cpp: 67][INFO]: Finish download updater.xml file!
+[2021.06.03 16:11:22.689][ftpmanager.cpp: 31][INFO]: Start download file: /version/versionInfoCh.txt
+[2021.06.03 16:11:22.703][ftpmanager.cpp: 73][INFO]: Finish download versionInfoCh.txt file!
+[2021.06.03 16:11:22.703][ftpmanager.cpp: 31][INFO]: Start download file: /version/versionInfoEn.txt
+[2021.06.03 16:11:22.718][ftpmanager.cpp: 79][INFO]: Finish download versionInfoEn.txt file!
+[2021.06.03 16:11:22.718][autoupdaterui.cpp: 437][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.03 16:11:22.718][autoupdater.cpp: 160][INFO]: Local xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/updater.xml
+[2021.06.03 16:11:22.718][autoupdater.cpp: 161][INFO]: Download xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 16:11:22.719][autoupdater.cpp: 188][INFO]: Old version path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0
+[2021.06.03 16:11:22.719][autoupdater.cpp: 191][INFO]: Old version: V4.0, New version V4.0
+[2021.06.03 16:11:22.719][autoupdater.cpp: 204][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.03 16:11:22.719][autoupdaterui.cpp: 363][INFO]: NotUpdate UI
+[2021.06.03 18:31:19.074][autoupdaterui.cpp: 598][INFO]: Language is chinese
+[2021.06.03 18:31:19.206][autoupdater.cpp: 79][INFO]: Exec delete old path script: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/deloldpath.bat
+[2021.06.03 18:31:19.227][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/updater.xml
+[2021.06.03 18:31:19.227][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:31:19.227][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:31:19.273][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml, file lenght = 4125
+[2021.06.03 18:31:19.273][ftpmanager.cpp: 95][INFO]: Finish download updater.xml file!
+[2021.06.03 18:31:19.273][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoCh.txt
+[2021.06.03 18:31:19.273][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt
+[2021.06.03 18:31:19.273][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:31:19.287][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt, file lenght = 485
+[2021.06.03 18:31:19.288][ftpmanager.cpp: 101][INFO]: Finish download versionInfoCh.txt file!
+[2021.06.03 18:31:19.288][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoEn.txt
+[2021.06.03 18:31:19.288][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt
+[2021.06.03 18:31:19.288][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:31:19.302][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt, file lenght = 238
+[2021.06.03 18:31:19.303][ftpmanager.cpp: 107][INFO]: Finish download versionInfoEn.txt file!
+[2021.06.03 18:31:19.303][autoupdaterui.cpp: 452][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.03 18:31:19.303][autoupdater.cpp: 160][INFO]: Local xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/updater.xml
+[2021.06.03 18:31:19.303][autoupdater.cpp: 161][INFO]: Download xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:31:19.304][autoupdater.cpp: 188][INFO]: Old version path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0
+[2021.06.03 18:31:19.304][autoupdater.cpp: 191][INFO]: Old version: V4.0, New version V4.0
+[2021.06.03 18:31:19.304][autoupdater.cpp: 204][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.03 18:31:19.304][autoupdaterui.cpp: 375][INFO]: NotUpdate UI
+[2021.06.03 18:31:34.826][autoupdaterui.cpp: 604][INFO]: Language is english
+[2021.06.03 18:31:34.965][autoresize.cpp: 40][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.03 18:31:35.083][autoupdater.cpp: 79][INFO]: Exec delete old path script: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/deloldpath.bat
+[2021.06.03 18:31:35.102][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/updater.xml
+[2021.06.03 18:31:35.102][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:31:35.102][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:31:35.407][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml, file lenght = 4125
+[2021.06.03 18:31:35.407][ftpmanager.cpp: 95][INFO]: Finish download updater.xml file!
+[2021.06.03 18:31:35.407][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoCh.txt
+[2021.06.03 18:31:35.408][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt
+[2021.06.03 18:31:35.408][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:31:35.419][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt, file lenght = 485
+[2021.06.03 18:31:35.420][ftpmanager.cpp: 101][INFO]: Finish download versionInfoCh.txt file!
+[2021.06.03 18:31:35.420][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoEn.txt
+[2021.06.03 18:31:35.420][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt
+[2021.06.03 18:31:35.420][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:31:35.435][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt, file lenght = 238
+[2021.06.03 18:31:35.435][ftpmanager.cpp: 107][INFO]: Finish download versionInfoEn.txt file!
+[2021.06.03 18:31:35.435][autoupdaterui.cpp: 452][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.03 18:31:35.436][autoupdater.cpp: 160][INFO]: Local xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/updater.xml
+[2021.06.03 18:31:35.436][autoupdater.cpp: 161][INFO]: Download xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:31:35.436][autoupdater.cpp: 188][INFO]: Old version path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0
+[2021.06.03 18:31:35.437][autoupdater.cpp: 191][INFO]: Old version: V4.0, New version V4.0
+[2021.06.03 18:31:35.437][autoupdater.cpp: 204][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.03 18:31:35.437][autoupdaterui.cpp: 375][INFO]: NotUpdate UI
+[2021.06.03 18:34:49.496][autoupdaterui.cpp: 598][INFO]: Language is chinese
+[2021.06.03 18:34:49.629][autoupdater.cpp: 79][INFO]: Exec delete old path script: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/deloldpath.bat
+[2021.06.03 18:34:49.648][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/updater.xml
+[2021.06.03 18:34:49.648][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:34:49.648][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:34:49.692][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml, file lenght = 4125
+[2021.06.03 18:34:49.692][ftpmanager.cpp: 95][INFO]: Finish download updater.xml file!
+[2021.06.03 18:34:49.692][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoCh.txt
+[2021.06.03 18:34:49.692][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt
+[2021.06.03 18:34:49.692][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:34:49.703][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt, file lenght = 485
+[2021.06.03 18:34:49.704][ftpmanager.cpp: 101][INFO]: Finish download versionInfoCh.txt file!
+[2021.06.03 18:34:49.704][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoEn.txt
+[2021.06.03 18:34:49.704][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt
+[2021.06.03 18:34:49.704][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:34:49.716][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt, file lenght = 238
+[2021.06.03 18:34:49.717][ftpmanager.cpp: 107][INFO]: Finish download versionInfoEn.txt file!
+[2021.06.03 18:34:49.717][autoupdaterui.cpp: 452][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.03 18:34:49.717][autoupdater.cpp: 160][INFO]: Local xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/updater.xml
+[2021.06.03 18:34:49.717][autoupdater.cpp: 161][INFO]: Download xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:34:49.718][autoupdater.cpp: 188][INFO]: Old version path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0
+[2021.06.03 18:34:49.718][autoupdater.cpp: 191][INFO]: Old version: V4.0, New version V4.0
+[2021.06.03 18:34:49.718][autoupdater.cpp: 204][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.03 18:34:49.718][autoupdaterui.cpp: 375][INFO]: NotUpdate UI
+[2021.06.03 18:36:23.937][autoupdaterui.cpp: 598][INFO]: Language is chinese
+[2021.06.03 18:36:24.069][autoupdater.cpp: 79][INFO]: Exec delete old path script: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/deloldpath.bat
+[2021.06.03 18:36:24.091][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/updater.xml
+[2021.06.03 18:36:24.091][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:36:24.091][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:36:24.140][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml, file lenght = 4125
+[2021.06.03 18:36:24.140][ftpmanager.cpp: 95][INFO]: Finish download updater.xml file!
+[2021.06.03 18:36:24.140][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoCh.txt
+[2021.06.03 18:36:24.140][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt
+[2021.06.03 18:36:24.140][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:36:24.154][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt, file lenght = 485
+[2021.06.03 18:36:24.155][ftpmanager.cpp: 101][INFO]: Finish download versionInfoCh.txt file!
+[2021.06.03 18:36:24.155][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoEn.txt
+[2021.06.03 18:36:24.155][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt
+[2021.06.03 18:36:24.155][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:36:24.177][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt, file lenght = 238
+[2021.06.03 18:36:24.177][ftpmanager.cpp: 107][INFO]: Finish download versionInfoEn.txt file!
+[2021.06.03 18:36:24.178][autoupdaterui.cpp: 452][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.03 18:36:24.178][autoupdater.cpp: 160][INFO]: Local xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/updater.xml
+[2021.06.03 18:36:24.178][autoupdater.cpp: 161][INFO]: Download xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:36:24.179][autoupdater.cpp: 188][INFO]: Old version path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0
+[2021.06.03 18:36:24.179][autoupdater.cpp: 191][INFO]: Old version: V4.0, New version V4.0
+[2021.06.03 18:36:24.179][autoupdater.cpp: 204][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.03 18:36:24.179][autoupdaterui.cpp: 375][INFO]: NotUpdate UI
+[2021.06.03 18:37:00.038][autoupdaterui.cpp: 598][INFO]: Language is chinese
+[2021.06.03 18:37:00.185][autoresize.cpp: 40][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.03 18:37:00.284][autoupdater.cpp: 79][INFO]: Exec delete old path script: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/deloldpath.bat
+[2021.06.03 18:37:00.309][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/updater.xml
+[2021.06.03 18:37:00.309][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:37:00.309][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:37:00.600][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml, file lenght = 4125
+[2021.06.03 18:37:00.601][ftpmanager.cpp: 95][INFO]: Finish download updater.xml file!
+[2021.06.03 18:37:00.601][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoCh.txt
+[2021.06.03 18:37:00.601][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt
+[2021.06.03 18:37:00.601][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:37:00.615][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt, file lenght = 485
+[2021.06.03 18:37:00.615][ftpmanager.cpp: 101][INFO]: Finish download versionInfoCh.txt file!
+[2021.06.03 18:37:00.615][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoEn.txt
+[2021.06.03 18:37:00.616][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt
+[2021.06.03 18:37:00.616][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:37:00.629][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt, file lenght = 238
+[2021.06.03 18:37:00.629][ftpmanager.cpp: 107][INFO]: Finish download versionInfoEn.txt file!
+[2021.06.03 18:37:00.629][autoupdaterui.cpp: 452][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.03 18:37:00.629][autoupdater.cpp: 160][INFO]: Local xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/updater.xml
+[2021.06.03 18:37:00.629][autoupdater.cpp: 161][INFO]: Download xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:37:00.630][autoupdater.cpp: 188][INFO]: Old version path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0
+[2021.06.03 18:37:00.630][autoupdater.cpp: 191][INFO]: Old version: V4.0, New version V4.0
+[2021.06.03 18:37:00.630][autoupdater.cpp: 204][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.03 18:37:00.631][autoupdaterui.cpp: 375][INFO]: NotUpdate UI
+[2021.06.03 18:42:52.431][autoupdaterui.cpp: 598][INFO]: Language is chinese
+[2021.06.03 18:42:52.573][autoupdater.cpp: 94][INFO]: Exec delete old path script: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/del_old_path.bat
+[2021.06.03 18:42:52.682][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/updater.xml
+[2021.06.03 18:42:52.683][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:42:52.683][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:42:52.723][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml, file lenght = 4125
+[2021.06.03 18:42:52.724][ftpmanager.cpp: 95][INFO]: Finish download updater.xml file!
+[2021.06.03 18:42:52.724][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoCh.txt
+[2021.06.03 18:42:52.724][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt
+[2021.06.03 18:42:52.724][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:42:52.740][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt, file lenght = 485
+[2021.06.03 18:42:52.740][ftpmanager.cpp: 101][INFO]: Finish download versionInfoCh.txt file!
+[2021.06.03 18:42:52.740][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoEn.txt
+[2021.06.03 18:42:52.740][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt
+[2021.06.03 18:42:52.740][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:42:52.749][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt, file lenght = 238
+[2021.06.03 18:42:52.749][ftpmanager.cpp: 107][INFO]: Finish download versionInfoEn.txt file!
+[2021.06.03 18:42:52.749][autoupdaterui.cpp: 452][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.03 18:42:52.749][autoupdater.cpp: 175][INFO]: Local xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/updater.xml
+[2021.06.03 18:42:52.749][autoupdater.cpp: 176][INFO]: Download xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:42:52.750][autoupdater.cpp: 203][INFO]: Old version path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0
+[2021.06.03 18:42:52.750][autoupdater.cpp: 206][INFO]: Old version: V4.0, New version V4.0
+[2021.06.03 18:42:52.750][autoupdater.cpp: 219][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.03 18:42:52.750][autoupdaterui.cpp: 375][INFO]: NotUpdate UI
+[2021.06.03 18:44:34.552][autoupdaterui.cpp: 598][INFO]: Language is chinese
+[2021.06.03 18:44:34.680][autoupdater.cpp: 94][INFO]: Exec delete old path script: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/del_old_path.bat
+[2021.06.03 18:44:34.717][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/updater.xml
+[2021.06.03 18:44:34.717][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:44:34.717][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:44:34.790][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml, file lenght = 4125
+[2021.06.03 18:44:34.791][ftpmanager.cpp: 95][INFO]: Finish download updater.xml file!
+[2021.06.03 18:44:34.791][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoCh.txt
+[2021.06.03 18:44:34.791][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt
+[2021.06.03 18:44:34.791][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:44:34.815][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoCh.txt, file lenght = 485
+[2021.06.03 18:44:34.816][ftpmanager.cpp: 101][INFO]: Finish download versionInfoCh.txt file!
+[2021.06.03 18:44:34.816][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/versionInfoEn.txt
+[2021.06.03 18:44:34.816][ftpmanager.cpp: 36][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt
+[2021.06.03 18:44:34.816][ftpmanager.cpp: 47][INFO]: Download time out is : 10
+[2021.06.03 18:44:34.836][ftpmanager.cpp: 88][INFO]: Finish download : E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/versionInfoEn.txt, file lenght = 238
+[2021.06.03 18:44:34.836][ftpmanager.cpp: 107][INFO]: Finish download versionInfoEn.txt file!
+[2021.06.03 18:44:34.836][autoupdaterui.cpp: 452][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.03 18:44:34.836][autoupdater.cpp: 175][INFO]: Local xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/updater.xml
+[2021.06.03 18:44:34.836][autoupdater.cpp: 176][INFO]: Download xml: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0/download/updater.xml
+[2021.06.03 18:44:34.837][autoupdater.cpp: 203][INFO]: Old version path: E:/anycubic/anycubic_project/updater/src/AutoUpdater/AutoUpdateTestV4.0
+[2021.06.03 18:44:34.837][autoupdater.cpp: 206][INFO]: Old version: V4.0, New version V4.0
+[2021.06.03 18:44:34.837][autoupdater.cpp: 219][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.03 18:44:34.837][autoupdaterui.cpp: 375][INFO]: NotUpdate UI

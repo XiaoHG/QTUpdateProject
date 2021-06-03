@@ -1,6 +1,7 @@
 ﻿#ifndef AUTOUPDATERUI_H
 #define AUTOUPDATERUI_H
 
+#include "autoresize.h"
 #include "autoupdater.h"
 #include "ftpmanager.h"
 
@@ -41,6 +42,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void paintEvent(QPaintEvent *event);
+    void resizeEvent(QResizeEvent *event);
 
 private:
     AutoUpdaterUI(bool bCh, QWidget *parent = 0);
@@ -112,14 +114,6 @@ private:
      * @param visible
      */
     void showWhichUI(const QList<QWidget *> &widgets, bool visible);
-
-    /**
-     * @brief resetGrid
-     * @param widget
-     * @param factorx
-     * @param factory
-     */
-    void resetGrid(QWidget *widget, double factorx, double factory);
 
 protected slots:
     /**
@@ -214,6 +208,9 @@ private:
 
     //Updating failure or not
     bool m_bUpdatingError;
+
+    //auto resize for defference destop.
+    AutoResize *m_autoResizeHandler;
 
 };
 

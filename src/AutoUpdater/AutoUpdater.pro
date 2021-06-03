@@ -32,7 +32,8 @@ SOURCES += \
     ftpmanager.cpp \
     xmlparser.cpp \
     filemanager.cpp \
-    updatelog.cpp
+    updatelog.cpp \
+    autoresize.cpp
 
 HEADERS += \
     autoupdater.h \
@@ -40,7 +41,8 @@ HEADERS += \
     ftpmanager.h \
     xmlparser.h \
     filemanager.h \
-    updatelog.h
+    updatelog.h \
+    autoresize.h
 
 FORMS += \
         mainwindow.ui
