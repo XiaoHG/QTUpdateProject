@@ -395,14 +395,14 @@ void AutoUpdater::makeDeletePathScript(const QString saveScriptPath, QString del
     QString _strFileName;
 #ifdef Q_OS_MAC
     QString _strScriptContent = "#!/bin/sh\n"
-                                  "sleep " + _strDelayTime +
+                                  "sleep " + _strDelayTime + "\n"
                                   "rm -rf " + delPath;
     _strFileName = saveScriptPath + "/" + scriptName;
 #endif
 
 #ifdef Q_OS_LINUX
     QString _strScriptContent = "#!/bin/sh\n"
-                                  "sleep " + _strDelayTime +
+                                  "sleep " + _strDelayTime + "\n"
                                   "rm -rf " + delPath;
     _strFileName = saveScriptPath + "/" + scriptName;
 #endif
@@ -474,15 +474,14 @@ void AutoUpdater::restartApp()
     QString _strDelScriptPath;
 
 #ifdef Q_OS_MAC
-
     _strDelScriptPath = QApplication::applicationDirPath() + "/del_self";
 #endif
+
 #ifdef Q_OS_LINUX
-
     _strDelScriptPath = QApplication::applicationDirPath() + "/del_self";
 #endif
-#ifdef Q_OS_WIN
 
+#ifdef Q_OS_WIN
     _strDelScriptPath = QApplication::applicationDirPath() + "/del_self.bat";
 #endif
 
