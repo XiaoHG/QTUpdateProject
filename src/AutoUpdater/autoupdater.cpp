@@ -13,7 +13,6 @@
 #include <QMessageBox>
 #include <QThread>
 #include <QApplication>
-#include <QStringLiteral>
 #include <QStandardPaths>
 #include <QFile>
 #include <QProcess>
@@ -26,7 +25,7 @@ extern UpdateLog g_log;
 #endif
 
 #ifdef Q_OS_LINUX
-// linux
+    const QString UPDATE_SYSTEM = "linux";
 #endif
 
 #ifdef Q_OS_WIN
@@ -393,17 +392,19 @@ void AutoUpdater::makeDeletePathScript(const QString saveScriptPath, QString del
     //ping -n 3 127.0.0.1>nul -- wait third second to remove old version path
     //third second is wait current process exit.
     QString _strDelayTime = QString::asprintf("%1").arg(delay);
-
+    QString _strFileName;
 #ifdef Q_OS_MAC
     QString _strScriptContent = "#!/bin/sh\n"
-                                  "sleep " + delayTime +
+                                  "sleep " + _strDelayTime +
                                   "rm -rf " + delPath;
+    _strFileName = saveScriptPath + "/" + scriptName;
 #endif
 
 #ifdef Q_OS_LINUX
     QString _strScriptContent = "#!/bin/sh\n"
-                                  "sleep " + delayTime +
+                                  "sleep " + _strDelayTime +
                                   "rm -rf " + delPath;
+    _strFileName = saveScriptPath + "/" + scriptName;
 #endif
 
 #ifdef Q_OS_WIN
@@ -421,7 +422,7 @@ void AutoUpdater::makeDeletePathScript(const QString saveScriptPath, QString del
                 "@echo off\n"
                 "rd /s/q " + delPath + "\n" + "del /s/q " + self + ".bat";
     }
-	QString _strFileName = saveScriptPath + "/" + scriptName + ".bat";
+    _strFileName = saveScriptPath + "/" + scriptName + ".bat";
 #endif
 
     g_log.log(UpdateLog::INFO, delPath + "\\\\" + scriptName + " file content: " + _strScriptContent, __FILE__, __LINE__);
@@ -470,35 +471,42 @@ void AutoUpdater::restartApp()
     //Make desktop link for new version.
     createNewLink();
 
+    QString _strDelScriptPath;
+
 #ifdef Q_OS_MAC
 
-	QString _strDelScriptPath = QApplication::applicationDirPath() + "/del_self";
+    _strDelScriptPath = QApplication::applicationDirPath() + "/del_self";
 #endif
+#ifdef Q_OS_LINUX
 
+    _strDelScriptPath = QApplication::applicationDirPath() + "/del_self";
+#endif
 #ifdef Q_OS_WIN
 
-	QString _strDelScriptPath = QApplication::applicationDirPath() + "/del_self.bat";
+    _strDelScriptPath = QApplication::applicationDirPath() + "/del_self.bat";
 #endif
 
     g_log.log(UpdateLog::INFO, "Run " + _strDelScriptPath + " script to delete old script", __FILE__, __LINE__);
     QProcess::startDetached(_strDelScriptPath);
 
 
+    QString _strKillOld;
+    QString _strApplicationName;
 #ifdef Q_OS_MAC
-    QString _strKillOld = "kill -9 " + m_parentPid;
-	QString _strApplicationName = APPLICATION_NAME;
+    _strKillOld = "kill -9 " + m_strParentPid;
+    _strApplicationName = APPLICATION_NAME;
 #endif
 
 #ifdef Q_OS_LINUX
-    QString _strKillOld = "kill -9 " + m_parentPid;
-	QString _strApplicationName = APPLICATION_NAME;
+    _strKillOld = "kill -9 " + m_strParentPid;
+    _strApplicationName = APPLICATION_NAME;
 #endif
 
 #ifdef Q_OS_WIN
-    QString _strKillOld = "taskkill /f /t /pid " + m_strParentPid;
+    _strKillOld = "taskkill /f /t /pid " + m_strParentPid;
 	//Execute delete script file, and terminal old version appliction
     //taskkill /f /t /im AutoUpdateTestV1.0.exe
-	QString _strApplicationName = APPLICATION_NAME + ".exe";
+    _strApplicationName = APPLICATION_NAME + ".exe";
 #endif
 
 	//Start new version application.
