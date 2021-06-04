@@ -27,13 +27,20 @@ public:
 //protected slots:
 //    void slotReplyErrorStackChanged();
 
+    typedef enum {
+        UPDATE = 1,
+        NOTUPDATE = 0,
+        LOCALXML_PARSE_ERR = -1,
+        DOWNLOADXML_PARSE_ERR = -2,
+    }UPDATER_ERROR_CODE;
+
 public:
     /**
      * @brief isUpdate
      * @return true is update, or not
      * update is.
      */
-    bool isUpdate();
+    UPDATER_ERROR_CODE isUpdate();
 
     /**
      * @brief loadUpdateFiles
@@ -51,7 +58,7 @@ public:
      * @brief getVersionInfo
      * @return New version information
      */
-    QString getVersionInfo();
+    QString getVersionInfo(const QString &path);
 
     /**
      * @brief getUpdateProcess

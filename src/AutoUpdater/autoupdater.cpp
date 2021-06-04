@@ -136,7 +136,7 @@ void AutoUpdater::on_ftp_downloadEnFinish()
     signal_initFileDownloadFinish();
 }
 
-QString AutoUpdater::getVersionInfo()
+QString AutoUpdater::getVersionInfo(const QString &path)
 {
     QString _strVersionInfo;
     QString _strVersionInfoName;
@@ -151,7 +151,8 @@ QString AutoUpdater::getVersionInfo()
     }
 
     //Version information file that stroge at download directory from ftp server.
-    QFile _file(QApplication::applicationDirPath() + "/download/" + _strVersionInfoName);
+    //QString _strVersionInfoPath = QApplication::applicationDirPath() + "/download/" + _strVersionInfoName;
+    QFile _file(path + "/" + _strVersionInfoName);
     if(!_file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         g_log.log(UpdateLog::FATAL, "Can't open file: " + QApplication::applicationDirPath() + "/download/" + _strVersionInfoName,
@@ -166,7 +167,7 @@ QString AutoUpdater::getVersionInfo()
     return _strVersionInfo;
 }
 
-bool AutoUpdater::isUpdate()
+AutoUpdater::UPDATER_ERROR_CODE AutoUpdater::isUpdate()
 {
     //Compare two files of local updater.xml and download from ftp server.
     QString _strLocalXML = QApplication::applicationDirPath() + "/updater.xml";
@@ -185,6 +186,11 @@ bool AutoUpdater::isUpdate()
     //Get the version string from down updater xml file.
     QDomNodeList _nodeNewList;
     _nodeNewList = XMLParser::parseElement(_strDownloadXML, "version");
+    if(_nodeNewList.isEmpty())
+    {
+        g_log.log(UpdateLog::FATAL, "Parse download xml file error!", __FILE__, __LINE__);
+        return LOCALXML_PARSE_ERR;
+    }
     QString _strNewVersion = _nodeNewList.at(0).toElement().text();
     m_strNewVersion = _strNewVersion;
     m_strNewVersionPath = QApplication::applicationDirPath() + "/" +
@@ -193,6 +199,11 @@ bool AutoUpdater::isUpdate()
     //Get the version string from local updater xml file.
     QDomNodeList _nodeOldList;
     _nodeOldList = XMLParser::parseElement(_strLocalXML, "version");
+    if(_nodeOldList.isEmpty())
+    {
+        g_log.log(UpdateLog::FATAL, "Parse local xml file error!", __FILE__, __LINE__);
+        return DOWNLOADXML_PARSE_ERR;
+    }
     QString _strOldVersion = _nodeOldList.at(0).toElement().text();
     m_strOldVersion = _strOldVersion;
     m_strOldVersionPath = QApplication::applicationDirPath();
@@ -213,11 +224,11 @@ bool AutoUpdater::isUpdate()
         if(i >= _strOldVersionList.size() || _strNewVersionList.at(i) > _strOldVersionList.at(i))
         {
             g_log.log(UpdateLog::INFO, "Server version is updater, need to update!", __FILE__, __LINE__);
-            return true;
+            return UPDATE;
         }
     }
     g_log.log(UpdateLog::INFO, "Local Version is the laster version, it is not need to update!", __FILE__, __LINE__);
-    return false;
+    return NOTUPDATE;
 }
 
 void AutoUpdater::makeInitXML()

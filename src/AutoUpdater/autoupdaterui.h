@@ -115,6 +115,17 @@ private:
      */
     void showWhichUI(const QList<QWidget *> &widgets, bool visible);
 
+    /**
+     * @brief parseXmlError
+     * @param xml
+     */
+    void parseXmlError(AutoUpdater::UPDATER_ERROR_CODE code);
+
+    /**
+     * @brief showVersionInfo
+     */
+    void showVersionInfo(const QString &path);
+
 protected slots:
     /**
      * @brief on_btn_update_clicked

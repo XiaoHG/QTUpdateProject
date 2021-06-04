@@ -71,7 +71,7 @@ void FtpManager::on_reply_downloadFinish()
     {
         QString _strError = "Can't open local file : " + m_strLocalPath;
         g_log.log(UpdateLog::FATAL, _strError, __FILE__, __LINE__);
-        reportError(_strError);
+        reportError(QObject::tr("File update error! please check network, retry maybe solve."));
         return;
     }
 
@@ -80,7 +80,7 @@ void FtpManager::on_reply_downloadFinish()
     {
         QString _strError = "Download file : " + m_strLocalPath + " finish, but content is empty!";
         g_log.log(UpdateLog::FATAL, _strError, __FILE__, __LINE__);
-        reportError(_strError);
+        reportError(QObject::tr("File update error! please check network, retry maybe solve."));
         _file.close();
         return;
     }
@@ -141,7 +141,8 @@ bool FtpManager::isMatchMd5()
     if(_strDownloadMd5 != m_strMd5)
     {
         QString _strErrStr = m_strDownloadPath + " md5 compare error! download md5 = " + _strDownloadMd5 + ", xml file md5 = " + m_strMd5;
-        reportError(_strErrStr);
+        g_log.log(UpdateLog::INFO, _strErrStr, __FILE__, __LINE__);
+        reportError(QObject::tr("File update error! please check network, retry maybe solve."));
         return false;
     }
 
@@ -163,10 +164,7 @@ void FtpManager::on_timer_downloading()
         m_timerDownloading->stop();
 
         //It is emited to AutoUpdater.
-        QString _strTimeoutMsg;
-        _strTimeoutMsg.append(m_url.path());
-        _strTimeoutMsg.append(QObject::tr(" file download time out!"));
-        reportError(_strTimeoutMsg);
+        reportError(QObject::tr("Network link timeout failed! please check network."));
     }
 }
 
@@ -186,7 +184,7 @@ void FtpManager::on_reply_error(QNetworkReply::NetworkError errorCode)
     _strErrorMsg.append(m_pReply->errorString());
     g_log.log(UpdateLog::FATAL, _strErrorMsg, __FILE__, __LINE__);
 
-    reportError(m_pReply->errorString());
+    reportError(QObject::tr("File update error! please check network, retry maybe solve."));
 }
 
 void FtpManager::retryDownload()
@@ -202,7 +200,7 @@ void FtpManager::retryDownload()
     if(m_iRetryDownloadTimes > 3)
     {
         //download over with fail.
-        reportError(m_pReply->errorString());
+        reportError(QObject::tr("File update error! please check network, retry maybe solve."));
     }
 
     //Download retry

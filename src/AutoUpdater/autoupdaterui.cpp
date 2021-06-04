@@ -211,8 +211,8 @@ void AutoUpdaterUI::updateUI()
     m_btnUpdate->setIcon(QIcon(":/icon/update2.png"));
     m_btnUpdate->setGeometry(20, m_teOutputVersionInfo->height() + m_labelTitle->height() + 50, 70, 25);
     m_btnUpdate->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
-                        "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
-                        "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
+                                "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
+                                "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
 
     //new version info
     m_labelHaveNewVersionNotise = new QLabel(this);
@@ -240,16 +240,16 @@ void AutoUpdaterUI::updatingUI()
     m_pbUpdating->setGeometry(m_teOutputVersionInfo->x(), this->height() - 50,
                                        m_teOutputVersionInfo->width(), 20);
     m_pbUpdating->setStyleSheet("QProgressBar{"
-                                           "border-radius:5px;"
-                                           "text-align:center;"
-                                           "border:1px solid #E8EDF2;"
-                                           "background-color: rgb(255, 255, 255);"
-                                           "border-color: rgb(180, 180, 180);"
-                                       "}"
-                                       "QProgressBar:chunk{"
-                                           "border-radius:5px;"
-                                           "background-color:#1ABC9C;"
-                                       "}");
+                                               "border-radius:5px;"
+                                               "text-align:center;"
+                                               "border:1px solid #E8EDF2;"
+                                               "background-color: rgb(255, 255, 255);"
+                                               "border-color: rgb(180, 180, 180);"
+                                           "}"
+                                           "QProgressBar:chunk{"
+                                               "border-radius:5px;"
+                                               "background-color:#1ABC9C;"
+                                           "}");
 
     m_listUpdatingWidgets.push_back(m_pbUpdating);
 
@@ -265,15 +265,14 @@ void AutoUpdaterUI::finishUpdateUI()
     m_btnRestart->setGeometry(m_btnUpdate->x(), m_btnUpdate->y(),
                          m_btnUpdate->width(), m_btnUpdate->height());
     m_btnRestart->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
-                        "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
-                        "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
+                                "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
+                                "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
 
     connect(m_btnRestart, SIGNAL(clicked(bool)), this, SLOT(on_btn_restart_clicked()));
 
     m_listFinishWidgets.push_back(m_btnRestart);
 
     //init false
-    //ShowFinishUpdateUI(false);
     showWhichUI(m_listFinishWidgets, false);
 }
 
@@ -291,7 +290,6 @@ void AutoUpdaterUI::notUpdateUI()
     m_listNotUpdateWidgets.push_back(m_labelCurrentVersion);
 
     //init false
-    //ShowNotUpdateUI(false);
     showWhichUI(m_listNotUpdateWidgets, false);
 }
 
@@ -302,8 +300,8 @@ void AutoUpdaterUI::downloadErrorUI()
     m_btnExit->setGeometry(m_btnUpdate->x(), m_btnUpdate->y(),
                                      m_btnUpdate->width(), m_btnUpdate->height());
     m_btnExit->setStyleSheet("QPushButton{background-color:rgba(50, 50, 50, 100%); color:white; border-radius: 6;}"
-                                        "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
-                                        "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
+                            "QPushButton:hover{background-color:rgb(18, 237, 237); color: black;}"
+                            "QPushButton:pressed{background-color:rgb(18, 237, 237); border-style: inset; }");
     connect(m_btnExit, SIGNAL(clicked(bool)), this, SLOT(on_btn_exit_clicked()));
 
     m_listDownloadErrorWidgets.push_back(m_btnExit);
@@ -344,8 +342,35 @@ void AutoUpdaterUI::update()
     m_labelHaveNewVersionNotise->setText(QObject::tr("Find ") + m_strVersionServerInfo +
                                    QObject::tr(" version, click update button to update!"));
 
+    QString _strVersionInfoPath = QApplication::applicationDirPath() + "/download";
+    showVersionInfo(_strVersionInfoPath);
+
     //Load download files path from ftp server.
     m_updater->loadUpdateFiles();
+}
+
+void AutoUpdaterUI::showVersionInfo(const QString &path)
+{
+    m_teOutputVersionInfo->clear();
+    m_teOutputVersionInfo->append(QObject::tr("Current version is ") + m_updater->getOldVersion());
+    m_teOutputVersionInfo->append(QObject::tr(" "));
+    m_teOutputVersionInfo->append(QObject::tr("Changed log of history: "));
+
+    //Get the version information from download file.
+    QString _strVersionInfo = m_updater->getVersionInfo(path);
+    if (_strVersionInfo.isEmpty())
+    {
+        g_log.log(UpdateLog::WARN, "Version information is missing, please check version information file whether is normal",
+                    __FILE__, __LINE__);
+        m_teOutputVersionInfo->setText(QObject::tr("Version information is missing!"));
+        m_teOutputVersionInfo->append(QObject::tr("Pleasse check network, or contact us: www.anycubic.com"));
+    }
+    else
+    {
+        m_teOutputVersionInfo->append(_strVersionInfo.toLocal8Bit());
+    }
+
+    m_teOutputVersionInfo->moveCursor(QTextCursor::Start);
 }
 
 void AutoUpdaterUI::updating()
@@ -382,6 +407,9 @@ void AutoUpdaterUI::notUpdate()
         //and this is not update version at that time, exit update process.
         exit(0);
     }
+
+    QString _strVersionInfoPath = QApplication::applicationDirPath();
+    showVersionInfo(_strVersionInfoPath);
 }
 
 void AutoUpdaterUI::checkForUpdateError()
@@ -396,7 +424,9 @@ void AutoUpdaterUI::checkForUpdateError()
     m_timerCheckForUpdate->stop();
     m_btnExit->setVisible(true);
 
+    m_labelTitle->setText(QObject::tr("Error"));
     m_teOutputVersionInfo->clear();
+    m_teOutputVersionInfo->append(QObject::tr("Check for update failed!"));
     m_teOutputVersionInfo->append(QObject::tr("Error message: "));
     QStringList _listFtpErrorStack = m_updater->getFtpErrorStack();
     for(int i = 0 ; i < _listFtpErrorStack.size(); i++)
@@ -404,10 +434,7 @@ void AutoUpdaterUI::checkForUpdateError()
         g_log.log(UpdateLog::WARN, "Check for update error: " + _listFtpErrorStack.at(i), __FILE__, __LINE__);
         m_teOutputVersionInfo->append(_listFtpErrorStack.at(i));
     }
-
-    m_teOutputVersionInfo->append(QObject::tr("Check for update failed!"));
     m_teOutputVersionInfo->append(QObject::tr("Please check the network link status!"));
-    m_teOutputVersionInfo->append(QObject::tr("Retrying may solve."));
     m_teOutputVersionInfo->append(QObject::tr("Or contact us: www.anycubic.com"));
 
     //exit.
@@ -421,6 +448,8 @@ void AutoUpdaterUI::updatingError()
     m_pbUpdating->setVisible(false);
     m_btnExit->setVisible(true);
 
+    m_labelTitle->setText(QObject::tr("Error"));
+    m_teOutputVersionInfo->append(QObject::tr("Update failed!"));
     m_teOutputVersionInfo->append(QObject::tr("Error message: "));
     QStringList ftpErrorStack = m_updater->getFtpErrorStack();
     for(int i = 0 ; i < ftpErrorStack.size(); i++)
@@ -429,10 +458,8 @@ void AutoUpdaterUI::updatingError()
         m_teOutputVersionInfo->append(ftpErrorStack.at(i));
     }
 
-    m_teOutputVersionInfo->append(QObject::tr("Update failed!"));
     m_teOutputVersionInfo->append(QObject::tr("Please check the network link status!"));
-    m_teOutputVersionInfo->append(QObject::tr("Retrying may solve."));
-    m_teOutputVersionInfo->append(QObject::tr("Or contact us: www.anycubic.com"));
+    m_teOutputVersionInfo->append(QObject::tr("Or contact us: www.anycubic.com."));
 
     //exit.
     m_updater->abnormalExit();
@@ -453,42 +480,60 @@ void AutoUpdaterUI::on_updater_initFileDownloadFinish()
     m_timerCheckForUpdate->stop();
 
     //isUpdate is true to update, or not.
-    if(m_updater->isUpdate())
-    {
-        update();
-        showWhichUI(m_listUpdateWidgets, true);
-    }
-    else
-    {
-        //This is the laster version so hide update button and cansel button,
-        //and show the laster notify message and ok button.
-        notUpdate();
-        showWhichUI(m_listNotUpdateWidgets, true);
 
+    AutoUpdater::UPDATER_ERROR_CODE _eUpdaterCode = m_updater->isUpdate();
+    switch (_eUpdaterCode) {
+        case AutoUpdater::UPDATE:
+            update();
+            showWhichUI(m_listUpdateWidgets, true);
+            break;
+        case AutoUpdater::NOTUPDATE:
+            //This is the laster version so hide update button and cansel button,
+            //and show the laster notify message and ok button.
+            notUpdate();
+            showWhichUI(m_listNotUpdateWidgets, true);
+            break;
+        case AutoUpdater::LOCALXML_PARSE_ERR:
+        case AutoUpdater::DOWNLOADXML_PARSE_ERR:
+            //Parse local xml file error.
+            parseXmlError(_eUpdaterCode);
+            break;
+        default:
+            break;
+    }
+
+    this->show();
+}
+
+void AutoUpdaterUI::parseXmlError(AutoUpdater::UPDATER_ERROR_CODE code)
+{
+    g_log.log(UpdateLog::INFO, "Xml file parse error UI", __FILE__, __LINE__);
+    m_labelTitle->setText(QObject::tr("Error"));
+    m_btnExit->setVisible(true);
+
+    if(m_bFromParentMain)
+    {
+        //This is the main application call updater application from main function
+        //and this is not update version at that time, exit update process.
+        exit(0);
     }
 
     m_teOutputVersionInfo->clear();
-    m_teOutputVersionInfo->append(QObject::tr("Current version is ") + m_updater->getOldVersion());
-    m_teOutputVersionInfo->append(QObject::tr(" "));
-    m_teOutputVersionInfo->append(QObject::tr("Changed log of history: "));
 
-	//Get the version information from download file.
-    QString _strVersionInfo = m_updater->getVersionInfo();
-    if (_strVersionInfo.isEmpty())
-	{
-		g_log.log(UpdateLog::WARN, "Version information is missing, please check version information file whether is normal",
-			__FILE__, __LINE__);
-        m_teOutputVersionInfo->setText(QObject::tr("Version information is missing!"));
-        m_teOutputVersionInfo->append(QObject::tr("Pleasse check network, or contact us: www.anycubic.com"));
-	}
-	else
-	{
-        m_teOutputVersionInfo->append(_strVersionInfo.toLocal8Bit());
-	}
+    switch (code) {
+        case AutoUpdater::LOCALXML_PARSE_ERR:
+            m_teOutputVersionInfo->append(QObject::tr("Local xml version file parse error!"));
+            m_teOutputVersionInfo->append(QObject::tr("Local xml version file unusual, please check it."));
+            m_teOutputVersionInfo->append(QObject::tr("Or contact us: www.anycubic.com"));
+            break;
+        case AutoUpdater::DOWNLOADXML_PARSE_ERR:
+            m_teOutputVersionInfo->append(QObject::tr("Download xml version file parse error!"));
+            m_teOutputVersionInfo->append(QObject::tr("Pleasse check network, or contact us: www.anycubic.com."));
+            break;
+        default:
+            break;
+    }
 
-    m_teOutputVersionInfo->moveCursor(QTextCursor::Start);
-
-    this->show();
 }
 
 void AutoUpdaterUI::on_updater_startDownloadPerFile(QString fileName)
@@ -499,7 +544,7 @@ void AutoUpdaterUI::on_updater_startDownloadPerFile(QString fileName)
                   __FILE__, __LINE__);
         return;
     }
-    g_log.log(UpdateLog::DEBUG, "Start download file: " + fileName, __FILE__, __LINE__);
+    g_log.log(UpdateLog::DEBUG, "Start update file: " + fileName, __FILE__, __LINE__);
     QString _strStartDownload;
     _strStartDownload.append(QObject::tr("Updating "));
     _strStartDownload.append(fileName);
@@ -514,7 +559,7 @@ void AutoUpdaterUI::on_updater_finishDownloadPerFile(QString fileName)
                   __FILE__, __LINE__);
         return;
     }
-    g_log.log(UpdateLog::DEBUG, fileName + " download successful.", __FILE__, __LINE__);
+    g_log.log(UpdateLog::DEBUG, fileName + " update successful.", __FILE__, __LINE__);
     QString _strStartDownload;
     _strStartDownload.append(fileName);
     _strStartDownload.append(QObject::tr(" update is complete!"));

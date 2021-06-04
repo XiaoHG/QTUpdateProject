@@ -2,7 +2,7 @@
 <autoupdate>
 	<version>V4.0</version>
 	<filelist>
-		<file name="AutoUpdater.exe" dir=""  md5="9043d446c32ec4f8b2abcf28b3aa537e"/>
+		<file name="AutoUpdater.exe" dir=""  md5="04e42142ffb58a6acd51a98b44d96391"/>
 		<file name="AutoUpdateTest.exe" dir="" md5="2a962b684cb36291c2c792bca43582a1"/>
 		<file name="D3Dcompiler_47.dll" dir=""  md5="b0ae3aa9dd1ebd60bdf51cb94834cd04"/>
 		<file name="libEGL.dll" dir=""  md5="654e78c18e3962d597394d063f29b758"/>
