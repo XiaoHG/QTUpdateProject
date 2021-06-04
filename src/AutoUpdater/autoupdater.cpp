@@ -13,7 +13,6 @@
 #include <QMessageBox>
 #include <QThread>
 #include <QApplication>
-#include <QStringLiteral>
 #include <QStandardPaths>
 #include <QFile>
 #include <QProcess>
