@@ -1,0 +1,17 @@
+INPUT(
+./release\main.o
+./release\ftpmanager.o
+./release\xmlparser.o
+./release\autoresize.o
+./release\errorstack.o
+./release\updaterui.o
+./release\updater.o
+./release\log.o
+./release\qrc_qt_language.o
+./release\qrc_icon.o
+./release\moc_ftpmanager.o
+./release\moc_errorstack.o
+./release\moc_updaterui.o
+./release\moc_updater.o
+./release\moc_log.o
+);

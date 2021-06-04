@@ -1,10 +1,10 @@
 ﻿#include "xmlparser.h"
-#include "updatelog.h"
+#include "log.h"
 
 #include <QDomDocument>
 #include <QFile>
 
-extern UpdateLog g_log;
+extern Log g_log;
 
 XMLParser::XMLParser()
 {
@@ -17,7 +17,7 @@ QDomNodeList XMLParser::parseElement(QString xml, QString element)
     QFile _file(xml);
     if(!_file.open(QIODevice::ReadOnly | QFile::Text))
     {
-        g_log.log(UpdateLog::FATAL, "Open XML file for read error: " + _file.errorString(),
+        g_log.log(Log::FATAL, "Open XML file for read error: " + _file.errorString(),
                   __FILE__, __LINE__);
         return _nodeList;
     }
@@ -31,7 +31,7 @@ QDomNodeList XMLParser::parseElement(QString xml, QString element)
     {
         QString _strErrMsg = xml + QString::asprintf(" Setcontent error: error string = %1, error line = %2, error column = %3")
                 .arg(_strErrorStr).arg(_iErrorLine).arg(_iErrorColumn);
-        g_log.log(UpdateLog::FATAL, _strErrMsg, __FILE__, __LINE__);
+        g_log.log(Log::FATAL, _strErrMsg, __FILE__, __LINE__);
         _file.close();
         return _nodeList;
     }
@@ -40,58 +40,12 @@ QDomNodeList XMLParser::parseElement(QString xml, QString element)
     QDomElement root = _doc.documentElement();
     if(root.tagName() != "autoupdate")
     {
-        g_log.log(UpdateLog::FATAL, xml + "Xml file is error: root tag is not <autoupdate>", __FILE__, __LINE__);
+        g_log.log(Log::FATAL, xml + "Xml file is error: root tag is not <autoupdate>", __FILE__, __LINE__);
         return _nodeList;
     }
 
     _nodeList = root.elementsByTagName(element);
 
     return _nodeList;
-}
-
-void XMLParser::parse(QString xml)
-{
-    QFile _file(xml);
-    if(!_file.open(QIODevice::ReadOnly | QFile::Text))
-    {
-        g_log.log(UpdateLog::FATAL, "Open XML file for read error: " + _file.errorString(),
-                  __FILE__, __LINE__);
-        return;
-    }
-
-    QString _strErrorStr;
-    int _iErrorLine;
-    int _iErrorColumn;
-
-    QDomDocument _doc;
-    if(!_doc.setContent(&_file, false, &_strErrorStr, &_iErrorLine, &_iErrorColumn))
-    {
-        g_log.log(UpdateLog::FATAL, xml + " Setcontent error", __FILE__, __LINE__);
-        _file.close();
-        return;
-    }
-
-    _file.close();
-    QDomElement _root = _doc.documentElement();
-    if(_root.tagName() != "autoupdate")
-    {
-        g_log.log(UpdateLog::FATAL, xml + "Xml file is error: root tag is not <autoupdate>", __FILE__, __LINE__);
-        return;
-    }
-
-    QDomNodeList _nodeList = _root.elementsByTagName("file");
-    for(int i = 0; i < _nodeList.size(); ++i)
-    {
-        QString _strName = _nodeList.at(i).toElement().attribute("name");
-        QString _strDir = _nodeList.at(i).toElement().attribute("dir");
-        QString _strVersion = _nodeList.at(i).toElement().attribute("version");
-        g_log.log(UpdateLog::FATAL, _strName + ", " + _strDir + ", " + _strVersion, __FILE__, __LINE__);
-    }
-    _nodeList = _root.elementsByTagName("version");
-    for(int i = 0; i < _nodeList.size(); ++i)
-    {
-        g_log.log(UpdateLog::FATAL, "Version = " + _nodeList.at(i).toElement().text(), __FILE__, __LINE__);
-    }
-
 }
 

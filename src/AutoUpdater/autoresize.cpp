@@ -1,5 +1,5 @@
 ﻿#include "autoresize.h"
-#include "updatelog.h"
+#include "log.h"
 
 #include <QLabel>
 #include <QMapIterator>
@@ -12,7 +12,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 
-extern UpdateLog g_log;
+extern Log g_log;
 
 AutoResize::AutoResize(QWidget* obj, float baseWidth, float baseHeight)
     :m_autoResizeWidget(obj)
@@ -36,7 +36,7 @@ void AutoResize::calculateResizeRatio()
     m_fVerRatio = m_autoResizeWidget->height() / m_fBaseHeight;
     m_fFontRatio = m_fHorRatio < m_fVerRatio ? m_fHorRatio : m_fVerRatio;
 
-    g_log.log(UpdateLog::INFO, QString::asprintf("HorRatio = %1, VerRatio = %2, FontRatio = %3")
+    g_log.log(Log::INFO, QString::asprintf("HorRatio = %1, VerRatio = %2, FontRatio = %3")
               .arg(m_fHorRatio).arg(m_fVerRatio).arg(m_fFontRatio), __FILE__, __LINE__);
 }
 
@@ -144,7 +144,7 @@ void AutoResize::doAutoResize()
         fontAutoResize(_item, changedFont.pointSize());
         _item->setGeometry(_afterRect);
     }
-    QMapIterator<QWidget*,AutoResizeOriginalData> _fontIt(m_fontMap);
+    QMapIterator<QWidget*, AutoResizeOriginalData> _fontIt(m_fontMap);
     while(_fontIt.hasNext())
     {
         _fontIt.next();

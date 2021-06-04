@@ -1,0 +1,834 @@
+[2021.06.05 00:01:49.788][autoupdaterui.cpp: 631][INFO]: Language is chinese
+[2021.06.05 00:01:50.463][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/del_old_path.bat
+[2021.06.05 00:01:50.608][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 00:01:50.608][ftpmanager.cpp: 36][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml
+[2021.06.05 00:01:50.608][ftpmanager.cpp: 47][INFO]: Download time out is : 30
+[2021.06.05 00:01:52.621][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 0
+[2021.06.05 00:01:52.632][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 1
+[2021.06.05 00:01:53.643][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 2
+[2021.06.05 00:01:54.657][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 3
+[2021.06.05 00:01:55.671][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 4
+[2021.06.05 00:01:56.685][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 5
+[2021.06.05 00:01:57.699][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 6
+[2021.06.05 00:01:58.713][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 7
+[2021.06.05 00:01:59.727][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 8
+[2021.06.05 00:02:00.741][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 9
+[2021.06.05 00:02:01.755][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 10
+[2021.06.05 00:02:02.769][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 11
+[2021.06.05 00:02:03.783][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 12
+[2021.06.05 00:02:04.797][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 13
+[2021.06.05 00:02:05.811][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 14
+[2021.06.05 00:02:06.825][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 15
+[2021.06.05 00:02:07.839][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 16
+[2021.06.05 00:02:08.854][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 17
+[2021.06.05 00:02:09.867][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 18
+[2021.06.05 00:02:10.881][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 19
+[2021.06.05 00:02:11.895][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 20
+[2021.06.05 00:02:12.909][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 21
+[2021.06.05 00:02:13.923][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 22
+[2021.06.05 00:02:14.937][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 23
+[2021.06.05 00:02:15.951][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 24
+[2021.06.05 00:02:16.965][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 25
+[2021.06.05 00:02:17.979][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 26
+[2021.06.05 00:02:18.994][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 27
+[2021.06.05 00:02:20.008][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 28
+[2021.06.05 00:02:21.022][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 29
+[2021.06.05 00:02:22.036][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 30
+[2021.06.05 00:02:22.036][ftpmanager.cpp: 157][INFO]: Download file /version/lasterV.xml time out
+[2021.06.05 00:02:22.135][autoupdaterui.cpp: 411][INFO]: Check for update error
+[2021.06.05 00:02:27.749][autoupdaterui.cpp: 631][INFO]: Language is chinese
+[2021.06.05 00:02:28.258][autoresize.cpp: 40][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.05 00:02:28.264][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/del_old_path.bat
+[2021.06.05 00:02:28.323][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 00:02:28.323][ftpmanager.cpp: 36][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml
+[2021.06.05 00:02:28.323][ftpmanager.cpp: 47][INFO]: Download time out is : 30
+[2021.06.05 00:02:30.000][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 0
+[2021.06.05 00:02:30.350][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 1
+[2021.06.05 00:02:31.364][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 2
+[2021.06.05 00:02:32.378][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 3
+[2021.06.05 00:02:33.392][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 4
+[2021.06.05 00:02:34.406][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 5
+[2021.06.05 00:02:35.423][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 6
+[2021.06.05 00:02:36.439][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 7
+[2021.06.05 00:02:37.453][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 8
+[2021.06.05 00:02:38.467][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 9
+[2021.06.05 00:02:39.483][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 10
+[2021.06.05 00:02:40.499][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 11
+[2021.06.05 00:02:41.513][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 12
+[2021.06.05 00:02:42.527][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 13
+[2021.06.05 00:02:43.541][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 14
+[2021.06.05 00:02:44.555][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 15
+[2021.06.05 00:02:45.569][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 16
+[2021.06.05 00:02:46.583][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 17
+[2021.06.05 00:02:47.597][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 18
+[2021.06.05 00:02:48.611][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 19
+[2021.06.05 00:02:49.625][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 20
+[2021.06.05 00:02:50.633][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 21
+[2021.06.05 00:02:51.647][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 22
+[2021.06.05 00:02:52.661][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 23
+[2021.06.05 00:02:53.675][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 24
+[2021.06.05 00:02:54.689][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 25
+[2021.06.05 00:02:55.703][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 26
+[2021.06.05 00:02:56.717][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 27
+[2021.06.05 00:02:57.731][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 28
+[2021.06.05 00:02:58.747][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 29
+[2021.06.05 00:02:59.761][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 30
+[2021.06.05 00:02:59.761][ftpmanager.cpp: 157][INFO]: Download file /version/lasterV.xml time out
+[2021.06.05 00:02:59.793][autoupdaterui.cpp: 411][INFO]: Check for update error
+[2021.06.05 00:02:59.793][autoupdaterui.cpp: 428][INFO]: Check for update error: Network link timeout failed! please check network.
+[2021.06.05 00:03:05.265][autoupdaterui.cpp: 577][INFO]: Exit!
+[2021.06.05 00:03:13.256][autoupdaterui.cpp: 637][INFO]: Language is english
+[2021.06.05 00:03:13.759][autoresize.cpp: 40][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.05 00:03:13.766][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/del_old_path.bat
+[2021.06.05 00:03:13.825][ftpmanager.cpp: 35][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 00:03:13.825][ftpmanager.cpp: 36][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml
+[2021.06.05 00:03:13.825][ftpmanager.cpp: 47][INFO]: Download time out is : 30
+[2021.06.05 00:03:15.499][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 0
+[2021.06.05 00:03:15.840][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 1
+[2021.06.05 00:03:16.854][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 2
+[2021.06.05 00:03:17.868][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 3
+[2021.06.05 00:03:18.882][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 4
+[2021.06.05 00:03:19.896][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 5
+[2021.06.05 00:03:20.910][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 6
+[2021.06.05 00:03:21.924][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 7
+[2021.06.05 00:03:22.938][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 8
+[2021.06.05 00:03:23.952][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 9
+[2021.06.05 00:03:24.966][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 10
+[2021.06.05 00:03:25.980][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 11
+[2021.06.05 00:03:27.007][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 12
+[2021.06.05 00:03:28.023][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 13
+[2021.06.05 00:03:29.037][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 14
+[2021.06.05 00:03:30.051][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 15
+[2021.06.05 00:03:31.065][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 16
+[2021.06.05 00:03:32.064][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 17
+[2021.06.05 00:03:33.078][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 18
+[2021.06.05 00:03:34.092][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 19
+[2021.06.05 00:03:35.106][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 20
+[2021.06.05 00:03:36.120][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 21
+[2021.06.05 00:03:37.134][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 22
+[2021.06.05 00:03:38.148][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 23
+[2021.06.05 00:03:39.162][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 24
+[2021.06.05 00:03:40.176][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 25
+[2021.06.05 00:03:41.190][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 26
+[2021.06.05 00:03:42.204][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 27
+[2021.06.05 00:03:43.218][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 28
+[2021.06.05 00:03:44.233][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 29
+[2021.06.05 00:03:45.247][ftpmanager.cpp: 154][INFO]: Download file /version/lasterV.xml time: 30
+[2021.06.05 00:03:45.247][ftpmanager.cpp: 157][INFO]: Download file /version/lasterV.xml time out
+[2021.06.05 00:03:45.295][autoupdaterui.cpp: 411][INFO]: Check for update error
+[2021.06.05 00:03:45.295][autoupdaterui.cpp: 428][INFO]: Check for update error: Network link timeout failed! please check network.
+[2021.06.05 00:06:25.553][autoupdaterui.cpp: 577][INFO]: Exit!
+[2021.06.05 00:18:46.493][autoupdaterui.cpp: 631][INFO]: Language is chinese
+[2021.06.05 00:18:46.930][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/del_old_path.bat
+[2021.06.05 00:18:46.993][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 00:18:46.993][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml
+[2021.06.05 00:18:46.993][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:18:48.085][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 0
+[2021.06.05 00:18:49.021][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 1
+[2021.06.05 00:18:50.035][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 2
+[2021.06.05 00:18:51.035][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 3
+[2021.06.05 00:18:52.049][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 4
+[2021.06.05 00:18:53.063][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 5
+[2021.06.05 00:18:54.087][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 6
+[2021.06.05 00:18:55.101][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 7
+[2021.06.05 00:18:56.115][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 8
+[2021.06.05 00:18:57.129][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 9
+[2021.06.05 00:18:58.143][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 10
+[2021.06.05 00:18:59.157][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 11
+[2021.06.05 00:19:00.171][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 12
+[2021.06.05 00:19:01.185][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 13
+[2021.06.05 00:19:02.199][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 14
+[2021.06.05 00:19:03.213][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 15
+[2021.06.05 00:19:04.227][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 16
+[2021.06.05 00:19:05.241][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 17
+[2021.06.05 00:19:06.255][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 18
+[2021.06.05 00:19:07.269][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 19
+[2021.06.05 00:19:08.283][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 20
+[2021.06.05 00:19:09.297][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 21
+[2021.06.05 00:19:10.311][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 22
+[2021.06.05 00:19:11.327][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 23
+[2021.06.05 00:19:12.341][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 24
+[2021.06.05 00:19:13.355][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 25
+[2021.06.05 00:19:14.369][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 26
+[2021.06.05 00:19:15.383][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 27
+[2021.06.05 00:19:16.399][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 28
+[2021.06.05 00:19:17.413][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 29
+[2021.06.05 00:19:18.427][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 30
+[2021.06.05 00:19:18.427][ftpmanager.cpp: 159][INFO]: Download file /version/lasterV.xml time out
+[2021.06.05 00:19:18.490][autoupdaterui.cpp: 411][INFO]: Check for update error
+[2021.06.05 00:20:22.707][autoupdaterui.cpp: 631][INFO]: Language is chinese
+[2021.06.05 00:20:23.219][autoresize.cpp: 40][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.05 00:20:23.225][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/del_old_path.bat
+[2021.06.05 00:20:23.285][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 00:20:23.285][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml
+[2021.06.05 00:20:23.285][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:20:24.950][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 0
+[2021.06.05 00:20:25.306][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 1
+[2021.06.05 00:20:26.320][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 2
+[2021.06.05 00:20:27.334][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 3
+[2021.06.05 00:20:28.349][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 4
+[2021.06.05 00:20:29.363][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 5
+[2021.06.05 00:20:30.377][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 6
+[2021.06.05 00:20:31.391][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 7
+[2021.06.05 00:20:32.405][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 8
+[2021.06.05 00:20:33.419][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 9
+[2021.06.05 00:20:34.433][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 10
+[2021.06.05 00:20:35.447][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 11
+[2021.06.05 00:20:36.461][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 12
+[2021.06.05 00:20:37.475][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 13
+[2021.06.05 00:20:38.489][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 14
+[2021.06.05 00:20:39.503][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 15
+[2021.06.05 00:20:40.517][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 16
+[2021.06.05 00:20:41.530][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 17
+[2021.06.05 00:20:42.544][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 18
+[2021.06.05 00:20:43.558][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 19
+[2021.06.05 00:20:44.572][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 20
+[2021.06.05 00:20:45.586][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 21
+[2021.06.05 00:20:46.600][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 22
+[2021.06.05 00:20:47.614][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 23
+[2021.06.05 00:20:48.628][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 24
+[2021.06.05 00:20:49.642][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 25
+[2021.06.05 00:20:50.656][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 26
+[2021.06.05 00:20:51.670][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 27
+[2021.06.05 00:20:52.684][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 28
+[2021.06.05 00:20:53.698][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 29
+[2021.06.05 00:20:54.712][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 30
+[2021.06.05 00:20:54.712][ftpmanager.cpp: 159][INFO]: Download file /version/lasterV.xml time out
+[2021.06.05 00:20:54.759][autoupdaterui.cpp: 411][INFO]: Check for update error
+[2021.06.05 00:20:54.759][autoupdaterui.cpp: 428][INFO]: Check for update error: Network link timeout failed! please check network.
+[2021.06.05 00:22:50.136][autoupdaterui.cpp: 577][INFO]: Exit!
+[2021.06.05 00:22:51.898][autoupdaterui.cpp: 637][INFO]: Language is english
+[2021.06.05 00:22:52.358][autoresize.cpp: 40][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.05 00:22:52.374][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/del_old_path.bat
+[2021.06.05 00:22:52.435][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 00:22:52.435][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml
+[2021.06.05 00:22:52.435][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:22:54.164][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 0
+[2021.06.05 00:22:54.461][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 1
+[2021.06.05 00:22:55.475][ftpmanager.cpp: 156][INFO]: Download file /version/lasterV.xml time: 2
+[2021.06.05 00:25:11.176][autoupdaterui.cpp: 631][INFO]: Language is chinese
+[2021.06.05 00:25:11.644][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/del_old_path.bat
+[2021.06.05 00:25:11.706][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 00:25:11.706][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml
+[2021.06.05 00:25:11.706][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 00:25:11.769][ftpmanager.cpp: 181][INFO]: Download error: code = 203. error string = Error while downloading ftp://127.0.0.1/version/lasterV.xml: File not found
+[2021.06.05 00:25:11.862][autoupdaterui.cpp: 411][INFO]: Check for update error
+[2021.06.05 00:25:26.663][autoupdaterui.cpp: 631][INFO]: Language is chinese
+[2021.06.05 00:25:27.150][autoresize.cpp: 40][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.05 00:25:27.157][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/del_old_path.bat
+[2021.06.05 00:25:27.217][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 00:25:27.217][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml
+[2021.06.05 00:25:27.217][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 00:25:27.869][ftpmanager.cpp: 181][INFO]: Download error: code = 203. error string = Error while downloading ftp://127.0.0.1/version/lasterV.xml: File not found
+[2021.06.05 00:25:27.886][autoupdaterui.cpp: 411][INFO]: Check for update error
+[2021.06.05 00:25:27.886][autoupdaterui.cpp: 428][INFO]: Check for update error: File update error! please check network, retry maybe solve.
+[2021.06.05 00:26:38.755][autoupdaterui.cpp: 577][INFO]: Exit!
+[2021.06.05 00:26:40.146][autoupdaterui.cpp: 631][INFO]: Language is chinese
+[2021.06.05 00:26:40.658][autoresize.cpp: 40][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.05 00:26:40.665][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/del_old_path.bat
+[2021.06.05 00:26:40.725][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 00:26:40.725][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml
+[2021.06.05 00:26:40.725][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml, file lenght = 95
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 103][INFO]: Finish updater lasterV.xml file!
+[2021.06.05 00:26:41.436][autoupdater.cpp: 123][INFO]: Download version is: V4.0
+[2021.06.05 00:26:41.436][autoupdater.cpp: 130][INFO]: Local xml is lost, make local xml file on init.
+[2021.06.05 00:26:41.436][autoupdater.cpp: 295][INFO]: Local init xml file content: <?xml version="1.0" encoding="utf-8"?>
+<autoupdate>
+    <version>V0.0</version>
+    <filelist>
+    </filelist>
+</autoupdate>
+[2021.06.05 00:26:41.436][autoupdater.cpp: 141][INFO]: Local version is: V4.0
+[2021.06.05 00:26:41.436][autoupdater.cpp: 152][INFO]: Server version is updater, need to update!
+[2021.06.05 00:26:41.436][autoupdater.cpp: 188][INFO]: Download 1 init file: server = /version/AutoUpdateTestV4.0/win32/updater.xml, local = F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/updater.xml
+[2021.06.05 00:26:41.436][autoupdater.cpp: 190][INFO]: Download 2 init file: server = /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt, local = F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoCh.txt
+[2021.06.05 00:26:41.436][autoupdater.cpp: 192][INFO]: Download 3 init file: server = /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt, local = F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoEn.txt
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/updater.xml
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/updater.xml
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoCh.txt
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoEn.txt
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 181][INFO]: Download error: code = 203. error string = Error while downloading ftp://127.0.0.1/version/AutoUpdateTestV4.0/win32/versionInfoCh.txt: File not found
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 181][INFO]: Download error: code = 203. error string = Error while downloading ftp://127.0.0.1/version/AutoUpdateTestV4.0/win32/updater.xml: File not found
+[2021.06.05 00:26:41.436][ftpmanager.cpp: 181][INFO]: Download error: code = 203. error string = Error while downloading ftp://127.0.0.1/version/AutoUpdateTestV4.0/win32/versionInfoEn.txt: File not found
+[2021.06.05 00:26:41.514][autoupdaterui.cpp: 411][INFO]: Check for update error
+[2021.06.05 00:26:41.514][autoupdaterui.cpp: 428][INFO]: Check for update error: File update error! please check network, retry maybe solve.
+[2021.06.05 00:26:41.514][autoupdaterui.cpp: 428][INFO]: Check for update error: File update error! please check network, retry maybe solve.
+[2021.06.05 00:26:41.514][autoupdaterui.cpp: 428][INFO]: Check for update error: File update error! please check network, retry maybe solve.
+[2021.06.05 00:27:46.220][autoupdaterui.cpp: 631][INFO]: Language is chinese
+[2021.06.05 00:27:46.700][autoresize.cpp: 40][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.05 00:27:46.706][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/del_old_path.bat
+[2021.06.05 00:27:46.767][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 00:27:46.767][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml
+[2021.06.05 00:27:46.767][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 00:27:47.476][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml exists, befor download delete it first.
+[2021.06.05 00:27:47.476][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml, file lenght = 95
+[2021.06.05 00:27:47.476][ftpmanager.cpp: 103][INFO]: Finish updater lasterV.xml file!
+[2021.06.05 00:27:47.476][autoupdater.cpp: 123][INFO]: Download version is: V4.0
+[2021.06.05 00:27:47.476][autoupdater.cpp: 141][INFO]: Local version is: V4.0
+[2021.06.05 00:27:47.476][autoupdater.cpp: 152][INFO]: Server version is updater, need to update!
+[2021.06.05 00:27:47.476][autoupdater.cpp: 188][INFO]: Download 1 init file: server = /version/AutoUpdateTestV4.0/win32/updater.xml, local = F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/updater.xml
+[2021.06.05 00:27:47.476][autoupdater.cpp: 190][INFO]: Download 2 init file: server = /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt, local = F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoCh.txt
+[2021.06.05 00:27:47.476][autoupdater.cpp: 192][INFO]: Download 3 init file: server = /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt, local = F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoEn.txt
+[2021.06.05 00:27:47.476][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/updater.xml
+[2021.06.05 00:27:47.476][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/updater.xml
+[2021.06.05 00:27:47.476][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 00:27:47.476][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt
+[2021.06.05 00:27:47.476][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoCh.txt
+[2021.06.05 00:27:47.476][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 00:27:47.476][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt
+[2021.06.05 00:27:47.476][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoEn.txt
+[2021.06.05 00:27:47.476][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 00:27:47.507][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoCh.txt, file lenght = 485
+[2021.06.05 00:27:47.507][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt file!
+[2021.06.05 00:27:47.507][autoupdater.cpp: 213][INFO]: Download init file finish count = 1, m_mapInitFile.size() = 3
+[2021.06.05 00:27:47.507][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoEn.txt, file lenght = 238
+[2021.06.05 00:27:47.507][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt file!
+[2021.06.05 00:27:47.507][autoupdater.cpp: 213][INFO]: Download init file finish count = 2, m_mapInitFile.size() = 3
+[2021.06.05 00:27:47.507][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/updater.xml, file lenght = 4115
+[2021.06.05 00:27:47.507][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/updater.xml file!
+[2021.06.05 00:27:47.507][autoupdater.cpp: 213][INFO]: Download init file finish count = 3, m_mapInitFile.size() = 3
+[2021.06.05 00:27:47.507][autoupdaterui.cpp: 473][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.05 00:27:47.507][autoupdaterui.cpp: 337][INFO]: Update UI
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: AutoUpdater.exe file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: AutoUpdateTest.exe file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: D3Dcompiler_47.dll file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: libEGL.dll file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: libGLESV2.dll file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: opengl32sw.dll file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: Qt5Core.dll file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: Qt5Gui.dll file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: Qt5Network.dll file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: Qt5Svg.dll file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: Qt5Widgets.dll file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: Qt5Xml.dll file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: updater.xml file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: versionInfoCh.txt file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: versionInfoEn.txt file, and directory is: ./
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qgenericbearer.dll file, and directory is: /bearer
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qsvgicon.dll file, and directory is: /iconengines
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qgif.dll file, and directory is: /imageformats
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qicns.dll file, and directory is: /imageformats
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qico.dll file, and directory is: /imageformats
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qjpeg.dll file, and directory is: /imageformats
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qsvg.dll file, and directory is: /imageformats
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qtga.dll file, and directory is: /imageformats
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qtiff.dll file, and directory is: /imageformats
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qwbmp.dll file, and directory is: /imageformats
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qwebp.dll file, and directory is: /imageformats
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qwindows.dll file, and directory is: /platforms
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qwindowsvistastyle.dll file, and directory is: /styles
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_ar.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_bg.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_ca.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_cs.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_da.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_de.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_es.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_fi.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_fr.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_gd.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_he.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_hu.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_it.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_ja.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_ko.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_lv.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_pl.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_ru.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_sk.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 336][INFO]: Load: qt_uk.qm file, and directory is: /translations
+[2021.06.05 00:27:47.507][autoupdater.cpp: 343][INFO]: Load update files over.
+[2021.06.05 00:27:51.282][autoupdaterui.cpp: 375][INFO]: Updating UI
+[2021.06.05 00:27:51.282][autoupdaterui.cpp: 376][INFO]: Update process timer start at 50ms
+[2021.06.05 00:27:51.282][autoupdater.cpp: 364][INFO]: Total download files: 48
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/AutoUpdater.exe
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/AutoUpdater.exe
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/AutoUpdateTest.exe
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/AutoUpdateTest.exe
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/D3Dcompiler_47.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/D3Dcompiler_47.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/libEGL.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/libEGL.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/libGLESV2.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/libGLESV2.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/opengl32sw.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/opengl32sw.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/Qt5Core.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Core.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/Qt5Gui.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Gui.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/Qt5Network.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Network.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/Qt5Svg.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Svg.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/Qt5Widgets.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Widgets.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/Qt5Xml.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Xml.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/updater.xml
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/updater.xml
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/versionInfoCh.txt
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/versionInfoEn.txt
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/bearer/qgenericbearer.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/bearer/qgenericbearer.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/iconengines/qsvgicon.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/iconengines/qsvgicon.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/imageformats/qgif.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qgif.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/imageformats/qicns.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qicns.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/imageformats/qico.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qico.dll
+[2021.06.05 00:27:51.282][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/imageformats/qjpeg.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qjpeg.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/imageformats/qsvg.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qsvg.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/imageformats/qtga.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qtga.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/imageformats/qtiff.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qtiff.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/imageformats/qwbmp.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qwbmp.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/imageformats/qwebp.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qwebp.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/platforms/qwindows.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/platforms/qwindows.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/styles/qwindowsvistastyle.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/styles/qwindowsvistastyle.dll
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_ar.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ar.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_bg.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_bg.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_ca.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ca.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_cs.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_cs.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_da.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_da.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_de.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_de.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_es.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_es.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_fi.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_fi.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_fr.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_fr.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_gd.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_gd.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_he.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_he.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_hu.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_hu.qm
+[2021.06.05 00:27:51.298][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_it.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_it.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_ja.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ja.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_ko.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ko.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_lv.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_lv.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_pl.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_pl.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_ru.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ru.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_sk.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_sk.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/translations/qt_uk.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_uk.qm
+[2021.06.05 00:27:51.313][ftpmanager.cpp: 49][INFO]: Download time out is : 30
+[2021.06.05 00:27:51.391][autoupdater.cpp: 349][INFO]: Download finish count: 0
+[2021.06.05 00:27:51.641][autoupdater.cpp: 349][INFO]: Download finish count: 0
+[2021.06.05 00:27:51.657][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qgif.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.657][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qgif.dll, file lenght = 32768
+[2021.06.05 00:27:51.657][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qgif.dll
+[2021.06.05 00:27:51.657][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 0e472352980372c8a6fd94dc57d5eda6, download file md5 = 0e472352980372c8a6fd94dc57d5eda6
+[2021.06.05 00:27:51.657][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/imageformats/qgif.dll file!
+[2021.06.05 00:27:51.657][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/libEGL.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.657][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/libEGL.dll, file lenght = 15360
+[2021.06.05 00:27:51.657][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/libEGL.dll
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 654e78c18e3962d597394d063f29b758, download file md5 = 654e78c18e3962d597394d063f29b758
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/libEGL.dll file!
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/versionInfoEn.txt exists, befor download delete it first.
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/versionInfoEn.txt, file lenght = 238
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt file!
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/updater.xml exists, befor download delete it first.
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/updater.xml, file lenght = 4115
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/updater.xml file!
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/versionInfoCh.txt exists, befor download delete it first.
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/versionInfoCh.txt, file lenght = 485
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt file!
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/iconengines/qsvgicon.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/iconengines/qsvgicon.dll, file lenght = 37888
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/iconengines/qsvgicon.dll
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 8e5ed1d3bc3ab1fc3f5bb380c395fa60, download file md5 = 8e5ed1d3bc3ab1fc3f5bb380c395fa60
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/iconengines/qsvgicon.dll file!
+[2021.06.05 00:27:51.672][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qwbmp.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qwbmp.dll, file lenght = 24064
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qwbmp.dll
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 41137869b858bcafaef69d83a8aff24a, download file md5 = 41137869b858bcafaef69d83a8aff24a
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/imageformats/qwbmp.dll file!
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/bearer/qgenericbearer.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/bearer/qgenericbearer.dll, file lenght = 49152
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/bearer/qgenericbearer.dll
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = eba31567c7b7b71cc6948c2cf9068e0e, download file md5 = eba31567c7b7b71cc6948c2cf9068e0e
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/bearer/qgenericbearer.dll file!
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qsvg.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qsvg.dll, file lenght = 26112
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qsvg.dll
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 3e21da5f4ae23e89b75f596a884c0bcd, download file md5 = 3e21da5f4ae23e89b75f596a884c0bcd
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/imageformats/qsvg.dll file!
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/AutoUpdateTest.exe exists, befor download delete it first.
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/AutoUpdateTest.exe, file lenght = 50176
+[2021.06.05 00:27:51.688][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/AutoUpdateTest.exe
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 2a962b684cb36291c2c792bca43582a1, download file md5 = 2a962b684cb36291c2c792bca43582a1
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/AutoUpdateTest.exe file!
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qtga.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qtga.dll, file lenght = 25600
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qtga.dll
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = ff89029c51ea75dbebf31d9590038b8e, download file md5 = ff89029c51ea75dbebf31d9590038b8e
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/imageformats/qtga.dll file!
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ko.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ko.qm, file lenght = 131255
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ko.qm
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = d3eb25e0fff5719e8840612727896b1d, download file md5 = d3eb25e0fff5719e8840612727896b1d
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_ko.qm file!
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qico.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qico.dll, file lenght = 33280
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qico.dll
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 6d175e83161f32e12c012b98edd61468, download file md5 = 6d175e83161f32e12c012b98edd61468
+[2021.06.05 00:27:51.703][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/imageformats/qico.dll file!
+[2021.06.05 00:27:51.735][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qicns.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.735][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qicns.dll, file lenght = 41984
+[2021.06.05 00:27:51.735][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qicns.dll
+[2021.06.05 00:27:51.735][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 47035aa55a1e343ef1d1b55209f6d717, download file md5 = 47035aa55a1e343ef1d1b55209f6d717
+[2021.06.05 00:27:51.735][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/imageformats/qicns.dll file!
+[2021.06.05 00:27:51.735][autoupdater.cpp: 349][INFO]: Download finish count: 14
+[2021.06.05 00:27:51.735][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_pl.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.735][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_pl.qm, file lenght = 162972
+[2021.06.05 00:27:51.735][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_pl.qm
+[2021.06.05 00:27:51.735][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 55a6bb647e176cd4ceb5096c76b87abf, download file md5 = 55a6bb647e176cd4ceb5096c76b87abf
+[2021.06.05 00:27:51.735][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_pl.qm file!
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_da.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_da.qm, file lenght = 174098
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_da.qm
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = d541cc7f5ea2248e72d2e86ce6cbfa45, download file md5 = d541cc7f5ea2248e72d2e86ce6cbfa45
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_da.qm file!
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_fi.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_fi.qm, file lenght = 179934
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_fi.qm
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = ff556242e6061dac90683223351abd61, download file md5 = ff556242e6061dac90683223351abd61
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_fi.qm file!
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_sk.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_sk.qm, file lenght = 125753
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_sk.qm
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = fed9c191096819dd208e0e3e2d051170, download file md5 = fed9c191096819dd208e0e3e2d051170
+[2021.06.05 00:27:51.750][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_sk.qm file!
+[2021.06.05 00:27:51.766][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/styles/qwindowsvistastyle.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.766][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/styles/qwindowsvistastyle.dll, file lenght = 136192
+[2021.06.05 00:27:51.766][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/styles/qwindowsvistastyle.dll
+[2021.06.05 00:27:51.766][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 547777b260afa7eed553175747e41773, download file md5 = 547777b260afa7eed553175747e41773
+[2021.06.05 00:27:51.766][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/styles/qwindowsvistastyle.dll file!
+[2021.06.05 00:27:51.766][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ja.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.766][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ja.qm, file lenght = 129904
+[2021.06.05 00:27:51.766][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ja.qm
+[2021.06.05 00:27:51.766][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 1c0ab06b3388e79a2206cbfd28e374a2, download file md5 = 1c0ab06b3388e79a2206cbfd28e374a2
+[2021.06.05 00:27:51.766][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_ja.qm file!
+[2021.06.05 00:27:51.766][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_es.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.766][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_es.qm, file lenght = 165160
+[2021.06.05 00:27:51.766][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_es.qm
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 7479d957c5309aedd4f58e4556590f69, download file md5 = 7479d957c5309aedd4f58e4556590f69
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_es.qm file!
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_uk.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_uk.qm, file lenght = 158231
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_uk.qm
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 9a7a0b316cf7117bf3aa928c762c33b6, download file md5 = 9a7a0b316cf7117bf3aa928c762c33b6
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_uk.qm file!
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_lv.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_lv.qm, file lenght = 153598
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_lv.qm
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 788862615b8fb13b52e4a80a8c54b3bf, download file md5 = 788862615b8fb13b52e4a80a8c54b3bf
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_lv.qm file!
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_he.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_he.qm, file lenght = 138680
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_he.qm
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 6a8a53d365f564be4804b3f1167186ad, download file md5 = 6a8a53d365f564be4804b3f1167186ad
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_he.qm file!
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ar.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ar.qm, file lenght = 160010
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ar.qm
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = e7ec8b6e07d62634777dbcb47bd611d3, download file md5 = e7ec8b6e07d62634777dbcb47bd611d3
+[2021.06.05 00:27:51.781][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_ar.qm file!
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_cs.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_cs.qm, file lenght = 174691
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_cs.qm
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 987e045e06aeba29a8e05a074e6bdb91, download file md5 = 987e045e06aeba29a8e05a074e6bdb91
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_cs.qm file!
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ca.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ca.qm, file lenght = 179797
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ca.qm
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 21fb29e06a28ce53710b30ddd5a613ea, download file md5 = 21fb29e06a28ce53710b30ddd5a613ea
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_ca.qm file!
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_bg.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_bg.qm, file lenght = 165327
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_bg.qm
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 6bcb7bf161bbe019cfaeee7d331e3e79, download file md5 = 6bcb7bf161bbe019cfaeee7d331e3e79
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_bg.qm file!
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/AutoUpdater.exe exists, befor download delete it first.
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/AutoUpdater.exe, file lenght = 206848
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/AutoUpdater.exe
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = d1f354c8fd0e53a2dc3451ed31e0ebee, download file md5 = d1f354c8fd0e53a2dc3451ed31e0ebee
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/AutoUpdater.exe file!
+[2021.06.05 00:27:51.797][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_it.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_it.qm, file lenght = 161129
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_it.qm
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = b183fe971035ada2e95401263c79aa3b, download file md5 = b183fe971035ada2e95401263c79aa3b
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_it.qm file!
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_hu.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_hu.qm, file lenght = 160484
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_hu.qm
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = fd8d6145ca463351f31d6550bcbd9263, download file md5 = fd8d6145ca463351f31d6550bcbd9263
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_hu.qm file!
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ru.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ru.qm, file lenght = 172978
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_ru.qm
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 997fb1a29235120e706557033f45536f, download file md5 = 997fb1a29235120e706557033f45536f
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_ru.qm file!
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_de.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_de.qm, file lenght = 192816
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_de.qm
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = f90429f43145f362e387cbd77ba37db9, download file md5 = f90429f43145f362e387cbd77ba37db9
+[2021.06.05 00:27:51.813][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_de.qm file!
+[2021.06.05 00:27:51.828][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_fr.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.828][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_fr.qm, file lenght = 166157
+[2021.06.05 00:27:51.828][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_fr.qm
+[2021.06.05 00:27:51.828][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 37f2ac5cf8ea04844351ae0bcf8420fb, download file md5 = 37f2ac5cf8ea04844351ae0bcf8420fb
+[2021.06.05 00:27:51.828][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_fr.qm file!
+[2021.06.05 00:27:51.828][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Xml.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.844][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Xml.dll, file lenght = 199680
+[2021.06.05 00:27:51.844][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Xml.dll
+[2021.06.05 00:27:51.844][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 7adaf0f822e5371b4a65110adf1299de, download file md5 = 7adaf0f822e5371b4a65110adf1299de
+[2021.06.05 00:27:51.844][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/Qt5Xml.dll file!
+[2021.06.05 00:27:51.844][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_gd.qm exists, befor download delete it first.
+[2021.06.05 00:27:51.844][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_gd.qm, file lenght = 189570
+[2021.06.05 00:27:51.844][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/translations/qt_gd.qm
+[2021.06.05 00:27:51.844][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = fd5046c815bc3e89fb327044a29236e4, download file md5 = fd5046c815bc3e89fb327044a29236e4
+[2021.06.05 00:27:51.844][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/translations/qt_gd.qm file!
+[2021.06.05 00:27:51.859][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qjpeg.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.875][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qjpeg.dll, file lenght = 331264
+[2021.06.05 00:27:51.875][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qjpeg.dll
+[2021.06.05 00:27:51.875][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 78bd9c72eb835dfb9db9136426751041, download file md5 = 78bd9c72eb835dfb9db9136426751041
+[2021.06.05 00:27:51.875][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/imageformats/qjpeg.dll file!
+[2021.06.05 00:27:51.875][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Svg.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.875][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Svg.dll, file lenght = 331264
+[2021.06.05 00:27:51.875][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Svg.dll
+[2021.06.05 00:27:51.875][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 99dcdade8511c42437b3d497c1aaf5c7, download file md5 = 99dcdade8511c42437b3d497c1aaf5c7
+[2021.06.05 00:27:51.875][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/Qt5Svg.dll file!
+[2021.06.05 00:27:51.891][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qtiff.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.891][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qtiff.dll, file lenght = 371712
+[2021.06.05 00:27:51.891][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qtiff.dll
+[2021.06.05 00:27:51.891][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 1d0d5b124cf4ebdaaafc0e04e161d5cc, download file md5 = 1d0d5b124cf4ebdaaafc0e04e161d5cc
+[2021.06.05 00:27:51.891][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/imageformats/qtiff.dll file!
+[2021.06.05 00:27:51.922][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qwebp.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.922][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qwebp.dll, file lenght = 478720
+[2021.06.05 00:27:51.922][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/imageformats/qwebp.dll
+[2021.06.05 00:27:51.922][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 2d518d9a1b3cced1e6c9b9d1373f3991, download file md5 = 2d518d9a1b3cced1e6c9b9d1373f3991
+[2021.06.05 00:27:51.922][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/imageformats/qwebp.dll file!
+[2021.06.05 00:27:51.937][autoupdater.cpp: 349][INFO]: Download finish count: 40
+[2021.06.05 00:27:51.937][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/platforms/qwindows.dll exists, befor download delete it first.
+[2021.06.05 00:27:51.937][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/platforms/qwindows.dll, file lenght = 1439744
+[2021.06.05 00:27:51.937][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/platforms/qwindows.dll
+[2021.06.05 00:27:51.953][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 0811e41d5e7793316e9a11dee2cfd41d, download file md5 = 0811e41d5e7793316e9a11dee2cfd41d
+[2021.06.05 00:27:51.953][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/platforms/qwindows.dll file!
+[2021.06.05 00:27:52.015][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Network.dll exists, befor download delete it first.
+[2021.06.05 00:27:52.015][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Network.dll, file lenght = 1256960
+[2021.06.05 00:27:52.015][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Network.dll
+[2021.06.05 00:27:52.031][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 1cab1c70c09f4b70d6ab31c9ad71f5b9, download file md5 = 1cab1c70c09f4b70d6ab31c9ad71f5b9
+[2021.06.05 00:27:52.031][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/Qt5Network.dll file!
+[2021.06.05 00:27:52.047][autoupdater.cpp: 349][INFO]: Download finish count: 42
+[2021.06.05 00:27:52.156][autoupdater.cpp: 349][INFO]: Download finish count: 42
+[2021.06.05 00:27:52.156][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Core.dll exists, befor download delete it first.
+[2021.06.05 00:27:52.171][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Core.dll, file lenght = 5938176
+[2021.06.05 00:27:52.171][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Core.dll
+[2021.06.05 00:27:52.203][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 6ed4ba5c1aaa00d856d2ebf2ce6839ac, download file md5 = 6ed4ba5c1aaa00d856d2ebf2ce6839ac
+[2021.06.05 00:27:52.203][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/Qt5Core.dll file!
+[2021.06.05 00:27:52.234][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/libGLESV2.dll exists, befor download delete it first.
+[2021.06.05 00:27:52.249][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/libGLESV2.dll, file lenght = 2521088
+[2021.06.05 00:27:52.249][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/libGLESV2.dll
+[2021.06.05 00:27:52.249][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 6677b66dc2ef1a5e7858692ff2f4e9e1, download file md5 = 6677b66dc2ef1a5e7858692ff2f4e9e1
+[2021.06.05 00:27:52.249][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/libGLESV2.dll file!
+[2021.06.05 00:27:52.265][autoupdater.cpp: 349][INFO]: Download finish count: 44
+[2021.06.05 00:27:52.296][ftpmanager.cpp: 156][INFO]: Download file /version/AutoUpdateTestV4.0/win32/Qt5Widgets.dll time: 0
+[2021.06.05 00:27:52.296][ftpmanager.cpp: 156][INFO]: Download file /version/AutoUpdateTestV4.0/win32/Qt5Gui.dll time: 0
+[2021.06.05 00:27:52.296][ftpmanager.cpp: 156][INFO]: Download file /version/AutoUpdateTestV4.0/win32/opengl32sw.dll time: 0
+[2021.06.05 00:27:52.296][ftpmanager.cpp: 156][INFO]: Download file /version/AutoUpdateTestV4.0/win32/D3Dcompiler_47.dll time: 0
+[2021.06.05 00:27:52.374][autoupdater.cpp: 349][INFO]: Download finish count: 44
+[2021.06.05 00:27:52.390][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/D3Dcompiler_47.dll exists, befor download delete it first.
+[2021.06.05 00:27:52.405][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/D3Dcompiler_47.dll, file lenght = 4173928
+[2021.06.05 00:27:52.405][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/D3Dcompiler_47.dll
+[2021.06.05 00:27:52.421][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = b0ae3aa9dd1ebd60bdf51cb94834cd04, download file md5 = b0ae3aa9dd1ebd60bdf51cb94834cd04
+[2021.06.05 00:27:52.421][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/D3Dcompiler_47.dll file!
+[2021.06.05 00:27:52.468][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Widgets.dll exists, befor download delete it first.
+[2021.06.05 00:27:52.499][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Widgets.dll, file lenght = 5515264
+[2021.06.05 00:27:52.499][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Widgets.dll
+[2021.06.05 00:27:52.515][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 68a2c2c891bfb6b1f0a37b867f23a0e8, download file md5 = 68a2c2c891bfb6b1f0a37b867f23a0e8
+[2021.06.05 00:27:52.515][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/Qt5Widgets.dll file!
+[2021.06.05 00:27:52.530][autoupdater.cpp: 349][INFO]: Download finish count: 46
+[2021.06.05 00:27:52.593][autoupdater.cpp: 349][INFO]: Download finish count: 46
+[2021.06.05 00:27:52.593][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Gui.dll exists, befor download delete it first.
+[2021.06.05 00:27:52.639][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Gui.dll, file lenght = 6345216
+[2021.06.05 00:27:52.639][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/Qt5Gui.dll
+[2021.06.05 00:27:52.671][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 26a7f5457f4d012896786cff4118b298, download file md5 = 26a7f5457f4d012896786cff4118b298
+[2021.06.05 00:27:52.671][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/Qt5Gui.dll file!
+[2021.06.05 00:27:52.702][autoupdater.cpp: 349][INFO]: Download finish count: 47
+[2021.06.05 00:27:52.811][autoupdater.cpp: 349][INFO]: Download finish count: 47
+[2021.06.05 00:27:52.920][autoupdater.cpp: 349][INFO]: Download finish count: 47
+[2021.06.05 00:27:53.029][autoupdater.cpp: 349][INFO]: Download finish count: 47
+[2021.06.05 00:27:53.076][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/opengl32sw.dll exists, befor download delete it first.
+[2021.06.05 00:27:53.185][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/opengl32sw.dll, file lenght = 20923392
+[2021.06.05 00:27:53.185][ftpmanager.cpp: 125][INFO]: Check MD5, file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/../AutoUpdateTestV4.0/opengl32sw.dll
+[2021.06.05 00:27:53.263][ftpmanager.cpp: 134][INFO]: Check MD5, xml file md5 = 7dbc97bfee0c7ac89da8d0c770c977b6, download file md5 = 7dbc97bfee0c7ac89da8d0c770c977b6
+[2021.06.05 00:27:53.263][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV4.0/win32/opengl32sw.dll file!
+[2021.06.05 00:27:53.279][autoupdater.cpp: 349][INFO]: Download finish count: 48
+[2021.06.05 00:27:53.279][autoupdaterui.cpp: 614][INFO]: Download update files over.
+[2021.06.05 00:27:53.279][autoupdaterui.cpp: 388][INFO]: FinishUpdate UI
+[2021.06.05 02:24:52.029][updaterui.cpp: 635][INFO]: Language is english
+[2021.06.05 02:24:52.530][autoresize.cpp: 40][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.05 02:24:52.536][updater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/del_old_path.bat
+[2021.06.05 02:24:52.599][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 02:24:52.599][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml
+[2021.06.05 02:24:52.600][ftpmanager.cpp: 49][INFO]: Download time out is : ??X?P*?????A
+[2021.06.05 02:24:53.292][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml exists, befor download delete it first.
+[2021.06.05 02:24:53.292][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/lasterV.xml, file lenght = 96
+[2021.06.05 02:24:53.292][ftpmanager.cpp: 103][INFO]: Finish updater lasterV.xml file!
+[2021.06.05 02:24:53.292][updater.cpp: 123][INFO]: Download version is: V11.0
+[2021.06.05 02:24:53.292][updater.cpp: 141][INFO]: Local version is: V0.0
+[2021.06.05 02:24:53.292][updater.cpp: 154][INFO]: Server version is updater, need to update!
+[2021.06.05 02:24:53.292][updater.cpp: 190][INFO]: Download 1 init file: server = /version/AutoUpdateTestV11.0/win32/updater.xml, local = F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/updater.xml
+[2021.06.05 02:24:53.292][updater.cpp: 192][INFO]: Download 2 init file: server = /version/AutoUpdateTestV11.0/win32/versionInfoCh.txt, local = F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoCh.txt
+[2021.06.05 02:24:53.292][updater.cpp: 194][INFO]: Download 3 init file: server = /version/AutoUpdateTestV11.0/win32/versionInfoEn.txt, local = F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoEn.txt
+[2021.06.05 02:24:53.292][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV11.0/win32/updater.xml
+[2021.06.05 02:24:53.292][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/updater.xml
+[2021.06.05 02:24:53.292][ftpmanager.cpp: 49][INFO]: Download time out is : H????pC?H????(
+[2021.06.05 02:24:53.292][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV11.0/win32/versionInfoCh.txt
+[2021.06.05 02:24:53.292][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoCh.txt
+[2021.06.05 02:24:53.292][ftpmanager.cpp: 49][INFO]: Download time out is : ?????8D??????(
+[2021.06.05 02:24:53.292][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/AutoUpdateTestV11.0/win32/versionInfoEn.txt
+[2021.06.05 02:24:53.292][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoEn.txt
+[2021.06.05 02:24:53.292][ftpmanager.cpp: 49][INFO]: Download time out is : 0K????D?0K???(
+[2021.06.05 02:24:53.307][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoCh.txt exists, befor download delete it first.
+[2021.06.05 02:24:53.307][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoCh.txt, file lenght = 485
+[2021.06.05 02:24:53.307][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV11.0/win32/versionInfoCh.txt file!
+[2021.06.05 02:24:53.307][updater.cpp: 215][INFO]: Download init file finish count = 1, m_mapInitFile.size() = 3
+[2021.06.05 02:24:53.307][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/updater.xml exists, befor download delete it first.
+[2021.06.05 02:24:53.307][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/updater.xml, file lenght = 4116
+[2021.06.05 02:24:53.307][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV11.0/win32/updater.xml file!
+[2021.06.05 02:24:53.307][updater.cpp: 215][INFO]: Download init file finish count = 2, m_mapInitFile.size() = 3
+[2021.06.05 02:24:53.323][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoEn.txt exists, befor download delete it first.
+[2021.06.05 02:24:53.323][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/debug/updater/versionInfoEn.txt, file lenght = 238
+[2021.06.05 02:24:53.323][ftpmanager.cpp: 114][INFO]: Finish download /version/AutoUpdateTestV11.0/win32/versionInfoEn.txt file!
+[2021.06.05 02:24:53.323][updater.cpp: 215][INFO]: Download init file finish count = 3, m_mapInitFile.size() = 3
+[2021.06.05 02:24:53.323][updaterui.cpp: 337][INFO]: Update UI
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: AutoUpdater.exe file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: AutoUpdateTest.exe file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: D3Dcompiler_47.dll file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: libEGL.dll file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: libGLESV2.dll file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: opengl32sw.dll file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: Qt5Core.dll file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: Qt5Gui.dll file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: Qt5Network.dll file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: Qt5Svg.dll file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: Qt5Widgets.dll file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: Qt5Xml.dll file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: updater.xml file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: versionInfoCh.txt file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: versionInfoEn.txt file, and directory is: ./
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qgenericbearer.dll file, and directory is: /bearer
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qsvgicon.dll file, and directory is: /iconengines
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qgif.dll file, and directory is: /imageformats
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qicns.dll file, and directory is: /imageformats
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qico.dll file, and directory is: /imageformats
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qjpeg.dll file, and directory is: /imageformats
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qsvg.dll file, and directory is: /imageformats
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qtga.dll file, and directory is: /imageformats
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qtiff.dll file, and directory is: /imageformats
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qwbmp.dll file, and directory is: /imageformats
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qwebp.dll file, and directory is: /imageformats
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qwindows.dll file, and directory is: /platforms
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qwindowsvistastyle.dll file, and directory is: /styles
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_ar.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_bg.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_ca.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_cs.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_da.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_de.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_es.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_fi.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_fr.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_gd.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_he.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_hu.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_it.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_ja.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_ko.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_lv.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_pl.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_ru.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_sk.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 338][INFO]: Load: qt_uk.qm file, and directory is: /translations
+[2021.06.05 02:24:53.323][updater.cpp: 345][INFO]: Load update files over.

@@ -1,0 +1,17 @@
+INPUT(
+./debug\main.o
+./debug\ftpmanager.o
+./debug\xmlparser.o
+./debug\autoresize.o
+./debug\errorstack.o
+./debug\updaterui.o
+./debug\updater.o
+./debug\log.o
+./debug\qrc_qt_language.o
+./debug\qrc_icon.o
+./debug\moc_ftpmanager.o
+./debug\moc_errorstack.o
+./debug\moc_updaterui.o
+./debug\moc_updater.o
+./debug\moc_log.o
+);

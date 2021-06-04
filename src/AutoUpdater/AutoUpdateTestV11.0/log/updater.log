@@ -1,0 +1,52 @@
+[2021.06.05 02:33:33.315][autoupdaterui.cpp: 631][INFO]: Language is chinese
+[2021.06.05 02:33:33.746][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/del_old_path.bat
+[2021.06.05 02:33:33.885][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 02:33:33.885][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/updater/lasterV.xml
+[2021.06.05 02:33:33.885][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 02:33:33.934][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/updater/lasterV.xml, file lenght = 96
+[2021.06.05 02:33:33.934][ftpmanager.cpp: 103][INFO]: Finish updater lasterV.xml file!
+[2021.06.05 02:33:33.935][autoupdater.cpp: 123][INFO]: Download version is: V11.0
+[2021.06.05 02:33:33.935][autoupdater.cpp: 141][INFO]: Local version is: V11.0
+[2021.06.05 02:33:33.936][autoupdater.cpp: 158][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.05 02:33:33.936][autoupdaterui.cpp: 473][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.05 02:33:33.936][autoupdaterui.cpp: 397][INFO]: NotUpdate UI
+[2021.06.05 02:38:46.147][autoupdaterui.cpp: 631][INFO]: Language is chinese
+[2021.06.05 02:38:46.618][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/del_old_path.bat
+[2021.06.05 02:38:46.756][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 02:38:46.756][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/updater/lasterV.xml
+[2021.06.05 02:38:46.756][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 02:38:46.807][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/updater/lasterV.xml exists, befor download delete it first.
+[2021.06.05 02:38:46.808][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/updater/lasterV.xml, file lenght = 96
+[2021.06.05 02:38:46.809][ftpmanager.cpp: 103][INFO]: Finish updater lasterV.xml file!
+[2021.06.05 02:38:46.809][autoupdater.cpp: 123][INFO]: Download version is: V11.0
+[2021.06.05 02:38:46.810][autoupdater.cpp: 141][INFO]: Local version is: V11.0
+[2021.06.05 02:38:46.810][autoupdater.cpp: 158][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.05 02:38:46.810][autoupdaterui.cpp: 473][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.05 02:38:46.810][autoupdaterui.cpp: 397][INFO]: NotUpdate UI
+[2021.06.05 03:21:08.149][autoupdaterui.cpp: 631][INFO]: Language is chinese
+[2021.06.05 03:21:08.584][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/del_old_path.bat
+[2021.06.05 03:21:08.767][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 03:21:08.767][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/updater/lasterV.xml
+[2021.06.05 03:21:08.767][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 03:21:08.816][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/updater/lasterV.xml exists, befor download delete it first.
+[2021.06.05 03:21:08.817][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/updater/lasterV.xml, file lenght = 96
+[2021.06.05 03:21:08.817][ftpmanager.cpp: 103][INFO]: Finish updater lasterV.xml file!
+[2021.06.05 03:21:08.818][autoupdater.cpp: 123][INFO]: Download version is: V11.0
+[2021.06.05 03:21:08.818][autoupdater.cpp: 141][INFO]: Local version is: V11.0
+[2021.06.05 03:21:08.818][autoupdater.cpp: 158][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.05 03:21:08.818][autoupdaterui.cpp: 473][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.05 03:21:08.819][autoupdaterui.cpp: 397][INFO]: NotUpdate UI
+[2021.06.05 03:21:11.771][autoupdaterui.cpp: 631][INFO]: Language is chinese
+[2021.06.05 03:21:12.234][autoresize.cpp: 40][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.05 03:21:12.240][autoupdater.cpp: 89][INFO]: Exec delete old path script: F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/del_old_path.bat
+[2021.06.05 03:21:12.300][ftpmanager.cpp: 37][INFO]: Start downloadPath file: /version/lasterV.xml
+[2021.06.05 03:21:12.300][ftpmanager.cpp: 38][INFO]: localPath path: F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/updater/lasterV.xml
+[2021.06.05 03:21:12.300][ftpmanager.cpp: 49][INFO]: Download time out is : 10
+[2021.06.05 03:21:12.958][ftpmanager.cpp: 75][INFO]: file: F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/updater/lasterV.xml exists, befor download delete it first.
+[2021.06.05 03:21:12.960][ftpmanager.cpp: 96][INFO]: Finish download : F:/anycubic/QTUpdateProject/src/AutoUpdater/AutoUpdateTestV11.0/updater/lasterV.xml, file lenght = 96
+[2021.06.05 03:21:12.960][ftpmanager.cpp: 103][INFO]: Finish updater lasterV.xml file!
+[2021.06.05 03:21:12.960][autoupdater.cpp: 123][INFO]: Download version is: V11.0
+[2021.06.05 03:21:12.961][autoupdater.cpp: 141][INFO]: Local version is: V11.0
+[2021.06.05 03:21:12.961][autoupdater.cpp: 158][INFO]: Local Version is the laster version, it is not need to update!
+[2021.06.05 03:21:12.961][autoupdaterui.cpp: 473][INFO]: It is success that download updater.xml, versionInfoCh.txt and versionInfoEn.txt
+[2021.06.05 03:21:12.961][autoupdaterui.cpp: 397][INFO]: NotUpdate UI

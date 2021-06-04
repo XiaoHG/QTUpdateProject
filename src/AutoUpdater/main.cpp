@@ -6,12 +6,12 @@
 #include <QProcess>
 #include <QTextCodec>
 
-#include "autoupdaterui.h"
-#include "autoupdater.h"
-#include "updatelog.h"
+#include "updaterui.h"
+#include "updater.h"
+#include "log.h"
 
 //Global object of update log class.
-UpdateLog g_log;
+Log g_log;
 
 int main(int argc, char *argv[])
 {
@@ -46,9 +46,9 @@ int main(int argc, char *argv[])
     }
 
     QString _parentPid = argv[3];
-	//QString parentPid = "1";
+    //QString parentPid = "1";
 
-    AutoUpdaterUI::getInstance(_bCh)->updater(_bFromParentMain, _parentPid);
+    UpdaterUI::getInstance(_bCh)->updater(_bFromParentMain, _parentPid);
 
     return a.exec();
 }

@@ -1,15 +1,18 @@
 ﻿#include "ftpmanager.h"
-#include "updatelog.h"
+#include "log.h"
+#include "errorstack.h"
 
 #include <QFile>
 #include <QNetworkRequest>
 
-extern UpdateLog g_log;
+extern Log g_log;
 
 bool FtpManager::m_bDownloadError = false;
 
 static const int INITFILE_TIMEOUT = 10;
 static const int UPDATEFILE_TIMEOUT = 30;
+static const QString HOST = "127.0.0.1";
+static const QString PROTOCAL = "ftp";
 
 FtpManager::FtpManager(QString md5, QObject *parent) :
     QObject(parent),
@@ -18,8 +21,8 @@ FtpManager::FtpManager(QString md5, QObject *parent) :
     m_strMd5(md5),
     m_timeout(0)
 {
-    m_url.setScheme("ftp");
-    setHost("192.168.4.132");
+    m_url.setScheme(PROTOCAL);
+    setHost(HOST);
     m_timerDownloading = new QTimer(this);
     connect(m_timerDownloading, SIGNAL(timeout()), this, SLOT(on_timer_downloading()));
     m_timerDownloading->start(1000);
@@ -32,10 +35,10 @@ FtpManager::~FtpManager()
 
 void FtpManager::get(const QString &downloadPath, const QString &localPath)
 {
-    g_log.log(UpdateLog::INFO, "Start downloadPath file: " + downloadPath, __FILE__, __LINE__);
-    g_log.log(UpdateLog::INFO, "localPath path: " + localPath, __FILE__, __LINE__);
+    g_log.log(Log::INFO, "Start downloadPath file: " + downloadPath, __FILE__, __LINE__);
+    g_log.log(Log::INFO, "localPath path: " + localPath, __FILE__, __LINE__);
 
-    if(localPath.contains("download"))
+    if(localPath.contains("updater"))
     {
         m_timeout = INITFILE_TIMEOUT;
     }
@@ -44,7 +47,7 @@ void FtpManager::get(const QString &downloadPath, const QString &localPath)
         m_timeout = UPDATEFILE_TIMEOUT;
     }
 
-    g_log.log(UpdateLog::INFO, QString::asprintf("Download time out is : %1").arg(m_timeout), __FILE__, __LINE__);
+    g_log.log(Log::INFO, QString::asprintf("Download time out is : %1").arg(m_timeout), __FILE__, __LINE__);
 
     m_iDownloadTimeSec = 0;
     m_strLocalPath = localPath;
@@ -70,14 +73,14 @@ void FtpManager::on_reply_downloadFinish()
 
     if(_file.exists())
     {
-        g_log.log(UpdateLog::WARN, "file: " + m_strLocalPath + " exists, befor download delete it first.", __FILE__, __LINE__);
+        g_log.log(Log::WARN, "file: " + m_strLocalPath + " exists, befor download delete it first.", __FILE__, __LINE__);
         _file.remove();
     }
 
     if (!_file.open(QIODevice::ReadWrite))
     {
         QString _strError = "Can't open local file : " + m_strLocalPath;
-        g_log.log(UpdateLog::FATAL, _strError, __FILE__, __LINE__);
+        g_log.log(Log::FATAL, _strError, __FILE__, __LINE__);
         retryDownload();
         return;
     }
@@ -86,19 +89,19 @@ void FtpManager::on_reply_downloadFinish()
     if(writeLen <= 0)
     {
         QString _strError = "Download file : " + m_strLocalPath + QString::asprintf(" finish, but content is empty! writeLen = %1").arg(writeLen);
-        g_log.log(UpdateLog::FATAL, _strError, __FILE__, __LINE__);
+        g_log.log(Log::FATAL, _strError, __FILE__, __LINE__);
         retryDownload();
         return;
     }
 
-    g_log.log(UpdateLog::FATAL, "Finish download : " + m_strLocalPath + QString::asprintf(", file lenght = %1").arg(writeLen) , __FILE__, __LINE__);
+    g_log.log(Log::FATAL, "Finish download : " + m_strLocalPath + QString::asprintf(", file lenght = %1").arg(writeLen) , __FILE__, __LINE__);
 
     _file.flush();
     _file.close();
 
     if(m_strLocalPath.contains("/updater/lasterV.xml"))
     {
-        g_log.log(UpdateLog::INFO, "Finish updater lasterV.xml file!", __FILE__, __LINE__);
+        g_log.log(Log::INFO, "Finish updater lasterV.xml file!", __FILE__, __LINE__);
         signal_downloadLasterVFinish();
         return;
     }
@@ -109,7 +112,7 @@ void FtpManager::on_reply_downloadFinish()
         return;
     }
 
-    g_log.log(UpdateLog::INFO, QString::asprintf("Finish download %1 file!").arg(m_url.path()), __FILE__, __LINE__);
+    g_log.log(Log::INFO, QString::asprintf("Finish download %1 file!").arg(m_url.path()), __FILE__, __LINE__);
     signal_finishDownload(m_url.path());
 }
 
@@ -120,7 +123,7 @@ bool FtpManager::isMatchMd5()
         return true;
     }
 
-    g_log.log(UpdateLog::INFO, "Check MD5, file: " + m_strLocalPath, __FILE__, __LINE__);
+    g_log.log(Log::INFO, "Check MD5, file: " + m_strLocalPath, __FILE__, __LINE__);
 
     QFile _file(m_strLocalPath);
     _file.open(QIODevice::ReadOnly);
@@ -129,13 +132,13 @@ bool FtpManager::isMatchMd5()
 
     QString _strDownloadMd5 = _baMd5.toHex();
 
-    g_log.log(UpdateLog::INFO, "Check MD5, xml file md5 = " + m_strMd5 + ", download file md5 = " + _strDownloadMd5, __FILE__, __LINE__);
+    g_log.log(Log::INFO, "Check MD5, xml file md5 = " + m_strMd5 + ", download file md5 = " + _strDownloadMd5, __FILE__, __LINE__);
 
     //check
     if(_strDownloadMd5 != m_strMd5)
     {
         QString _strErrStr = m_strDownloadPath + " md5 compare error! download md5 = " + _strDownloadMd5 + ", xml file md5 = " + m_strMd5;
-        g_log.log(UpdateLog::INFO, _strErrStr, __FILE__, __LINE__);
+        g_log.log(Log::INFO, _strErrStr, __FILE__, __LINE__);
         reportError(QObject::tr("File update error! please check network, retry maybe solve."));
         return false;
     }
@@ -150,11 +153,11 @@ void FtpManager::on_timer_downloading()
         m_timerDownloading->stop();
         return;
     }
-    g_log.log(UpdateLog::FATAL, "Download file " + m_url.path() + " time: " + QString::asprintf("%1").arg(m_iDownloadTimeSec),
+    g_log.log(Log::FATAL, "Download file " + m_url.path() + " time: " + QString::asprintf("%1").arg(m_iDownloadTimeSec),
               __FILE__, __LINE__);
     if(m_iDownloadTimeSec++ == m_timeout)
     {
-        g_log.log(UpdateLog::FATAL, "Download file " + m_url.path() + " time out", __FILE__, __LINE__);
+        g_log.log(Log::FATAL, "Download file " + m_url.path() + " time out", __FILE__, __LINE__);
         m_timerDownloading->stop();
 
         //It is emited to AutoUpdater.
@@ -176,7 +179,10 @@ void FtpManager::on_reply_error(QNetworkReply::NetworkError errorCode)
     _strErrorMsg.append(QString::asprintf("%1").arg(errorCode));
     _strErrorMsg.append(". error string = ");
     _strErrorMsg.append(m_pReply->errorString());
-    g_log.log(UpdateLog::FATAL, _strErrorMsg, __FILE__, __LINE__);
+    g_log.log(Log::FATAL, _strErrorMsg, __FILE__, __LINE__);
+
+    //record error message.
+    ErrorStack::pushError(errorCode, m_pReply->errorString());
 
     reportError(QObject::tr("File update error! please check network, retry maybe solve."));
 }
@@ -188,7 +194,7 @@ void FtpManager::retryDownload()
     _strErrorMsg.append(QString::asprintf("%1").arg(m_pReply->error()));
     _strErrorMsg.append(". error string = ");
     _strErrorMsg.append(m_pReply->errorString());
-    g_log.log(UpdateLog::WARN, _strErrorMsg, __FILE__, __LINE__);
+    g_log.log(Log::WARN, _strErrorMsg, __FILE__, __LINE__);
 
     m_iRetryDownloadTimes++;
     if(m_iRetryDownloadTimes > 3)

@@ -16,7 +16,7 @@
 #endif
 
 static const QString APPNAME = "AutoUpdateTest";
-static const QString VERSION = "V0.0";
+static const QString VERSION = "V11.0";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -73,7 +73,7 @@ void MainWindow::StartUpdateProcess(QString isFirst, QString isCh)
 #endif
 
 #ifdef Q_OS_WIN
-    strExe = QApplication::applicationDirPath() + "/../../../src/AutoUpdater/debug/AutoUpdater.exe";
+    strExe = QApplication::applicationDirPath() + "/../../../src/AutoUpdater/release/AutoUpdater.exe";
 #endif
     qDebug() << strExe;
     m_updateProcess->start(strExe, arguments);

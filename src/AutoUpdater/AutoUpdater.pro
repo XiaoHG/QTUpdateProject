@@ -27,22 +27,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    autoupdater.cpp \
-    autoupdaterui.cpp \
     ftpmanager.cpp \
     xmlparser.cpp \
-    filemanager.cpp \
-    updatelog.cpp \
-    autoresize.cpp
+    autoresize.cpp \
+    errorstack.cpp \
+    updaterui.cpp \
+    updater.cpp \
+    log.cpp
 
 HEADERS += \
-    autoupdater.h \
-    autoupdaterui.h \
     ftpmanager.h \
     xmlparser.h \
-    filemanager.h \
-    updatelog.h \
-    autoresize.h
+    autoresize.h \
+    errorstack.h \
+    updaterui.h \
+    updater.h \
+    log.h
 
 FORMS += \
         mainwindow.ui
