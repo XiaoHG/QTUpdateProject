@@ -113,7 +113,7 @@ public:
     /**
      * @brief execDeleteOldScript
      */
-    void execDeleteOldScript();
+    void deleteOldPath();
 
 private:
     /**

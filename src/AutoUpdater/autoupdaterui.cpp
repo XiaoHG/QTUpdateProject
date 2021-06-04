@@ -321,7 +321,7 @@ void AutoUpdaterUI::updater(bool isFromParentMain, QString parentPid)
     //set parent pid
     m_updater->setParentPid(parentPid);
 
-    m_updater->execDeleteOldScript();
+    m_updater->deleteOldPath();
 
     //start to check for update.
     m_updater->downloadInitFile();
