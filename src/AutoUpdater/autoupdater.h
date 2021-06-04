@@ -2,11 +2,14 @@
 #ifndef CAUTOUPDATER_H
 #define CAUTOUPDATER_H
 
+
+#include "ftpmanager.h"
+
 #include <QObject>
 #include <QProcess>
 #include <QSettings>
 #include <QSlider>
-#include <ftpmanager.h>
+#include <QMap>
 
 /**
  * @brief The AutoUpdater class
@@ -40,7 +43,7 @@ public:
      * @return true is update, or not
      * update is.
      */
-    UPDATER_ERROR_CODE isUpdate();
+    bool isUpdate();
 
     /**
      * @brief loadUpdateFiles
@@ -58,7 +61,7 @@ public:
      * @brief getVersionInfo
      * @return New version information
      */
-    QString getVersionInfo(const QString &path);
+    QString getVersionInfo();
 
     /**
      * @brief getUpdateProcess
@@ -69,10 +72,10 @@ public:
     int getUpdateProcess();
 
     /**
-     * @brief downloadInitFile
+     * @brief downloadLasterVFile
      * Download xml file that is the update control file.
      */
-    void downloadInitFile();
+    void downloadLasterVFile();
 
     /**
      * @brief getFtpErrorStack
@@ -115,7 +118,13 @@ public:
      */
     void deleteOldPath();
 
+    /**
+     * @brief getLocalNewVersionPath
+     * @return
+     */
+    QString getLocalNewVersionPath();
 private:
+
     /**
      * @brief makeInitXML
      * @param xml
@@ -159,21 +168,18 @@ private:
      */
     void saveOldVersionPara();
 
+
 protected slots:
+
+    /**
+     * @brief on_ftp_downloadLasterVFileFinish
+     */
+    void on_ftp_downloadLasterVFileFinish();
+
     /**
      * @brief on_ftp_downloadXmlFinish
      */
-    void on_ftp_downloadXmlFinish();
-
-    /**
-     * @brief on_ftp_downloadChFinish
-     */
-    void on_ftp_downloadChFinish();
-
-    /**
-     * @brief on_ftp_downloadEnFinish
-     */
-    void on_ftp_downloadEnFinish();
+    void on_ftp_downloadInitFinish(QString name);
 
     /**
      * @brief on_ftp_storageDownloadErrStr
@@ -195,6 +201,7 @@ protected slots:
     void on_ftp_finishDownloadPerFile(QString fileName);
 
 signals:
+
     /**
      * @brief signal_initFileDownloadFinish
      * updater.xml and versionInfo.txt download finish,
@@ -226,14 +233,10 @@ private:
     //Version
     QString m_strOldVersion;
     QString m_strNewVersion;
-    QString m_strNewVersionPath;
-    QString m_strOldVersionPath;
+    QString m_strLocalNewVersionPath;
 
     //The init files
-    QString m_strLocalXmlPath;
-    QString m_strDownloadXmlPath;
-    QString m_strDownloadVersionInfoChPath;
-    QString m_strDownloadVersionInfoEnPath;
+    QString m_strInitFileDownloadPath;
 
     //language
     bool m_bCh;
@@ -250,6 +253,13 @@ private:
     //updater ini file, not use
     QSettings *m_settingsUpdaterIni;
     QString m_strUpdaterIniPath;
+
+    bool m_bUpdate;
+
+    int m_iFinishInitFileCount;
+
+    QMap<QString, QString> m_mapInitFile;
+    QString m_strServerNewVersionPath;
 
 };
 

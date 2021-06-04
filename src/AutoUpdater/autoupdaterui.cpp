@@ -324,7 +324,7 @@ void AutoUpdaterUI::updater(bool isFromParentMain, QString parentPid)
     m_updater->deleteOldPath();
 
     //start to check for update.
-    m_updater->downloadInitFile();
+    m_updater->downloadLasterVFile();
 }
 
 void AutoUpdaterUI::checkForUpdate()
@@ -342,14 +342,11 @@ void AutoUpdaterUI::update()
     m_labelHaveNewVersionNotise->setText(QObject::tr("Find ") + m_strVersionServerInfo +
                                    QObject::tr(" version, click update button to update!"));
 
-    QString _strVersionInfoPath = QApplication::applicationDirPath() + "/download";
-    showVersionInfo(_strVersionInfoPath);
-
     //Load download files path from ftp server.
     m_updater->loadUpdateFiles();
 }
 
-void AutoUpdaterUI::showVersionInfo(const QString &path)
+void AutoUpdaterUI::showVersionInfo()
 {
     m_teOutputVersionInfo->clear();
     m_teOutputVersionInfo->append(QObject::tr("Current version is ") + m_updater->getOldVersion());
@@ -357,7 +354,7 @@ void AutoUpdaterUI::showVersionInfo(const QString &path)
     m_teOutputVersionInfo->append(QObject::tr("Changed log of history: "));
 
     //Get the version information from download file.
-    QString _strVersionInfo = m_updater->getVersionInfo(path);
+    QString _strVersionInfo = m_updater->getVersionInfo();
     if (_strVersionInfo.isEmpty())
     {
         g_log.log(UpdateLog::WARN, "Version information is missing, please check version information file whether is normal",
@@ -407,9 +404,6 @@ void AutoUpdaterUI::notUpdate()
         //and this is not update version at that time, exit update process.
         exit(0);
     }
-
-    QString _strVersionInfoPath = QApplication::applicationDirPath();
-    showVersionInfo(_strVersionInfoPath);
 }
 
 void AutoUpdaterUI::checkForUpdateError()
@@ -481,26 +475,20 @@ void AutoUpdaterUI::on_updater_initFileDownloadFinish()
 
     //isUpdate is true to update, or not.
 
-    AutoUpdater::UPDATER_ERROR_CODE _eUpdaterCode = m_updater->isUpdate();
-    switch (_eUpdaterCode) {
-        case AutoUpdater::UPDATE:
-            update();
-            showWhichUI(m_listUpdateWidgets, true);
-            break;
-        case AutoUpdater::NOTUPDATE:
-            //This is the laster version so hide update button and cansel button,
-            //and show the laster notify message and ok button.
-            notUpdate();
-            showWhichUI(m_listNotUpdateWidgets, true);
-            break;
-        case AutoUpdater::LOCALXML_PARSE_ERR:
-        case AutoUpdater::DOWNLOADXML_PARSE_ERR:
-            //Parse local xml file error.
-            parseXmlError(_eUpdaterCode);
-            break;
-        default:
-            break;
+    if(m_updater->isUpdate())
+    {
+        update();
+        showWhichUI(m_listUpdateWidgets, true);
     }
+    else
+    {
+        //This is the laster version so hide update button and cansel button,
+        //and show the laster notify message and ok button.
+        notUpdate();
+        showWhichUI(m_listNotUpdateWidgets, true);
+    }
+
+    showVersionInfo();
 
     this->show();
 }

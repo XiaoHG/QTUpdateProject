@@ -29,7 +29,9 @@ QDomNodeList XMLParser::parseElement(QString xml, QString element)
     QDomDocument _doc;
     if(!_doc.setContent(&_file, false, &_strErrorStr, &_iErrorLine, &_iErrorColumn))
     {
-        g_log.log(UpdateLog::FATAL, xml + " Setcontent error", __FILE__, __LINE__);
+        QString _strErrMsg = xml + QString::asprintf(" Setcontent error: error string = %1, error line = %2, error column = %3")
+                .arg(_strErrorStr).arg(_iErrorLine).arg(_iErrorColumn);
+        g_log.log(UpdateLog::FATAL, _strErrMsg, __FILE__, __LINE__);
         _file.close();
         return _nodeList;
     }

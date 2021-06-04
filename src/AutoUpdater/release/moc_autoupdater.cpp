@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_AutoUpdater_t {
     QByteArrayData data[13];
-    char stringdata0[275];
+    char stringdata0[266];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,21 +36,21 @@ QT_MOC_LITERAL(1, 12, 29), // "signal_initFileDownloadFinish"
 QT_MOC_LITERAL(2, 42, 0), // ""
 QT_MOC_LITERAL(3, 43, 27), // "signal_startDownloadPerFile"
 QT_MOC_LITERAL(4, 71, 28), // "signal_finishDownloadPerFile"
-QT_MOC_LITERAL(5, 100, 24), // "on_ftp_downloadXmlFinish"
-QT_MOC_LITERAL(6, 125, 23), // "on_ftp_downloadChFinish"
-QT_MOC_LITERAL(7, 149, 23), // "on_ftp_downloadEnFinish"
-QT_MOC_LITERAL(8, 173, 28), // "on_ftp_storageDownloadErrStr"
-QT_MOC_LITERAL(9, 202, 6), // "errStr"
-QT_MOC_LITERAL(10, 209, 27), // "on_ftp_startDownloadPerFile"
-QT_MOC_LITERAL(11, 237, 8), // "fileName"
-QT_MOC_LITERAL(12, 246, 28) // "on_ftp_finishDownloadPerFile"
+QT_MOC_LITERAL(5, 100, 32), // "on_ftp_downloadLasterVFileFinish"
+QT_MOC_LITERAL(6, 133, 25), // "on_ftp_downloadInitFinish"
+QT_MOC_LITERAL(7, 159, 4), // "name"
+QT_MOC_LITERAL(8, 164, 28), // "on_ftp_storageDownloadErrStr"
+QT_MOC_LITERAL(9, 193, 6), // "errStr"
+QT_MOC_LITERAL(10, 200, 27), // "on_ftp_startDownloadPerFile"
+QT_MOC_LITERAL(11, 228, 8), // "fileName"
+QT_MOC_LITERAL(12, 237, 28) // "on_ftp_finishDownloadPerFile"
 
     },
     "AutoUpdater\0signal_initFileDownloadFinish\0"
     "\0signal_startDownloadPerFile\0"
     "signal_finishDownloadPerFile\0"
-    "on_ftp_downloadXmlFinish\0"
-    "on_ftp_downloadChFinish\0on_ftp_downloadEnFinish\0"
+    "on_ftp_downloadLasterVFileFinish\0"
+    "on_ftp_downloadInitFinish\0name\0"
     "on_ftp_storageDownloadErrStr\0errStr\0"
     "on_ftp_startDownloadPerFile\0fileName\0"
     "on_ftp_finishDownloadPerFile"
@@ -63,7 +63,7 @@ static const uint qt_meta_data_AutoUpdater[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -71,17 +71,16 @@ static const uint qt_meta_data_AutoUpdater[] = {
        3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   59,    2, 0x06 /* Public */,
-       3,    1,   60,    2, 0x06 /* Public */,
-       4,    1,   63,    2, 0x06 /* Public */,
+       1,    0,   54,    2, 0x06 /* Public */,
+       3,    1,   55,    2, 0x06 /* Public */,
+       4,    1,   58,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   66,    2, 0x09 /* Protected */,
-       6,    0,   67,    2, 0x09 /* Protected */,
-       7,    0,   68,    2, 0x09 /* Protected */,
-       8,    1,   69,    2, 0x09 /* Protected */,
-      10,    1,   72,    2, 0x09 /* Protected */,
-      12,    1,   75,    2, 0x09 /* Protected */,
+       5,    0,   61,    2, 0x09 /* Protected */,
+       6,    1,   62,    2, 0x09 /* Protected */,
+       8,    1,   65,    2, 0x09 /* Protected */,
+      10,    1,   68,    2, 0x09 /* Protected */,
+      12,    1,   71,    2, 0x09 /* Protected */,
 
  // signals: parameters
     QMetaType::Void,
@@ -90,8 +89,7 @@ static const uint qt_meta_data_AutoUpdater[] = {
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    7,
     QMetaType::Void, QMetaType::QString,    9,
     QMetaType::Void, QMetaType::QString,   11,
     QMetaType::Void, QMetaType::QString,   11,
@@ -108,12 +106,11 @@ void AutoUpdater::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 0: _t->signal_initFileDownloadFinish(); break;
         case 1: _t->signal_startDownloadPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 2: _t->signal_finishDownloadPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 3: _t->on_ftp_downloadXmlFinish(); break;
-        case 4: _t->on_ftp_downloadChFinish(); break;
-        case 5: _t->on_ftp_downloadEnFinish(); break;
-        case 6: _t->on_ftp_storageDownloadErrStr((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 7: _t->on_ftp_startDownloadPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 8: _t->on_ftp_finishDownloadPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 3: _t->on_ftp_downloadLasterVFileFinish(); break;
+        case 4: _t->on_ftp_downloadInitFinish((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 5: _t->on_ftp_storageDownloadErrStr((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 6: _t->on_ftp_startDownloadPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 7: _t->on_ftp_finishDownloadPerFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -167,13 +164,13 @@ int AutoUpdater::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 8)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 9;
+        _id -= 8;
     }
     return _id;
 }

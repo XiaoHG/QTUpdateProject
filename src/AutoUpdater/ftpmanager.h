@@ -80,35 +80,21 @@ protected slots:
 
 signals:
     /**
-     * @brief signal_downloadXmlFinish
-     * Download updater.xml file finish.
-     * It is emited that updater.xml file download finish for AutoUpdater class.
+     * @brief signal_downloadLasterVFinish
      */
-    void signal_downloadXmlFinish();
-
-    /**
-     * @brief signal_downloadChFinish
-     * Download versionInfo.txt file finish.
-     * It is emited that versionInfo.txt file download finish for AutoUpdater class.
-     */
-    void signal_downloadChFinish();
-
-    /**
-     * @brief signal_downloadEnFinish
-     */
-    void signal_downloadEnFinish();
+    void signal_downloadLasterVFinish();
 
     /**
      * @brief signal_startDownloadPerFile
      * start download.
      */
-    void signal_startDownloadPerFile(QString);
+    void signal_startDownload(QString);
 
     /**
-     * @brief signal_finishDownloadPerFile
+     * @brief signal_finishDownload
      * finish download.
      */
-    void signal_finishDownloadPerFile(QString);
+    void signal_finishDownload(QString);
 
     /**
      * @brief signal_replyError

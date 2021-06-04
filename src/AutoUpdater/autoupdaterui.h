@@ -124,7 +124,7 @@ private:
     /**
      * @brief showVersionInfo
      */
-    void showVersionInfo(const QString &path);
+    void showVersionInfo();
 
 protected slots:
     /**
