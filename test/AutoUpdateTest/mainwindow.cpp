@@ -3,6 +3,18 @@
 #include <QDir>
 #include <QDebug>
 
+#ifdef Q_OS_MAC
+    #include <unistd.h>
+#endif
+
+#ifdef Q_OS_LINUX
+    #include <unistd.h>
+#endif
+
+#ifdef Q_OS_WIN
+    #include <process.h>
+#endif
+
 static const QString APPNAME = "AutoUpdateTest";
 static const QString VERSION = "V0.0";
 
@@ -32,7 +44,20 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::StartUpdateProcess(QString isFirst, QString isCh)
 {
     QStringList arguments;
-    QString pid = QString::asprintf("%1").arg(_getpid());
+
+    QString pid;
+#ifdef Q_OS_MAC
+    pid = QString::asprintf("%1").arg(getpid());
+#endif
+
+#ifdef Q_OS_LINUX
+    pid = QString::asprintf("%1").arg(getpid());
+#endif
+
+#ifdef Q_OS_WIN
+    pid = QString::asprintf("%1").arg(_getpid());
+#endif
+
     arguments << isFirst; //argv[1]
     arguments << isCh; //argv[2]
     arguments << pid; //argv[2]
