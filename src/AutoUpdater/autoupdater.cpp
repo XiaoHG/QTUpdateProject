@@ -71,27 +71,30 @@ AutoUpdater::~AutoUpdater()
 	}
 }
 
-void AutoUpdater::execDeleteOldScript()
+void AutoUpdater::deleteOldPath()
 {
-	QString _strScriptPath;
+    QDir dir(m_strOldVersionPath);
+    if(!dir.exists())
+        return;
 
 #ifdef Q_OS_MAC
-	//execute old version path, and delete script path self.
-	_strScriptPath = QApplication::applicationDirPath() + "/del_old_path";
+    //execute old version path, and delete script path self.
+    QProcess::startDetached("rm -rf " + m_strOldVersionPath);
 #endif
 
 #ifdef Q_OS_LINUX
-	//execute old version path, and delete script path self.
-	_strScriptPath = QApplication::applicationDirPath() + "/del_old_path";
+    //execute old version path, and delete script path self.
+    QProcess::startDetached("rm -rf " + m_strOldVersionPath);
 #endif
 
 #ifdef Q_OS_WIN
 	//execute old version path, and delete script path self.
-	_strScriptPath = QApplication::applicationDirPath() + "/del_old_path.bat";
-#endif
+    QString _strScriptPath = QApplication::applicationDirPath() + "/del_old_path.bat";
 
     g_log.log(UpdateLog::FATAL, "Exec delete old path script: " + _strScriptPath, __FILE__, __LINE__);
     QProcess::startDetached(_strScriptPath);
+#endif
+
 }
 
 void AutoUpdater::downloadInitFile()
@@ -188,7 +191,7 @@ AutoUpdater::UPDATER_ERROR_CODE AutoUpdater::isUpdate()
     if(_nodeNewList.isEmpty())
     {
         g_log.log(UpdateLog::FATAL, "Parse download xml file error!", __FILE__, __LINE__);
-        return LOCALXML_PARSE_ERR;
+        return DOWNLOADXML_PARSE_ERR;
     }
     QString _strNewVersion = _nodeNewList.at(0).toElement().text();
     m_strNewVersion = _strNewVersion;
@@ -201,7 +204,7 @@ AutoUpdater::UPDATER_ERROR_CODE AutoUpdater::isUpdate()
     if(_nodeOldList.isEmpty())
     {
         g_log.log(UpdateLog::FATAL, "Parse local xml file error!", __FILE__, __LINE__);
-        return DOWNLOADXML_PARSE_ERR;
+        return LOCALXML_PARSE_ERR;
     }
     QString _strOldVersion = _nodeOldList.at(0).toElement().text();
     m_strOldVersion = _strOldVersion;
@@ -392,26 +395,14 @@ void AutoUpdater::makeDeletePathScript(const QString saveScriptPath, QString del
     //ping -n 3 127.0.0.1>nul -- wait third second to remove old version path
     //third second is wait current process exit.
     QString _strDelayTime = QString::asprintf("%1").arg(delay);
-    QString _strFileName;
-#ifdef Q_OS_MAC
-    QString _strScriptContent = "#!/bin/sh\n"
-                                  "sleep " + _strDelayTime + "\n"
-                                  "rm -rf " + delPath;
-    _strFileName = saveScriptPath + "/" + scriptName;
-#endif
 
-#ifdef Q_OS_LINUX
-    QString _strScriptContent = "#!/bin/sh\n"
-                                  "sleep " + _strDelayTime + "\n"
-                                  "rm -rf " + delPath;
-    _strFileName = saveScriptPath + "/" + scriptName;
-#endif
-
-#ifdef Q_OS_WIN
-    delPath = delPath.replace(QRegExp("\\/"), "\\\\");
+    QString _strScriptPath;
     QString _strScriptContent;
+
+    delPath = delPath.replace(QRegExp("\\/"), "\\\\");
     QString self = saveScriptPath + "/" + scriptName;
     self = self.replace(QRegExp("\\/"), "\\");
+
     if(delay == 0)
     {
         _strScriptContent = "rd /s/q " + delPath + "\n" + "del /s/q " + self + ".bat";
@@ -419,19 +410,18 @@ void AutoUpdater::makeDeletePathScript(const QString saveScriptPath, QString del
     else
     {
         _strScriptContent = "ping -n " + _strDelayTime + " 0.0.0.0>nul\n" +
-                "@echo off\n"
-                "rd /s/q " + delPath + "\n" + "del /s/q " + self + ".bat";
+                            "@echo off\n"
+                            "rd /s/q " + delPath + "\n" + "del /s/q " + self + ".bat";
     }
-    _strFileName = saveScriptPath + "/" + scriptName + ".bat";
-#endif
+    _strScriptPath = saveScriptPath + "/" + scriptName + ".bat";
 
-    g_log.log(UpdateLog::INFO, delPath + "\\\\" + scriptName + " file content: " + _strScriptContent, __FILE__, __LINE__);
+    g_log.log(UpdateLog::INFO, delPath + "/" + scriptName + " file content: " + _strScriptContent, __FILE__, __LINE__);
 
     //The delete script file storage in the new version path
-    QFile _file(_strFileName);
+    QFile _file(_strScriptPath);
     if (!_file.open(QIODevice::WriteOnly | QIODevice::Text))
 	{
-        g_log.log(UpdateLog::FATAL, "File: " + _strFileName + " open fail!", __FILE__, __LINE__);
+        g_log.log(UpdateLog::FATAL, "File: " + _strScriptPath + " open fail!", __FILE__, __LINE__);
 		return;
 	}
 
@@ -488,9 +478,9 @@ void AutoUpdater::restartApp()
     g_log.log(UpdateLog::INFO, "Run " + _strDelScriptPath + " script to delete old script", __FILE__, __LINE__);
     QProcess::startDetached(_strDelScriptPath);
 
-
     QString _strKillOld;
     QString _strApplicationName;
+
 #ifdef Q_OS_MAC
     _strKillOld = "kill -9 " + m_strParentPid;
     _strApplicationName = APPLICATION_NAME;
@@ -575,26 +565,34 @@ void AutoUpdater::createNewLink()
 
 void AutoUpdater::failDeleteNewVersionDir()
 {
-    QDir _strNewVersionDir;
     if(m_strNewVersionPath.isEmpty())
-        _strNewVersionDir.setPath("nothing");
-    else
-        _strNewVersionDir.setPath(m_strNewVersionPath);
-    if(!_strNewVersionDir.exists())
-    {
-        return;
-    }
+        return
 
+#ifdef Q_OS_MAC
+    //The script position.
+    g_log.log(UpdateLog::INFO, "Delete already download file! path = " + m_strNewVersionPath, __FILE__, __LINE__);
+    QProcess::startDetached("rm -rf " + m_strNewVersionPath);
+#endif
+
+#ifdef Q_OS_LINUX
+    //The script position.
+    g_log.log(UpdateLog::INFO, "Delete already download file! path = " + m_strNewVersionPath, __FILE__, __LINE__);
+    QProcess::startDetached("rm -rf " + m_strNewVersionPath);
+#endif
+
+#ifdef Q_OS_WIN
     //Delete All already download files
     g_log.log(UpdateLog::INFO, "Make script to delete already download file!", __FILE__, __LINE__);
-    QString _strScriptName = "delNewVersion.bat";
+    QString _strScriptName = "delNewVersion";
     QString _strScriptPath = QApplication::applicationDirPath();
     makeDeletePathScript(_strScriptPath, m_strNewVersionPath, _strScriptName, 0);
 
     //The script position.
-    g_log.log(UpdateLog::INFO, "Execete script to delete already download file!", __FILE__, __LINE__);
     QString _strDelScript = _strScriptPath + "/" + _strScriptName;
+    g_log.log(UpdateLog::INFO, "Execete script to delete already download file! path = " + _strDelScript, __FILE__, __LINE__);
     QProcess::startDetached(_strDelScript);
+#endif
+
 }
 
 void AutoUpdater::abnormalExit()

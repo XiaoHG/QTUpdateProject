@@ -78,7 +78,7 @@ void FtpManager::on_reply_downloadFinish()
     qint64 writeLen = _file.write(m_pReply->readAll());
     if(writeLen <= 0)
     {
-        QString _strError = "Download file : " + m_strLocalPath + " finish, but content is empty!";
+        QString _strError = "Download file : " + m_strLocalPath + QString::asprintf(" finish, but content is empty! writeLen = %1").arg(writeLen);
         g_log.log(UpdateLog::FATAL, _strError, __FILE__, __LINE__);
         reportError(QObject::tr("File update error! please check network, retry maybe solve."));
         _file.close();
