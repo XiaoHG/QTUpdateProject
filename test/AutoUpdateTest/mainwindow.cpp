@@ -3,8 +3,6 @@
 #include <QDir>
 #include <QDebug>
 
-#include <process.h>
-
 static const QString APPNAME = "AutoUpdateTest";
 static const QString VERSION = "V0.0";
 
