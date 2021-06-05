@@ -46,8 +46,3 @@ const QVector<PERROR_STRUCT> &ErrorStack::getErrorStack()
 {
     return m_vectorErrorStack;
 }
-
-void ErrorStack::reportError(const QString &strLogMsg, const int &eErrStackCode, const QString &strErrStack)
-{
-    pushError(eErrStackCode, strErrStack);
-}

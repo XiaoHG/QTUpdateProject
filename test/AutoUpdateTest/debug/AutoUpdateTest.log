@@ -1,4 +1,0 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (debug\) contains files shared from another project (AutoUpdateTestV0.0.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  mainwindow.cpp
-  AutoUpdateTest.vcxproj -> E:\anycubic\anycubic_project\updater\test\AutoUpdateTest\debug\AutoUpdateTest.exe
-  AutoUpdateTest.vcxproj -> debug\AutoUpdateTest.pdb (Full PDB)

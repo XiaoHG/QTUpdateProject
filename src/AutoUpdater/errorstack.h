@@ -27,7 +27,8 @@ typedef enum ErrorEnum{
     OPEN_SCRIPT_FILE_ERR,
     MD5_CHECK_ERR,
     DOWNLOAD_TIMEOUT,
-    RETRYDOWNLOAD_TIMESOVER
+    RETRYDOWNLOAD_TIMESOVER,
+    XMLPARSE_ERR
 }ERROR_ENUM;
 
 //error pair list, for client view
@@ -40,7 +41,8 @@ const static std::initializer_list<std::pair<ERROR_ENUM, QString>> s_list = {
     std::pair<ERROR_ENUM, QString>(OPEN_SCRIPT_FILE_ERR, "Open script file error."),
     std::pair<ERROR_ENUM, QString>(MD5_CHECK_ERR, "Download file content error."),
     std::pair<ERROR_ENUM, QString>(DOWNLOAD_TIMEOUT, "Download time out."),
-    std::pair<ERROR_ENUM, QString>(RETRYDOWNLOAD_TIMESOVER, "Download retry over.")
+    std::pair<ERROR_ENUM, QString>(RETRYDOWNLOAD_TIMESOVER, "Download retry over."),
+    std::pair<ERROR_ENUM, QString>(XMLPARSE_ERR, "Xml file parse error.")
 };
 //for out side, client.
 const QMap<ERROR_ENUM, QString> g_mapError(s_list);
@@ -56,7 +58,6 @@ public:
     static void pushError(const int errCode, const QString errStr);
     static QString getErrorString(const int errCode);
     static const QVector<PERROR_STRUCT>& getErrorStack();
-    static void reportError(const QString &strLogMsg, const int &eErrStackCode, const QString &strErrStack);
 signals:
 
 public slots:

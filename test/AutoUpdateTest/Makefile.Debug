@@ -465,6 +465,52 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QProcess \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qprocess.h \
 		ui_mainwindow.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVariant \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QAction \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qaction.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QApplication \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qapplication.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcoreapplication.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qeventloop.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qguiapplication.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qinputmethod.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QButtonGroup \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QHeaderView \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qheaderview.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qframe.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstyleoption.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qvalidator.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qregularexpression.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qslider.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractslider.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstyle.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtabbar.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qrubberband.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QMenuBar \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qmenubar.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qmenu.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QPushButton \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QRadioButton \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qradiobutton.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QStatusBar \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstatusbar.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QVBoxLayout \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qboxlayout.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlayout.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlayoutitem.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qgridlayout.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QWidget \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QDir \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdir.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qfileinfo.h \

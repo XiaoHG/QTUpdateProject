@@ -83,7 +83,6 @@ UpdaterUI::~UpdaterUI()
 void UpdaterUI::on_updater_reportError(QString errStr)
 {
     Q_UNUSED(errStr)
-
 }
 
 /*UI defined*/

@@ -1,5 +1,6 @@
 ﻿#include "xmlparser.h"
 #include "log.h"
+#include "errorstack.h"
 
 #include <QDomDocument>
 #include <QFile>
@@ -32,6 +33,7 @@ QDomNodeList XMLParser::parseElement(QString xml, QString element)
         QString _strErrMsg = xml + QString::asprintf(" Setcontent error: error string = %1, error line = %2, error column = %3")
                 .arg(_strErrorStr).arg(_iErrorLine).arg(_iErrorColumn);
         g_log.log(Log::FATAL, _strErrMsg, __FILE__, __LINE__);
+        ErrorStack::pushError(XMLPARSE_ERR, g_mapError.find(XMLPARSE_ERR).value());
         _file.close();
         return _nodeList;
     }
