@@ -1,4 +1,7 @@
 #include "errorstack.h"
+#include "log.h"
+
+extern Log g_log;
 
 QVector<PERROR_STRUCT> ErrorStack::m_vectorErrorStack = {};
 
@@ -6,6 +9,18 @@ ErrorStack::ErrorStack(QObject *parent)
     : QObject(parent)
 {
 
+}
+
+ErrorStack::~ErrorStack()
+{
+    for(int i = 0; i < m_vectorErrorStack.size(); i++)
+    {
+        PERROR_STRUCT _sTmpErr = m_vectorErrorStack.at(i);
+        if(_sTmpErr)
+        {
+            delete _sTmpErr;
+        }
+    }
 }
 
 void ErrorStack::pushError(const int errCode, const QString errStr)
@@ -30,4 +45,9 @@ QString ErrorStack::getErrorString(const int errCode)
 const QVector<PERROR_STRUCT> &ErrorStack::getErrorStack()
 {
     return m_vectorErrorStack;
+}
+
+void ErrorStack::reportError(const QString &strLogMsg, const int &eErrStackCode, const QString &strErrStack)
+{
+    pushError(eErrStackCode, strErrStack);
 }

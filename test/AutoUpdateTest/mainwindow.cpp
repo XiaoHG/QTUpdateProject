@@ -16,7 +16,7 @@
 #endif
 
 static const QString APPNAME = "AutoUpdateTest";
-static const QString VERSION = "V11.0";
+static const QString VERSION = "V0.0";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

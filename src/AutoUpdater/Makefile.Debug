@@ -165,11 +165,11 @@ debug/moc_predefs.h: ../../../../QT/Qt5.9.0/5.9/mingw53_32/mkspecs/features/data
 compiler_moc_header_make_all: debug/moc_ftpmanager.cpp debug/moc_errorstack.cpp debug/moc_updaterui.cpp debug/moc_updater.cpp debug/moc_log.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) debug\moc_ftpmanager.cpp debug\moc_errorstack.cpp debug\moc_updaterui.cpp debug\moc_updater.cpp debug\moc_log.cpp
-debug/moc_ftpmanager.cpp: ../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurl.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbytearray.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qrefcount.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic.h \
+debug/moc_ftpmanager.cpp: errorstack.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QObject \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobject.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnamespace.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qglobal.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qconfig.h \
@@ -181,22 +181,23 @@ debug/moc_ftpmanager.cpp: ../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/Q
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsysinfo.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlogging.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qflags.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qglobalstatic.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmutex.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnumeric.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbasicatomic.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic_bootstrap.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qgenericatomic.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic_cxx11.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic_msvc.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnamespace.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qarraydata.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qglobalstatic.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmutex.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnumeric.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstring.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qchar.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbytearray.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qrefcount.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qarraydata.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstringbuilder.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlist.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qalgorithms.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiterator.h \
@@ -206,42 +207,44 @@ debug/moc_ftpmanager.cpp: ../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/Q
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstringlist.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qregexp.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstringmatcher.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurlquery.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qshareddata.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qhash.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QObject \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobject.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcoreevent.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qscopedpointer.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmetatype.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvarlengtharray.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontainerfwd.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobject_impl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvector.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qpoint.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QMap \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmap.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdebug.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qhash.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qtextstream.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiodevice.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlocale.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvariant.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qshareddata.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qset.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontiguouscache.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QPair \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurlquery.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkReply \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkreply.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qtnetwork-config.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QIODevice \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiodevice.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QString \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVariant \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvariant.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmap.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdebug.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qtextstream.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlocale.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvector.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qpoint.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qset.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontiguouscache.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer_impl.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkRequest \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkrequest.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QSharedDataPointer \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkAccessManager \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkaccessmanager.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QSslConfiguration \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslconfiguration.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslsocket.h \
@@ -314,6 +317,20 @@ debug/moc_errorstack.cpp: ../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/Q
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvector.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qpoint.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QMap \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmap.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdebug.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qhash.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qtextstream.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiodevice.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlocale.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvariant.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qshareddata.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qset.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontiguouscache.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QPair \
 		errorstack.h \
 		debug/moc_predefs.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
@@ -428,8 +445,11 @@ debug/moc_updaterui.cpp: autoresize.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/QFont \
 		updater.h \
 		ftpmanager.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
+		errorstack.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QObject \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QPair \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkReply \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkreply.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
@@ -442,7 +462,6 @@ debug/moc_updaterui.cpp: autoresize.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QSharedDataPointer \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkAccessManager \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkaccessmanager.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QSslConfiguration \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslconfiguration.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslsocket.h \
@@ -503,11 +522,11 @@ debug/moc_updaterui.cpp: autoresize.h \
 	F:\QT\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -IF:/QT/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -IF:/anycubic/QTUpdateProject/src/AutoUpdater -IF:/QT/Qt5.9.0/5.9/mingw53_32/include -IF:/QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IF:/QT/Qt5.9.0/5.9/mingw53_32/include/QtGui -IF:/QT/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IF:/QT/Qt5.9.0/5.9/mingw53_32/include/QtXml -IF:/QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork -IF:/QT/Qt5.9.0/5.9/mingw53_32/include/QtCore -IF:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IF:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IF:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include -IF:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IF:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IF:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward updaterui.h -o debug\moc_updaterui.cpp
 
 debug/moc_updater.cpp: ftpmanager.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurl.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbytearray.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qrefcount.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic.h \
+		errorstack.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QObject \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobject.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnamespace.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qglobal.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qconfig.h \
@@ -519,22 +538,23 @@ debug/moc_updater.cpp: ftpmanager.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsysinfo.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlogging.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qflags.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qglobalstatic.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmutex.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnumeric.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbasicatomic.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic_bootstrap.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qgenericatomic.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic_cxx11.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic_msvc.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnamespace.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qarraydata.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qglobalstatic.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmutex.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnumeric.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstring.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qchar.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbytearray.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qrefcount.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qarraydata.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstringbuilder.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlist.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qalgorithms.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiterator.h \
@@ -544,42 +564,44 @@ debug/moc_updater.cpp: ftpmanager.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstringlist.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qregexp.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstringmatcher.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurlquery.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qshareddata.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qhash.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QObject \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobject.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcoreevent.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qscopedpointer.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmetatype.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvarlengtharray.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontainerfwd.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobject_impl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvector.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qpoint.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QMap \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmap.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdebug.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qhash.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qtextstream.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiodevice.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlocale.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvariant.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qshareddata.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qset.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontiguouscache.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QPair \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurlquery.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkReply \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkreply.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qtnetwork-config.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QIODevice \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiodevice.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QString \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVariant \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvariant.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmap.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdebug.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qtextstream.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlocale.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvector.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qpoint.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qset.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontiguouscache.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer_impl.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkRequest \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkrequest.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QSharedDataPointer \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkAccessManager \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkaccessmanager.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QSslConfiguration \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslconfiguration.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslsocket.h \
@@ -641,7 +663,6 @@ debug/moc_updater.cpp: ftpmanager.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtouchdevice.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QMap \
 		updater.h \
 		debug/moc_predefs.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
@@ -900,8 +921,11 @@ debug/main.o: main.cpp ../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/Q
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/QFont \
 		updater.h \
 		ftpmanager.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
+		errorstack.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QObject \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QPair \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkReply \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkreply.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
@@ -914,7 +938,6 @@ debug/main.o: main.cpp ../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/Q
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QSharedDataPointer \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkAccessManager \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkaccessmanager.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QSslConfiguration \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslconfiguration.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslsocket.h \
@@ -966,11 +989,11 @@ debug/main.o: main.cpp ../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/Q
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o main.cpp
 
 debug/ftpmanager.o: ftpmanager.cpp ftpmanager.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurl.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbytearray.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qrefcount.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic.h \
+		errorstack.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QObject \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobject.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnamespace.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qglobal.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qconfig.h \
@@ -982,22 +1005,23 @@ debug/ftpmanager.o: ftpmanager.cpp ftpmanager.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsysinfo.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlogging.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qflags.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qglobalstatic.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmutex.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnumeric.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbasicatomic.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic_bootstrap.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qgenericatomic.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic_cxx11.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic_msvc.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnamespace.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qarraydata.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qglobalstatic.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmutex.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnumeric.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstring.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qchar.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbytearray.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qrefcount.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qarraydata.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstringbuilder.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlist.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qalgorithms.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiterator.h \
@@ -1007,42 +1031,44 @@ debug/ftpmanager.o: ftpmanager.cpp ftpmanager.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstringlist.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qregexp.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstringmatcher.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurlquery.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qshareddata.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qhash.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QObject \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobject.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcoreevent.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qscopedpointer.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmetatype.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvarlengtharray.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontainerfwd.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobject_impl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvector.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qpoint.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QMap \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmap.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdebug.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qhash.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qtextstream.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiodevice.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlocale.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvariant.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qshareddata.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qset.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontiguouscache.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QPair \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurlquery.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkReply \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkreply.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qtnetwork-config.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QIODevice \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiodevice.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QString \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVariant \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvariant.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmap.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdebug.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qtextstream.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlocale.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvector.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qpoint.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qset.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontiguouscache.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer_impl.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkRequest \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkrequest.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QSharedDataPointer \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkAccessManager \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkaccessmanager.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QSslConfiguration \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslconfiguration.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslsocket.h \
@@ -1100,8 +1126,7 @@ debug/ftpmanager.o: ftpmanager.cpp ftpmanager.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qkeysequence.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qevent.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qvector2d.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtouchdevice.h \
-		errorstack.h
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtouchdevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ftpmanager.o ftpmanager.cpp
 
 debug/xmlparser.o: xmlparser.cpp xmlparser.h \
@@ -1409,7 +1434,64 @@ debug/errorstack.o: errorstack.cpp errorstack.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobject_impl.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvector.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qpoint.h
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qpoint.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QMap \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmap.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdebug.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qhash.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qtextstream.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiodevice.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlocale.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvariant.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qshareddata.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qset.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontiguouscache.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QPair \
+		log.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QFile \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qfile.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qfiledevice.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QTextStream \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QWidget \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qwidget.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtguiglobal.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtgui-config.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtwidgets-config.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qwindowdefs.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qwindowdefs_win.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmargins.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpaintdevice.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qrect.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsize.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpalette.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qcolor.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qrgb.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qrgba64.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qbrush.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qmatrix.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpolygon.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qregion.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdatastream.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qline.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtransform.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpainterpath.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qimage.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpixelformat.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpixmap.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qfont.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qfontmetrics.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qfontinfo.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qcursor.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qkeysequence.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qevent.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurlquery.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qvector2d.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtouchdevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\errorstack.o errorstack.cpp
 
 debug/updaterui.o: updaterui.cpp updaterui.h \
@@ -1522,8 +1604,11 @@ debug/updaterui.o: updaterui.cpp updaterui.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/QFont \
 		updater.h \
 		ftpmanager.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
+		errorstack.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QObject \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QPair \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkReply \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkreply.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
@@ -1536,7 +1621,6 @@ debug/updaterui.o: updaterui.cpp updaterui.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QSharedDataPointer \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkAccessManager \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkaccessmanager.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QSslConfiguration \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslconfiguration.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslsocket.h \
@@ -1632,11 +1716,11 @@ debug/updaterui.o: updaterui.cpp updaterui.h \
 
 debug/updater.o: updater.cpp updater.h \
 		ftpmanager.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurl.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbytearray.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qrefcount.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic.h \
+		errorstack.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QObject \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobject.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnamespace.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qglobal.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qconfig.h \
@@ -1648,22 +1732,23 @@ debug/updater.o: updater.cpp updater.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsysinfo.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlogging.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qflags.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qglobalstatic.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmutex.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnumeric.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbasicatomic.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic_bootstrap.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qgenericatomic.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic_cxx11.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qatomic_msvc.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnamespace.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qarraydata.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qglobalstatic.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmutex.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qnumeric.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstring.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qchar.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbytearray.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qrefcount.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qarraydata.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstringbuilder.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobjectdefs_impl.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlist.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qalgorithms.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiterator.h \
@@ -1673,42 +1758,44 @@ debug/updater.o: updater.cpp updater.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstringlist.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qregexp.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qstringmatcher.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurlquery.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qshareddata.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qhash.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QObject \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobject.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcoreevent.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qscopedpointer.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmetatype.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvarlengtharray.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontainerfwd.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qobject_impl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvector.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qpoint.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QMap \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmap.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdebug.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qhash.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qtextstream.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiodevice.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlocale.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvariant.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qshareddata.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qset.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontiguouscache.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QPair \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QUrl \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurl.h \
+		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qurlquery.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkReply \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkreply.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qtnetwork-config.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QIODevice \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qiodevice.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QString \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVariant \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvariant.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qmap.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdebug.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qtextstream.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qlocale.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qvector.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qpoint.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qset.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcontiguouscache.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qsharedpointer_impl.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkRequest \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkrequest.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QSharedDataPointer \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QNetworkAccessManager \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qnetworkaccessmanager.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/QSslConfiguration \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslconfiguration.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtNetwork/qsslsocket.h \
@@ -1770,7 +1857,6 @@ debug/updater.o: updater.cpp updater.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qvector2d.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtouchdevice.h \
-		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QMap \
 		xmlparser.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtXml/QDomDocument \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtXml/qdom.h \
@@ -1780,7 +1866,6 @@ debug/updater.o: updater.cpp updater.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QFile \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QTextStream \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QWidget \
-		errorstack.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/QDir \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qdir.h \
 		../../../../QT/Qt5.9.0/5.9/mingw53_32/include/QtCore/qfileinfo.h \

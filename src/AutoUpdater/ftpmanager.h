@@ -1,6 +1,8 @@
 ﻿#ifndef FTPMANAGER_H
 #define FTPMANAGER_H
 
+#include "errorstack.h"
+
 #include <QUrl>
 #include <QObject>
 #include <QNetworkReply>
@@ -50,7 +52,7 @@ private:
      * @brief errorReport
      * It is mean download error of the result.
      */
-    void reportError(QString on_reply_error);
+    void reportError(const QString &strLogMsg, const int &eErrStackCode, const QString &strErrStack);
 
     /**
      * @brief checkMd5
@@ -80,9 +82,9 @@ protected slots:
 
 signals:
     /**
-     * @brief signal_downloadLasterVFinish
+     * @brief signal_downloadLatestVFinish
      */
-    void signal_downloadLasterVFinish();
+    void signal_downloadLatestVFinish();
 
     /**
      * @brief signal_startDownloadPerFile

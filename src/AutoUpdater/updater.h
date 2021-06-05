@@ -4,6 +4,7 @@
 
 
 #include "ftpmanager.h"
+#include "errorstack.h"
 
 #include <QObject>
 #include <QProcess>
@@ -72,17 +73,10 @@ public:
     int getUpdateProcess();
 
     /**
-     * @brief downloadLasterVFile
+     * @brief downloadLatestVFile
      * Download xml file that is the update control file.
      */
-    void downloadLasterVFile();
-
-    /**
-     * @brief getFtpErrorStack
-     * @return The laster five error string
-     *         storage in m_replyErrorStack argument.
-     */
-    QStringList getFtpErrorStack();
+    void downloadLatestVFile();
 
     /**
      * @brief getNewVersion
@@ -116,7 +110,7 @@ public:
     /**
      * @brief execDeleteOldScript
      */
-    void deleteOldPath();
+    void deleteOldVersionPath();
 
     /**
      * @brief getLocalNewVersionPath
@@ -143,10 +137,10 @@ private:
      * Make del.bat script file for delete all
      * old version files.
      */
-    void makeDeletePathScript(const QString saveScriptPath,
+    void makeDeletePathScript(const QString &saveScriptPath,
                               QString delPath,
-                              const QString scriptName,
-                              const int delay = 0);
+                              const QString &scriptName,
+                              const int &delay = 0);
 
     /**
      * @brief failDeleteNewVersionDir
@@ -161,20 +155,22 @@ private:
     /**
      * @brief saveLog
      */
-    void saveLog();
+    void saveOldVersionLog();
 
     /**
-     * @brief saveOldVersionPara
+     * @brief reportError
+     * @param strLogMsg
+     * @param eErrStackCode
+     * @param strErrStack
      */
-    void saveOldVersionPara();
-
+    void reportError(const QString &strLogMsg, const int &eErrStackCode, const QString &strErrStack);
 
 protected slots:
 
     /**
-     * @brief on_ftp_downloadLasterVFileFinish
+     * @brief on_ftp_downloadLatestVFileFinish
      */
-    void on_ftp_downloadLasterVFileFinish();
+    void on_ftp_downloadLatestVFileFinish();
 
     /**
      * @brief on_ftp_downloadXmlFinish
@@ -186,7 +182,7 @@ protected slots:
      * @param errStr error string
      * Storage download error from Ftp
      */
-    void on_ftp_storageDownloadErrStr(QString errStr);
+    void on_ftp_reportError(QString errStr);
 
     /**
      * @brief on_ftp_startDownloadPerFile
@@ -208,7 +204,7 @@ signals:
      * be emit to AutoUpdaterUI class for next step to check
      * whether update or not.
      */
-    void signal_initFileDownloadFinish();
+    void signal_initFileDownloadFinish(QString);
 
     /**
      * @brief signal_startDownloadPerFile
@@ -220,15 +216,17 @@ signals:
      */
     void signal_finishDownloadPerFile(QString);
 
+    /**
+     * @brief signal_reportError
+     */
+    void signal_reportError(QString);
+
 private:
     QStringList m_listFileDir; //The list directory for update.
     QStringList m_listFileName; //The list file for update.
     QStringList m_listFileMd5; //The file md5.
 
     QList<FtpManager*> m_listFtp; //FTP class
-
-    //Ftp error stack
-    QStringList m_listFtpReplyErrorStack;
 
     //Version
     QString m_strOldVersion;
@@ -249,10 +247,6 @@ private:
 
     //parent pid
     QString m_strParentPid;
-
-    //updater ini file, not use
-    QSettings *m_settingsUpdaterIni;
-    QString m_strUpdaterIniPath;
 
     bool m_bUpdate;
 

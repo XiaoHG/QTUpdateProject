@@ -35,7 +35,7 @@ public:
      * @param isFirst from parent process.
      * Process entrance, wether update or not.
      */
-    void updater(bool isFromParentMain, QString parentPid);
+    void updater(bool isFromParentMain, QString strParentPid);
 
 protected:
     void mousePressEvent(QMouseEvent *event);
@@ -95,13 +95,13 @@ private:
      * @param ch
      * The default is english
      */
-    void language(bool ch);
+    void language(bool bCh);
 
     /**
      * @brief checkFtpDownloadError
      * @return
      */
-    bool isFtpDownloadError();
+    bool isUpdaterErrorOccurred();
 
     /**
      * @brief updatingError
@@ -116,15 +116,14 @@ private:
     void showWhichUI(const QList<QWidget *> &widgets, bool visible);
 
     /**
-     * @brief parseXmlError
-     * @param xml
-     */
-    void parseXmlError(Updater::UPDATER_ERROR_CODE code);
-
-    /**
      * @brief showVersionInfo
      */
     void showVersionInfo();
+
+    /**
+     * @brief printErrorStack
+     */
+    void printErrorStack();
 
 protected slots:
     /**
@@ -152,7 +151,7 @@ protected slots:
      * Init file are updater.xml and versionInfo.txt.
      * The two files be download at start update process.
      */
-    void on_updater_initFileDownloadFinish();
+    void on_updater_initFileDownloadFinish(QString name);
 
     /**
      * @brief on_timer_checkForUpdate
@@ -179,6 +178,11 @@ protected slots:
      */
     void on_updater_finishDownloadPerFile(QString fileName);
 
+    /**
+     * @brief on_updater_errorOccurred
+     * @param errorMsg error message.
+     */
+    void on_updater_reportError(QString errStr);
 
 private:
     //Mouse drag event

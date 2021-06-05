@@ -2,14 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
-    <name>AutoUpdaterUI</name>
-    <message>
-        <location filename="autoupdaterui.cpp" line="323"/>
-        <source>Update dialog</source>
-        <translation type="unfinished">更新对话框</translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.ui" line="14"/>
@@ -20,127 +12,156 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="autoupdaterui.cpp" line="89"/>
+        <location filename="updaterui.cpp" line="103"/>
         <source>Checking for update</source>
         <translation type="unfinished">正在检查更新</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="163"/>
-        <source>log :</source>
-        <translation type="unfinished">更新日志：</translation>
+        <location filename="updaterui.cpp" line="177"/>
+        <source>Change log :</source>
+        <translation type="unfinished">版本日志：</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="192"/>
-        <source>Update</source>
+        <location filename="updaterui.cpp" line="219"/>
+        <source>update</source>
         <translation type="unfinished">更新</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="246"/>
-        <source>Restart</source>
+        <location filename="updaterui.cpp" line="272"/>
+        <source>restart</source>
         <translation type="unfinished">重启</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="284"/>
+        <location filename="updaterui.cpp" line="306"/>
         <source>ok</source>
         <translation type="unfinished">确认</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="317"/>
-        <location filename="autoupdaterui.cpp" line="518"/>
+        <location filename="updaterui.cpp" line="339"/>
+        <location filename="updaterui.cpp" line="552"/>
         <source>Checking for update </source>
-        <translation type="unfinished">正在检查更新</translation>
+        <translation type="unfinished">正在检查更新 </translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="327"/>
+        <location filename="updaterui.cpp" line="349"/>
         <source>Find </source>
         <translation type="unfinished">发现 </translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="328"/>
+        <location filename="updaterui.cpp" line="350"/>
         <source> version, click update button to update!</source>
-        <translation type="unfinished"> 版本，点击更新按钮执行更新</translation>
+        <translation type="unfinished"> 版本，点击更新按钮执行更新！</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="341"/>
+        <location filename="updaterui.cpp" line="359"/>
+        <source>Current version is </source>
+        <translation type="unfinished">当前版本为 </translation>
+    </message>
+    <message>
+        <location filename="updaterui.cpp" line="361"/>
+        <source>Version message: </source>
+        <translation type="unfinished">版本信息：</translation>
+    </message>
+    <message>
+        <location filename="updaterui.cpp" line="367"/>
+        <source>Version information is missing!</source>
+        <translation type="unfinished">版本信息丢失!</translation>
+    </message>
+    <message>
+        <location filename="updaterui.cpp" line="368"/>
+        <source>Pleasse check network, or contact us: www.anycubic.com</source>
+        <translation type="unfinished">请检查网络状态，或者联系我们：www.anycubic.com</translation>
+    </message>
+    <message>
+        <location filename="updaterui.cpp" line="384"/>
         <source>Updating</source>
         <translation type="unfinished">正在更新</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="351"/>
+        <location filename="updaterui.cpp" line="394"/>
+        <source>Finish</source>
+        <translation type="unfinished">完成更新</translation>
+    </message>
+    <message>
+        <location filename="updaterui.cpp" line="395"/>
+        <source>Update result: success.</source>
+        <translation type="unfinished">更新结果：成功。</translation>
+    </message>
+    <message>
+        <location filename="updaterui.cpp" line="396"/>
         <source>The update is complete, please restart!</source>
         <translation type="unfinished">更新完成，请重启！</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="352"/>
-        <source>Finish</source>
-        <translation type="unfinished">更新完成</translation>
-    </message>
-    <message>
-        <location filename="autoupdaterui.cpp" line="360"/>
-        <source>Laster</source>
+        <location filename="updaterui.cpp" line="404"/>
+        <source>Latest</source>
         <translation type="unfinished">最新版本</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="383"/>
-        <location filename="autoupdaterui.cpp" line="405"/>
+        <location filename="updaterui.cpp" line="426"/>
+        <location filename="updaterui.cpp" line="448"/>
+        <source>Error</source>
+        <translation type="unfinished">更新失败</translation>
+    </message>
+    <message>
+        <location filename="updaterui.cpp" line="428"/>
+        <source>Check for update result: failure!</source>
+        <translation type="unfinished">检查更新结果：失败！</translation>
+    </message>
+    <message>
+        <location filename="updaterui.cpp" line="430"/>
+        <location filename="updaterui.cpp" line="451"/>
         <source>Error message: </source>
-        <translation type="unfinished">错误信息：</translation>
+        <translation type="unfinished">失败信息：</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="391"/>
-        <source>Check for update failed!</source>
-        <translation type="unfinished">检查更新失败！</translation>
+        <location filename="updaterui.cpp" line="434"/>
+        <location filename="updaterui.cpp" line="455"/>
+        <source>Please check the network status, retry maybe solve.</source>
+        <translation type="unfinished">请检查网络状态，重新尝试。</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="392"/>
-        <location filename="autoupdaterui.cpp" line="414"/>
-        <source>Please check the network link status!</source>
-        <translation type="unfinished">请检查网络连接状态！</translation>
-    </message>
-    <message>
-        <location filename="autoupdaterui.cpp" line="413"/>
-        <source>Update failed!</source>
-        <translation type="unfinished">更新失败！</translation>
-    </message>
-    <message>
-        <location filename="autoupdaterui.cpp" line="415"/>
+        <location filename="updaterui.cpp" line="435"/>
         <source>Or contact us: www.anycubic.com</source>
-        <translation type="unfinished">或联系我们：www.anycubic.com</translation>
+        <translation type="unfinished">或者联系我们：www.anycubic.com</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="442"/>
-        <source>Version information is missing!</source>
-        <translation type="unfinished">版本信息丢失！</translation>
+        <location filename="updaterui.cpp" line="449"/>
+        <source>Update result: failure!</source>
+        <translation type="unfinished">更新结果：失败！</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="443"/>
-        <source>Pleasse check network, or contact us: www.anycubic.com</source>
-        <translation type="unfinished">请检查网络连接状态，或联系我们：www.anycubic.com</translation>
+        <location filename="updaterui.cpp" line="456"/>
+        <source>Or contact us: www.anycubic.com.</source>
+        <translation type="unfinished">或者联系我们：www.anycubic.com</translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="479"/>
+        <location filename="updaterui.cpp" line="470"/>
+        <source>Connect server failure!</source>
+        <translation type="unfinished">连接服务器失败！</translation>
+    </message>
+	<message>
+        <location filename="updaterui.cpp" line="473"/>
+        <source>Get server update file failure!</source>
+        <translation type="unfinished">获取服务器更新文件失败！</translation>
+    </message>
+    <message>
+        <location filename="updaterui.cpp" line="521"/>
         <source>Updating </source>
         <translation type="unfinished">正在更新 </translation>
     </message>
     <message>
-        <location filename="autoupdaterui.cpp" line="495"/>
+        <location filename="updaterui.cpp" line="534"/>
         <source> update is complete!</source>
         <translation type="unfinished"> 更新完成！</translation>
     </message>
+</context>
+<context>
+    <name>UpdaterUI</name>
     <message>
-        <location filename="ftpmanager.cpp" line="90"/>
-        <source> file download time out!</source>
-        <translation type="unfinished"> 文件下载超时！</translation>
+        <location filename="updaterui.cpp" line="345"/>
+        <source>Update Dialog</source>
+        <translation type="unfinished">更新对话框</translation>
     </message>
-  <message>
-    <location filename="autoupdaterui.cpp" line="451"/>
-    <source>Current version is </source>
-    <translation type="unfinished">当前版本为 </translation>
-  </message>
-  <message>
-    <location filename="autoupdaterui.cpp" line="452"/>
-    <source>Changed log of history: </source>
-    <translation type="unfinished">版本历史记录：</translation>
-  </message>
 </context>
 </TS>
