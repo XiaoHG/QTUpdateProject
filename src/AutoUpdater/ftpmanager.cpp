@@ -52,7 +52,7 @@ void FtpManager::get(const QString &downloadPath, const QString &localPath)
     m_iDownloadTimeSec = 0;
     m_strLocalPath = localPath;
     m_strDownloadPath = downloadPath;
-    signal_startDownload(m_strDownloadPath);
+    signal_startDownload(m_strLocalPath);
 
     m_url.setPath(downloadPath);
     m_pReply = m_networkManager.get(QNetworkRequest(m_url));
