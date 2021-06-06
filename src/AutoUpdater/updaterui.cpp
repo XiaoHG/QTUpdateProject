@@ -93,10 +93,8 @@ void UpdaterUI::initUI()
     resize(500, 500);
 
     //line edit widget to version notify
-    QFont _fontTitleLabel( "Microsoft YaHei", 11, 75);
     m_labelTitle = new QLabel(this);
     m_labelTitle->setGeometry(0, 0, this->width(), this->height() / 10);
-    m_labelTitle->setFont(_fontTitleLabel);
     m_labelTitle->setAlignment(Qt::AlignCenter);
     m_labelTitle->setScaledContents(true);
     m_labelTitle->setText(QObject::tr("Checking for update"));
@@ -166,7 +164,6 @@ void UpdaterUI::initUI()
 
     QFont _fontLogTitleLabel( "Microsoft YaHei", 9, 75);
     m_labelLogTitle = new QLabel(this);
-    m_labelLogTitle->setFont(_fontLogTitleLabel);
     m_labelLogTitle->setStyleSheet("color:white");
     m_labelLogTitle->setGeometry(m_teOutputVersionInfo->x(),
                                  m_teOutputVersionInfo->y() - 25,
@@ -212,9 +209,7 @@ void UpdaterUI::initUI()
 
 void UpdaterUI::updateUI()
 {
-    QFont _fontBtnUpdate( "Microsoft YaHei", 9, 75);
     m_btnUpdate = new QPushButton(this);
-    m_btnUpdate->setFont(_fontBtnUpdate);
     m_btnUpdate->setText(QObject::tr("update"));
     m_btnUpdate->setIcon(QIcon(":/icon/update2.png"));
     m_btnUpdate->setGeometry(20, m_teOutputVersionInfo->height() + m_labelTitle->height() + 50, 70, 25);
@@ -238,7 +233,6 @@ void UpdaterUI::updateUI()
     m_listUpdateWidgets.push_back(m_labelHaveNewVersionNotise);
 
     //init false
-    //ShowUpdateUI(false);
     showWhichUI(m_listUpdateWidgets, false);
 }
 
@@ -286,9 +280,7 @@ void UpdaterUI::finishUpdateUI()
 
 void UpdaterUI::notUpdateUI()
 {
-    QFont _fontLabelLatestVersion( "Microsoft YaHei", 10, 75);
     m_labelCurrentVersion = new QLabel(this);
-    m_labelCurrentVersion->setFont(_fontLabelLatestVersion);
     m_labelCurrentVersion->setGeometry(m_btnUpdate->x() + 5, m_btnUpdate->y() - 10,
                                        m_teOutputVersionInfo->width(), 30);
     m_labelCurrentVersion->setStyleSheet("color:rgb(150, 150, 150)");
