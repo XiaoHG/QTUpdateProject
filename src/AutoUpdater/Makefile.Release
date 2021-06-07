@@ -11,7 +11,7 @@ MAKEFILE      = Makefile.Release
 
 CC            = cl
 CXX           = cl
-DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG
+DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG
 CFLAGS        = -nologo -Zc:wchar_t -FS -Zc:strictStrings -O2 -MD -W3 -w44456 -w44457 -w44458 $(DEFINES)
 CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -EHsc $(DEFINES)
 INCPATH       = -I. -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtANGLE -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtNetwork -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore -Irelease -I. -I\include -ID:\Qt\Qt5.11.0\5.11.0\msvc2015_64\mkspecs\win32-msvc 
@@ -98,45 +98,17 @@ DESTDIR_TARGET = release\AutoUpdater.exe
 
 .SUFFIXES: .c .cpp .cc .cxx
 
-{release}.cpp{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
-	$<
-<<
+.cpp.obj:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fo$@ $<
 
-{release}.cc{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
-	$<
-<<
+.cc.obj:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fo$@ $<
 
-{release}.cxx{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
-	$<
-<<
+.cxx.obj:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fo$@ $<
 
-{release}.c{release\}.obj::
-	$(CC) -c $(CFLAGS) $(INCPATH) -Forelease\ @<<
-	$<
-<<
-
-{.}.cpp{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
-	$<
-<<
-
-{.}.cc{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
-	$<
-<<
-
-{.}.cxx{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
-	$<
-<<
-
-{.}.c{release\}.obj::
-	$(CC) -c $(CFLAGS) $(INCPATH) -Forelease\ @<<
-	$<
-<<
+.c.obj:
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fo$@ $<
 
 ####### Build rules
 
@@ -153,7 +125,7 @@ release\logo.res: logo.rc
 	rc /NOLOGO $(DEFINES) -fo release\logo.res logo.rc
 
 qmake: FORCE
-	@$(QMAKE) -o Makefile.Release AutoUpdater.pro
+	@$(QMAKE) -o Makefile.Release AutoUpdater.pro -spec win32-msvc
 
 qmake_all: FORCE
 
@@ -314,7 +286,7 @@ release\moc_ftpmanager.cpp: errorstack.h \
 		ftpmanager.h \
 		release\moc_predefs.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
-	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -IE:/anycubic/anycubic_project/updater/src/AutoUpdater -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtXml -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtNetwork -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore ftpmanager.h -o release\moc_ftpmanager.cpp
+	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -IE:/anycubic/anycubic_project/updater/src/AutoUpdater -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtXml -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtNetwork -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\winrt" ftpmanager.h -o release\moc_ftpmanager.cpp
 
 release\moc_errorstack.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObject \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qobject.h \
@@ -385,7 +357,7 @@ release\moc_errorstack.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QOb
 		errorstack.h \
 		release\moc_predefs.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
-	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -IE:/anycubic/anycubic_project/updater/src/AutoUpdater -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtXml -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtNetwork -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore errorstack.h -o release\moc_errorstack.cpp
+	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -IE:/anycubic/anycubic_project/updater/src/AutoUpdater -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtXml -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtNetwork -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\winrt" errorstack.h -o release\moc_errorstack.cpp
 
 release\moc_updaterui.cpp: autoresize.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -572,7 +544,7 @@ release\moc_updaterui.cpp: autoresize.h \
 		updaterui.h \
 		release\moc_predefs.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
-	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -IE:/anycubic/anycubic_project/updater/src/AutoUpdater -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtXml -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtNetwork -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore updaterui.h -o release\moc_updaterui.cpp
+	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -IE:/anycubic/anycubic_project/updater/src/AutoUpdater -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtXml -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtNetwork -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\winrt" updaterui.h -o release\moc_updaterui.cpp
 
 release\moc_updater.cpp: ftpmanager.h \
 		errorstack.h \
@@ -721,7 +693,7 @@ release\moc_updater.cpp: ftpmanager.h \
 		updater.h \
 		release\moc_predefs.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
-	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -IE:/anycubic/anycubic_project/updater/src/AutoUpdater -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtXml -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtNetwork -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore updater.h -o release\moc_updater.cpp
+	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -IE:/anycubic/anycubic_project/updater/src/AutoUpdater -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtXml -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtNetwork -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\winrt" updater.h -o release\moc_updater.cpp
 
 release\moc_log.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QFile \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfile.h \
@@ -831,7 +803,7 @@ release\moc_log.cpp: D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QFile \
 		log.h \
 		release\moc_predefs.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe
-	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -IE:/anycubic/anycubic_project/updater/src/AutoUpdater -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtXml -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtNetwork -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore log.h -o release\moc_log.cpp
+	D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/mkspecs/win32-msvc -IE:/anycubic/anycubic_project/updater/src/AutoUpdater -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtGui -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtXml -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtNetwork -ID:/Qt/Qt5.11.0/5.11.0/msvc2015_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE" -I"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.14393.0\winrt" log.h -o release\moc_log.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1047,6 +1019,7 @@ release\main.obj: main.cpp D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\Q
 		log.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QFile \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QTextStream
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\main.obj main.cpp
 
 release\ftpmanager.obj: ftpmanager.cpp ftpmanager.h \
 		errorstack.h \
@@ -1189,6 +1162,7 @@ release\ftpmanager.obj: ftpmanager.cpp ftpmanager.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qevent.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ftpmanager.obj ftpmanager.cpp
 
 release\xmlparser.obj: xmlparser.cpp xmlparser.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtXml\QDomDocument \
@@ -1306,6 +1280,7 @@ release\xmlparser.obj: xmlparser.cpp xmlparser.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QVector \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QMap \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QPair
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\xmlparser.obj xmlparser.cpp
 
 release\autoresize.obj: autoresize.cpp autoresize.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QWidget \
@@ -1452,6 +1427,7 @@ release\autoresize.obj: autoresize.cpp autoresize.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QDesktopWidget \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QPushButton \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\qpushbutton.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\autoresize.obj autoresize.cpp
 
 release\errorstack.obj: errorstack.cpp errorstack.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QObject \
@@ -1563,6 +1539,7 @@ release\errorstack.obj: errorstack.cpp errorstack.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qurlquery.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qvector2d.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qtouchdevice.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\errorstack.obj errorstack.cpp
 
 release\updaterui.obj: updaterui.cpp updaterui.h \
 		autoresize.h \
@@ -1784,6 +1761,7 @@ release\updaterui.obj: updaterui.cpp updaterui.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QStandardPaths \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstandardpaths.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtWidgets\QDesktopWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\updaterui.obj updaterui.cpp
 
 release\updater.obj: updater.cpp updater.h \
 		ftpmanager.h \
@@ -1957,6 +1935,7 @@ release\updater.obj: updater.cpp updater.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtGui\qinputmethod.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QStandardPaths \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qstandardpaths.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\updater.obj updater.cpp
 
 release\log.obj: log.cpp log.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QFile \
@@ -2076,20 +2055,28 @@ release\log.obj: log.cpp log.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qfileinfo.h \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\QDateTime \
 		D:\Qt\Qt5.11.0\5.11.0\msvc2015_64\include\QtCore\qdatetime.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\log.obj log.cpp
 
 release\qrc_qt_language.obj: release\qrc_qt_language.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\qrc_qt_language.obj release\qrc_qt_language.cpp
 
 release\qrc_icon.obj: release\qrc_icon.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\qrc_icon.obj release\qrc_icon.cpp
 
 release\moc_ftpmanager.obj: release\moc_ftpmanager.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\moc_ftpmanager.obj release\moc_ftpmanager.cpp
 
 release\moc_errorstack.obj: release\moc_errorstack.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\moc_errorstack.obj release\moc_errorstack.cpp
 
 release\moc_updaterui.obj: release\moc_updaterui.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\moc_updaterui.obj release\moc_updaterui.cpp
 
 release\moc_updater.obj: release\moc_updater.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\moc_updater.obj release\moc_updater.cpp
 
 release\moc_log.obj: release\moc_log.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\moc_log.obj release\moc_log.cpp
 
 ####### Install
 

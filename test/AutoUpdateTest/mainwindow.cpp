@@ -73,7 +73,7 @@ void MainWindow::StartUpdateProcess(QString isFirst, QString isCh)
 #endif
 
 #ifdef Q_OS_WIN
-    strExe = QApplication::applicationDirPath() + "/../../../src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/AutoUpdater.exe";
+    strExe = QApplication::applicationDirPath() + "/../../../src/AutoUpdater/release/AutoUpdater.exe";
 #endif
     qDebug() << strExe;
     m_updateProcess->start(strExe, arguments);

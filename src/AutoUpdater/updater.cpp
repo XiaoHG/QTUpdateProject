@@ -55,7 +55,7 @@ Updater::Updater(bool bCh, QObject *parent)
 {
     //The updater.xml file is in the local version path
     m_strInitFileDownloadPath = QApplication::applicationDirPath() + INITFILE_DOWNLOADPATH;
-    g_log.log(Log::INFO, "Init file download path: " + m_strInitFileDownloadPath, __FILE__, __LINE__);
+    g_log.log(Log::DEBUG, "Init file download path: " + m_strInitFileDownloadPath, __FILE__, __LINE__);
 }
 
 Updater::~Updater()
@@ -156,13 +156,13 @@ void Updater::on_ftp_downloadLatestVFileFinish()
     {
         if(i >= _strOldVersionList.size() || _strNewVersionList.at(i).toInt() > _strOldVersionList.at(i).toInt())
         {
-            g_log.log(Log::INFO, "Server version is updater, need to update!", __FILE__, __LINE__);
+            g_log.log(Log::DEBUG, "Server version is updater, need to update!", __FILE__, __LINE__);
             m_bUpdate = true;
         }
     }
     if(!m_bUpdate)
     {
-        g_log.log(Log::INFO, "Local version is the Latest version, it is not need to update!", __FILE__, __LINE__);
+        g_log.log(Log::DEBUG, "Local version is the Latest version, it is not need to update!", __FILE__, __LINE__);
         signal_initFileDownloadFinish(LatestVERSION_FILE_NAME);
         return;
     }
@@ -347,7 +347,7 @@ void Updater::loadUpdateFiles()
         _strMd5 = _nodeList.at(i).toElement().attribute("md5");
 
         QString _strServerFileDir = _strDir.isEmpty() ? "./" : _strDir;
-        g_log.log(Log::INFO, "Load: " + _strName + " file, and directory is: " + _strServerFileDir, __FILE__, __LINE__);
+        g_log.log(Log::DEBUG, "Load: " + _strName + " file, and directory is: " + _strServerFileDir, __FILE__, __LINE__);
 
         m_listFileName.append(_strName);
         m_listFileDir.append(_strDir);

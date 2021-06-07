@@ -332,7 +332,7 @@ void UpdaterUI::checkForUpdate()
 void UpdaterUI::update()
 {
     g_log.log(Log::INFO, "Update UI", __FILE__, __LINE__);
-    m_labelTitle->setText(tr("Update Dialog"));
+    m_labelTitle->setText(QObject::tr("Update Dialog"));
     m_btnClose->setVisible(true);
 
     m_strVersionServerInfo = m_updater->getNewVersion();
@@ -414,7 +414,7 @@ void UpdaterUI::checkForUpdateError()
     m_timerCheckForUpdate->stop();
     m_btnExit->setVisible(true);
 
-    m_labelTitle->setText(QObject::tr("Error"));
+    m_labelTitle->setText(QObject::tr("Failure"));
     m_teOutputVersionInfo->clear();
     m_teOutputVersionInfo->append(QObject::tr("Check for update result: failure!"));
     m_teOutputVersionInfo->append("");
@@ -436,7 +436,7 @@ void UpdaterUI::updatingError()
     m_pbUpdating->setVisible(false);
     m_btnExit->setVisible(true);
 
-    m_labelTitle->setText(QObject::tr("Error"));
+    m_labelTitle->setText(QObject::tr("Failure"));
     m_teOutputVersionInfo->append(QObject::tr("Update result: failure!"));
     m_teOutputVersionInfo->append("");
     m_teOutputVersionInfo->append(QObject::tr("Error message: "));

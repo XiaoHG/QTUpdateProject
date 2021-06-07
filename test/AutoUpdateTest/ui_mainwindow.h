@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.0
+** Created by: Qt User Interface Compiler version 5.11.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -12,8 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -84,11 +82,11 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        actionactUpdate->setText(QApplication::translate("MainWindow", "actUpdate", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("MainWindow", "update", Q_NULLPTR));
-        radioButton->setText(QApplication::translate("MainWindow", "\344\270\255\346\226\207", Q_NULLPTR));
-        radioButton_2->setText(QApplication::translate("MainWindow", "English", Q_NULLPTR));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
+        actionactUpdate->setText(QApplication::translate("MainWindow", "actUpdate", nullptr));
+        pushButton->setText(QApplication::translate("MainWindow", "update", nullptr));
+        radioButton->setText(QApplication::translate("MainWindow", "\344\270\255\346\226\207", nullptr));
+        radioButton_2->setText(QApplication::translate("MainWindow", "English", nullptr));
     } // retranslateUi
 
 };

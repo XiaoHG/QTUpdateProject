@@ -35,8 +35,8 @@ FtpManager::~FtpManager()
 
 void FtpManager::get(const QString &downloadPath, const QString &localPath)
 {
-    g_log.log(Log::INFO, "Start downloadPath file: " + downloadPath, __FILE__, __LINE__);
-    g_log.log(Log::INFO, "localPath path: " + localPath, __FILE__, __LINE__);
+    g_log.log(Log::DEBUG, "Start downloadPath file: " + downloadPath, __FILE__, __LINE__);
+    g_log.log(Log::DEBUG, "localPath path: " + localPath, __FILE__, __LINE__);
 
     if(localPath.contains("updater"))
     {
@@ -47,7 +47,7 @@ void FtpManager::get(const QString &downloadPath, const QString &localPath)
         m_timeout = UPDATEFILE_TIMEOUT;
     }
 
-    g_log.log(Log::INFO, QString::asprintf("Download time out is : %1").arg(m_timeout), __FILE__, __LINE__);
+    g_log.log(Log::DEBUG, QString::asprintf("Download time out is : %1").arg(m_timeout), __FILE__, __LINE__);
 
     m_iDownloadTimeSec = 0;
     m_strLocalPath = localPath;
@@ -65,7 +65,6 @@ void FtpManager::on_reply_downloadFinish()
     m_timerDownloading->stop();
     if(m_bDownloadError)
     {
-        //g_log.log(Log::DEBUG, "Download error occurred.", __FILE__, __LINE__);
         return;
     }
 
@@ -95,7 +94,7 @@ void FtpManager::on_reply_downloadFinish()
         return;
     }
 
-    g_log.log(Log::FATAL, "Local: Finish download : " + m_strLocalPath + QString::asprintf(", file lenght = %1").arg(writeLen) , __FILE__, __LINE__);
+    g_log.log(Log::DEBUG, "Local: Finish download : " + m_strLocalPath + QString::asprintf(", file lenght = %1").arg(writeLen) , __FILE__, __LINE__);
 
     _file.flush();
     _file.close();
@@ -152,7 +151,7 @@ void FtpManager::on_timer_downloading()
         m_timerDownloading->stop();
         return;
     }
-    g_log.log(Log::FATAL, "Download file " + m_url.path() + " time: " + QString::asprintf("%1").arg(m_iDownloadTimeSec),
+    g_log.log(Log::DEBUG, "Download file " + m_url.path() + " time: " + QString::asprintf("%1").arg(m_iDownloadTimeSec),
               __FILE__, __LINE__);
     if(m_iDownloadTimeSec++ == m_timeout)
     {

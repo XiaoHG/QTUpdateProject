@@ -53,3 +53,5 @@ RESOURCES += \
     qt_language.qrc \
     icon.qrc
 
+DISTFILES +=
+

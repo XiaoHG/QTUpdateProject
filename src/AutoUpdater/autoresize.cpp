@@ -37,7 +37,7 @@ void AutoResize::calculateResizeRatio()
     m_fVerRatio = m_autoResizeWidget->height() / m_fBaseHeight;
     m_fFontRatio = m_fHorRatio < m_fVerRatio ? m_fHorRatio : m_fVerRatio;
 
-    g_log.log(Log::INFO, QString::asprintf("HorRatio = %1, VerRatio = %2, FontRatio = %3")
+    g_log.log(Log::DEBUG, QString::asprintf("HorRatio = %1, VerRatio = %2, FontRatio = %3")
               .arg(m_fHorRatio).arg(m_fVerRatio).arg(m_fFontRatio), __FILE__, __LINE__);
 }
 
