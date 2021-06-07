@@ -162,7 +162,6 @@ void UpdaterUI::initUI()
                                                                 "subcontrol-position:top;"
                                                                 "}");
 
-    QFont _fontLogTitleLabel( "Microsoft YaHei", 9, 75);
     m_labelLogTitle = new QLabel(this);
     m_labelLogTitle->setStyleSheet("color:white");
     m_labelLogTitle->setGeometry(m_teOutputVersionInfo->x(),
@@ -442,6 +441,7 @@ void UpdaterUI::updatingError()
     m_teOutputVersionInfo->append("");
     m_teOutputVersionInfo->append(QObject::tr("Error message: "));
 
+    //print error message.
     printErrorStack();
 
     m_teOutputVersionInfo->append(QObject::tr("Please check the network status, retry maybe solve."));

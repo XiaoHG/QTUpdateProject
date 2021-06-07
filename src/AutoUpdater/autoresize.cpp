@@ -11,6 +11,7 @@
 #include <QProgressBar>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QPushButton>
 
 extern Log g_log;
 
@@ -139,6 +140,21 @@ void AutoResize::doAutoResize()
         _tmpRect.setHeight(_tmpRect.height() * m_fVerRatio);
         QRect _afterRect = QRect(_tmpRect.x() * m_fHorRatio, _tmpRect.y() * m_fVerRatio,
                                  _tmpRect.width(), _tmpRect.height());
+        //set button changed icon size
+        QString _strClassName = _item->metaObject()->className();
+        g_log.log(Log::DEBUG, "Resize icon size, class name is: " + _strClassName, __FILE__, __LINE__);
+        if(_strClassName == "QPushButton")
+        {
+            g_log.log(Log::DEBUG, "I am QPushButton Icon, and ready to resize!", __FILE__, __LINE__);
+            QPushButton *_btnTmp = static_cast<QPushButton*>(_item);
+            g_log.log(Log::DEBUG, QString::asprintf("Resize before, size = %1, %2").arg(_btnTmp->iconSize().width()).arg(_btnTmp->iconSize().height()), __FILE__, __LINE__);
+            if(_btnTmp)
+            {
+                float _fIconRatio = m_fHorRatio > m_fVerRatio ? m_fVerRatio : m_fHorRatio;
+                _btnTmp->setIconSize(QSize(_btnTmp->iconSize().width() * _fIconRatio, _btnTmp->iconSize().height() * _fIconRatio));
+            }
+            g_log.log(Log::DEBUG, QString::asprintf("Resize after, size = %1, %2").arg(_btnTmp->iconSize().width()).arg(_btnTmp->iconSize().height()), __FILE__, __LINE__);
+        }
         //changed font
         changedFont = _itarator.value().fontOriginal;
         fontAutoResize(_item, changedFont.pointSize());
@@ -148,8 +164,8 @@ void AutoResize::doAutoResize()
     while(_fontIt.hasNext())
     {
         _fontIt.next();
-        QWidget* _item=_fontIt.key();
-        changedFont=_fontIt.value().fontOriginal;
+        QWidget* _item = _fontIt.key();
+        changedFont = _fontIt.value().fontOriginal;
         fontAutoResize(_item,changedFont.pointSize());
     }
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Form Files">
@@ -57,45 +57,48 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="autoupdater.cpp">
+    <ClCompile Include="autoresize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="autoupdaterui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="filemanager.cpp">
+    <ClCompile Include="errorstack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ftpmanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="updatelog.cpp">
+    <ClCompile Include="updater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="updaterui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="xmlparser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="autoresize.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="autoupdater.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="autoupdaterui.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <ClInclude Include="filemanager.h">
+    <ClInclude Include="autoresize.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <CustomBuild Include="errorstack.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="ftpmanager.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="updatelog.h">
+    <CustomBuild Include="log.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="updater.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="updaterui.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <ClInclude Include="xmlparser.h">
@@ -103,16 +106,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="debug\moc_autoupdater.cpp">
+    <ClCompile Include="debug\moc_errorstack.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="release\moc_autoupdater.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="debug\moc_autoupdaterui.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="release\moc_autoupdaterui.cpp">
+    <ClCompile Include="release\moc_errorstack.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_ftpmanager.cpp">
@@ -121,16 +118,28 @@
     <ClCompile Include="release\moc_ftpmanager.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="debug\moc_log.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_log.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-    <ClCompile Include="debug\moc_updatelog.cpp">
+    <ClCompile Include="debug\moc_updater.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="release\moc_updatelog.cpp">
+    <ClCompile Include="release\moc_updater.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_updaterui.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_updaterui.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\qrc_icon.cpp">
@@ -204,8 +213,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="autoresize.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ResourceCompile Include="logo.rc" />
   </ItemGroup>
 </Project>

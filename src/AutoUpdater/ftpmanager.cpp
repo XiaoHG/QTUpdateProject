@@ -11,7 +11,7 @@ bool FtpManager::m_bDownloadError = false;
 
 static const int INITFILE_TIMEOUT = 10;
 static const int UPDATEFILE_TIMEOUT = 30;
-static const QString HOST = "127.0.0.1";
+static const QString HOST = "192.168.4.132";
 static const QString PROTOCAL = "ftp";
 
 FtpManager::FtpManager(QString md5, QObject *parent) :

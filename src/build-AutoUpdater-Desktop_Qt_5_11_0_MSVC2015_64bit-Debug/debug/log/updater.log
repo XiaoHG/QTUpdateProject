@@ -1,0 +1,310 @@
+[2021.06.07 10:07:39.511][..\AutoUpdater\updaterui.cpp: 610][DEBUG]: Language is chinese
+[2021.06.07 10:07:40.407][..\AutoUpdater\updater.cpp: 58][INFO]: Init file download path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater
+[2021.06.07 10:07:40.407][..\AutoUpdater\updater.cpp: 71][DEBUG]: Delete old version path.
+[2021.06.07 10:07:40.407][..\AutoUpdater\updater.cpp: 87][DEBUG]: Exec delete old path script: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/del_old_path.bat
+[2021.06.07 10:07:40.431][..\AutoUpdater\ftpmanager.cpp: 38][INFO]: Start downloadPath file: /version/LatestV.xml
+[2021.06.07 10:07:40.431][..\AutoUpdater\ftpmanager.cpp: 39][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/LatestV.xml
+[2021.06.07 10:07:40.431][..\AutoUpdater\ftpmanager.cpp: 50][INFO]: Download time out is : 10
+[2021.06.07 10:07:40.481][..\AutoUpdater\ftpmanager.cpp: 77][INFO]: file: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/LatestV.xml exists, befor download delete it first.
+[2021.06.07 10:07:40.481][..\AutoUpdater\ftpmanager.cpp: 98][FATAL]: Local: Finish download : E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/LatestV.xml, file lenght = 95
+[2021.06.07 10:07:40.481][..\AutoUpdater\ftpmanager.cpp: 105][DEBUG]: Finish updater LatestV.xml file!
+[2021.06.07 10:07:40.485][..\AutoUpdater\updater.cpp: 128][DEBUG]: Download version is: V4.0
+[2021.06.07 10:07:40.485][..\AutoUpdater\updater.cpp: 146][DEBUG]: Local version is: V0.0
+[2021.06.07 10:07:40.485][..\AutoUpdater\updater.cpp: 159][INFO]: Server version is updater, need to update!
+[2021.06.07 10:07:40.485][..\AutoUpdater\updater.cpp: 195][INFO]: Download 1 init file: server = /version/AutoUpdateTestV4.0/win32/updater.xml, local = E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/updater.xml
+[2021.06.07 10:07:40.485][..\AutoUpdater\updater.cpp: 197][INFO]: Download 2 init file: server = /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt, local = E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoCh.txt
+[2021.06.07 10:07:40.485][..\AutoUpdater\updater.cpp: 199][INFO]: Download 3 init file: server = /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt, local = E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoEn.txt
+[2021.06.07 10:07:40.485][..\AutoUpdater\ftpmanager.cpp: 38][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/updater.xml
+[2021.06.07 10:07:40.485][..\AutoUpdater\ftpmanager.cpp: 39][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/updater.xml
+[2021.06.07 10:07:40.485][..\AutoUpdater\ftpmanager.cpp: 50][INFO]: Download time out is : 10
+[2021.06.07 10:07:40.485][..\AutoUpdater\ftpmanager.cpp: 38][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt
+[2021.06.07 10:07:40.485][..\AutoUpdater\ftpmanager.cpp: 39][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoCh.txt
+[2021.06.07 10:07:40.485][..\AutoUpdater\ftpmanager.cpp: 50][INFO]: Download time out is : 10
+[2021.06.07 10:07:40.485][..\AutoUpdater\ftpmanager.cpp: 38][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt
+[2021.06.07 10:07:40.485][..\AutoUpdater\ftpmanager.cpp: 39][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoEn.txt
+[2021.06.07 10:07:40.485][..\AutoUpdater\ftpmanager.cpp: 50][INFO]: Download time out is : 10
+[2021.06.07 10:07:40.517][..\AutoUpdater\ftpmanager.cpp: 77][INFO]: file: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/updater.xml exists, befor download delete it first.
+[2021.06.07 10:07:40.521][..\AutoUpdater\ftpmanager.cpp: 98][FATAL]: Local: Finish download : E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/updater.xml, file lenght = 4115
+[2021.06.07 10:07:40.521][..\AutoUpdater\ftpmanager.cpp: 115][INFO]: Server: Finish download /version/AutoUpdateTestV4.0/win32/updater.xml file!
+[2021.06.07 10:07:40.521][..\AutoUpdater\updater.cpp: 220][DEBUG]: Download init file finish count = 1, m_mapInitFile.size() = 3
+[2021.06.07 10:07:40.521][..\AutoUpdater\ftpmanager.cpp: 77][INFO]: file: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoCh.txt exists, befor download delete it first.
+[2021.06.07 10:07:40.521][..\AutoUpdater\ftpmanager.cpp: 98][FATAL]: Local: Finish download : E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoCh.txt, file lenght = 485
+[2021.06.07 10:07:40.521][..\AutoUpdater\ftpmanager.cpp: 115][INFO]: Server: Finish download /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt file!
+[2021.06.07 10:07:40.521][..\AutoUpdater\updater.cpp: 220][DEBUG]: Download init file finish count = 2, m_mapInitFile.size() = 3
+[2021.06.07 10:07:40.524][..\AutoUpdater\ftpmanager.cpp: 77][INFO]: file: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoEn.txt exists, befor download delete it first.
+[2021.06.07 10:07:40.524][..\AutoUpdater\ftpmanager.cpp: 98][FATAL]: Local: Finish download : E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoEn.txt, file lenght = 238
+[2021.06.07 10:07:40.528][..\AutoUpdater\ftpmanager.cpp: 115][INFO]: Server: Finish download /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt file!
+[2021.06.07 10:07:40.528][..\AutoUpdater\updater.cpp: 220][DEBUG]: Download init file finish count = 3, m_mapInitFile.size() = 3
+[2021.06.07 10:07:40.528][..\AutoUpdater\updaterui.cpp: 334][INFO]: Update UI
+[2021.06.07 10:07:40.528][..\AutoUpdater\updater.cpp: 350][INFO]: Load: AutoUpdater.exe file, and directory is: ./
+[2021.06.07 10:07:40.528][..\AutoUpdater\updater.cpp: 350][INFO]: Load: AutoUpdateTest.exe file, and directory is: ./
+[2021.06.07 10:07:40.528][..\AutoUpdater\updater.cpp: 350][INFO]: Load: D3Dcompiler_47.dll file, and directory is: ./
+[2021.06.07 10:07:40.528][..\AutoUpdater\updater.cpp: 350][INFO]: Load: libEGL.dll file, and directory is: ./
+[2021.06.07 10:07:40.528][..\AutoUpdater\updater.cpp: 350][INFO]: Load: libGLESV2.dll file, and directory is: ./
+[2021.06.07 10:07:40.528][..\AutoUpdater\updater.cpp: 350][INFO]: Load: opengl32sw.dll file, and directory is: ./
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Core.dll file, and directory is: ./
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Gui.dll file, and directory is: ./
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Network.dll file, and directory is: ./
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Svg.dll file, and directory is: ./
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Widgets.dll file, and directory is: ./
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Xml.dll file, and directory is: ./
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: updater.xml file, and directory is: ./
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: versionInfoCh.txt file, and directory is: ./
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: versionInfoEn.txt file, and directory is: ./
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qgenericbearer.dll file, and directory is: /bearer
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qsvgicon.dll file, and directory is: /iconengines
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qgif.dll file, and directory is: /imageformats
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qicns.dll file, and directory is: /imageformats
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qico.dll file, and directory is: /imageformats
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qjpeg.dll file, and directory is: /imageformats
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qsvg.dll file, and directory is: /imageformats
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qtga.dll file, and directory is: /imageformats
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qtiff.dll file, and directory is: /imageformats
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qwbmp.dll file, and directory is: /imageformats
+[2021.06.07 10:07:40.532][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qwebp.dll file, and directory is: /imageformats
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qwindows.dll file, and directory is: /platforms
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qwindowsvistastyle.dll file, and directory is: /styles
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ar.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_bg.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ca.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_cs.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_da.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_de.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_es.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_fi.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_fr.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_gd.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_he.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_hu.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_it.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ja.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ko.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_lv.qm file, and directory is: /translations
+[2021.06.07 10:07:40.536][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_pl.qm file, and directory is: /translations
+[2021.06.07 10:07:40.540][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ru.qm file, and directory is: /translations
+[2021.06.07 10:07:40.540][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_sk.qm file, and directory is: /translations
+[2021.06.07 10:07:40.540][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_uk.qm file, and directory is: /translations
+[2021.06.07 10:07:40.540][..\AutoUpdater\updater.cpp: 357][INFO]: Load update files over.
+[2021.06.07 10:07:40.556][..\AutoUpdater\autoresize.cpp: 41][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.07 10:07:40.556][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QPushButton
+[2021.06.07 10:07:40.556][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QLabel
+[2021.06.07 10:07:40.556][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QProgressBar
+[2021.06.07 10:07:40.556][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QLabel
+[2021.06.07 10:07:40.556][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QPushButton
+[2021.06.07 10:07:40.556][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QPushButton
+[2021.06.07 10:07:40.556][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QLabel
+[2021.06.07 10:07:40.556][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QTextEdit
+[2021.06.07 10:07:40.556][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QLabel
+[2021.06.07 10:07:40.556][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QPushButton
+[2021.06.07 10:10:24.520][..\AutoUpdater\updaterui.cpp: 610][DEBUG]: Language is chinese
+[2021.06.07 10:10:25.306][..\AutoUpdater\updater.cpp: 58][INFO]: Init file download path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater
+[2021.06.07 10:10:25.306][..\AutoUpdater\updater.cpp: 71][DEBUG]: Delete old version path.
+[2021.06.07 10:10:25.306][..\AutoUpdater\updater.cpp: 87][DEBUG]: Exec delete old path script: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/del_old_path.bat
+[2021.06.07 10:10:25.330][..\AutoUpdater\ftpmanager.cpp: 38][INFO]: Start downloadPath file: /version/LatestV.xml
+[2021.06.07 10:10:25.331][..\AutoUpdater\ftpmanager.cpp: 39][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/LatestV.xml
+[2021.06.07 10:10:25.331][..\AutoUpdater\ftpmanager.cpp: 50][INFO]: Download time out is : 10
+[2021.06.07 10:10:25.389][..\AutoUpdater\ftpmanager.cpp: 77][INFO]: file: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/LatestV.xml exists, befor download delete it first.
+[2021.06.07 10:10:25.390][..\AutoUpdater\ftpmanager.cpp: 98][FATAL]: Local: Finish download : E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/LatestV.xml, file lenght = 95
+[2021.06.07 10:10:25.390][..\AutoUpdater\ftpmanager.cpp: 105][DEBUG]: Finish updater LatestV.xml file!
+[2021.06.07 10:10:25.391][..\AutoUpdater\updater.cpp: 128][DEBUG]: Download version is: V4.0
+[2021.06.07 10:10:25.391][..\AutoUpdater\updater.cpp: 146][DEBUG]: Local version is: V0.0
+[2021.06.07 10:10:25.391][..\AutoUpdater\updater.cpp: 159][INFO]: Server version is updater, need to update!
+[2021.06.07 10:10:25.391][..\AutoUpdater\updater.cpp: 195][INFO]: Download 1 init file: server = /version/AutoUpdateTestV4.0/win32/updater.xml, local = E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/updater.xml
+[2021.06.07 10:10:25.391][..\AutoUpdater\updater.cpp: 197][INFO]: Download 2 init file: server = /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt, local = E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoCh.txt
+[2021.06.07 10:10:25.392][..\AutoUpdater\updater.cpp: 199][INFO]: Download 3 init file: server = /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt, local = E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoEn.txt
+[2021.06.07 10:10:25.392][..\AutoUpdater\ftpmanager.cpp: 38][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/updater.xml
+[2021.06.07 10:10:25.392][..\AutoUpdater\ftpmanager.cpp: 39][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/updater.xml
+[2021.06.07 10:10:25.392][..\AutoUpdater\ftpmanager.cpp: 50][INFO]: Download time out is : 10
+[2021.06.07 10:10:25.392][..\AutoUpdater\ftpmanager.cpp: 38][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt
+[2021.06.07 10:10:25.393][..\AutoUpdater\ftpmanager.cpp: 39][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoCh.txt
+[2021.06.07 10:10:25.393][..\AutoUpdater\ftpmanager.cpp: 50][INFO]: Download time out is : 10
+[2021.06.07 10:10:25.393][..\AutoUpdater\ftpmanager.cpp: 38][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt
+[2021.06.07 10:10:25.393][..\AutoUpdater\ftpmanager.cpp: 39][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoEn.txt
+[2021.06.07 10:10:25.393][..\AutoUpdater\ftpmanager.cpp: 50][INFO]: Download time out is : 10
+[2021.06.07 10:10:25.424][..\AutoUpdater\ftpmanager.cpp: 77][INFO]: file: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/updater.xml exists, befor download delete it first.
+[2021.06.07 10:10:25.425][..\AutoUpdater\ftpmanager.cpp: 98][FATAL]: Local: Finish download : E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/updater.xml, file lenght = 4115
+[2021.06.07 10:10:25.425][..\AutoUpdater\ftpmanager.cpp: 115][INFO]: Server: Finish download /version/AutoUpdateTestV4.0/win32/updater.xml file!
+[2021.06.07 10:10:25.426][..\AutoUpdater\updater.cpp: 220][DEBUG]: Download init file finish count = 1, m_mapInitFile.size() = 3
+[2021.06.07 10:10:25.426][..\AutoUpdater\ftpmanager.cpp: 77][INFO]: file: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoEn.txt exists, befor download delete it first.
+[2021.06.07 10:10:25.427][..\AutoUpdater\ftpmanager.cpp: 98][FATAL]: Local: Finish download : E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoEn.txt, file lenght = 238
+[2021.06.07 10:10:25.427][..\AutoUpdater\ftpmanager.cpp: 115][INFO]: Server: Finish download /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt file!
+[2021.06.07 10:10:25.427][..\AutoUpdater\updater.cpp: 220][DEBUG]: Download init file finish count = 2, m_mapInitFile.size() = 3
+[2021.06.07 10:10:25.428][..\AutoUpdater\ftpmanager.cpp: 77][INFO]: file: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoCh.txt exists, befor download delete it first.
+[2021.06.07 10:10:25.429][..\AutoUpdater\ftpmanager.cpp: 98][FATAL]: Local: Finish download : E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoCh.txt, file lenght = 485
+[2021.06.07 10:10:25.429][..\AutoUpdater\ftpmanager.cpp: 115][INFO]: Server: Finish download /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt file!
+[2021.06.07 10:10:25.429][..\AutoUpdater\updater.cpp: 220][DEBUG]: Download init file finish count = 3, m_mapInitFile.size() = 3
+[2021.06.07 10:10:25.429][..\AutoUpdater\updaterui.cpp: 334][INFO]: Update UI
+[2021.06.07 10:10:25.431][..\AutoUpdater\updater.cpp: 350][INFO]: Load: AutoUpdater.exe file, and directory is: ./
+[2021.06.07 10:10:25.432][..\AutoUpdater\updater.cpp: 350][INFO]: Load: AutoUpdateTest.exe file, and directory is: ./
+[2021.06.07 10:10:25.432][..\AutoUpdater\updater.cpp: 350][INFO]: Load: D3Dcompiler_47.dll file, and directory is: ./
+[2021.06.07 10:10:25.432][..\AutoUpdater\updater.cpp: 350][INFO]: Load: libEGL.dll file, and directory is: ./
+[2021.06.07 10:10:25.432][..\AutoUpdater\updater.cpp: 350][INFO]: Load: libGLESV2.dll file, and directory is: ./
+[2021.06.07 10:10:25.432][..\AutoUpdater\updater.cpp: 350][INFO]: Load: opengl32sw.dll file, and directory is: ./
+[2021.06.07 10:10:25.433][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Core.dll file, and directory is: ./
+[2021.06.07 10:10:25.433][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Gui.dll file, and directory is: ./
+[2021.06.07 10:10:25.433][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Network.dll file, and directory is: ./
+[2021.06.07 10:10:25.433][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Svg.dll file, and directory is: ./
+[2021.06.07 10:10:25.433][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Widgets.dll file, and directory is: ./
+[2021.06.07 10:10:25.434][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Xml.dll file, and directory is: ./
+[2021.06.07 10:10:25.434][..\AutoUpdater\updater.cpp: 350][INFO]: Load: updater.xml file, and directory is: ./
+[2021.06.07 10:10:25.434][..\AutoUpdater\updater.cpp: 350][INFO]: Load: versionInfoCh.txt file, and directory is: ./
+[2021.06.07 10:10:25.434][..\AutoUpdater\updater.cpp: 350][INFO]: Load: versionInfoEn.txt file, and directory is: ./
+[2021.06.07 10:10:25.434][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qgenericbearer.dll file, and directory is: /bearer
+[2021.06.07 10:10:25.435][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qsvgicon.dll file, and directory is: /iconengines
+[2021.06.07 10:10:25.435][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qgif.dll file, and directory is: /imageformats
+[2021.06.07 10:10:25.435][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qicns.dll file, and directory is: /imageformats
+[2021.06.07 10:10:25.435][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qico.dll file, and directory is: /imageformats
+[2021.06.07 10:10:25.435][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qjpeg.dll file, and directory is: /imageformats
+[2021.06.07 10:10:25.436][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qsvg.dll file, and directory is: /imageformats
+[2021.06.07 10:10:25.436][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qtga.dll file, and directory is: /imageformats
+[2021.06.07 10:10:25.436][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qtiff.dll file, and directory is: /imageformats
+[2021.06.07 10:10:25.436][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qwbmp.dll file, and directory is: /imageformats
+[2021.06.07 10:10:25.436][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qwebp.dll file, and directory is: /imageformats
+[2021.06.07 10:10:25.436][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qwindows.dll file, and directory is: /platforms
+[2021.06.07 10:10:25.437][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qwindowsvistastyle.dll file, and directory is: /styles
+[2021.06.07 10:10:25.437][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ar.qm file, and directory is: /translations
+[2021.06.07 10:10:25.437][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_bg.qm file, and directory is: /translations
+[2021.06.07 10:10:25.437][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ca.qm file, and directory is: /translations
+[2021.06.07 10:10:25.437][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_cs.qm file, and directory is: /translations
+[2021.06.07 10:10:25.438][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_da.qm file, and directory is: /translations
+[2021.06.07 10:10:25.438][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_de.qm file, and directory is: /translations
+[2021.06.07 10:10:25.438][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_es.qm file, and directory is: /translations
+[2021.06.07 10:10:25.438][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_fi.qm file, and directory is: /translations
+[2021.06.07 10:10:25.438][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_fr.qm file, and directory is: /translations
+[2021.06.07 10:10:25.439][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_gd.qm file, and directory is: /translations
+[2021.06.07 10:10:25.439][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_he.qm file, and directory is: /translations
+[2021.06.07 10:10:25.439][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_hu.qm file, and directory is: /translations
+[2021.06.07 10:10:25.439][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_it.qm file, and directory is: /translations
+[2021.06.07 10:10:25.439][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ja.qm file, and directory is: /translations
+[2021.06.07 10:10:25.440][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ko.qm file, and directory is: /translations
+[2021.06.07 10:10:25.440][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_lv.qm file, and directory is: /translations
+[2021.06.07 10:10:25.440][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_pl.qm file, and directory is: /translations
+[2021.06.07 10:10:25.440][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ru.qm file, and directory is: /translations
+[2021.06.07 10:10:25.440][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_sk.qm file, and directory is: /translations
+[2021.06.07 10:10:25.440][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_uk.qm file, and directory is: /translations
+[2021.06.07 10:10:25.441][..\AutoUpdater\updater.cpp: 357][INFO]: Load update files over.
+[2021.06.07 10:10:25.455][..\AutoUpdater\autoresize.cpp: 41][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.07 10:10:25.455][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QLabel
+[2021.06.07 10:10:25.456][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QTextEdit
+[2021.06.07 10:10:25.456][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QPushButton
+[2021.06.07 10:10:25.456][..\AutoUpdater\autoresize.cpp: 148][DEBUG]: I am QPushButton Icon, and ready to resize!
+[2021.06.07 10:10:25.456][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QLabel
+[2021.06.07 10:10:25.456][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QLabel
+[2021.06.07 10:10:25.457][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QProgressBar
+[2021.06.07 10:10:25.457][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QLabel
+[2021.06.07 10:10:25.457][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QPushButton
+[2021.06.07 10:10:25.457][..\AutoUpdater\autoresize.cpp: 148][DEBUG]: I am QPushButton Icon, and ready to resize!
+[2021.06.07 10:10:25.457][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QPushButton
+[2021.06.07 10:10:25.457][..\AutoUpdater\autoresize.cpp: 148][DEBUG]: I am QPushButton Icon, and ready to resize!
+[2021.06.07 10:10:25.457][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QPushButton
+[2021.06.07 10:10:25.457][..\AutoUpdater\autoresize.cpp: 148][DEBUG]: I am QPushButton Icon, and ready to resize!
+[2021.06.07 10:19:08.460][..\AutoUpdater\updaterui.cpp: 610][DEBUG]: Language is chinese
+[2021.06.07 10:19:09.271][..\AutoUpdater\updater.cpp: 58][INFO]: Init file download path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater
+[2021.06.07 10:19:09.271][..\AutoUpdater\updater.cpp: 71][DEBUG]: Delete old version path.
+[2021.06.07 10:19:09.271][..\AutoUpdater\updater.cpp: 87][DEBUG]: Exec delete old path script: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/del_old_path.bat
+[2021.06.07 10:19:09.297][..\AutoUpdater\ftpmanager.cpp: 38][INFO]: Start downloadPath file: /version/LatestV.xml
+[2021.06.07 10:19:09.297][..\AutoUpdater\ftpmanager.cpp: 39][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/LatestV.xml
+[2021.06.07 10:19:09.297][..\AutoUpdater\ftpmanager.cpp: 50][INFO]: Download time out is : 10
+[2021.06.07 10:19:09.370][..\AutoUpdater\ftpmanager.cpp: 77][INFO]: file: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/LatestV.xml exists, befor download delete it first.
+[2021.06.07 10:19:09.372][..\AutoUpdater\ftpmanager.cpp: 98][FATAL]: Local: Finish download : E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/LatestV.xml, file lenght = 95
+[2021.06.07 10:19:09.372][..\AutoUpdater\ftpmanager.cpp: 105][DEBUG]: Finish updater LatestV.xml file!
+[2021.06.07 10:19:09.373][..\AutoUpdater\updater.cpp: 128][DEBUG]: Download version is: V4.0
+[2021.06.07 10:19:09.373][..\AutoUpdater\updater.cpp: 146][DEBUG]: Local version is: V0.0
+[2021.06.07 10:19:09.374][..\AutoUpdater\updater.cpp: 159][INFO]: Server version is updater, need to update!
+[2021.06.07 10:19:09.374][..\AutoUpdater\updater.cpp: 195][INFO]: Download 1 init file: server = /version/AutoUpdateTestV4.0/win32/updater.xml, local = E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/updater.xml
+[2021.06.07 10:19:09.374][..\AutoUpdater\updater.cpp: 197][INFO]: Download 2 init file: server = /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt, local = E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoCh.txt
+[2021.06.07 10:19:09.374][..\AutoUpdater\updater.cpp: 199][INFO]: Download 3 init file: server = /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt, local = E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoEn.txt
+[2021.06.07 10:19:09.374][..\AutoUpdater\ftpmanager.cpp: 38][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/updater.xml
+[2021.06.07 10:19:09.374][..\AutoUpdater\ftpmanager.cpp: 39][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/updater.xml
+[2021.06.07 10:19:09.374][..\AutoUpdater\ftpmanager.cpp: 50][INFO]: Download time out is : 10
+[2021.06.07 10:19:09.375][..\AutoUpdater\ftpmanager.cpp: 38][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt
+[2021.06.07 10:19:09.375][..\AutoUpdater\ftpmanager.cpp: 39][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoCh.txt
+[2021.06.07 10:19:09.375][..\AutoUpdater\ftpmanager.cpp: 50][INFO]: Download time out is : 10
+[2021.06.07 10:19:09.375][..\AutoUpdater\ftpmanager.cpp: 38][INFO]: Start downloadPath file: /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt
+[2021.06.07 10:19:09.375][..\AutoUpdater\ftpmanager.cpp: 39][INFO]: localPath path: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoEn.txt
+[2021.06.07 10:19:09.375][..\AutoUpdater\ftpmanager.cpp: 50][INFO]: Download time out is : 10
+[2021.06.07 10:19:09.411][..\AutoUpdater\ftpmanager.cpp: 77][INFO]: file: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoCh.txt exists, befor download delete it first.
+[2021.06.07 10:19:09.413][..\AutoUpdater\ftpmanager.cpp: 98][FATAL]: Local: Finish download : E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoCh.txt, file lenght = 485
+[2021.06.07 10:19:09.413][..\AutoUpdater\ftpmanager.cpp: 115][INFO]: Server: Finish download /version/AutoUpdateTestV4.0/win32/versionInfoCh.txt file!
+[2021.06.07 10:19:09.413][..\AutoUpdater\updater.cpp: 220][DEBUG]: Download init file finish count = 1, m_mapInitFile.size() = 3
+[2021.06.07 10:19:09.422][..\AutoUpdater\ftpmanager.cpp: 77][INFO]: file: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoEn.txt exists, befor download delete it first.
+[2021.06.07 10:19:09.424][..\AutoUpdater\ftpmanager.cpp: 98][FATAL]: Local: Finish download : E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/versionInfoEn.txt, file lenght = 238
+[2021.06.07 10:19:09.424][..\AutoUpdater\ftpmanager.cpp: 115][INFO]: Server: Finish download /version/AutoUpdateTestV4.0/win32/versionInfoEn.txt file!
+[2021.06.07 10:19:09.424][..\AutoUpdater\updater.cpp: 220][DEBUG]: Download init file finish count = 2, m_mapInitFile.size() = 3
+[2021.06.07 10:19:09.428][..\AutoUpdater\ftpmanager.cpp: 77][INFO]: file: E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/updater.xml exists, befor download delete it first.
+[2021.06.07 10:19:09.429][..\AutoUpdater\ftpmanager.cpp: 98][FATAL]: Local: Finish download : E:/anycubic/anycubic_project/updater/src/build-AutoUpdater-Desktop_Qt_5_11_0_MSVC2015_64bit-Debug/debug/updater/updater.xml, file lenght = 4115
+[2021.06.07 10:19:09.429][..\AutoUpdater\ftpmanager.cpp: 115][INFO]: Server: Finish download /version/AutoUpdateTestV4.0/win32/updater.xml file!
+[2021.06.07 10:19:09.429][..\AutoUpdater\updater.cpp: 220][DEBUG]: Download init file finish count = 3, m_mapInitFile.size() = 3
+[2021.06.07 10:19:09.429][..\AutoUpdater\updaterui.cpp: 334][INFO]: Update UI
+[2021.06.07 10:19:09.432][..\AutoUpdater\updater.cpp: 350][INFO]: Load: AutoUpdater.exe file, and directory is: ./
+[2021.06.07 10:19:09.432][..\AutoUpdater\updater.cpp: 350][INFO]: Load: AutoUpdateTest.exe file, and directory is: ./
+[2021.06.07 10:19:09.433][..\AutoUpdater\updater.cpp: 350][INFO]: Load: D3Dcompiler_47.dll file, and directory is: ./
+[2021.06.07 10:19:09.433][..\AutoUpdater\updater.cpp: 350][INFO]: Load: libEGL.dll file, and directory is: ./
+[2021.06.07 10:19:09.433][..\AutoUpdater\updater.cpp: 350][INFO]: Load: libGLESV2.dll file, and directory is: ./
+[2021.06.07 10:19:09.433][..\AutoUpdater\updater.cpp: 350][INFO]: Load: opengl32sw.dll file, and directory is: ./
+[2021.06.07 10:19:09.434][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Core.dll file, and directory is: ./
+[2021.06.07 10:19:09.434][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Gui.dll file, and directory is: ./
+[2021.06.07 10:19:09.434][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Network.dll file, and directory is: ./
+[2021.06.07 10:19:09.434][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Svg.dll file, and directory is: ./
+[2021.06.07 10:19:09.434][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Widgets.dll file, and directory is: ./
+[2021.06.07 10:19:09.435][..\AutoUpdater\updater.cpp: 350][INFO]: Load: Qt5Xml.dll file, and directory is: ./
+[2021.06.07 10:19:09.435][..\AutoUpdater\updater.cpp: 350][INFO]: Load: updater.xml file, and directory is: ./
+[2021.06.07 10:19:09.435][..\AutoUpdater\updater.cpp: 350][INFO]: Load: versionInfoCh.txt file, and directory is: ./
+[2021.06.07 10:19:09.435][..\AutoUpdater\updater.cpp: 350][INFO]: Load: versionInfoEn.txt file, and directory is: ./
+[2021.06.07 10:19:09.436][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qgenericbearer.dll file, and directory is: /bearer
+[2021.06.07 10:19:09.436][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qsvgicon.dll file, and directory is: /iconengines
+[2021.06.07 10:19:09.436][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qgif.dll file, and directory is: /imageformats
+[2021.06.07 10:19:09.436][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qicns.dll file, and directory is: /imageformats
+[2021.06.07 10:19:09.436][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qico.dll file, and directory is: /imageformats
+[2021.06.07 10:19:09.437][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qjpeg.dll file, and directory is: /imageformats
+[2021.06.07 10:19:09.437][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qsvg.dll file, and directory is: /imageformats
+[2021.06.07 10:19:09.437][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qtga.dll file, and directory is: /imageformats
+[2021.06.07 10:19:09.437][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qtiff.dll file, and directory is: /imageformats
+[2021.06.07 10:19:09.437][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qwbmp.dll file, and directory is: /imageformats
+[2021.06.07 10:19:09.438][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qwebp.dll file, and directory is: /imageformats
+[2021.06.07 10:19:09.438][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qwindows.dll file, and directory is: /platforms
+[2021.06.07 10:19:09.438][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qwindowsvistastyle.dll file, and directory is: /styles
+[2021.06.07 10:19:09.438][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ar.qm file, and directory is: /translations
+[2021.06.07 10:19:09.439][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_bg.qm file, and directory is: /translations
+[2021.06.07 10:19:09.439][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ca.qm file, and directory is: /translations
+[2021.06.07 10:19:09.439][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_cs.qm file, and directory is: /translations
+[2021.06.07 10:19:09.439][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_da.qm file, and directory is: /translations
+[2021.06.07 10:19:09.439][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_de.qm file, and directory is: /translations
+[2021.06.07 10:19:09.440][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_es.qm file, and directory is: /translations
+[2021.06.07 10:19:09.440][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_fi.qm file, and directory is: /translations
+[2021.06.07 10:19:09.440][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_fr.qm file, and directory is: /translations
+[2021.06.07 10:19:09.440][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_gd.qm file, and directory is: /translations
+[2021.06.07 10:19:09.440][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_he.qm file, and directory is: /translations
+[2021.06.07 10:19:09.441][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_hu.qm file, and directory is: /translations
+[2021.06.07 10:19:09.441][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_it.qm file, and directory is: /translations
+[2021.06.07 10:19:09.441][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ja.qm file, and directory is: /translations
+[2021.06.07 10:19:09.441][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ko.qm file, and directory is: /translations
+[2021.06.07 10:19:09.442][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_lv.qm file, and directory is: /translations
+[2021.06.07 10:19:09.442][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_pl.qm file, and directory is: /translations
+[2021.06.07 10:19:09.442][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_ru.qm file, and directory is: /translations
+[2021.06.07 10:19:09.442][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_sk.qm file, and directory is: /translations
+[2021.06.07 10:19:09.442][..\AutoUpdater\updater.cpp: 350][INFO]: Load: qt_uk.qm file, and directory is: /translations
+[2021.06.07 10:19:09.442][..\AutoUpdater\updater.cpp: 357][INFO]: Load update files over.
+[2021.06.07 10:19:09.464][..\AutoUpdater\autoresize.cpp: 41][INFO]: HorRatio = 1, VerRatio = 1, FontRatio = 1
+[2021.06.07 10:19:09.464][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QTextEdit
+[2021.06.07 10:19:09.464][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QLabel
+[2021.06.07 10:19:09.465][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QLabel
+[2021.06.07 10:19:09.465][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QPushButton
+[2021.06.07 10:19:09.465][..\AutoUpdater\autoresize.cpp: 148][DEBUG]: I am QPushButton Icon, and ready to resize!
+[2021.06.07 10:19:09.465][..\AutoUpdater\autoresize.cpp: 150][DEBUG]: Resize before, size = 16, 16
+[2021.06.07 10:19:09.465][..\AutoUpdater\autoresize.cpp: 156][DEBUG]: Resize after, size = 16, 16
+[2021.06.07 10:19:09.465][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QPushButton
+[2021.06.07 10:19:09.465][..\AutoUpdater\autoresize.cpp: 148][DEBUG]: I am QPushButton Icon, and ready to resize!
+[2021.06.07 10:19:09.466][..\AutoUpdater\autoresize.cpp: 150][DEBUG]: Resize before, size = 16, 16
+[2021.06.07 10:19:09.466][..\AutoUpdater\autoresize.cpp: 156][DEBUG]: Resize after, size = 16, 16
+[2021.06.07 10:19:09.466][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QLabel
+[2021.06.07 10:19:09.466][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QLabel
+[2021.06.07 10:19:09.466][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QProgressBar
+[2021.06.07 10:19:09.467][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QPushButton
+[2021.06.07 10:19:09.467][..\AutoUpdater\autoresize.cpp: 148][DEBUG]: I am QPushButton Icon, and ready to resize!
+[2021.06.07 10:19:09.467][..\AutoUpdater\autoresize.cpp: 150][DEBUG]: Resize before, size = 16, 16
+[2021.06.07 10:19:09.467][..\AutoUpdater\autoresize.cpp: 156][DEBUG]: Resize after, size = 16, 16
+[2021.06.07 10:19:09.467][..\AutoUpdater\autoresize.cpp: 145][DEBUG]: Resize icon size, class name is: QPushButton
+[2021.06.07 10:19:09.467][..\AutoUpdater\autoresize.cpp: 148][DEBUG]: I am QPushButton Icon, and ready to resize!
+[2021.06.07 10:19:09.467][..\AutoUpdater\autoresize.cpp: 150][DEBUG]: Resize before, size = 16, 16
+[2021.06.07 10:19:09.467][..\AutoUpdater\autoresize.cpp: 156][DEBUG]: Resize after, size = 16, 16
