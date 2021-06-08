@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <autoupdate>
-	<version>V1.0</version>
+	<version>V3.0</version>
 	<filelist>
 		<file name="AutoUpdater.exe" dir=""  md5="a6b01a8c8ca6f7e652f92aebabc0158e"/>
-		<file name="AutoUpdateTest.exe" dir="" md5="f42cea5ad8e861541b27e25d653007be"/>
+		<file name="AutoUpdateTest.exe" dir="" md5="19f41abb7c46b69019ea0eae2e5a6c59"/>
 		<file name="D3Dcompiler_47.dll" dir=""  md5="b0ae3aa9dd1ebd60bdf51cb94834cd04"/>
 		<file name="libEGL.dll" dir=""  md5="654e78c18e3962d597394d063f29b758"/>
 		<file name="libGLESV2.dll" dir=""  md5="6677b66dc2ef1a5e7858692ff2f4e9e1"/>

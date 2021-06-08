@@ -1,17 +1,13 @@
 ﻿
-#include <QApplication>
+#include "mainui/updaterui.h"
+#include "updater/updater.h"
+#include "globaldef.hpp"
 
+#include <QApplication>
 #include <QDir>
 #include <QTextCodec>
 #include <QProcess>
 #include <QTextCodec>
-
-#include "updaterui.h"
-#include "updater.h"
-#include "log.h"
-
-//Global object of update log class.
-Log g_log;
 
 int main(int argc, char *argv[])
 {

@@ -11,7 +11,12 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = AutoUpdater
 TEMPLATE = app
 
-RC_FILE = logo.rc
+RC_FILE = app.rc
+
+MOC_DIR = $$OUT_PWD/mocfile
+OBJECTS_DIR = $$OUT_PWD/objfile
+UI_DIR = $$OUT_PWD/uifile
+RCC_DIR = $$OUT_PWD/rcfile
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -26,32 +31,31 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-    ftpmanager.cpp \
-    xmlparser.cpp \
-    autoresize.cpp \
-    errorstack.cpp \
-    updaterui.cpp \
-    updater.cpp \
-    log.cpp
+    autoresize/autoresize.cpp \
+    errorstack/errorstack.cpp \
+    ftpmanager/ftpmanager.cpp \
+    loger/log.cpp \
+    mainui/updaterui.cpp \
+    updater/updater.cpp \
+    xmlparse/xmlparser.cpp \
+    main.cpp
 
 HEADERS += \
-    ftpmanager.h \
-    xmlparser.h \
-    autoresize.h \
-    errorstack.h \
-    updaterui.h \
-    updater.h \
-    log.h
+    autoresize/autoresize.h \
+    errorstack/errorstack.h \
+    ftpmanager/ftpmanager.h \
+    loger/log.h \
+    mainui/updaterui.h \
+    updater/updater.h \
+    xmlparse/xmlparser.h \
+    globaldef.hpp
 
 FORMS += \
-        mainwindow.ui
+    mainwindow.ui
 
-TRANSLATIONS += zh_en.ts
+TRANSLATIONS += ./res/translater/zh_en.ts
 
 RESOURCES += \
-    qt_language.qrc \
-    icon.qrc
-
-DISTFILES +=
+    res/icon.qrc \
+    res/qt_language.qrc
 
