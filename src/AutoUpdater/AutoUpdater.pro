@@ -57,5 +57,7 @@ TRANSLATIONS += ./res/translater/zh_en.ts
 
 RESOURCES += \
     res/icon.qrc \
-    res/qt_language.qrc
+    res/qt_language.qrc \
+    res/stylesheet.qrc \
+    res/image.qrc
 

@@ -13,7 +13,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    //INIT CODE
     g_log.init();
+    LOADQSS(GlobalSpace::STYLE_QSS_FILE_PATH);
 
     //parent process pass argv[1] parameter for from main function or not,
     //if not from main set 0, or others.

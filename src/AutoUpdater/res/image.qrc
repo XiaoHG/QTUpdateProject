@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/close_hover.png</file>
+        <file>image/close_normal.png</file>
+        <file>image/left_arrow_hover.png</file>
+        <file>image/left_arrow_normal.png</file>
+        <file>image/left_arrow_pressed.png</file>
+        <file>image/max_hover.png</file>
+        <file>image/max_normal.png</file>
+        <file>image/min_hover.png</file>
+        <file>image/min_normal.png</file>
+        <file>image/normal_hover.png</file>
+        <file>image/normal_normal.png</file>
+        <file>image/right_arrow_hover.png</file>
+        <file>image/right_arrow_normal.png</file>
+        <file>image/right_arrow_pressed.png</file>
+        <file>image/other/center_cyan.png</file>
+        <file>image/other/circle.png</file>
+        <file>image/other/close.png</file>
+        <file>image/other/half_star.png</file>
+        <file>image/other/hover_blue.png</file>
+        <file>image/other/less_than.png</file>
+        <file>image/other/more_than.png</file>
+        <file>image/other/normal_gray.png</file>
+        <file>image/other/star.png</file>
+    </qresource>
+</RCC>
